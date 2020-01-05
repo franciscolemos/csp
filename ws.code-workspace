@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "repositories",
+			"path": "repositories"
+		},
+		{
+			"name": "dfs",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
