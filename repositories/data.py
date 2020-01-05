@@ -61,3 +61,5 @@ oriDEST = {
     '737002/03/08'	:	[	 'CDG'	 'TLS'	]
 
 }
+#TODO
+#add the data regarding the airports

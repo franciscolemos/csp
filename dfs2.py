@@ -41,11 +41,17 @@ def dfs(visited, graph, node):
                     index = data.flightSchedule.index(node)
                     return index
     return -1
-# Driver Code
+
+#define the critical flight
+
 index = 0
 while(index != -1):
     startFlight = data.flightSchedule[index] #starting flight to start the dfs
     index = dfs(visited, data.graphFs,startFlight)
-
+    #cancel the flightSchedule[index]
+    #save the partial solution
+    #define the critical flight
+    #delete the loop files
+    #create new solution from the flightSchedule
     pdb.set_trace()
     print(solution)
