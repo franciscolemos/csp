@@ -1,6 +1,8 @@
 # Using a Python dictionary to act as an adjacency list
 import pdb
 import repositories.data as data
+import repositories.airportCap as aC
+
 
 solution = {
     '724001/03/08':[],
@@ -16,6 +18,8 @@ solution = {
 }
 
 visited = [] # Array to keep track of visited nodes.
+
+pdb.set_trace()
 
 def dfs(visited, graph, node):
     if node not in visited: #hard constraint
@@ -48,10 +52,12 @@ index = 0
 while(index != -1):
     startFlight = data.flightSchedule[index] #starting flight to start the dfs
     index = dfs(visited, data.graphFs,startFlight)
-    #cancel the flightSchedule[index]
-    #save the partial solution
-    #define the critical flight
-    #delete the loop files
-    #create new solution from the flightSchedule
+    if(index != -1): #solution not found
+        pass
+        #define the critical flight
+        #delete the loop files
+        #update the flightSchedule with partial solution
+        #save the partial solution
+        #create new solution from the flightSchedule
     pdb.set_trace()
     print(solution)
