@@ -1,1 +1,4 @@
 *.pyc
+__pycache__
+repositories/__pycache__/airportCap.cpython-37.pyc
+repositories/__pycache__/data.cpython-37.pyc

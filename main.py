@@ -2,8 +2,9 @@
 import pdb
 import repositories.data as data
 import repositories.airportCap as aC
-import repositories.flightSchedule as fS
+from repositories.flightSchedule import fs
 import actions.dfs2 as aD
+from actions import critical
 #TODO
 #Re-factor according to the flighSchedule
 #Create the initial solution
@@ -20,11 +21,10 @@ solution = {
     '736902/03/08':[],
     '737002/03/08':[]
 }
-
 visited = [] # Array to keep track of visited nodes.
-
+criticalFlight = critical.flightMaint(fs) #define the critical flight
 #TODO
-#define the critical flight
+
 #initialize ranges (remove flights that can be moved)
 
 index = 0
