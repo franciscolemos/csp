@@ -1,10 +1,12 @@
 # Using a Python dictionary to act as an adjacency list
 import pdb
+import numpy as np
 import repositories.data as data
 import repositories.airportCap as aC
 from repositories.flightSchedule import fs
 import actions.dfs2 as aD
 from actions import critical
+from actions import domains
 #TODO
 #Re-factor according to the flighSchedule
 #Create the initial solution
@@ -23,9 +25,13 @@ solution = {
 }
 visited = [] # Array to keep track of visited nodes.
 criticalFlight = critical.flightMaint(fs) #define the critical flight
+domainsFlights = domains.flights(data.configDic)
+fixedFlights = domainsFlights.fixed(fs)
+movingFlights = np.setdiff1d(fs, fixedFlights,True)
+pdb.set_trace()
 #TODO
-
-#initialize ranges (remove flights that can be moved)
+#(remove flights that can be moved)
+#initialize ranges 
 
 index = 0
 dfs = aD.dfs(data, solution) #init. class in actions layer
