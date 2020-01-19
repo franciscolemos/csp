@@ -1,0 +1,68 @@
+
+
+'''
+paths = ["C:\\ROADEF2009\\A1\\A01_6088570",
+    "C:\\ROADEF2009\\A1\\A02_6088570",
+    "C:\\ROADEF2009\\A1\\A03_6088570",
+    "C:\\ROADEF2009\\A1\\A04_6088570",
+    "C:\\ROADEF2009\\A1\\A05_6088570",
+    "C:\\ROADEF2009\\A2\\A06_6088590",
+    "C:\\ROADEF2009\\A2\\A07_6088590",
+    "C:\\ROADEF2009\\A2\\A08_6088590",
+    "C:\\ROADEF2009\\A2\\A09_6088590",
+    "C:\\ROADEF2009\\A2\\A10_6088590",
+    "C:\\ROADEF2009\\B1\\B_01",
+    "C:\\ROADEF2009\\B1\\B_02",
+    "C:\\ROADEF2009\\B1\\B_03",
+    "C:\\ROADEF2009\\B1\\B_04",
+    "C:\\ROADEF2009\\B1\\B_05",
+    "C:\\ROADEF2009\\B2\\B_06",
+    "C:\\ROADEF2009\\B2\\B_07",
+    "C:\\ROADEF2009\\B2\\B_08",
+    "C:\\ROADEF2009\\B2\\B_09",
+    "C:\\ROADEF2009\\B2\\B_10",
+    "C:\\ROADEF2009\\X\\X01_DATA",
+    "C:\\ROADEF2009\\X\\X02_DATA",
+    "C:\\ROADEF2009\\X\\X03_DATA",
+    "C:\\ROADEF2009\\X\\X04_DATA",
+    "C:\\ROADEF2009\\X\\XA01_DATA",
+    "C:\\ROADEF2009\\X\\XA02_DATA",
+    "C:\\ROADEF2009\\X\\XA03_DATA",
+    "C:\\ROADEF2009\\X\\XA04_DATA",
+    "C:\\ROADEF2009\\X\\XB01_DATA",
+    "C:\\ROADEF2009\\X\\XB02_DATA",
+    "C:\\ROADEF2009\\X\\XB03_DATA",
+    "C:\\ROADEF2009\\X\\XB04_DATA"]
+'''
+#paths = ["C:\\ROADEF2009\\A1\\A01_6088570"]
+#paths = ["C:\\ROADEF2009\\A1\\A02_6088570"]
+#paths = ["C:\\ROADEF2009\\A1\\A03_6088570"]
+#paths = ["C:\\ROADEF2009\\A1\\A04_6088570"]
+#paths = ["C:\\ROADEF2009\\A1\\A05_6088570"]
+#paths = ["C:\\ROADEF2009\\A2\\A06_6088590"]
+#paths = ["C:\\ROADEF2009\\A2\\A07_6088590"]
+#paths = ["C:\\ROADEF2009\\A2\\A08_6088590"]
+#paths = ["C:\\ROADEF2009\\A2\\A09_6088590"]
+#paths = ["C:\\ROADEF2009\\A2\\A10_6088590"]
+#paths = ["C:\\ROADEF2009\\B1\\B_01"]
+#paths = ["C:\\ROADEF2009\\B1\\B_02"]
+#paths = ["C:\\ROADEF2009\\B1\\B_03"]
+#paths = ["C:\\ROADEF2009\\B1\\B_04"]
+#paths = ["C:\\ROADEF2009\\B1\\B_05"]
+#paths = ["C:\\ROADEF2009\\B2\\B_06"]
+#paths = ["C:\\ROADEF2009\\B2\\B_07"]
+paths = ["C:\\ROADEF2009\\B2\\B_08"]
+#paths = ["C:\\ROADEF2009\\B2\\B_09"]
+#paths = ["C:\\ROADEF2009\\B2\\B_10"]
+#paths = ["C:\\ROADEF2009\\X\\X01_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\X02_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\X03_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\X04_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XA01_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XA02_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XA03_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XA04_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XB01_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XB02_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XB03_DATA"]
+#paths = ["C:\\ROADEF2009\\X\\XB04_DATA"]

@@ -13,6 +13,9 @@ class ARP(unittest.TestCase):
         s1 = len(self.m.fixedFlights) #sizeFixedFlights
         s2 = len(self.m.movingFlights) #sizeMovingFlights
         self.assertEqual(s0, s1 + s2)
+    #TODO
+    def airpCap(self):
+        pass
 
 ARP().fs()
 

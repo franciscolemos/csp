@@ -1,5 +1,8 @@
 import datetime
 
+maxDelay = 960
+deltaT = 60
+
 configDic = {'endDate': datetime.datetime(2008, 3, 3, 0, 0),
  'endInt': 3120,
  'endTime': datetime.datetime(1900, 1, 1, 4, 0),

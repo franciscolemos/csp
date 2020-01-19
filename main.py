@@ -1,20 +1,35 @@
 # Using a Python dictionary to act as an adjacency list
 import pdb
 import numpy as np
-import repositories.data as data
-import repositories.airportCap as aC
-from repositories.flightSchedule import fs
-import actions.dfs2 as aD
-from actions import critical
-from actions import domains
+from repositories import *
+import actions.dfs2 as aD #it is not necessary to import the entire package, only some modules
+from actions import domains #domains is updated at each iteration
+import copy
 
 class ARP:
-    def __init__(self):
+    def __init__(self, path):
         self.solution = {}
         self.visited = [] # Array to keep track of visited nodes.
         self.criticalFlight = []
         self.fixedFlights = []
         self.movingFlights = []
+
+        self.flightRotationDic = readRotation.readRotation(path, "rotations.csv").read2FlightRotationDic() #{flightDate:aircraft}
+        minDate = self.flightRotationDic['minDate']
+        maxDate = self.flightRotationDic['maxDate']
+        self.configDic = readConfig.readConfig(path, "config.csv", minDate).read2Dic()
+        self.aircraftRotationDic = readRotation.readRotation(path, "rotations.csv").read2AircraftRotationDic() #{aircraft:flightSchedule}
+        self.flightDic = readFlights.readFlights(path, "flights.csv").read2Dic()  
+        self.aircraftDic = readAircrafts.readAircrafts(path, "alt_aircraft.csv", minDate).read2Dic()
+        self.altAircraftDic = readAltAircraft.readAltAircraft(path, "alt_aircraft.csv", minDate).read2Dic()
+        self.altAirportSA = readAltAirports.readAltAirport(path, "alt_airports.csv", minDate).read2SA() #atttrib. of SA
+        self.altFlightDic = readAltFlights.readAltFlights(path, "alt_flights.csv").altFlight.read2Dic()
+
+
+        self.dist = readDist.readDist(path, "dist.csv").read2SA()
+        import pdb; pdb.set_trace()
+        self.airportCapDic = copy.deepcopy(airportCap.airportCapDic) #keep de original solution
+
     def initialize(self):
         self.solution = {
             '724001/03/08':[],
@@ -28,15 +43,19 @@ class ARP:
             '736902/03/08':[],
             '737002/03/08':[]
         }
-        self.criticalFlight = critical.flightMaint(fs) #define the critical flight
-        domainsFlights = domains.flights(data.configDic)
-        self.fixedFlights = domainsFlights.fixed(fs)
-        self.movingFlights = np.setdiff1d(fs, self.fixedFlights,True)
+        domainsFlights = domains.flights(data.configDic, flightSchedule.fs)
+        self.fixedFlights = domainsFlights.fixed()
+        self.movingFlights = np.setdiff1d(flightSchedule.fs, self.fixedFlights,True)
+        domainsFlights.remove(self.airportCapDic, self.movingFlights) #removes flights from airp.
+        domainsFlights.criticalMaint()
         #TODO
-        #(remove flights that can be moved)
         #initialize ranges 
+        domainsFlights.ranges(self.movingFlights) #it is necessary because of forward checking
+        #test the ranges
+        
 
     def findSolution(self):
+        self.initialize()
         index = 0
         dfs = aD.dfs(data, self.solution) #init. class in actions layer
         while(index != -1):
@@ -53,6 +72,5 @@ class ARP:
             pdb.set_trace()
 
 if __name__ == "__main__":
-    ARP()
-    ARP().initialize() #initialize variables
-    ARP().findSolution()
+    for path in paths.paths:
+        ARP(path).findSolution()
