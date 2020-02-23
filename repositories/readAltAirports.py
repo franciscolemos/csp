@@ -41,4 +41,4 @@ class readAltAirport:
                 self.altAirportsSA[i]['capDep'] = int(altAirportLine['capDep'])
                 self.altAirportsSA[i]['capArr'] = int(altAirportLine['capArr'])
                 i += 1
-            return self.altAirportsSA
+        return self.altAirportsSA

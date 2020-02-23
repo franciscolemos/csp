@@ -12,8 +12,8 @@ visited = [] # Array to keep track of visited nodes.
 
 def dfs(visited, graph, node):
     if node not in visited:
-        print(node,
-        visited.append(node))
+        print(node)
+        visited.append(node)
         for neighbour in graph[node]:
             dfs(visited, graph, neighbour)
 

@@ -42,6 +42,8 @@ class readAirports:
                self.initializeDic(airport)
                line = fp.readline()
         self.noAirports = len(self.airportDic)
+        return self.airportDic
+
     def initializeDic(self, airport):
         noDep = -1
         noArr = -1
@@ -72,7 +74,6 @@ class readAirports:
                 airportSchedule[i]['startInt'] = (h-1)*60 + 60 * 24 * d
                 airportSchedule[i]['endInt'] = h*60 + 60 * 24 * d
                 _tmpAirportSchedule = tmpAirportSchedule[(tmpAirportSchedule['startInt'] <= h-1) & (tmpAirportSchedule['endInt'] >= h)]
-                
                 if len(self.altAirportsSA):
                     if len(self.altAirportsSA[ #check if there is disruption for the interval
                         (self.altAirportsSA['airport'] == airport.airport)  &  #airport
@@ -85,19 +86,17 @@ class readAirports:
 
                 airportSchedule[i]['capDep'] = _tmpAirportSchedule['capDep']
                 airportSchedule[i]['capArr'] = _tmpAirportSchedule['capArr']
+                if len(self.flightScheduleSA):
+                    noDep = len(self.flightScheduleSA[(self.flightScheduleSA['origin'] == airport.airport ) &
+                        (self.flightScheduleSA['altDepInt'] >= airportSchedule[i]['startInt']) &
+                        (self.flightScheduleSA['altDepInt'] < airportSchedule[i]['endInt'])])
+                    airportSchedule[i]['noDep'] = noDep
 
-                noDep = len(self.flightScheduleSA[(self.flightScheduleSA['origin'] == airport.airport ) &
-                    (self.flightScheduleSA['altDepInt'] >= airportSchedule[i]['startInt']) &
-                    (self.flightScheduleSA['altDepInt'] < airportSchedule[i]['endInt'])])
-                airportSchedule[i]['noDep'] = noDep
-
-                noArr = len(self.flightScheduleSA[(self.flightScheduleSA['destination'] == airport.airport ) &
-                    (self.flightScheduleSA['altArrInt'] >= airportSchedule[i]['startInt']) &
-                    (self.flightScheduleSA['altArrInt'] < airportSchedule[i]['endInt'])])
-                airportSchedule[i]['noArr'] = noArr
-
+                    noArr = len(self.flightScheduleSA[(self.flightScheduleSA['destination'] == airport.airport ) &
+                        (self.flightScheduleSA['altArrInt'] >= airportSchedule[i]['startInt']) &
+                        (self.flightScheduleSA['altArrInt'] < airportSchedule[i]['endInt'])])
+                    airportSchedule[i]['noArr'] = noArr
                 i += 1
-
         self.airportDic[airport.airport] = airportSchedule
         
     def infeasCap(self):
