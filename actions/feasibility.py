@@ -1,15 +1,35 @@
 import pdb
 import datetime
-import fileExport as fE
+#import fileExport as fE
 import time
-import funcsDate as fD
-import initialize as i
+#import funcsDate as fD
+#import initialize as i
 from numpy import array
 import numpy as np
 from pprint import pprint
 import pandas as pd
 
-class feasibilityARP():
+
+def continuity(flightSchedule):
+    flightContList = []
+    if not np.all(flightSchedule['destination'][:-1] == flightSchedule['origin'][1:]): #continuity destination of the cur. needs to equal to origin of the next
+        for cur, nxt in zip(flightSchedule[:-1], flightSchedule[1:]): #check which flight
+            if(cur['destination'] != nxt['origin']):
+                flightContList.append(nxt['flight']) #append the flight
+    return flightContList
+
+def TT(self, flightSchedule):
+    if not np.all(flightSchedule['altDepInt'][1:] - flightSchedule['altArrInt'][:-1] >= flightSchedule['tt'][1:]): #tt between two consecutive flights
+        #pdb.set_trace()
+        flightTTList = []
+        for cur, nxt in zip(flightSchedule[:-1], flightSchedule[1:]): #check which flight
+            if(nxt['altDepInt'] - cur['altArrInt'] < nxt['tt']):
+                #flightPair = flightSchedule[(flightSchedule['flight'] == cur['flight']) | (flightSchedule['flight'] == nxt['flight'])] #keep data as structured array
+                #flightTTList.append(flightPair) #append the 2 structured arrays
+                #flightTTList.append([cur['destination'], nxt['origin']]) #append the 2 structured arrays
+                flightTTList.append(nxt['flight']) #append the flight
+        return flightTTList
+class ARP():
 
     def __init__(self, aircraftScheduleDic, flightRotationDic, infeasCapDepSA, infeasCapArrSA):
         self.aircraftScheduleDic = aircraftScheduleDic #{aircraft:[idFlight, date, origin, depInt, altDepInt, destination, arrInt, altArrInt], delay, broken, cancelFlight]}

@@ -3,9 +3,11 @@ import pdb
 import numpy as np
 from repositories import *
 import actions.funcsDate as fD
+from actions import scenario
 from datetime import datetime
 from actions import domains #domains is updated at each iteration
 import actions.dfs2 as aD #it is not necessary to import the entire package, only some modules
+from actions import feasibility
 import random
 import copy
 
@@ -26,14 +28,14 @@ class ARP:
         self.altAircraftDic = readAltAircraft.readAltAircraft(path, "alt_aircraft.csv", minDate).read2Dic()
         self.altAirportSA = readAltAirports.readAltAirport(path, "alt_airports.csv", minDate).read2SA() #atttrib. of SA
         self.altFlightDic = readAltFlights.readAltFlights(path, "alt_flights.csv").read2Dic()
-        self.dist = readDist.readDist(path, "dist.csv").read2SA()
-
+        self.distSA = readDist.readDist(path, "dist.csv").read2SA()
         i = schedules.initialize(self.aircraftRotationDic, self.altAircraftDic, self.altFlightDic, 
             self.aircraftDic, self.flightDic, path, minDate)
         i.aircraftSchedule() #included flight and aircr. disr. and, maint. {aircraft:flightSA}
         self.aircraftScheduleDic = i.aircraftScheduleDic #1 aircraft to n flights
         i.flightSchedule()
         self.flightScheduleSA = i.flightScheduleSA #all the flights + room to un-cancel flights for airport cap. purpose
+        self.itineraryDic = [] # readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
         #determine the planning horizon
         endDateTime = datetime.combine(datetime.date(self.configDic['endDate']),
             datetime.time(self.configDic['endTime']))
@@ -44,14 +46,21 @@ class ARP:
         self.fSNOTranspComSA = self.flightScheduleSA[self.flightScheduleSA['family'] != "TranspCom"]
         self.airportDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
 
+        scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportDic),
+                    len(self.itineraryDic), len(self.altFlightDic), len(self.altAircraftDic),
+                    len(self.altAirportSA), noDays - 1)
+
     def initialize(self, aircraft):
         #TODO
-        rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
         
-        import pdb; pdb.set_trace()
+        rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
+        rotation = rotation[rotation['cancelFlight'] == 0] #only flying flights
+        rotation = np.sort(rotation, order = 'altDepInt') #sort ascending
         #check rotation feasibility
-        #cont.
+        contList = feasibility.continuity(rotation) #cont.
         #TT
+        import pdb; pdb.set_trace()
+        
         #maint.
         #airp. dep. cap.
         #airp. arr. cap.
@@ -73,22 +82,12 @@ class ARP:
         domainsFlights.ranges(self.movingFlights) #it is necessary because of forward checking
         #test the ranges
         #initialize the solution/solutions/graphs to be traversed
-        self.solution = {
-            '724001/03/08':[],
-            '724301/03/08':[],
-            '286601/03/08':[],
-            '286701/03/08':[],
-            '530301/03/08':[],
-            '530002/03/08':[],
-            'm':[],
-            '736602/03/08':[],
-            '736902/03/08':[],
-            '737002/03/08':[]
-        }
+
         #visualize the graphs
     def findSolution(self):
 
         aircraftList =  list(self.aircraftDic.keys())
+        #might have to change this to most constr. flights: maint. airp./flights
         random.shuffle(aircraftList)
         for aircraft in aircraftList:
             print(aircraft, self.aircraftDic[aircraft])
@@ -113,3 +112,22 @@ if __name__ == "__main__":
     for path in paths.paths:
         #add while loop
         ARP(path).findSolution()
+
+
+
+
+
+"""
+self.solution = {
+    '724001/03/08':[],
+    '724301/03/08':[],
+    '286601/03/08':[],
+    '286701/03/08':[],
+    '530301/03/08':[],
+    '530002/03/08':[],
+    'm':[],
+    '736602/03/08':[],
+    '736902/03/08':[],
+    '737002/03/08':[]
+}
+"""
