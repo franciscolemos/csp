@@ -18,17 +18,21 @@ def continuity(flightSchedule):
                 flightContList.append(nxt['flight']) #append the flight
     return flightContList
 
-def TT(self, flightSchedule):
+def TT(flightSchedule):
+    flightTTList = []
     if not np.all(flightSchedule['altDepInt'][1:] - flightSchedule['altArrInt'][:-1] >= flightSchedule['tt'][1:]): #tt between two consecutive flights
-        #pdb.set_trace()
         flightTTList = []
         for cur, nxt in zip(flightSchedule[:-1], flightSchedule[1:]): #check which flight
             if(nxt['altDepInt'] - cur['altArrInt'] < nxt['tt']):
-                #flightPair = flightSchedule[(flightSchedule['flight'] == cur['flight']) | (flightSchedule['flight'] == nxt['flight'])] #keep data as structured array
-                #flightTTList.append(flightPair) #append the 2 structured arrays
-                #flightTTList.append([cur['destination'], nxt['origin']]) #append the 2 structured arrays
                 flightTTList.append(nxt['flight']) #append the flight
-        return flightTTList
+    return flightTTList
+
+#TODO
+#maint.
+
+#dep. arr. airp. cap.
+
+
 class ARP():
 
     def __init__(self, aircraftScheduleDic, flightRotationDic, infeasCapDepSA, infeasCapArrSA):

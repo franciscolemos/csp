@@ -8,6 +8,7 @@ from datetime import datetime
 from actions import domains #domains is updated at each iteration
 import actions.dfs2 as aD #it is not necessary to import the entire package, only some modules
 from actions import feasibility
+from actions import solution
 import random
 import copy
 
@@ -52,26 +53,28 @@ class ARP:
 
     def initialize(self, aircraft):
         #TODO
-        
+        #check if rotation includes maint.
+        #if it includes maint. it has to be removed
         rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
         rotation = rotation[rotation['cancelFlight'] == 0] #only flying flights
         rotation = np.sort(rotation, order = 'altDepInt') #sort ascending
         #check rotation feasibility
-        contList = feasibility.continuity(rotation) #cont.
-        #TT
+        infContList = feasibility.continuity(rotation) #cont.
+        infTTList = feasibility.TT(rotation) #TT
+
         import pdb; pdb.set_trace()
-        
-        #maint.
-        #airp. dep. cap.
-        #airp. arr. cap.
+        infMaintList = feasibility.maint(rotation) #maint.
+        infDepArrList = feasibility.depArr(rotation, airportCapDic) #airp. dep./arr. cap.
 
-        #if feasible 
-        #save the solution
-        #update the airp. cap.
-        # return -1
+        feasible = not (len(infContList) & len(infTTList) & len(infMaintList) & len(infDepArrList))
 
-        #else
-        #initialize the domains
+        if feasible:
+            solution.saveARP(rotation) #save the solution
+            solution.saveAirportCap(self.airportDic) #update the airp. cap.
+            return -1
+        else:
+            #initialize the domains
+            pass
         domainsFlights = domains.flights(data.configDic, flightSchedule.fs)
         self.fixedFlights = domainsFlights.fixed()
         self.movingFlights = np.setdiff1d(flightSchedule.fs, self.fixedFlights,True)
