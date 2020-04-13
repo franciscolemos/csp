@@ -1,14 +1,14 @@
 # Using a Python dictionary to act as an adjacency list
 import pdb
 import numpy as np
-from repositories import *
-import actions.funcsDate as fD
-from actions import scenario
+from recovery.repositories import *
+import recovery.actions.funcsDate as fD
+from recovery.actions import scenario
 from datetime import datetime
-from actions import domains #domains is updated at each iteration
-import actions.dfs2 as aD #it is not necessary to import the entire package, only some modules
-from actions import feasibility
-from actions import solution
+from recovery.actions import domains #domains is updated at each iteration
+import recovery.actions.dfs2 as aD #it is not necessary to import the entire package, only some modules
+from recovery.actions import feasibility
+from recovery.actions import solution
 import random
 import copy
 
