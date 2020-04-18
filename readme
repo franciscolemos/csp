@@ -1,3 +1,5 @@
 The $rotation has the new created flights
-When a rotation is foun infeasible it becomes necessary to reconstruct it from its beginning by inserting each flight and checking their feasibility;
+When a rotation is foun infeasible it becomes necessary to reconstruct it from the flight where it breaks by inserting each flight and checking their feasibility;
 If a table is to be constructed with all possible combinations this could create a combinatorial explosion;
+It does becomes necessary to use the Erdos Reniy method to generate the graph;
+The probability pf generating a node should vary according to the scenario (flight: delay, cancellation; aircraft: breakdown; airport capacity: shortage)

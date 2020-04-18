@@ -73,12 +73,14 @@ class ARP:
         infDepList = feasibility.dep(rotation, self.airportDic) #airp. dep. cap.
         infArrList = feasibility.arr(rotation, self.airportDic) #airp. arr. cap.
 
-        feasible = not (len(infContList) | len(infTTList) | len(infMaintList) | len(infDepList) | len(infArrList))
-        if feasible:
+        feasible = len(infContList) + len(infTTList) + len(infMaintList) + len(infDepList) + len(infArrList)
+        if feasible == 0:
             self.solutionARP.append(rotation) #save the feasible rotation
             solution.saveAirportCap(rotation, self.airportDic) #update the airp. cap.
             return -1
         else:
+            index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
+            import pdb; pdb.set_trace()
             return index
 
         #visualize the graphs
