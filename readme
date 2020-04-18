@@ -1,0 +1,3 @@
+The $rotation has the new created flights
+When a rotation is foun infeasible it becomes necessary to reconstruct it from its beginning by inserting each flight and checking their feasibility;
+If a table is to be constructed with all possible combinations this could create a combinatorial explosion;

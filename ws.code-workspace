@@ -5,5 +5,7 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.pythonPath": "C:\\Users\\chico\\.virtualenvs\\dfs-vAOtlZ1R\\Scripts\\python.exe"
+	}
 }

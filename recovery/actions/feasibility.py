@@ -9,29 +9,44 @@ import numpy as np
 from pprint import pprint
 import pandas as pd
 
-
 def continuity(flightSchedule):
-    flightContList = []
-    if not np.all(flightSchedule['destination'][:-1] == flightSchedule['origin'][1:]): #continuity destination of the cur. needs to equal to origin of the next
-        for cur, nxt in zip(flightSchedule[:-1], flightSchedule[1:]): #check which flight
-            if(cur['destination'] != nxt['origin']):
-                flightContList.append(nxt['flight']) #append the flight
-    return flightContList
+    index =  np.where(flightSchedule['destination'][:-1] != flightSchedule['origin'][1:])
+    return index
 
 def TT(flightSchedule):
-    flightTTList = []
-    if not np.all(flightSchedule['altDepInt'][1:] - flightSchedule['altArrInt'][:-1] >= flightSchedule['tt'][1:]): #tt between two consecutive flights
-        flightTTList = []
-        for cur, nxt in zip(flightSchedule[:-1], flightSchedule[1:]): #check which flight
-            if(nxt['altDepInt'] - cur['altArrInt'] < nxt['tt']):
-                flightTTList.append(nxt['flight']) #append the flight
-    return flightTTList
+    index =  np.where(flightSchedule['altDepInt'][1:] - flightSchedule['altArrInt'][:-1] < flightSchedule['tt'][1:])
+    return index
 
-#TODO
-#maint.
+def maint(flightSchedule):
+    maintenance = flightSchedule[flightSchedule['flight'] == 'm']
+    flightScheduleBeforeMaint = flightSchedule[flightSchedule['altDepInt'] <= maintenance['altDepInt']]
+    if (maintenance['altDepInt'] - flightScheduleBeforeMaint[-1]['altArrInt'] < 0) or (maintenance['origin'] != flightScheduleBeforeMaint[-1]['destination']):
+        return np.array(len(flightScheduleBeforeMaint) - 1)
+    return []
+#dep. airp. cap.
+def dep(flightSchedule, airportDic):
+    flightDepList = []
+    for flight in flightSchedule[flightSchedule['flight'] != '']:
+        try:
+            index = int(flight['altDepInt'] / 60)
+            noDep = airportDic[flight['origin']][index]['noDep']
+            capDep = airportDic[flight['origin']][index]['capDep']
+            if noDep + 1 > capDep:
+                flightDepList.append(flight)
+        except:
+            import pdb; pdb.set_trace()
+    return flightDepList
 
-#dep. arr. airp. cap.
-
+#arr. airp. cap.
+def arr(flightSchedule, airportDic):
+    flightArrList = []
+    for flight in flightSchedule[flightSchedule['flight'] != '']:
+        index = int(flight['altArrInt'] / 60)
+        noArr = airportDic[flight['destination']][index]['noArr']
+        capArr = airportDic[flight['destination']][index]['capArr']
+        if noArr + 1 > capArr:
+            flightArrList.append(flight)
+    return flightArrList
 
 class ARP():
 

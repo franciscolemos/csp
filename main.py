@@ -50,41 +50,36 @@ class ARP:
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportDic),
                     len(self.itineraryDic), len(self.altFlightDic), len(self.altAircraftDic),
                     len(self.altAirportSA), noDays - 1)
+        self.solutionARP = []
 
     def initialize(self, aircraft):
         #TODO
         #check if rotation includes maint.
         #if it includes maint. it has to be removed
+        
         rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
         rotation = rotation[rotation['cancelFlight'] == 0] #only flying flights
         rotation = np.sort(rotation, order = 'altDepInt') #sort ascending
         #check rotation feasibility
         infContList = feasibility.continuity(rotation) #cont.
         infTTList = feasibility.TT(rotation) #TT
+        
+        rotationMaint = np.sort(self.aircraftScheduleDic[aircraft], order = 'altDepInt') #select the aircr. and sort the rotation
+        rotationMaint = rotationMaint[rotationMaint['flight'] == 'm']
+        infMaintList = []
+        if len(rotationMaint) > 0:
+            infMaintList = feasibility.maint(rotationMaint) #maint.
+        
+        infDepList = feasibility.dep(rotation, self.airportDic) #airp. dep. cap.
+        infArrList = feasibility.arr(rotation, self.airportDic) #airp. arr. cap.
 
-        import pdb; pdb.set_trace()
-        infMaintList = feasibility.maint(rotation) #maint.
-        infDepArrList = feasibility.depArr(rotation, airportCapDic) #airp. dep./arr. cap.
-
-        feasible = not (len(infContList) & len(infTTList) & len(infMaintList) & len(infDepArrList))
-
+        feasible = not (len(infContList) | len(infTTList) | len(infMaintList) | len(infDepList) | len(infArrList))
         if feasible:
-            solution.saveARP(rotation) #save the solution
-            solution.saveAirportCap(self.airportDic) #update the airp. cap.
+            self.solutionARP.append(rotation) #save the feasible rotation
+            solution.saveAirportCap(rotation, self.airportDic) #update the airp. cap.
             return -1
         else:
-            #initialize the domains
-            pass
-        domainsFlights = domains.flights(data.configDic, flightSchedule.fs)
-        self.fixedFlights = domainsFlights.fixed()
-        self.movingFlights = np.setdiff1d(flightSchedule.fs, self.fixedFlights,True)
-        domainsFlights.remove(self.airportCapDic, self.movingFlights) #removes flights from airp.
-        domainsFlights.criticalMaint()
-        #TODO
-        #initialize ranges 
-        domainsFlights.ranges(self.movingFlights) #it is necessary because of forward checking
-        #test the ranges
-        #initialize the solution/solutions/graphs to be traversed
+            return index
 
         #visualize the graphs
     def findSolution(self):
@@ -93,12 +88,13 @@ class ARP:
         #might have to change this to most constr. flights: maint. airp./flights
         random.shuffle(aircraftList)
         for aircraft in aircraftList:
+            #aircraft = "A318#33"
             print(aircraft, self.aircraftDic[aircraft])
-            index = self.initialize(aircraft) #initialize all the variables of the flight sched.
+            index = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
             if index != -1: #found a feas. solution in initialize()
                 index = 0
                 dfs = aD.dfs(data, self.solution) #init. class in actions layer
-                while(index != -1):
+                while(index != -1): #search the solution
                     startFlight = data.flightSchedule[index] #starting flight to start the dfs
                     index = dfs.dfs(self.visited, data.graphFs, startFlight)
                     if(index != -1): #solution not found
@@ -110,6 +106,9 @@ class ARP:
                         #create new solution from the flightSchedule
                     print(dfs.solution)
                     pdb.set_trace()
+                
+                self.solutionARP.append(rotation) #save the feasible rotation
+                solution.saveAirportCap(rotation, self.airportDic) #update the airp. cap.
 
 if __name__ == "__main__":
     for path in paths.paths:
