@@ -1,7 +1,4 @@
-def saveARP(rotation):
-    pass
-
-def saveAirportCap(flightSchedule, airportCap):
+def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
     for flight in flightSchedule[flightSchedule['flight'] != '']:
         #update airp. dep. cap.
         index = int(flight['altDepInt']/60)
@@ -10,5 +7,5 @@ def saveAirportCap(flightSchedule, airportCap):
         index = int(flight['altArrInt']/60)
         airportCap[flight['destination']][index]['noArr'] += 1
 
-def savePRP(itineraries):
+def cost(solutionARP, self.itineraryDic)
     pass

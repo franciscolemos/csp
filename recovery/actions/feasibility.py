@@ -11,17 +11,19 @@ import pandas as pd
 
 def continuity(flightSchedule):
     index =  np.where(flightSchedule['destination'][:-1] != flightSchedule['origin'][1:])
-    return index
+    return np.asarray(index).flatten()
 
 def TT(flightSchedule):
     index =  np.where(flightSchedule['altDepInt'][1:] - flightSchedule['altArrInt'][:-1] < flightSchedule['tt'][1:])
-    return index
+    return np.asarray(index).flatten()
 
 def maint(flightSchedule):
-    maintenance = flightSchedule[flightSchedule['flight'] == 'm']
-    flightScheduleBeforeMaint = flightSchedule[flightSchedule['altDepInt'] <= maintenance['altDepInt']]
-    if (maintenance['altDepInt'] - flightScheduleBeforeMaint[-1]['altArrInt'] < 0) or (maintenance['origin'] != flightScheduleBeforeMaint[-1]['destination']):
-        return np.array(len(flightScheduleBeforeMaint) - 1)
+    maintStart = flightSchedule[flightSchedule['flight'] == 'm']['altDepInt'][0]
+    maintOrigin = flightSchedule[flightSchedule['flight'] == 'm']['origin'][0]
+    flightBeforeMaint = flightSchedule[(flightSchedule['altDepInt'] <= maintStart) & (flightSchedule['flight'] != 'm')][-1]
+    if (maintStart - flightBeforeMaint['altArrInt'] < 0) | (maintOrigin != flightBeforeMaint['destination']):
+        index = np.where(flightBeforeMaint)
+        return np.asarray(index).flatten()
     return []
 #dep. airp. cap.
 def dep(flightSchedule, airportDic):
@@ -33,8 +35,8 @@ def dep(flightSchedule, airportDic):
             capDep = airportDic[flight['origin']][index]['capDep']
             if noDep + 1 > capDep:
                 flightDepList.append(flight)
-        except:
-            import pdb; pdb.set_trace()
+        except Exception as e:
+            print("Exception dep:", e)
     return flightDepList
 
 #arr. airp. cap.

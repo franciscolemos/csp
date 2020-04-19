@@ -65,23 +65,25 @@ class ARP:
         infTTList = feasibility.TT(rotation) #TT
         
         rotationMaint = np.sort(self.aircraftScheduleDic[aircraft], order = 'altDepInt') #select the aircr. and sort the rotation
-        rotationMaint = rotationMaint[rotationMaint['flight'] == 'm']
+        _rotationMaint = rotationMaint[rotationMaint['flight'] == 'm'] #find if the rotation has maint. scheduled
         infMaintList = []
-        if len(rotationMaint) > 0:
-            infMaintList = feasibility.maint(rotationMaint) #maint.
+        if len(_rotationMaint) > 0:
+            infMaintList = feasibility.maint(rotationMaint) # find if maint. const. is infeas.
         
         infDepList = feasibility.dep(rotation, self.airportDic) #airp. dep. cap.
         infArrList = feasibility.arr(rotation, self.airportDic) #airp. arr. cap.
-
+        
         feasible = len(infContList) + len(infTTList) + len(infMaintList) + len(infDepList) + len(infArrList)
         if feasible == 0:
             self.solutionARP.append(rotation) #save the feasible rotation
             solution.saveAirportCap(rotation, self.airportDic) #update the airp. cap.
-            return -1
+            return -1, []
         else:
-            index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
-            import pdb; pdb.set_trace()
-            return index
+            try:
+                index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
+            except Exception as e:
+                print("Exception initialize:", e)
+            return int(index), rotationMaint.flatten()
 
         #visualize the graphs
     def findSolution(self):
@@ -91,31 +93,28 @@ class ARP:
         random.shuffle(aircraftList)
         for aircraft in aircraftList:
             #aircraft = "A318#33"
-            print(aircraft, self.aircraftDic[aircraft])
-            index = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
-            if index != -1: #found a feas. solution in initialize()
-                index = 0
-                dfs = aD.dfs(data, self.solution) #init. class in actions layer
-                while(index != -1): #search the solution
-                    startFlight = data.flightSchedule[index] #starting flight to start the dfs
-                    index = dfs.dfs(self.visited, data.graphFs, startFlight)
-                    if(index != -1): #solution not found
-                        pass
-                        #define the critical flight
-                        #delete the loop files (backtrack)
-                        #update the flightSchedule with partial solution
-                        #save the partial solution
-                        #create new solution from the flightSchedule
-                    print(dfs.solution)
-                    pdb.set_trace()
+            #print(aircraft, self.aircraftDic[aircraft])
+            index, rotationMaint = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
+            while(index != -1): #search the solution
                 
-                self.solutionARP.append(rotation) #save the feasible rotation
-                solution.saveAirportCap(rotation, self.airportDic) #update the airp. cap.
+                self.solutionARP.append(rotationMaint[:index])
+                for flight in rotationMaint[index:]: #generate the possible combinations
+                    break
+                break
+                #define the critical flight
+                #delete the loop files (backtrack)
+                #update the flightSchedule with partial solutionq
+                #save the partial solution
+                #create new solution from the flightSchedule
+                print()
+                pdb.set_trace()
 
 if __name__ == "__main__":
     for path in paths.paths:
         #add while loop
         ARP(path).findSolution()
+        PRP(self.solutionARP, self.itineraryDic).findSolution()
+        cost(self.solutionARP, self.itineraryDic)
 
 
 
