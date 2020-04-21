@@ -1,0 +1,319 @@
+Connection time not respected between flight 628 and flight 2783 on itinerary 38
+Connection time not respected between flight 628 and flight 2783 on itinerary 39
+Connection time not respected between flight 628 and flight 2783 on itinerary 40
+Connection time not respected between flight 821 and flight 1624 on itinerary 105
+Connection time not respected between flight 899 and flight 2076 on itinerary 127
+Connection time not respected between flight 899 and flight 1624 on itinerary 128
+Connection time not respected between flight 899 and flight 1624 on itinerary 129
+Connection time not respected between flight 899 and flight 1624 on itinerary 130
+Connection time not respected between flight 899 and flight 1624 on itinerary 131
+Connection time not respected between flight 1007 and flight 7226 on itinerary 189
+Connection time not respected between flight 1007 and flight 2866 on itinerary 191
+Connection time not respected between flight 1019 and flight 7246 on itinerary 198
+Connection time not respected between flight 1180 and flight 5472 on itinerary 234
+Connection time not respected between flight 1187 and flight 7286 on itinerary 253
+Connection time not respected between flight 1187 and flight 7246 on itinerary 255
+Connection time not respected between flight 1265 and flight 1204 on itinerary 315
+Connection time not respected between flight 1265 and flight 1228 on itinerary 316
+Connection time not respected between flight 1318 and flight 3013 on itinerary 352
+Connection time not respected between flight 1320 and flight 2843 on itinerary 357
+Connection time not respected between flight 1320 and flight 2843 on itinerary 358
+Connection time not respected between flight 1620 and flight 7839 on itinerary 472
+Connection time not respected between flight 1620 and flight 7845 on itinerary 473
+Connection time not respected between flight 1620 and flight 7855 on itinerary 474
+Connection time not respected between flight 1620 and flight 7839 on itinerary 475
+Connection time not respected between flight 1620 and flight 7845 on itinerary 476
+Connection time not respected between flight 1720 and flight 7865 on itinerary 519
+Connection time not respected between flight 1786 and flight 5459 on itinerary 545
+Connection time not respected between flight 1786 and flight 5459 on itinerary 546
+Connection time not respected between flight 1902 and flight 5411 on itinerary 567
+Connection time not respected between flight 2165 and flight 1704 on itinerary 607
+Connection time not respected between flight 2165 and flight 4484 on itinerary 617
+Connection time not respected between flight 2701 and flight 2803 on itinerary 672
+Connection time not respected between flight 2701 and flight 2810 on itinerary 673
+Connection time not respected between flight 2742 and flight 5128 on itinerary 749
+Connection time not respected between flight 2746 and flight 2802 on itinerary 757
+Connection time not respected between flight 2746 and flight 2852 on itinerary 758
+Connection time not respected between flight 2769 and flight 4937 on itinerary 773
+Connection time not respected between flight 2804 and flight 2782 on itinerary 778
+Connection time not respected between flight 2804 and flight 2810 on itinerary 779
+Cancelled flight 2831 is taken on itinerary 794
+Cancelled flight 2708 is taken on itinerary 807
+Cancelled flight 5233 is taken on itinerary 818
+Connection time not respected between flight 2867 and flight 4484 on itinerary 841
+Connection time not respected between flight 2867 and flight 4484 on itinerary 842
+Connection time not respected between flight 2867 and flight 4588 on itinerary 843
+Connection time not respected between flight 3013 and flight 4986 on itinerary 883
+Connection time not respected between flight 3033 and flight 4986 on itinerary 885
+Connection time not respected between flight 3033 and flight 4996 on itinerary 886
+Connection time not respected between flight 3033 and flight 4996 on itinerary 887
+Connection time not respected between flight 3033 and flight 5000 on itinerary 888
+Connection time not respected between flight 3035 and flight 4368 on itinerary 889
+Cancelled flight 4299 is taken on itinerary 951
+Cancelled flight 4298 is taken on itinerary 967
+Cancelled flight 4299 is taken on itinerary 968
+Connection time not respected between flight 4319 and flight 5811 on itinerary 985
+Connection time not respected between flight 4337 and flight 5049 on itinerary 996
+Connection time not respected between flight 4337 and flight 5177 on itinerary 997
+Cancelled flight 4298 is taken on itinerary 1015
+Connection time not respected between flight 4598 and flight 4695 on itinerary 1051
+Connection time not respected between flight 4600 and flight 4703 on itinerary 1062
+Connection time not respected between flight 4600 and flight 4703 on itinerary 1063
+Connection time not respected between flight 4607 and flight 5826 on itinerary 1085
+Connection time not respected between flight 4607 and flight 5826 on itinerary 1086
+Cancelled flight 5089 is taken on itinerary 1102
+Connection time not respected between flight 4697 and flight 4587 on itinerary 1119
+Connection time not respected between flight 4895 and flight 4902 on itinerary 1142
+Connection time not respected between flight 4915 and flight 5791 on itinerary 1161
+Connection time not respected between flight 4918 and flight 7446 on itinerary 1162
+Connection time not respected between flight 4936 and flight 2766 on itinerary 1171
+Connection time not respected between flight 4936 and flight 5088 on itinerary 1172
+Connection time not respected between flight 4936 and flight 5088 on itinerary 1173
+Connection time not respected between flight 4985 and flight 2876 on itinerary 1191
+Connection time not respected between flight 4985 and flight 2876 on itinerary 1192
+Connection time not respected between flight 5145 and flight 5360 on itinerary 1278
+Connection time not respected between flight 5231 and flight 2948 on itinerary 1291
+Connection time not respected between flight 5231 and flight 5715 on itinerary 1292
+Cancelled flight 5233 is taken on itinerary 1294
+Cancelled flight 5233 is taken on itinerary 1295
+Connection time not respected between flight 5251 and flight 5351 on itinerary 1305
+Connection time not respected between flight 5290 and flight 4080 on itinerary 1311
+Connection time not respected between flight 5290 and flight 4600 on itinerary 1313
+Connection time not respected between flight 5290 and flight 4600 on itinerary 1314
+Connection time not respected between flight 5290 and flight 5590 on itinerary 1317
+Connection time not respected between flight 5300 and flight 146 on itinerary 1335
+Cancelled flight 5341 is taken on itinerary 1383
+Cancelled flight 5341 is taken on itinerary 1384
+Cancelled flight 5342 is taken on itinerary 1386
+Cancelled flight 5342 is taken on itinerary 1387
+Connection time not respected between flight 5350 and flight 7442 on itinerary 1394
+Connection time not respected between flight 5400 and flight 5385 on itinerary 1453
+Connection time not respected between flight 5400 and flight 5377 on itinerary 1454
+Connection time not respected between flight 5400 and flight 5377 on itinerary 1455
+Connection time not respected between flight 5454 and flight 1987 on itinerary 1480
+Connection time not respected between flight 5476 and flight 7420 on itinerary 1519
+Connection time not respected between flight 5582 and flight 5340 on itinerary 1528
+Connection time not respected between flight 5585 and flight 5694 on itinerary 1536
+Connection time not respected between flight 5594 and flight 4314 on itinerary 1555
+Connection time not respected between flight 5594 and flight 4314 on itinerary 1556
+Connection time not respected between flight 5594 and flight 4330 on itinerary 1557
+Connection time not respected between flight 5594 and flight 5346 on itinerary 1558
+Connection time not respected between flight 5605 and flight 4604 on itinerary 1572
+Cancelled flight 5342 is taken on itinerary 1574
+Connection time not respected between flight 5681 and flight 5590 on itinerary 1618
+Connection time not respected between flight 5682 and flight 7427 on itinerary 1623
+Connection time not respected between flight 5784 and flight 9464 on itinerary 1776
+Connection time not respected between flight 5785 and flight 5702 on itinerary 1777
+Connection time not respected between flight 5787 and flight 5706 on itinerary 1783
+Connection time not respected between flight 5787 and flight 5706 on itinerary 1784
+Connection time not respected between flight 5787 and flight 5706 on itinerary 1786
+Connection time not respected between flight 5819 and flight 5850 on itinerary 1846
+Connection time not respected between flight 5819 and flight 5850 on itinerary 1847
+Connection time not respected between flight 6880 and flight 4970 on itinerary 1941
+Connection time not respected between flight 6888 and flight 7558 on itinerary 1953
+Connection time not respected between flight 6890 and flight 5352 on itinerary 1958
+Connection time not respected between flight 6890 and flight 5359 on itinerary 1959
+Connection time not respected between flight 6890 and flight 5370 on itinerary 1960
+Connection time not respected between flight 6980 and flight 5414 on itinerary 2040
+Connection time not respected between flight 6980 and flight 5414 on itinerary 2041
+Connection time not respected between flight 6980 and flight 5456 on itinerary 2042
+Connection time not respected between flight 6980 and flight 5460 on itinerary 2043
+Connection time not respected between flight 7013 and flight 7060 on itinerary 2080
+Connection time not respected between flight 7013 and flight 7060 on itinerary 2081
+Connection time not respected between flight 7013 and flight 7122 on itinerary 2082
+Connection time not respected between flight 7013 and flight 7060 on itinerary 2085
+Connection time not respected between flight 7039 and flight 7018 on itinerary 2111
+Connection time not respected between flight 7231 and flight 1006 on itinerary 2184
+Connection time not respected between flight 7239 and flight 146 on itinerary 2199
+Connection time not respected between flight 7245 and flight 1898 on itinerary 2217
+Connection time not respected between flight 7283 and flight 1898 on itinerary 2245
+Connection time not respected between flight 7301 and flight 146 on itinerary 2266
+Connection time not respected between flight 7365 and flight 2122 on itinerary 2323
+Connection time not respected between flight 7365 and flight 4688 on itinerary 2324
+Connection time not respected between flight 7365 and flight 4688 on itinerary 2325
+Connection time not respected between flight 7365 and flight 7818 on itinerary 2326
+Connection time not respected between flight 7365 and flight 7818 on itinerary 2327
+Connection time not respected between flight 7365 and flight 9416 on itinerary 2328
+Connection time not respected between flight 7380 and flight 2810 on itinerary 2348
+Connection time not respected between flight 7384 and flight 5855 on itinerary 2352
+Connection time not respected between flight 7384 and flight 5855 on itinerary 2353
+Connection time not respected between flight 7506 and flight 5811 on itinerary 2408
+Connection time not respected between flight 7804 and flight 7833 on itinerary 2419
+Connection time not respected between flight 7804 and flight 7833 on itinerary 2420
+Connection time not respected between flight 7810 and flight 7833 on itinerary 2428
+Connection time not respected between flight 7833 and flight 6995 on itinerary 2444
+Connection time not respected between flight 9388 and flight 9345 on itinerary 2495
+Connection time not respected between flight 9388 and flight 9345 on itinerary 2496
+Connection time not respected between flight 9413 and flight 7374 on itinerary 2505
+Connection time not respected between flight 9413 and flight 7374 on itinerary 2506
+Connection time not respected between flight 9426 and flight 9494 on itinerary 2513
+Connection time not respected between flight 9426 and flight 9494 on itinerary 2514
+Connection time not respected between flight 9426 and flight 9536 on itinerary 2515
+Connection time not respected between flight 9426 and flight 9536 on itinerary 2516
+Connection time not respected between flight 9435 and flight 9427 on itinerary 2517
+Connection time not respected between flight 9499 and flight 1685 on itinerary 2546
+Connection time not respected between flight 9499 and flight 1685 on itinerary 2547
+Connection time not respected between flight 9499 and flight 1685 on itinerary 2548
+Connection time not respected between flight 628 and flight 2783 on itinerary 2602
+Connection time not respected between flight 628 and flight 2783 on itinerary 2603
+Connection time not respected between flight 703 and flight 1524 on itinerary 2623
+Connection time not respected between flight 703 and flight 1524 on itinerary 2624
+Connection time not respected between flight 821 and flight 1624 on itinerary 2670
+Connection time not respected between flight 899 and flight 1824 on itinerary 2691
+Connection time not respected between flight 899 and flight 1624 on itinerary 2692
+Connection time not respected between flight 899 and flight 1624 on itinerary 2693
+Connection time not respected between flight 981 and flight 7206 on itinerary 2721
+Connection time not respected between flight 981 and flight 7206 on itinerary 2722
+Connection time not respected between flight 1007 and flight 7246 on itinerary 2747
+Connection time not respected between flight 1007 and flight 7286 on itinerary 2748
+Connection time not respected between flight 1019 and flight 7246 on itinerary 2750
+Connection time not respected between flight 1019 and flight 7286 on itinerary 2752
+Connection time not respected between flight 1019 and flight 7248 on itinerary 2753
+Connection time not respected between flight 1019 and flight 7248 on itinerary 2754
+Connection time not respected between flight 1187 and flight 7286 on itinerary 2816
+Connection time not respected between flight 1187 and flight 7318 on itinerary 2819
+Connection time not respected between flight 1318 and flight 3013 on itinerary 2910
+Connection time not respected between flight 1320 and flight 2843 on itinerary 2914
+Connection time not respected between flight 1620 and flight 7839 on itinerary 3016
+Connection time not respected between flight 1620 and flight 7845 on itinerary 3017
+Connection time not respected between flight 1620 and flight 7855 on itinerary 3018
+Connection time not respected between flight 1620 and flight 7839 on itinerary 3019
+Connection time not respected between flight 1620 and flight 7845 on itinerary 3020
+Connection time not respected between flight 1720 and flight 7865 on itinerary 3058
+Connection time not respected between flight 1786 and flight 5459 on itinerary 3091
+Connection time not respected between flight 1786 and flight 5459 on itinerary 3092
+Connection time not respected between flight 1902 and flight 5411 on itinerary 3108
+Connection time not respected between flight 2165 and flight 1704 on itinerary 3140
+Connection time not respected between flight 2165 and flight 1704 on itinerary 3141
+Connection time not respected between flight 2165 and flight 4484 on itinerary 3154
+Connection time not respected between flight 2165 and flight 4484 on itinerary 3155
+Cancelled flight 5233 is taken on itinerary 3243
+Connection time not respected between flight 2742 and flight 5128 on itinerary 3269
+Connection time not respected between flight 2746 and flight 2747 on itinerary 3278
+Connection time not respected between flight 2746 and flight 2802 on itinerary 3279
+Connection time not respected between flight 2769 and flight 4937 on itinerary 3292
+Connection time not respected between flight 2804 and flight 2810 on itinerary 3296
+Connection time not respected between flight 2804 and flight 2810 on itinerary 3297
+Cancelled flight 2831 is taken on itinerary 3315
+Cancelled flight 2708 is taken on itinerary 3325
+Cancelled flight 5233 is taken on itinerary 3335
+Connection time not respected between flight 2867 and flight 4484 on itinerary 3359
+Connection time not respected between flight 2867 and flight 4588 on itinerary 3360
+Connection time not respected between flight 2949 and flight 4644 on itinerary 3388
+Connection time not respected between flight 3033 and flight 4986 on itinerary 3398
+Connection time not respected between flight 3033 and flight 4996 on itinerary 3399
+Connection time not respected between flight 3033 and flight 4986 on itinerary 3400
+Connection time not respected between flight 3033 and flight 4996 on itinerary 3401
+Connection time not respected between flight 3033 and flight 5000 on itinerary 3402
+Connection time not respected between flight 3033 and flight 5016 on itinerary 3403
+Connection time not respected between flight 3035 and flight 4368 on itinerary 3404
+Cancelled flight 4299 is taken on itinerary 3463
+Cancelled flight 4298 is taken on itinerary 3479
+Cancelled flight 4299 is taken on itinerary 3480
+Connection time not respected between flight 4319 and flight 5811 on itinerary 3495
+Connection time not respected between flight 4337 and flight 5177 on itinerary 3503
+Cancelled flight 4298 is taken on itinerary 3522
+Connection time not respected between flight 4598 and flight 4695 on itinerary 3553
+Connection time not respected between flight 4607 and flight 5826 on itinerary 3586
+Connection time not respected between flight 4607 and flight 5826 on itinerary 3587
+Cancelled flight 2708 is taken on itinerary 3596
+Connection time not respected between flight 4697 and flight 4587 on itinerary 3607
+Connection time not respected between flight 4895 and flight 4902 on itinerary 3627
+Connection time not respected between flight 4905 and flight 7508 on itinerary 3638
+Connection time not respected between flight 4915 and flight 5791 on itinerary 3645
+Connection time not respected between flight 4918 and flight 7446 on itinerary 3646
+Connection time not respected between flight 4931 and flight 5056 on itinerary 3648
+Connection time not respected between flight 4931 and flight 5358 on itinerary 3649
+Connection time not respected between flight 4936 and flight 2766 on itinerary 3657
+Connection time not respected between flight 4985 and flight 2876 on itinerary 3679
+Connection time not respected between flight 5046 and flight 5625 on itinerary 3722
+Connection time not respected between flight 5231 and flight 2948 on itinerary 3779
+Cancelled flight 5089 is taken on itinerary 3781
+Cancelled flight 5233 is taken on itinerary 3782
+Cancelled flight 5089 is taken on itinerary 3782
+Connection time not respected between flight 5251 and flight 5351 on itinerary 3798
+Connection time not respected between flight 5290 and flight 4080 on itinerary 3804
+Connection time not respected between flight 5290 and flight 4600 on itinerary 3806
+Connection time not respected between flight 5300 and flight 146 on itinerary 3822
+Cancelled flight 5341 is taken on itinerary 3861
+Cancelled flight 5342 is taken on itinerary 3862
+Cancelled flight 5342 is taken on itinerary 3863
+Connection time not respected between flight 5350 and flight 7442 on itinerary 3873
+Connection time not respected between flight 5400 and flight 5315 on itinerary 3929
+Connection time not respected between flight 5400 and flight 5335 on itinerary 3930
+Connection time not respected between flight 5476 and flight 7420 on itinerary 3987
+Connection time not respected between flight 5585 and flight 5694 on itinerary 4004
+Connection time not respected between flight 5594 and flight 4330 on itinerary 4028
+Connection time not respected between flight 5681 and flight 5590 on itinerary 4084
+Connection time not respected between flight 5681 and flight 5590 on itinerary 4085
+Connection time not respected between flight 5682 and flight 7427 on itinerary 4089
+Connection time not respected between flight 5682 and flight 7427 on itinerary 4090
+Connection time not respected between flight 5719 and flight 5630 on itinerary 4197
+Connection time not respected between flight 5781 and flight 5692 on itinerary 4224
+Connection time not respected between flight 5781 and flight 5698 on itinerary 4225
+Connection time not respected between flight 5784 and flight 9464 on itinerary 4238
+Connection time not respected between flight 5787 and flight 5706 on itinerary 4254
+Connection time not respected between flight 5787 and flight 6886 on itinerary 4258
+Connection time not respected between flight 5787 and flight 5706 on itinerary 4259
+Connection time not respected between flight 5797 and flight 5712 on itinerary 4278
+Connection time not respected between flight 5799 and flight 5726 on itinerary 4286
+Connection time not respected between flight 5806 and flight 9466 on itinerary 4305
+Connection time not respected between flight 5819 and flight 5850 on itinerary 4318
+Connection time not respected between flight 5819 and flight 5850 on itinerary 4319
+Connection time not respected between flight 5848 and flight 5059 on itinerary 4377
+Connection time not respected between flight 5848 and flight 7389 on itinerary 4378
+Connection time not respected between flight 6890 and flight 5359 on itinerary 4416
+Connection time not respected between flight 6892 and flight 5359 on itinerary 4424
+Connection time not respected between flight 6980 and flight 5414 on itinerary 4502
+Connection time not respected between flight 6980 and flight 5414 on itinerary 4503
+Connection time not respected between flight 6986 and flight 3034 on itinerary 4510
+Connection time not respected between flight 7013 and flight 7060 on itinerary 4540
+Connection time not respected between flight 7013 and flight 7060 on itinerary 4541
+Connection time not respected between flight 7013 and flight 7060 on itinerary 4542
+Connection time not respected between flight 7013 and flight 7122 on itinerary 4543
+Connection time not respected between flight 7231 and flight 1006 on itinerary 4643
+Connection time not respected between flight 7231 and flight 1006 on itinerary 4649
+Connection time not respected between flight 7239 and flight 146 on itinerary 4662
+Connection time not respected between flight 7245 and flight 1902 on itinerary 4680
+Connection time not respected between flight 7365 and flight 4688 on itinerary 4790
+Connection time not respected between flight 7373 and flight 4480 on itinerary 4801
+Connection time not respected between flight 7384 and flight 5855 on itinerary 4810
+Connection time not respected between flight 7384 and flight 5855 on itinerary 4811
+Connection time not respected between flight 7804 and flight 7833 on itinerary 4875
+Connection time not respected between flight 7804 and flight 7833 on itinerary 4876
+Connection time not respected between flight 7804 and flight 7843 on itinerary 4877
+Connection time not respected between flight 7809 and flight 7342 on itinerary 4882
+Connection time not respected between flight 7810 and flight 7843 on itinerary 4886
+Connection time not respected between flight 7810 and flight 7853 on itinerary 4887
+Connection time not respected between flight 7810 and flight 7863 on itinerary 4888
+Connection time not respected between flight 7818 and flight 7855 on itinerary 4892
+Connection time not respected between flight 9344 and flight 9397 on itinerary 4923
+Connection time not respected between flight 9388 and flight 9345 on itinerary 4941
+Connection time not respected between flight 9388 and flight 9345 on itinerary 4942
+Connection time not respected between flight 9426 and flight 9494 on itinerary 4957
+Connection time not respected between flight 9426 and flight 9536 on itinerary 4958
+Connection time not respected between flight 9426 and flight 9536 on itinerary 4959
+Connection time not respected between flight 9435 and flight 9427 on itinerary 4960
+Connection time not respected between flight 9499 and flight 1685 on itinerary 4983
+Connection time not respected between flight 9499 and flight 9427 on itinerary 4984
+Connection time not respected between flight 9499 and flight 1685 on itinerary 4985
+Cancelled flight 2708 is taken on itinerary 6657
+Cancelled flight 2708 is taken on itinerary 6658
+Cancelled flight 2709 is taken on itinerary 6661
+Cancelled flight 2709 is taken on itinerary 6662
+Cancelled flight 2830 is taken on itinerary 6898
+Cancelled flight 2830 is taken on itinerary 6899
+Cancelled flight 2831 is taken on itinerary 6902
+Cancelled flight 2831 is taken on itinerary 6903
+Cancelled flight 4298 is taken on itinerary 7259
+Cancelled flight 4298 is taken on itinerary 7260
+Cancelled flight 4299 is taken on itinerary 7263
+Cancelled flight 4299 is taken on itinerary 7264
+Cancelled flight 5089 is taken on itinerary 8021
+Cancelled flight 5089 is taken on itinerary 8022
+Cancelled flight 5233 is taken on itinerary 8092
+Cancelled flight 5233 is taken on itinerary 8093
+Cancelled flight 5341 is taken on itinerary 8297
+Cancelled flight 5341 is taken on itinerary 8298
+Cancelled flight 5342 is taken on itinerary 8301
+Cancelled flight 5342 is taken on itinerary 8302

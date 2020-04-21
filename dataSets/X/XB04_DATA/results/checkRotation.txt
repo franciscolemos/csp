@@ -1,0 +1,331 @@
+Rotation continuity problem on aircraft A320#1
+Turn-round time violated on flight 5386 on 2008-Mar-02 operated by aircraft BAE300#3
+Turn-round time violated on flight 5377 on 2008-Mar-01 operated by aircraft BAE300#3
+Turn-round time violated on flight 2725 on 2008-Mar-02 operated by aircraft BAE300#3
+Rotation continuity problem on aircraft BAE300#3
+Wrong initial position for aircraft A319#4
+Turn-round time violated on flight 1786 on 2008-Mar-01 operated by aircraft A319#4
+Rotation continuity problem on aircraft A319#4
+Wrong initial position for aircraft A319#5
+Turn-round time violated on flight 628 on 2008-Mar-02 operated by aircraft A319#5
+Rotation continuity problem on aircraft A319#5
+Turn-round time violated on flight 9340 on 2008-Mar-02 operated by aircraft A320#6
+Turn-round time violated on flight 9546 on 2008-Mar-02 operated by aircraft A320#6
+Rotation continuity problem on aircraft A320#6
+Wrong initial position for aircraft A320#7
+Turn-round time violated on flight 3010 on 2008-Mar-01 operated by aircraft A320#7
+Turn-round time violated on flight 1786 on 2008-Mar-02 operated by aircraft A320#7
+Rotation continuity problem on aircraft A320#7
+Turn-round time violated on flight 5145 on 2008-Mar-02 operated by aircraft A320#8
+Turn-round time violated on flight 3058 on 2008-Mar-02 operated by aircraft A320#8
+Rotation continuity problem on aircraft A320#8
+Rotation continuity problem on aircraft A320#9
+Rotation continuity problem on aircraft F100#10
+Rotation continuity problem on aircraft A319#11
+Turn-round time violated on flight 7282 on 2008-Mar-02 operated by aircraft A320#12
+Rotation continuity problem on aircraft A320#12
+Turn-round time violated on flight 4936 on 2008-Mar-01 operated by aircraft BAE200#13
+Rotation continuity problem on aircraft BAE200#13
+Turn-round time violated on flight 7555 on 2008-Mar-02 operated by aircraft F100#14
+Rotation continuity problem on aircraft F100#14
+Wrong initial position for aircraft A330#15
+Rotation continuity problem on aircraft A340#16
+Wrong initial position for aircraft A318#17
+Turn-round time violated on flight 6921 on 2008-Mar-02 operated by aircraft A318#17
+Turn-round time violated on flight 6992 on 2008-Mar-02 operated by aircraft A318#17
+Rotation continuity problem on aircraft A318#17
+Turn-round time violated on flight 2734 on 2008-Mar-02 operated by aircraft ERJ135#18
+Rotation continuity problem on aircraft F100#19
+Wrong initial position for aircraft A319#20
+Maintenance position not respected for aircraft A319#20
+Turn-round time violated on flight 7131 on 2008-Mar-02 operated by aircraft A319#20
+Rotation continuity problem on aircraft A319#20
+Rotation continuity problem on aircraft A320#21
+Wrong initial position for aircraft A318#23
+Rotation continuity problem on aircraft A318#23
+Wrong initial position for aircraft A318#24
+Rotation continuity problem on aircraft A318#24
+Wrong initial position for aircraft A321#26
+Turn-round time violated on flight 7346 on 2008-Mar-01 operated by aircraft A321#26
+Rotation continuity problem on aircraft A321#26
+Rotation continuity problem on aircraft CRJ700#28
+Rotation continuity problem on aircraft ERJ135#29
+Rotation continuity problem on aircraft ERJ145#30
+Wrong initial position for aircraft A318#32
+Rotation continuity problem on aircraft A318#33
+Wrong initial position for aircraft A318#34
+Rotation continuity problem on aircraft A318#34
+Wrong initial position for aircraft A318#35
+Rotation continuity problem on aircraft A318#35
+Rotation continuity problem on aircraft A318#36
+Rotation continuity problem on aircraft A319#37
+Rotation continuity problem on aircraft A319#38
+Turn-round time violated on flight 2866 on 2008-Mar-02 operated by aircraft A319#40
+Rotation continuity problem on aircraft A319#40
+Wrong initial position for aircraft A319#41
+Rotation continuity problem on aircraft A319#42
+Rotation continuity problem on aircraft A319#43
+Rotation continuity problem on aircraft A319#44
+Rotation continuity problem on aircraft A319#45
+Wrong initial position for aircraft A320#46
+Rotation continuity problem on aircraft A320#47
+Wrong initial position for aircraft A320#48
+Wrong initial position for aircraft A320#49
+Rotation continuity problem on aircraft A320#49
+Wrong initial position for aircraft A320#50
+Rotation continuity problem on aircraft A320#50
+Turn-round time violated on flight 1187 on 2008-Mar-01 operated by aircraft A320#51
+Rotation continuity problem on aircraft A320#51
+Rotation continuity problem on aircraft A320#52
+Rotation continuity problem on aircraft A320#53
+Wrong initial position for aircraft A320#54
+Rotation continuity problem on aircraft A320#55
+Rotation continuity problem on aircraft A320#56
+Rotation continuity problem on aircraft A320#57
+Turn-round time violated on flight 7817 on 2008-Mar-02 operated by aircraft A320#58
+Rotation continuity problem on aircraft A320#58
+Rotation continuity problem on aircraft A320#59
+Wrong initial position for aircraft A320#60
+Rotation continuity problem on aircraft A320#60
+Wrong initial position for aircraft A321#61
+Rotation continuity problem on aircraft A321#61
+Rotation continuity problem on aircraft A321#62
+Rotation continuity problem on aircraft A321#63
+Rotation continuity problem on aircraft B737900#65
+Wrong initial position for aircraft CRJ100#66
+Turn-round time violated on flight 1825 on 2008-Mar-02 operated by aircraft A330#68
+Rotation continuity problem on aircraft A330#68
+Wrong initial position for aircraft A340#73
+Rotation continuity problem on aircraft A340#73
+Wrong initial position for aircraft B747#74
+Wrong initial position for aircraft B747#75
+Rotation continuity problem on aircraft A319#78
+Maintenance position not respected for aircraft A320#79
+Rotation continuity problem on aircraft A320#79
+Rotation continuity problem on aircraft A321#80
+Turn-round time violated on flight 2769 on 2008-Mar-01 operated by aircraft CRJ100#82
+Rotation continuity problem on aircraft CRJ100#82
+Maintenance position not respected for aircraft ERJ145#83
+Rotation continuity problem on aircraft ERJ145#83
+Turn-round time violated on flight 2742 on 2008-Mar-02 operated by aircraft F100#84
+Rotation continuity problem on aircraft F100#84
+Wrong initial position for aircraft B777#89
+Rotation continuity problem on aircraft A319#90
+Rotation continuity problem on aircraft A320#91
+Rotation continuity problem on aircraft A320#92
+Turn-round time violated on flight 4700 on 2008-Mar-01 operated by aircraft A318#94
+Maintenance position not respected for aircraft A318#94
+Turn-round time violated on flight 4699 on 2008-Mar-01 operated by aircraft A318#94
+Turn-round time violated on flight 5463 on 2008-Mar-02 operated by aircraft A318#94
+Rotation continuity problem on aircraft A318#94
+Rotation continuity problem on aircraft A319#95
+Rotation continuity problem on aircraft B737900#96
+Wrong initial position for aircraft A320#98
+Turn-round time violated on flight 3015 on 2008-Mar-01 operated by aircraft A320#98
+Rotation continuity problem on aircraft A320#98
+Turn-round time violated on flight 1220 on 2008-Mar-02 operated by aircraft A319#99
+Rotation continuity problem on aircraft A319#99
+Wrong initial position for aircraft A319#100
+Turn-round time violated on flight 2122 on 2008-Mar-01 operated by aircraft A319#100
+Rotation continuity problem on aircraft A319#100
+Turn-round time violated on flight 622 on 2008-Mar-01 operated by aircraft A320#102
+Turn-round time violated on flight 623 on 2008-Mar-01 operated by aircraft A320#102
+Turn-round time violated on flight 9539 on 2008-Mar-02 operated by aircraft A320#102
+Turn-round time violated on flight 9528 on 2008-Mar-02 operated by aircraft A320#102
+Rotation continuity problem on aircraft A320#102
+Turn-round time violated on flight 1729 on 2008-Mar-02 operated by aircraft A320#105
+Rotation continuity problem on aircraft A320#105
+Turn-round time violated on flight 7804 on 2008-Mar-02 operated by aircraft A321#106
+Rotation continuity problem on aircraft A321#106
+Maintenance position not respected for aircraft A330#108
+Rotation continuity problem on aircraft A321#110
+Wrong initial position for aircraft A321#111
+Maintenance position not respected for aircraft A321#111
+Rotation continuity problem on aircraft A321#111
+Rotation continuity problem on aircraft BAE300#113
+Rotation continuity problem on aircraft A321#114
+Rotation continuity problem on aircraft BAE200#115
+Turn-round time violated on flight 7403 on 2008-Mar-02 operated by aircraft ERJ135#118
+Rotation continuity problem on aircraft ERJ135#118
+Turn-round time violated on flight 703 on 2008-Mar-02 operated by aircraft A320#120
+Turn-round time violated on flight 1018 on 2008-Mar-02 operated by aircraft A320#120
+Rotation continuity problem on aircraft A320#120
+Wrong initial position for aircraft A321#121
+Rotation continuity problem on aircraft A321#121
+Wrong initial position for aircraft CRJ700#123
+Rotation continuity problem on aircraft CRJ700#123
+Turn-round time violated on flight 4482 on 2008-Mar-02 operated by aircraft A318#125
+Rotation continuity problem on aircraft A318#125
+Rotation continuity problem on aircraft A319#126
+Rotation continuity problem on aircraft A319#127
+Rotation continuity problem on aircraft A320#128
+Rotation continuity problem on aircraft A320#129
+Rotation continuity problem on aircraft A320#130
+Rotation continuity problem on aircraft A321#131
+Rotation continuity problem on aircraft CRJ700#132
+Rotation continuity problem on aircraft CRJ700#133
+Rotation continuity problem on aircraft CRJ700#135
+Wrong initial position for aircraft A320#138
+Wrong initial position for aircraft A320#139
+Maintenance position not respected for aircraft B737300#140
+Turn-round time violated on flight 4607 on 2008-Mar-01 operated by aircraft B737300#140
+Rotation continuity problem on aircraft B737300#140
+Rotation continuity problem on aircraft A320#141
+Wrong initial position for aircraft A320#142
+Maintenance position not respected for aircraft A320#142
+Rotation continuity problem on aircraft A320#142
+Rotation continuity problem on aircraft ERJ145#143
+Rotation continuity problem on aircraft A319#145
+Turn-round time violated on flight 7286 on 2008-Mar-02 operated by aircraft A320#146
+Maintenance position not respected for aircraft A320#146
+Rotation continuity problem on aircraft A320#146
+Wrong initial position for aircraft A321#147
+Turn-round time violated on flight 5613 on 2008-Mar-02 operated by aircraft A321#147
+Maintenance position not respected for aircraft A321#147
+Rotation continuity problem on aircraft A321#147
+Wrong initial position for aircraft A319#149
+Rotation continuity problem on aircraft A319#150
+Wrong initial position for aircraft A320#151
+Rotation continuity problem on aircraft A320#151
+Wrong initial position for aircraft A320#152
+Turn-round time violated on flight 5685 on 2008-Mar-02 operated by aircraft A320#152
+Turn-round time violated on flight 5787 on 2008-Mar-01 operated by aircraft A320#152
+Rotation continuity problem on aircraft A320#152
+Wrong initial position for aircraft A320#153
+Turn-round time violated on flight 7318 on 2008-Mar-02 operated by aircraft A320#153
+Rotation continuity problem on aircraft A320#153
+Rotation continuity problem on aircraft A321#154
+Turn-round time violated on flight 6896 on 2008-Mar-01 operated by aircraft CRJ100#157
+Rotation continuity problem on aircraft CRJ100#157
+Rotation continuity problem on aircraft ERJ135#159
+Rotation continuity problem on aircraft F100#160
+Rotation continuity problem on aircraft A320#161
+Turn-round time violated on flight 7809 on 2008-Mar-02 operated by aircraft B737800#162
+Rotation continuity problem on aircraft B737800#162
+Rotation continuity problem on aircraft A321#164
+Wrong initial position for aircraft A319#165
+Rotation continuity problem on aircraft A319#165
+Turn-round time violated on flight 5724 on 2008-Mar-01 operated by aircraft A319#166
+Turn-round time violated on flight 6884 on 2008-Mar-01 operated by aircraft A319#166
+Rotation continuity problem on aircraft A319#166
+Wrong initial position for aircraft A320#167
+Turn-round time violated on flight 5617 on 2008-Mar-02 operated by aircraft A320#167
+Maintenance position not respected for aircraft A320#167
+Rotation continuity problem on aircraft A320#167
+Wrong initial position for aircraft A320#168
+Rotation continuity problem on aircraft A320#168
+Turn-round time violated on flight 7506 on 2008-Mar-01 operated by aircraft BAE200#170
+Turn-round time violated on flight 4919 on 2008-Mar-01 operated by aircraft BAE200#170
+Turn-round time violated on flight 7482 on 2008-Mar-02 operated by aircraft BAE200#170
+Rotation continuity problem on aircraft BAE200#170
+Rotation continuity problem on aircraft ERJ145#173
+Maintenance position not respected for aircraft A318#174
+Rotation continuity problem on aircraft A318#174
+Rotation continuity problem on aircraft A319#175
+Turn-round time violated on flight 4902 on 2008-Mar-02 operated by aircraft BAE300#176
+Rotation continuity problem on aircraft BAE300#176
+Turn-round time violated on flight 5352 on 2008-Mar-02 operated by aircraft ERJ135#177
+Rotation continuity problem on aircraft ERJ135#178
+Turn-round time violated on flight 7558 on 2008-Mar-01 operated by aircraft F100#179
+Turn-round time violated on flight 7557 on 2008-Mar-01 operated by aircraft F100#179
+Rotation continuity problem on aircraft F100#179
+Turn-round time violated on flight 2746 on 2008-Mar-02 operated by aircraft F100#181
+Rotation continuity problem on aircraft F100#181
+Turn-round time violated on flight 4609 on 2008-Mar-01 operated by aircraft A318#182
+Rotation continuity problem on aircraft A318#182
+Turn-round time violated on flight 5681 on 2008-Mar-02 operated by aircraft A318#183
+Rotation continuity problem on aircraft A318#183
+Wrong initial position for aircraft A318#184
+Rotation continuity problem on aircraft A318#184
+Rotation continuity problem on aircraft A319#185
+Rotation continuity problem on aircraft A319#186
+Turn-round time violated on flight 5700 on 2008-Mar-02 operated by aircraft A319#187
+Rotation continuity problem on aircraft A319#187
+Rotation continuity problem on aircraft A319#188
+Wrong initial position for aircraft A319#189
+Rotation continuity problem on aircraft A319#189
+Wrong initial position for aircraft A319#190
+Wrong initial position for aircraft A320#191
+Turn-round time violated on flight 7127 on 2008-Mar-02 operated by aircraft A320#191
+Rotation continuity problem on aircraft A320#191
+Wrong initial position for aircraft A320#192
+Rotation continuity problem on aircraft A320#192
+Rotation continuity problem on aircraft A320#193
+Rotation continuity problem on aircraft A320#194
+Wrong initial position for aircraft A320#195
+Rotation continuity problem on aircraft A320#195
+Rotation continuity problem on aircraft A320#196
+Rotation continuity problem on aircraft A321#197
+Wrong initial position for aircraft A321#198
+Rotation continuity problem on aircraft A321#198
+Wrong initial position for aircraft A321#199
+Rotation continuity problem on aircraft A321#199
+Wrong initial position for aircraft A321#200
+Rotation continuity problem on aircraft A321#200
+Rotation continuity problem on aircraft A318#202
+Rotation continuity problem on aircraft A319#203
+Rotation continuity problem on aircraft A320#204
+Rotation continuity problem on aircraft A320#205
+Wrong initial position for aircraft A320#206
+Wrong initial position for aircraft A320#209
+Rotation continuity problem on aircraft A320#209
+Turn-round time violated on flight 2706 on 2008-Mar-02 operated by aircraft BAE300#210
+Rotation continuity problem on aircraft BAE300#210
+Rotation continuity problem on aircraft A319#211
+Wrong initial position for aircraft A320#212
+Turn-round time violated on flight 7018 on 2008-Mar-02 operated by aircraft A320#212
+Rotation continuity problem on aircraft A320#212
+Rotation continuity problem on aircraft CRJ100#213
+Turn-round time violated on flight 5379 on 2008-Mar-01 operated by aircraft CRJ100#214
+Turn-round time violated on flight 5324 on 2008-Mar-01 operated by aircraft CRJ100#214
+Rotation continuity problem on aircraft CRJ100#214
+Turn-round time violated on flight 7501 on 2008-Mar-02 operated by aircraft ERJ145#215
+Turn-round time violated on flight 4967 on 2008-Mar-02 operated by aircraft ERJ145#215
+Rotation continuity problem on aircraft ERJ145#215
+Turn-round time violated on flight 4337 on 2008-Mar-01 operated by aircraft F100#216
+Turn-round time violated on flight 5049 on 2008-Mar-01 operated by aircraft F100#216
+Turn-round time violated on flight 4328 on 2008-Mar-02 operated by aircraft F100#216
+Rotation continuity problem on aircraft F100#216
+Rotation continuity problem on aircraft B747#218
+Wrong initial position for aircraft B777#220
+Rotation continuity problem on aircraft B777#221
+Wrong initial position for aircraft A320#222
+Rotation continuity problem on aircraft A320#222
+Rotation continuity problem on aircraft A321#224
+Turn-round time violated on flight 7555 on 2008-Mar-01 operated by aircraft CRJ100#226
+Wrong initial position for aircraft ERJ135#228
+Turn-round time violated on flight 4645 on 2008-Mar-01 operated by aircraft ERJ135#228
+Rotation continuity problem on aircraft ERJ145#229
+Wrong initial position for aircraft A319#231
+Maintenance position not respected for aircraft A319#232
+Rotation continuity problem on aircraft A319#232
+Turn-round time violated on flight 5805 on 2008-Mar-02 operated by aircraft A319#233
+Turn-round time violated on flight 6955 on 2008-Mar-02 operated by aircraft A319#233
+Rotation continuity problem on aircraft A319#233
+Rotation continuity problem on aircraft A319#234
+Wrong initial position for aircraft A320#235
+Rotation continuity problem on aircraft A320#235
+Wrong initial position for aircraft A321#236
+Turn-round time violated on flight 5035 on 2008-Mar-01 operated by aircraft CRJ700#241
+Turn-round time violated on flight 5018 on 2008-Mar-02 operated by aircraft CRJ700#241
+Rotation continuity problem on aircraft CRJ700#241
+Turn-round time violated on flight 5351 on 2008-Mar-02 operated by aircraft ERJ135#242
+Turn-round time violated on flight 5252 on 2008-Mar-01 operated by aircraft ERJ135#242
+Turn-round time violated on flight 5231 on 2008-Mar-02 operated by aircraft ERJ135#242
+Turn-round time violated on flight 5348 on 2008-Mar-02 operated by aircraft ERJ135#242
+Rotation continuity problem on aircraft ERJ135#242
+Wrong initial position for aircraft B747#244
+Rotation continuity problem on aircraft B777#245
+Wrong initial position for aircraft A319#246
+Turn-round time violated on flight 1620 on 2008-Mar-01 operated by aircraft A319#246
+Rotation continuity problem on aircraft A319#246
+Wrong initial position for aircraft A318#247
+Rotation continuity problem on aircraft A318#247
+Wrong initial position for aircraft A319#248
+Turn-round time violated on flight 1851 on 2008-Mar-01 operated by aircraft A319#248
+Rotation continuity problem on aircraft A319#248
+Turn-round time violated on flight 1507 on 2008-Mar-01 operated by aircraft A319#249
+Rotation continuity problem on aircraft A319#249
+Wrong initial position for aircraft A320#250
+Rotation continuity problem on aircraft A320#250
+Rotation continuity problem on aircraft A321#251

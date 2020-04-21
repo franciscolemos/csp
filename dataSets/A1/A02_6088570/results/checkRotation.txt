@@ -1,0 +1,3 @@
+Rotation continuity problem on aircraft A318#4
+Rotation continuity problem on aircraft A321#1
+Rotation continuity problem on aircraft ERJ135#2

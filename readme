@@ -1,8 +1,10 @@
 The $rotation has the new created flights
 
-Export the solution with the feasible rotations;
+Export the solution;
+Calculate the cost;
 
-Cancel the titineraries that infeasible;
+Export the solution with the feasible rotations;
+Cancel the itineraries that infeasible;
 Calculate the cost;
 
 

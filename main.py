@@ -20,30 +20,30 @@ class ARP:
         self.fixedFlights = []
         self.movingFlights = []
         self.flightRotationDic = readRotation.readRotation(path, "rotations.csv").read2FlightRotationDic() #{flightDate:aircraft}
-        minDate = self.flightRotationDic['minDate']
+        self.minDate = self.flightRotationDic['minDate']
         maxDate = self.flightRotationDic['maxDate']
-        self.configDic = readConfig.readConfig(path, "config.csv", minDate).read2Dic()
+        self.configDic = readConfig.readConfig(path, "config.csv", self.minDate).read2Dic()
         self.aircraftRotationDic = readRotation.readRotation(path, "rotations.csv").read2AircraftRotationDic() #{aircraft:flightSchedule}
         self.flightDic = readFlights.readFlights(path, "flights.csv").read2Dic()  
-        self.aircraftDic = readAircrafts.readAircrafts(path, "aircraft.csv", minDate).read2Dic()
-        self.altAircraftDic = readAltAircraft.readAltAircraft(path, "alt_aircraft.csv", minDate).read2Dic()
-        self.altAirportSA = readAltAirports.readAltAirport(path, "alt_airports.csv", minDate).read2SA() #atttrib. of SA
+        self.aircraftDic = readAircrafts.readAircrafts(path, "aircraft.csv", self.minDate).read2Dic()
+        self.altAircraftDic = readAltAircraft.readAltAircraft(path, "alt_aircraft.csv", self.minDate).read2Dic()
+        self.altAirportSA = readAltAirports.readAltAirport(path, "alt_airports.csv", self.minDate).read2SA() #atttrib. of SA
         self.altFlightDic = readAltFlights.readAltFlights(path, "alt_flights.csv").read2Dic()
         self.distSA = readDist.readDist(path, "dist.csv").read2SA()
         i = schedules.initialize(self.aircraftRotationDic, self.altAircraftDic, self.altFlightDic, 
-            self.aircraftDic, self.flightDic, path, minDate)
+            self.aircraftDic, self.flightDic, path, self.minDate)
         i.aircraftSchedule() #included flight and aircr. disr. and, maint. {aircraft:flightSA}
         self.aircraftScheduleDic = i.aircraftScheduleDic #1 aircraft to n flights
         i.flightSchedule()
         self.flightScheduleSA = i.flightScheduleSA #all the flights + room to un-cancel flights for airport cap. purpose
-        self.itineraryDic = [] # readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
+        self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
         #determine the planning horizon
         endDateTime = datetime.combine(datetime.date(self.configDic['endDate']),
             datetime.time(self.configDic['endTime']))
         if maxDate < endDateTime:
             self.flightRotationDic['maxDate'] = endDateTime 
             maxDate = endDateTime 
-        noDays = fD.dateDiffDays(maxDate, minDate) + 1 # + 1 day for arr. next()
+        noDays = fD.dateDiffDays(maxDate, self.minDate) + 1 # + 1 day for arr. next()
         self.fSNOTranspComSA = self.flightScheduleSA[self.flightScheduleSA['family'] != "TranspCom"]
         self.airportDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
 
@@ -83,7 +83,7 @@ class ARP:
                 index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
             except Exception as e:
                 print("Exception initialize:", e)
-            return int(index), rotationMaint.flatten()
+            return int(index), rotation #because it has to include the aircraft to export the solution
 
         #visualize the graphs
     def findSolution(self):
@@ -94,11 +94,12 @@ class ARP:
         for aircraft in aircraftList:
             #aircraft = "A318#33"
             #print(aircraft, self.aircraftDic[aircraft])
-            index, rotationMaint = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
+            index, rotation = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
+
             while(index != -1): #search the solution
                 
-                self.solutionARP.append(rotationMaint[:index])
-                for flight in rotationMaint[index:]: #generate the possible combinations
+                self.solutionARP.append(rotation[:index])
+                for flight in rotation[index:]: #generate the possible combinations
                     break
                 break
                 #define the critical flight
@@ -112,10 +113,12 @@ class ARP:
 if __name__ == "__main__":
     for path in paths.paths:
         #add while loop
-        ARP(path).findSolution()
-        PRP(self.solutionARP, self.itineraryDic).findSolution()
-        cost(self.solutionARP, self.itineraryDic)
-
+        arp = ARP(path)
+        arp.findSolution()
+        #PRP(self.solutionARP, self.itineraryDic).findSolution()
+        #solution.cost(self.solutionARP, self.itineraryDic)
+        
+        solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
 
 
 

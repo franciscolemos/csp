@@ -1,0 +1,2 @@
+Departure capacity violated at airport MRS on 2006-Jan-07 (time window 18)
+Arrival capacity violated at airport SXB on 2006-Jan-07 (time window 18)
