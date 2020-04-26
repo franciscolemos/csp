@@ -3,7 +3,15 @@ The $rotation has the new created flights
 Export the solution;
 Calculate the cost;
 
+Find the fixed flights; domains.fixed includes maint. however it will be tested in feas. functions
+Create the matrix with all the possible rotations (combinatorial explosion)
+Initialize the matrix dimensions with x height
+Find the domains for each flight (-1, 0, 60, 120, 180, ..., 900, 960)
+The domains are solely based on airport dep. and arr. capacity
+
+
 Export the solution with the feasible rotations;
+get the index of the current solution;
 Cancel the itineraries that infeasible;
 Calculate the cost;
 

@@ -50,9 +50,12 @@ class ARP:
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportDic),
                     len(self.itineraryDic), len(self.altFlightDic), len(self.altAircraftDic),
                     len(self.altAirportSA), noDays - 1)
+
+        self.domainFlights = domains.flights(self.configDic)
+
         self.solutionARP = []
 
-    def initialize(self, aircraft):
+    def initialize(self, aircraft): #check if the roation is feasible
         #TODO
         #check if rotation includes maint.
         #if it includes maint. it has to be removed
@@ -80,6 +83,7 @@ class ARP:
             return -1, []
         else:
             try:
+                print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
                 index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
             except Exception as e:
                 print("Exception initialize:", e)
@@ -87,7 +91,7 @@ class ARP:
 
         #visualize the graphs
     def findSolution(self):
-
+        
         aircraftList =  list(self.aircraftDic.keys())
         #might have to change this to most constr. flights: maint. airp./flights
         random.shuffle(aircraftList)
@@ -95,10 +99,16 @@ class ARP:
             #aircraft = "A318#33"
             #print(aircraft, self.aircraftDic[aircraft])
             index, rotation = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
-
             while(index != -1): #search the solution
-                
-                self.solutionARP.append(rotation[:index])
+                #self.solutionARP.append(rotation[:index])
+                # indexCurrSol =  len(self.solutionARP) - 1
+                # exp = len(rotation[index:])
+                # print("base: ", exp , "size: ", 18**exp)
+
+                fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
+                movingFlights = rotation[index:] if len(fixedFlights) == 0 else np.where(rotation[index:] != fixedFlights)
+                flightRanges = self.domainFlights.ranges(movingFlights, self.airportDic)
+                import pdb; pdb.set_trace()
                 for flight in rotation[index:]: #generate the possible combinations
                     break
                 break

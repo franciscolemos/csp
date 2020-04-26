@@ -10,12 +10,12 @@ from pprint import pprint
 import pandas as pd
 
 def continuity(flightSchedule):
-    index =  np.where(flightSchedule['destination'][:-1] != flightSchedule['origin'][1:])
-    return np.asarray(index).flatten()
+    index =  np.where(flightSchedule['destination'][:-1] != flightSchedule['origin'][1:]) # this matrix will be 1 row smaller 
+    return np.asarray(index).flatten() + 1 #the problem is on the next row in the original rotation
 
 def TT(flightSchedule):
     index =  np.where(flightSchedule['altDepInt'][1:] - flightSchedule['altArrInt'][:-1] < flightSchedule['tt'][1:])
-    return np.asarray(index).flatten()
+    return np.asarray(index).flatten() + 1 #the problem is on the next row in the original rotation
 
 def maint(flightSchedule):
     maintStart = flightSchedule[flightSchedule['flight'] == 'm']['altDepInt'][0]
