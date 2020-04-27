@@ -11,6 +11,7 @@ from recovery.actions import feasibility
 from recovery.actions import solution
 import random
 import copy
+import timeit
 
 class ARP:
     def __init__(self, path):
@@ -36,7 +37,7 @@ class ARP:
         self.aircraftScheduleDic = i.aircraftScheduleDic #1 aircraft to n flights
         i.flightSchedule()
         self.flightScheduleSA = i.flightScheduleSA #all the flights + room to un-cancel flights for airport cap. purpose
-        self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
+        #self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
         #determine the planning horizon
         endDateTime = datetime.combine(datetime.date(self.configDic['endDate']),
             datetime.time(self.configDic['endTime']))
@@ -48,7 +49,9 @@ class ARP:
         self.airportDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
 
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportDic),
-                    len(self.itineraryDic), len(self.altFlightDic), len(self.altAircraftDic),
+                    #len(self.itineraryDic),
+                    -1,
+                    len(self.altFlightDic), len(self.altAircraftDic),
                     len(self.altAirportSA), noDays - 1)
 
         self.domainFlights = domains.flights(self.configDic)
@@ -90,6 +93,7 @@ class ARP:
             return int(index), rotation #because it has to include the aircraft to export the solution
 
         #visualize the graphs
+    
     def findSolution(self):
         
         aircraftList =  list(self.aircraftDic.keys())
@@ -106,11 +110,23 @@ class ARP:
                 # print("base: ", exp , "size: ", 18**exp)
 
                 fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
-                movingFlights = rotation[index:] if len(fixedFlights) == 0 else np.where(rotation[index:] != fixedFlights)
+                movingFlights = rotation[index:] if fixedFlights.size == 0 else np.where(rotation[index:] != fixedFlights)
                 flightRanges = self.domainFlights.ranges(movingFlights, self.airportDic)
-                import pdb; pdb.set_trace()
-                for flight in rotation[index:]: #generate the possible combinations
-                    break
+                
+                print("Flights to recover: ", flightRanges)
+                import time
+                start = time.time()
+                flightCombinations = np.array(np.meshgrid(*flightRanges.values())).T.reshape(-1,len(flightRanges))
+                delta = time.time() - start
+                print("Delta time for full combinations: ", delta)
+                print("No. of combination: ", len(flightCombinations))
+                start = time.time()
+                for flight in flightCombinations: #generate the possible combinations
+                    x = 1
+                delta = time.time() - start
+                print("Delta time iterate the combinations: ", delta)
+
+                #import pdb; pdb.set_trace()
                 break
                 #define the critical flight
                 #delete the loop files (backtrack)

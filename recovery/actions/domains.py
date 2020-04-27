@@ -45,7 +45,7 @@ class flights:
         domains = {}
         try:
             for f in movingFlights:
-                domain = []
+                domain = [-1] #add flight cancellation
                 for t in range(0, maxDelay, deltaT): #find the feasible time slots
                     origin = f['origin']
                     dep = f['altDepInt'] + t

@@ -4,10 +4,26 @@ Export the solution;
 Calculate the cost;
 
 Find the fixed flights; domains.fixed includes maint. however it will be tested in feas. functions
-Create the matrix with all the possible rotations (combinatorial explosion)
-Initialize the matrix dimensions with x height
-Find the domains for each flight (-1, 0, 60, 120, 180, ..., 900, 960)
 The domains are solely based on airport dep. and arr. capacity
+
+Add the cancellation to the ranges (-1, 0, 60, 120, 180, ..., 900, 960)
+Initialize the tupple of lists
+np.array(np.meshgrid([1, 2, 3], [4, 5], [6, 7])).T.reshape(-1,3)
+Create the matrix with all the possible rotations (combinatorial explosion)
+
+Develop functions to measure the combinations, time;
+Compare performace with itertools;
+Mitigate the combinatorial explosion starting singleton propagation;
+Update airport capacity to constraint ranges;
+Debug ranges
+
+
+
+
+Test the feasibility of the solutions
+Save the feasible solution and the cost
+
+(Simmulated annealing)
 
 
 Export the solution with the feasible rotations;

@@ -11,10 +11,14 @@ import pandas as pd
 
 def continuity(flightSchedule):
     index =  np.where(flightSchedule['destination'][:-1] != flightSchedule['origin'][1:]) # this matrix will be 1 row smaller 
+    if len(index) > 2:
+        import pdb; pdb.set_trace()
     return np.asarray(index).flatten() + 1 #the problem is on the next row in the original rotation
 
 def TT(flightSchedule):
     index =  np.where(flightSchedule['altDepInt'][1:] - flightSchedule['altArrInt'][:-1] < flightSchedule['tt'][1:])
+    if len(index) > 2:
+        import pdb; pdb.set_trace()
     return np.asarray(index).flatten() + 1 #the problem is on the next row in the original rotation
 
 def maint(flightSchedule):
