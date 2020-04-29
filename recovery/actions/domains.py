@@ -43,6 +43,7 @@ class flights:
     
     def ranges(self, movingFlights, airportDic): #only complying with airp. cap.
         domains = {}
+        noCombos = 1
         try:
             for f in movingFlights:
                 domain = [-1] #add flight cancellation
@@ -54,8 +55,13 @@ class flights:
                     if all([airportDic[origin][int(dep/60)]['noDep'] + 1 <= airportDic[origin][int(dep/60)]['capDep'],
                         airportDic[destination][int(arr/60)]['noArr'] + 1 <= airportDic[destination][int(dep/60)]['capArr']]):
                         domain.append(t)
+                noCombos *= len(domain) #calculate as the end result of the size of the domain
+                if noCombos > 2 * 10**6:
+                    return [],  -1
                 domains[f['flight']] = domain
         except:
-            print("Exception finding ranges@domains.py")
-            import pdb; pdb.set_trace()
-        return domains
+            # print("Exception finding ranges@domains.py")
+            # print(movingFlights)
+            # import pdb; pdb.set_trace()
+            return [],  -1
+        return domains, noCombos

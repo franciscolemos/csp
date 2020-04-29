@@ -11,7 +11,8 @@ from recovery.actions import feasibility
 from recovery.actions import solution
 import random
 import copy
-import timeit
+import time
+from itertools import product
 
 class ARP:
     def __init__(self, path):
@@ -86,7 +87,7 @@ class ARP:
             return -1, []
         else:
             try:
-                print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
+                #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
                 index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
             except Exception as e:
                 print("Exception initialize:", e)
@@ -99,6 +100,7 @@ class ARP:
         aircraftList =  list(self.aircraftDic.keys())
         #might have to change this to most constr. flights: maint. airp./flights
         random.shuffle(aircraftList)
+        print("rotationSize, noCombos, delta0, delta1")
         for aircraft in aircraftList:
             #aircraft = "A318#33"
             #print(aircraft, self.aircraftDic[aircraft])
@@ -111,21 +113,25 @@ class ARP:
 
                 fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
                 movingFlights = rotation[index:] if fixedFlights.size == 0 else np.where(rotation[index:] != fixedFlights)
-                flightRanges = self.domainFlights.ranges(movingFlights, self.airportDic)
+                flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic)
+                #import pdb; pdb.set_trace()
+                if noCombos == -1:
+                    break
+                start = time.time()
                 
-                print("Flights to recover: ", flightRanges)
-                import time
+                flightCombinations = product(*flightRanges.values())
+                
+                delta0 = time.time() - start
                 start = time.time()
-                flightCombinations = np.array(np.meshgrid(*flightRanges.values())).T.reshape(-1,len(flightRanges))
-                delta = time.time() - start
-                print("Delta time for full combinations: ", delta)
-                print("No. of combination: ", len(flightCombinations))
-                start = time.time()
+                _noCombos = 1
                 for flight in flightCombinations: #generate the possible combinations
-                    x = 1
-                delta = time.time() - start
-                print("Delta time iterate the combinations: ", delta)
-
+                    x = flight[0] + 1
+                    if x == 0:
+                        y = 2
+                    _noCombos += 1
+                delta1 = time.time() - start
+                print(len(flightRanges), noCombos, delta0, delta1)
+                
                 #import pdb; pdb.set_trace()
                 break
                 #define the critical flight
@@ -134,7 +140,7 @@ class ARP:
                 #save the partial solution
                 #create new solution from the flightSchedule
                 print()
-                pdb.set_trace()
+                #pdb.set_trace()
 
 if __name__ == "__main__":
     for path in paths.paths:

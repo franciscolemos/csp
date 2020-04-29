@@ -13,9 +13,11 @@ Create the matrix with all the possible rotations (combinatorial explosion)
 
 Develop functions to measure the combinations, time;
 Compare performace with itertools;
+
 Mitigate the combinatorial explosion starting singleton propagation;
+Create list with rotations wothout solution and iterate;
 Update airport capacity to constraint ranges;
-Debug ranges
+Debug ranges (array([0, 2, 3, 4, 5, 6], dtype=int64),)
 
 
 
