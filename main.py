@@ -65,7 +65,7 @@ class ARP:
         #if it includes maint. it has to be removed
         
         rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
-        rotation = rotation[rotation['cancelFlight'] == 0] #only flying flights
+        rotation = rotation[(rotation['cancelFlight'] == 0) & (rotation['flight']!= '')] #only flying flights
         rotation = np.sort(rotation, order = 'altDepInt') #sort ascending
         #check rotation feasibility
         infContList = feasibility.continuity(rotation) #cont.
@@ -110,17 +110,14 @@ class ARP:
                 # indexCurrSol =  len(self.solutionARP) - 1
                 # exp = len(rotation[index:])
                 # print("base: ", exp , "size: ", 18**exp)
-
                 fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
-                movingFlights = rotation[index:] if fixedFlights.size == 0 else np.where(rotation[index:] != fixedFlights)
+                movingFlights = rotation[index:] if fixedFlights.size == 0 else rotation[index:][rotation[index:] != fixedFlights]
                 flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic)
-                #import pdb; pdb.set_trace()
                 if noCombos == -1:
                     break
+
                 start = time.time()
-                
                 flightCombinations = product(*flightRanges.values())
-                
                 delta0 = time.time() - start
                 start = time.time()
                 _noCombos = 1
