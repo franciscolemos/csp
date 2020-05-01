@@ -33,5 +33,7 @@
             # import glob
             # modules = glob.glob(join(dirname(__file__), "*.py"))
             # __all__ = [ basename(f)[:-3] for f in modules if isfile(f) and not f.endswith('__init__.py')]
-            #np.array(np.meshgrid([-1, 0, 60, 780, 840, 900], [-1, 0, 600, 660, 720, 780])).T.reshape(-1,2)
-            #np.array(np.meshgrid(*flightRanges.values())).T.reshape(-1,len(flightRanges)) 
+            # np.array(np.meshgrid([-1, 0, 60, 780, 840, 900], [-1, 0, 600, 660, 720, 780])).T.reshape(-1,2)
+            # np.array(np.meshgrid(*flightRanges.values())).T.reshape(-1,len(flightRanges))
+            # product between a set of vectors
+            # list(set(temp1) - set(temp2)) diff. between two lists

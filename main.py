@@ -38,7 +38,7 @@ class ARP:
         self.aircraftScheduleDic = i.aircraftScheduleDic #1 aircraft to n flights
         i.flightSchedule()
         self.flightScheduleSA = i.flightScheduleSA #all the flights + room to un-cancel flights for airport cap. purpose
-        #self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
+        self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
         #determine the planning horizon
         endDateTime = datetime.combine(datetime.date(self.configDic['endDate']),
             datetime.time(self.configDic['endTime']))
@@ -50,8 +50,8 @@ class ARP:
         self.airportDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
 
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportDic),
-                    #len(self.itineraryDic),
-                    -1,
+                    len(self.itineraryDic),
+                    #-1,
                     len(self.altFlightDic), len(self.altAircraftDic),
                     len(self.altAirportSA), noDays - 1)
 
@@ -89,55 +89,51 @@ class ARP:
             try:
                 #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
                 index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
+                return int(index), rotation #because it has to include the aircraft to export the solution
             except Exception as e:
                 print("Exception initialize:", e)
-            return int(index), rotation #because it has to include the aircraft to export the solution
-
+                import pdb; pdb.set_trace()
         #visualize the graphs
     
     def findSolution(self):
         
         aircraftList =  list(self.aircraftDic.keys())
-        #might have to change this to most constr. flights: maint. airp./flights
         random.shuffle(aircraftList)
+        import copy; aircraftTmpList = copy.deepcopy(aircraftList)
         print("rotationSize, noCombos, delta0, delta1")
-        for aircraft in aircraftList:
-            #aircraft = "A318#33"
-            #print(aircraft, self.aircraftDic[aircraft])
-            index, rotation = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
-            while(index != -1): #search the solution
-                #self.solutionARP.append(rotation[:index])
-                # indexCurrSol =  len(self.solutionARP) - 1
-                # exp = len(rotation[index:])
-                # print("base: ", exp , "size: ", 18**exp)
-                fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
-                movingFlights = rotation[index:] if fixedFlights.size == 0 else rotation[index:][rotation[index:] != fixedFlights]
-                flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic)
-                if noCombos == -1:
-                    break
+        aircraftSolList = [] #list of aircraft that have a feasibe rotation
+        while len(aircraftSolList) != len(aircraftList): #verify if the lists have the same size
+            for aircraft in aircraftTmpList: #iterate through the aircraft list
+                #aircraft = "A318#33"
+                print(aircraft)
+                index, rotation = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
+                if(index != -1): #search the solution
+                    fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
+                    movingFlights = rotation[index:] if fixedFlights.size == 0 else rotation[index:][rotation[index:] != fixedFlights]
+                    flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic)
+                    if noCombos == -1:
+                        continue
 
-                start = time.time()
-                flightCombinations = product(*flightRanges.values())
-                delta0 = time.time() - start
-                start = time.time()
-                _noCombos = 1
-                for flight in flightCombinations: #generate the possible combinations
-                    x = flight[0] + 1
-                    if x == 0:
-                        y = 2
-                    _noCombos += 1
-                delta1 = time.time() - start
-                print(len(flightRanges), noCombos, delta0, delta1)
+                    start = time.time()
+                    flightCombinations = product(*flightRanges.values())
+                    delta0 = time.time() - start
+                    start = time.time()
+                    _noCombos = 1
+                    for flight in flightCombinations: #generate the possible combinations
+                        x = flight[0] + 1
+                        if x == 0:
+                            y = 2
+                        _noCombos += 1
+                    delta1 = time.time() - start
+                    print(len(flightRanges), noCombos, delta0, delta1)
+                   
+                    self.solutionARP.append(rotation[:index]) #save the feasible rotation
+                    solution.saveAirportCap(rotation[:index], self.airportDic) #update the airp. cap.
+                aircraftSolList.append(aircraft) #add the aircraft w/ feasible solution
+                print(len(aircraftSolList))
                 
-                #import pdb; pdb.set_trace()
-                break
-                #define the critical flight
-                #delete the loop files (backtrack)
-                #update the flightSchedule with partial solutionq
-                #save the partial solution
-                #create new solution from the flightSchedule
-                print()
-                #pdb.set_trace()
+            aircraftTmpList = list(set(aircraftList) - set(aircraftSolList)) #check the differences between two lists
+            
 
 if __name__ == "__main__":
     for path in paths.paths:
@@ -146,23 +142,5 @@ if __name__ == "__main__":
         arp.findSolution()
         #PRP(self.solutionARP, self.itineraryDic).findSolution()
         #solution.cost(self.solutionARP, self.itineraryDic)
-        
+        import pdb; pdb.set_trace()
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
-
-
-
-
-"""
-self.solution = {
-    '724001/03/08':[],
-    '724301/03/08':[],
-    '286601/03/08':[],
-    '286701/03/08':[],
-    '530301/03/08':[],
-    '530002/03/08':[],
-    'm':[],
-    '736602/03/08':[],
-    '736902/03/08':[],
-    '737002/03/08':[]
-}
-"""

@@ -18,10 +18,14 @@ Debug ranges (array([0, 2, 3, 4, 5, 6], dtype=int64),)
 Mitigate the combinatorial explosion starting singleton propagation;
 Maintain no. of combinations lt 3*10**6
 
-Create list with rotations without solution and iterate;
+solution [array[], dtype=[('aircraft', '<U15'), ('family', '<U15'), ('flight', '<U13'),
+('origin', '<U3'), ('depInt', '<i2'), ('altDepInt', '<i2'), ('destination', '<U3'),
+('arrInt', '<i2'), ('altArrInt', '<i2'), ('previous', '<U5'), ('tt', '<i2'), ('cancelFlight', 'u1')])]
+Create aircraft list with solution;
+Create aircraft list without solution and iterate;
 Update airport capacity to constraint ranges;
 
-
+debug airport capacity
 
 
 Test the feasibility of the solutions

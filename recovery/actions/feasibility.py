@@ -41,7 +41,8 @@ def dep(flightSchedule, airportDic):
                 flightDepList.append(flight)
         except Exception as e:
             print("Exception dep:", e)
-    return flightDepList
+    index = np.where(flightSchedule == flightDepList)        
+    return np.asarray(index).flatten() + 1
 
 #arr. airp. cap.
 def arr(flightSchedule, airportDic):
@@ -52,7 +53,8 @@ def arr(flightSchedule, airportDic):
         capArr = airportDic[flight['destination']][index]['capArr']
         if noArr + 1 > capArr:
             flightArrList.append(flight)
-    return flightArrList
+    index =  np.where(flightSchedule == flightArrList)
+    return np.asarray(index).flatten() + 1
 
 class ARP():
 

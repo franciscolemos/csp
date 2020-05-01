@@ -78,10 +78,6 @@ Final destination problem on itinerary 230
 Final destination problem on itinerary 231
 Final destination problem on itinerary 232
 Final destination problem on itinerary 244
-Itinerary 245 departs before its original departure time
-Origin problem on itinerary 245
-Itinerary 246 departs before its original departure time
-Origin problem on itinerary 246
 Final destination problem on itinerary 250
 Final destination problem on itinerary 251
 Itinerary 280 departs before its original departure time
@@ -119,16 +115,8 @@ Origin problem on itinerary 330
 Itinerary 331 departs before its original departure time
 Origin problem on itinerary 331
 Final destination problem on itinerary 351
-Itinerary 353 departs before its original departure time
-Origin problem on itinerary 353
-Itinerary 359 departs before its original departure time
-Origin problem on itinerary 359
 Final destination problem on itinerary 360
 Final destination problem on itinerary 362
-Itinerary 363 departs before its original departure time
-Origin problem on itinerary 363
-Itinerary 364 departs before its original departure time
-Origin problem on itinerary 364
 Itinerary 366 departs before its original departure time
 Origin problem on itinerary 366
 Itinerary 367 departs before its original departure time
@@ -176,10 +164,6 @@ Origin problem on itinerary 412
 Final destination problem on itinerary 412
 Final destination problem on itinerary 425
 Final destination problem on itinerary 436
-Itinerary 442 departs before its original departure time
-Origin problem on itinerary 442
-Itinerary 443 departs before its original departure time
-Origin problem on itinerary 443
 Final destination problem on itinerary 446
 Final destination problem on itinerary 459
 Final destination problem on itinerary 460
@@ -212,12 +196,6 @@ Itinerary 520 departs before its original departure time
 Origin problem on itinerary 520
 Itinerary 521 departs before its original departure time
 Origin problem on itinerary 521
-Itinerary 524 departs before its original departure time
-Origin problem on itinerary 524
-Itinerary 525 departs before its original departure time
-Origin problem on itinerary 525
-Itinerary 526 departs before its original departure time
-Origin problem on itinerary 526
 Itinerary 537 departs before its original departure time
 Origin problem on itinerary 537
 Final destination problem on itinerary 543
@@ -260,18 +238,12 @@ Final destination problem on itinerary 681
 Final destination problem on itinerary 695
 Itinerary 718 departs before its original departure time
 Origin problem on itinerary 718
-Itinerary 723 departs before its original departure time
-Origin problem on itinerary 723
 Itinerary 731 departs before its original departure time
 Origin problem on itinerary 731
-Itinerary 735 departs before its original departure time
-Origin problem on itinerary 735
 Final destination problem on itinerary 742
 Final destination problem on itinerary 743
 Final destination problem on itinerary 768
 Final destination problem on itinerary 775
-Itinerary 785 departs before its original departure time
-Origin problem on itinerary 785
 Itinerary 786 departs before its original departure time
 Origin problem on itinerary 786
 Final destination problem on itinerary 791
@@ -324,8 +296,6 @@ Itinerary 938 departs before its original departure time
 Origin problem on itinerary 938
 Itinerary 939 departs before its original departure time
 Origin problem on itinerary 939
-Itinerary 945 departs before its original departure time
-Origin problem on itinerary 945
 Itinerary 946 departs before its original departure time
 Origin problem on itinerary 946
 Final destination problem on itinerary 954
@@ -338,8 +308,6 @@ Origin problem on itinerary 998
 Itinerary 999 departs before its original departure time
 Origin problem on itinerary 999
 Final destination problem on itinerary 1003
-Itinerary 1009 departs before its original departure time
-Origin problem on itinerary 1009
 Itinerary 1010 departs before its original departure time
 Origin problem on itinerary 1010
 Itinerary 1012 departs before its original departure time
@@ -388,10 +356,6 @@ Origin problem on itinerary 1200
 Final destination problem on itinerary 1205
 Final destination problem on itinerary 1211
 Final destination problem on itinerary 1217
-Itinerary 1234 departs before its original departure time
-Origin problem on itinerary 1234
-Itinerary 1235 departs before its original departure time
-Origin problem on itinerary 1235
 Final destination problem on itinerary 1253
 Final destination problem on itinerary 1265
 Final destination problem on itinerary 1267
@@ -399,8 +363,6 @@ Itinerary 1269 departs before its original departure time
 Origin problem on itinerary 1269
 Final destination problem on itinerary 1271
 Final destination problem on itinerary 1273
-Itinerary 1276 departs before its original departure time
-Origin problem on itinerary 1276
 Itinerary 1297 departs before its original departure time
 Origin problem on itinerary 1297
 Itinerary 1300 departs before its original departure time
@@ -432,12 +394,6 @@ Origin problem on itinerary 1338
 Final destination problem on itinerary 1345
 Itinerary 1348 departs before its original departure time
 Origin problem on itinerary 1348
-Itinerary 1349 departs before its original departure time
-Origin problem on itinerary 1349
-Itinerary 1351 departs before its original departure time
-Origin problem on itinerary 1351
-Itinerary 1363 departs before its original departure time
-Origin problem on itinerary 1363
 Itinerary 1371 departs before its original departure time
 Origin problem on itinerary 1371
 Itinerary 1372 departs before its original departure time
@@ -464,10 +420,6 @@ Itinerary 1409 departs before its original departure time
 Origin problem on itinerary 1409
 Final destination problem on itinerary 1425
 Final destination problem on itinerary 1429
-Itinerary 1431 departs before its original departure time
-Origin problem on itinerary 1431
-Itinerary 1432 departs before its original departure time
-Origin problem on itinerary 1432
 Final destination problem on itinerary 1440
 Final destination problem on itinerary 1441
 Final destination problem on itinerary 1444
@@ -485,8 +437,6 @@ Itinerary 1457 departs before its original departure time
 Origin problem on itinerary 1457
 Final destination problem on itinerary 1463
 Final destination problem on itinerary 1468
-Itinerary 1480 departs before its original departure time
-Origin problem on itinerary 1480
 Itinerary 1483 departs before its original departure time
 Origin problem on itinerary 1483
 Itinerary 1484 departs before its original departure time
@@ -512,12 +462,6 @@ Itinerary 1506 departs before its original departure time
 Origin problem on itinerary 1506
 Itinerary 1507 departs before its original departure time
 Origin problem on itinerary 1507
-Itinerary 1511 departs before its original departure time
-Origin problem on itinerary 1511
-Itinerary 1512 departs before its original departure time
-Origin problem on itinerary 1512
-Itinerary 1513 departs before its original departure time
-Origin problem on itinerary 1513
 Final destination problem on itinerary 1521
 Final destination problem on itinerary 1525
 Itinerary 1535 departs before its original departure time
@@ -525,8 +469,6 @@ Origin problem on itinerary 1535
 Itinerary 1540 departs before its original departure time
 Origin problem on itinerary 1540
 Final destination problem on itinerary 1540
-Itinerary 1551 departs before its original departure time
-Origin problem on itinerary 1551
 Itinerary 1555 departs before its original departure time
 Origin problem on itinerary 1555
 Itinerary 1556 departs before its original departure time
@@ -630,16 +572,9 @@ Origin problem on itinerary 1715
 Itinerary 1716 departs before its original departure time
 Origin problem on itinerary 1716
 Final destination problem on itinerary 1716
-Itinerary 1717 departs before its original departure time
-Origin problem on itinerary 1717
-Itinerary 1718 departs before its original departure time
-Origin problem on itinerary 1718
 Itinerary 1719 departs before its original departure time
 Origin problem on itinerary 1719
-Itinerary 1720 departs before its original departure time
-Origin problem on itinerary 1720
-Itinerary 1721 departs before its original departure time
-Origin problem on itinerary 1721
+Final destination problem on itinerary 1721
 Final destination problem on itinerary 1722
 Final destination problem on itinerary 1723
 Itinerary 1724 departs before its original departure time
@@ -687,8 +622,6 @@ Itinerary 1796 departs before its original departure time
 Origin problem on itinerary 1796
 Final destination problem on itinerary 1796
 Final destination problem on itinerary 1801
-Itinerary 1809 departs before its original departure time
-Origin problem on itinerary 1809
 Itinerary 1810 departs before its original departure time
 Origin problem on itinerary 1810
 Itinerary 1811 departs before its original departure time
@@ -861,20 +794,12 @@ Itinerary 2115 departs before its original departure time
 Origin problem on itinerary 2115
 Itinerary 2116 departs before its original departure time
 Origin problem on itinerary 2116
-Itinerary 2122 departs before its original departure time
-Origin problem on itinerary 2122
 Itinerary 2123 departs before its original departure time
 Origin problem on itinerary 2123
 Final destination problem on itinerary 2130
-Itinerary 2131 departs before its original departure time
-Origin problem on itinerary 2131
-Itinerary 2132 departs before its original departure time
-Origin problem on itinerary 2132
 Final destination problem on itinerary 2133
 Final destination problem on itinerary 2134
 Final destination problem on itinerary 2135
-Itinerary 2136 departs before its original departure time
-Origin problem on itinerary 2136
 Final destination problem on itinerary 2140
 Final destination problem on itinerary 2147
 Itinerary 2149 departs before its original departure time
@@ -906,12 +831,6 @@ Origin problem on itinerary 2195
 Itinerary 2196 departs before its original departure time
 Origin problem on itinerary 2196
 Final destination problem on itinerary 2201
-Itinerary 2208 departs before its original departure time
-Origin problem on itinerary 2208
-Itinerary 2209 departs before its original departure time
-Origin problem on itinerary 2209
-Itinerary 2210 departs before its original departure time
-Origin problem on itinerary 2210
 Final destination problem on itinerary 2212
 Final destination problem on itinerary 2215
 Itinerary 2228 departs before its original departure time
@@ -936,8 +855,6 @@ Final destination problem on itinerary 2288
 Final destination problem on itinerary 2298
 Final destination problem on itinerary 2315
 Final destination problem on itinerary 2321
-Itinerary 2333 departs before its original departure time
-Origin problem on itinerary 2333
 Itinerary 2334 departs before its original departure time
 Origin problem on itinerary 2334
 Final destination problem on itinerary 2334
@@ -950,8 +867,6 @@ Origin problem on itinerary 2337
 Final destination problem on itinerary 2343
 Itinerary 2351 departs before its original departure time
 Origin problem on itinerary 2351
-Itinerary 2354 departs before its original departure time
-Origin problem on itinerary 2354
 Final destination problem on itinerary 2359
 Final destination problem on itinerary 2360
 Final destination problem on itinerary 2363
@@ -976,12 +891,7 @@ Itinerary 2436 departs before its original departure time
 Origin problem on itinerary 2436
 Itinerary 2437 departs before its original departure time
 Origin problem on itinerary 2437
-Itinerary 2445 departs before its original departure time
-Origin problem on itinerary 2445
-Itinerary 2446 departs before its original departure time
-Origin problem on itinerary 2446
-Itinerary 2447 departs before its original departure time
-Origin problem on itinerary 2447
+Final destination problem on itinerary 2447
 Final destination problem on itinerary 2448
 Final destination problem on itinerary 2449
 Final destination problem on itinerary 2452
@@ -1042,10 +952,8 @@ Itinerary 2544 departs before its original departure time
 Origin problem on itinerary 2544
 Itinerary 2545 departs before its original departure time
 Origin problem on itinerary 2545
-Itinerary 2546 departs before its original departure time
-Origin problem on itinerary 2546
-Itinerary 2547 departs before its original departure time
-Origin problem on itinerary 2547
+Final destination problem on itinerary 2546
+Final destination problem on itinerary 2547
 Itinerary 2551 departs before its original departure time
 Origin problem on itinerary 2551
 Final destination problem on itinerary 2551
@@ -1054,8 +962,6 @@ Origin problem on itinerary 2552
 Final destination problem on itinerary 2552
 Itinerary 2553 departs before its original departure time
 Origin problem on itinerary 2553
-Itinerary 2560 departs before its original departure time
-Origin problem on itinerary 2560
 Itinerary 2561 departs before its original departure time
 Origin problem on itinerary 2561
 Itinerary 2562 departs before its original departure time
@@ -1142,8 +1048,6 @@ Final destination problem on itinerary 2791
 Final destination problem on itinerary 2792
 Final destination problem on itinerary 2793
 Final destination problem on itinerary 2809
-Itinerary 2810 departs before its original departure time
-Origin problem on itinerary 2810
 Final destination problem on itinerary 2815
 Final destination problem on itinerary 2819
 Itinerary 2842 departs before its original departure time
@@ -1176,21 +1080,7 @@ Origin problem on itinerary 2886
 Final destination problem on itinerary 2901
 Final destination problem on itinerary 2902
 Final destination problem on itinerary 2907
-Itinerary 2911 departs before its original departure time
-Origin problem on itinerary 2911
-Itinerary 2915 departs before its original departure time
-Origin problem on itinerary 2915
-Itinerary 2916 departs before its original departure time
-Origin problem on itinerary 2916
-Itinerary 2917 departs before its original departure time
-Origin problem on itinerary 2917
-Itinerary 2918 departs before its original departure time
-Origin problem on itinerary 2918
 Final destination problem on itinerary 2919
-Itinerary 2920 departs before its original departure time
-Origin problem on itinerary 2920
-Itinerary 2921 departs before its original departure time
-Origin problem on itinerary 2921
 Itinerary 2924 departs before its original departure time
 Origin problem on itinerary 2924
 Itinerary 2925 departs before its original departure time
@@ -1226,8 +1116,6 @@ Origin problem on itinerary 2962
 Itinerary 2963 departs before its original departure time
 Origin problem on itinerary 2963
 Final destination problem on itinerary 2976
-Itinerary 2988 departs before its original departure time
-Origin problem on itinerary 2988
 Final destination problem on itinerary 2994
 Final destination problem on itinerary 3004
 Final destination problem on itinerary 3005
@@ -1248,10 +1136,6 @@ Itinerary 3057 departs before its original departure time
 Origin problem on itinerary 3057
 Itinerary 3059 departs before its original departure time
 Origin problem on itinerary 3059
-Itinerary 3064 departs before its original departure time
-Origin problem on itinerary 3064
-Itinerary 3065 departs before its original departure time
-Origin problem on itinerary 3065
 Itinerary 3084 departs before its original departure time
 Origin problem on itinerary 3084
 Final destination problem on itinerary 3085
@@ -1285,16 +1169,10 @@ Itinerary 3238 departs before its original departure time
 Origin problem on itinerary 3238
 Itinerary 3253 departs before its original departure time
 Origin problem on itinerary 3253
-Itinerary 3257 departs before its original departure time
-Origin problem on itinerary 3257
-Itinerary 3258 departs before its original departure time
-Origin problem on itinerary 3258
 Final destination problem on itinerary 3265
 Final destination problem on itinerary 3266
 Final destination problem on itinerary 3276
 Final destination problem on itinerary 3288
-Itinerary 3307 departs before its original departure time
-Origin problem on itinerary 3307
 Itinerary 3308 departs before its original departure time
 Origin problem on itinerary 3308
 Final destination problem on itinerary 3311
@@ -1335,8 +1213,6 @@ Final destination problem on itinerary 3426
 Final destination problem on itinerary 3446
 Itinerary 3447 departs before its original departure time
 Origin problem on itinerary 3447
-Itinerary 3454 departs before its original departure time
-Origin problem on itinerary 3454
 Final destination problem on itinerary 3456
 Itinerary 3457 departs before its original departure time
 Origin problem on itinerary 3457
@@ -1348,10 +1224,6 @@ Final destination problem on itinerary 3466
 Final destination problem on itinerary 3471
 Final destination problem on itinerary 3494
 Final destination problem on itinerary 3506
-Itinerary 3511 departs before its original departure time
-Origin problem on itinerary 3511
-Itinerary 3512 departs before its original departure time
-Origin problem on itinerary 3512
 Itinerary 3513 departs before its original departure time
 Origin problem on itinerary 3513
 Itinerary 3517 departs before its original departure time
@@ -1396,10 +1268,6 @@ Itinerary 3686 departs before its original departure time
 Origin problem on itinerary 3686
 Final destination problem on itinerary 3691
 Final destination problem on itinerary 3697
-Itinerary 3718 departs before its original departure time
-Origin problem on itinerary 3718
-Itinerary 3719 departs before its original departure time
-Origin problem on itinerary 3719
 Final destination problem on itinerary 3723
 Final destination problem on itinerary 3738
 Final destination problem on itinerary 3739
@@ -1411,8 +1279,6 @@ Itinerary 3756 departs before its original departure time
 Origin problem on itinerary 3756
 Final destination problem on itinerary 3761
 Final destination problem on itinerary 3765
-Itinerary 3766 departs before its original departure time
-Origin problem on itinerary 3766
 Final destination problem on itinerary 3773
 Itinerary 3785 departs before its original departure time
 Origin problem on itinerary 3785
@@ -1435,12 +1301,6 @@ Itinerary 3828 departs before its original departure time
 Origin problem on itinerary 3828
 Itinerary 3829 departs before its original departure time
 Origin problem on itinerary 3829
-Itinerary 3830 departs before its original departure time
-Origin problem on itinerary 3830
-Itinerary 3832 departs before its original departure time
-Origin problem on itinerary 3832
-Itinerary 3833 departs before its original departure time
-Origin problem on itinerary 3833
 Itinerary 3851 departs before its original departure time
 Origin problem on itinerary 3851
 Itinerary 3852 departs before its original departure time
@@ -1465,10 +1325,6 @@ Final destination problem on itinerary 3884
 Itinerary 3885 departs before its original departure time
 Origin problem on itinerary 3885
 Final destination problem on itinerary 3898
-Itinerary 3912 departs before its original departure time
-Origin problem on itinerary 3912
-Itinerary 3913 departs before its original departure time
-Origin problem on itinerary 3913
 Final destination problem on itinerary 3931
 Itinerary 3933 departs before its original departure time
 Origin problem on itinerary 3933
@@ -1500,10 +1356,6 @@ Origin problem on itinerary 3971
 Itinerary 3972 departs before its original departure time
 Origin problem on itinerary 3972
 Final destination problem on itinerary 3974
-Itinerary 3975 departs before its original departure time
-Origin problem on itinerary 3975
-Itinerary 3976 departs before its original departure time
-Origin problem on itinerary 3976
 Final destination problem on itinerary 3989
 Itinerary 3990 departs before its original departure time
 Origin problem on itinerary 3990
@@ -1514,10 +1366,6 @@ Origin problem on itinerary 4009
 Itinerary 4017 departs before its original departure time
 Origin problem on itinerary 4017
 Final destination problem on itinerary 4022
-Itinerary 4023 departs before its original departure time
-Origin problem on itinerary 4023
-Itinerary 4024 departs before its original departure time
-Origin problem on itinerary 4024
 Itinerary 4028 departs before its original departure time
 Origin problem on itinerary 4028
 Final destination problem on itinerary 4028
@@ -1539,12 +1387,6 @@ Origin problem on itinerary 4041
 Final destination problem on itinerary 4041
 Itinerary 4048 departs before its original departure time
 Origin problem on itinerary 4048
-Itinerary 4049 departs before its original departure time
-Origin problem on itinerary 4049
-Itinerary 4050 departs before its original departure time
-Origin problem on itinerary 4050
-Itinerary 4051 departs before its original departure time
-Origin problem on itinerary 4051
 Final destination problem on itinerary 4052
 Itinerary 4060 departs before its original departure time
 Origin problem on itinerary 4060
@@ -1609,20 +1451,10 @@ Origin problem on itinerary 4173
 Final destination problem on itinerary 4173
 Itinerary 4174 departs before its original departure time
 Origin problem on itinerary 4174
-Itinerary 4175 departs before its original departure time
-Origin problem on itinerary 4175
-Itinerary 4176 departs before its original departure time
-Origin problem on itinerary 4176
+Final destination problem on itinerary 4176
 Itinerary 4177 departs before its original departure time
 Origin problem on itinerary 4177
-Itinerary 4178 departs before its original departure time
-Origin problem on itinerary 4178
-Itinerary 4179 departs before its original departure time
-Origin problem on itinerary 4179
-Itinerary 4180 departs before its original departure time
-Origin problem on itinerary 4180
-Itinerary 4181 departs before its original departure time
-Origin problem on itinerary 4181
+Final destination problem on itinerary 4181
 Itinerary 4190 departs before its original departure time
 Origin problem on itinerary 4190
 Final destination problem on itinerary 4191
@@ -1685,10 +1517,6 @@ Final destination problem on itinerary 4270
 Final destination problem on itinerary 4278
 Final destination problem on itinerary 4279
 Final destination problem on itinerary 4283
-Itinerary 4285 departs before its original departure time
-Origin problem on itinerary 4285
-Itinerary 4286 departs before its original departure time
-Origin problem on itinerary 4286
 Itinerary 4287 departs before its original departure time
 Origin problem on itinerary 4287
 Itinerary 4294 departs before its original departure time
@@ -1808,10 +1636,6 @@ Final destination problem on itinerary 4517
 Final destination problem on itinerary 4526
 Final destination problem on itinerary 4527
 Final destination problem on itinerary 4529
-Itinerary 4530 departs before its original departure time
-Origin problem on itinerary 4530
-Itinerary 4531 departs before its original departure time
-Origin problem on itinerary 4531
 Itinerary 4538 departs before its original departure time
 Origin problem on itinerary 4538
 Final destination problem on itinerary 4538
@@ -1842,22 +1666,12 @@ Origin problem on itinerary 4567
 Itinerary 4570 departs before its original departure time
 Origin problem on itinerary 4570
 Final destination problem on itinerary 4576
-Itinerary 4577 departs before its original departure time
-Origin problem on itinerary 4577
 Itinerary 4578 departs before its original departure time
 Origin problem on itinerary 4578
 Final destination problem on itinerary 4588
-Itinerary 4589 departs before its original departure time
-Origin problem on itinerary 4589
-Itinerary 4590 departs before its original departure time
-Origin problem on itinerary 4590
-Itinerary 4591 departs before its original departure time
-Origin problem on itinerary 4591
 Final destination problem on itinerary 4592
 Final destination problem on itinerary 4594
 Final destination problem on itinerary 4595
-Itinerary 4597 departs before its original departure time
-Origin problem on itinerary 4597
 Itinerary 4598 departs before its original departure time
 Origin problem on itinerary 4598
 Final destination problem on itinerary 4599
@@ -1893,8 +1707,6 @@ Origin problem on itinerary 4656
 Itinerary 4657 departs before its original departure time
 Origin problem on itinerary 4657
 Final destination problem on itinerary 4666
-Itinerary 4673 departs before its original departure time
-Origin problem on itinerary 4673
 Final destination problem on itinerary 4676
 Final destination problem on itinerary 4679
 Final destination problem on itinerary 4680
@@ -1930,8 +1742,6 @@ Itinerary 4754 departs before its original departure time
 Origin problem on itinerary 4754
 Final destination problem on itinerary 4767
 Final destination problem on itinerary 4784
-Itinerary 4793 departs before its original departure time
-Origin problem on itinerary 4793
 Itinerary 4794 departs before its original departure time
 Origin problem on itinerary 4794
 Final destination problem on itinerary 4794
@@ -1947,8 +1757,6 @@ Itinerary 4809 departs before its original departure time
 Origin problem on itinerary 4809
 Final destination problem on itinerary 4809
 Final destination problem on itinerary 4812
-Itinerary 4813 departs before its original departure time
-Origin problem on itinerary 4813
 Itinerary 4814 departs before its original departure time
 Origin problem on itinerary 4814
 Itinerary 4815 departs before its original departure time
@@ -1972,21 +1780,15 @@ Origin problem on itinerary 4876
 Final destination problem on itinerary 4876
 Itinerary 4877 departs before its original departure time
 Origin problem on itinerary 4877
-Itinerary 4892 departs before its original departure time
-Origin problem on itinerary 4892
 Itinerary 4893 departs before its original departure time
 Origin problem on itinerary 4893
 Itinerary 4894 departs before its original departure time
 Origin problem on itinerary 4894
 Itinerary 4895 departs before its original departure time
 Origin problem on itinerary 4895
-Itinerary 4900 departs before its original departure time
-Origin problem on itinerary 4900
 Final destination problem on itinerary 4901
 Itinerary 4907 departs before its original departure time
 Origin problem on itinerary 4907
-Itinerary 4911 departs before its original departure time
-Origin problem on itinerary 4911
 Final destination problem on itinerary 4912
 Itinerary 4918 departs before its original departure time
 Origin problem on itinerary 4918
@@ -2023,10 +1825,7 @@ Itinerary 4981 departs before its original departure time
 Origin problem on itinerary 4981
 Itinerary 4982 departs before its original departure time
 Origin problem on itinerary 4982
-Itinerary 4983 departs before its original departure time
-Origin problem on itinerary 4983
-Itinerary 4984 departs before its original departure time
-Origin problem on itinerary 4984
+Final destination problem on itinerary 4983
 Itinerary 4989 departs before its original departure time
 Origin problem on itinerary 4989
 Final destination problem on itinerary 4989
@@ -2040,8 +1839,6 @@ Itinerary 4992 departs before its original departure time
 Origin problem on itinerary 4992
 Itinerary 4993 departs before its original departure time
 Origin problem on itinerary 4993
-Itinerary 4999 departs before its original departure time
-Origin problem on itinerary 4999
 Itinerary 5000 departs before its original departure time
 Origin problem on itinerary 5000
 Itinerary 5001 departs before its original departure time
@@ -2284,14 +2081,6 @@ Final destination problem on itinerary 5466
 Itinerary 5467 departs before its original departure time
 Origin problem on itinerary 5467
 Final destination problem on itinerary 5467
-Itinerary 5509 departs before its original departure time
-Origin problem on itinerary 5509
-Itinerary 5510 departs before its original departure time
-Origin problem on itinerary 5510
-Itinerary 5511 departs before its original departure time
-Origin problem on itinerary 5511
-Itinerary 5512 departs before its original departure time
-Origin problem on itinerary 5512
 Itinerary 5569 departs before its original departure time
 Origin problem on itinerary 5569
 Final destination problem on itinerary 5569
@@ -2341,26 +2130,6 @@ Final destination problem on itinerary 5649
 Itinerary 5650 departs before its original departure time
 Origin problem on itinerary 5650
 Final destination problem on itinerary 5650
-Itinerary 5702 departs before its original departure time
-Origin problem on itinerary 5702
-Itinerary 5703 departs before its original departure time
-Origin problem on itinerary 5703
-Itinerary 5711 departs before its original departure time
-Origin problem on itinerary 5711
-Itinerary 5712 departs before its original departure time
-Origin problem on itinerary 5712
-Itinerary 5713 departs before its original departure time
-Origin problem on itinerary 5713
-Itinerary 5714 departs before its original departure time
-Origin problem on itinerary 5714
-Itinerary 5717 departs before its original departure time
-Origin problem on itinerary 5717
-Itinerary 5718 departs before its original departure time
-Origin problem on itinerary 5718
-Itinerary 5719 departs before its original departure time
-Origin problem on itinerary 5719
-Itinerary 5720 departs before its original departure time
-Origin problem on itinerary 5720
 Itinerary 5724 departs before its original departure time
 Origin problem on itinerary 5724
 Itinerary 5725 departs before its original departure time
@@ -2417,10 +2186,6 @@ Final destination problem on itinerary 5852
 Itinerary 5853 departs before its original departure time
 Origin problem on itinerary 5853
 Final destination problem on itinerary 5853
-Itinerary 5907 departs before its original departure time
-Origin problem on itinerary 5907
-Itinerary 5908 departs before its original departure time
-Origin problem on itinerary 5908
 Itinerary 5931 departs before its original departure time
 Origin problem on itinerary 5931
 Itinerary 5932 departs before its original departure time
@@ -2500,14 +2265,6 @@ Itinerary 6049 departs before its original departure time
 Origin problem on itinerary 6049
 Itinerary 6050 departs before its original departure time
 Origin problem on itinerary 6050
-Itinerary 6053 departs before its original departure time
-Origin problem on itinerary 6053
-Itinerary 6054 departs before its original departure time
-Origin problem on itinerary 6054
-Itinerary 6055 departs before its original departure time
-Origin problem on itinerary 6055
-Itinerary 6056 departs before its original departure time
-Origin problem on itinerary 6056
 Itinerary 6057 departs before its original departure time
 Origin problem on itinerary 6057
 Final destination problem on itinerary 6057
@@ -2584,14 +2341,6 @@ Final destination problem on itinerary 6094
 Itinerary 6095 departs before its original departure time
 Origin problem on itinerary 6095
 Final destination problem on itinerary 6095
-Itinerary 6102 departs before its original departure time
-Origin problem on itinerary 6102
-Itinerary 6103 departs before its original departure time
-Origin problem on itinerary 6103
-Itinerary 6104 departs before its original departure time
-Origin problem on itinerary 6104
-Itinerary 6105 departs before its original departure time
-Origin problem on itinerary 6105
 Itinerary 6130 departs before its original departure time
 Origin problem on itinerary 6130
 Final destination problem on itinerary 6130
@@ -2744,16 +2493,6 @@ Itinerary 6412 departs before its original departure time
 Origin problem on itinerary 6412
 Itinerary 6413 departs before its original departure time
 Origin problem on itinerary 6413
-Itinerary 6418 departs before its original departure time
-Origin problem on itinerary 6418
-Itinerary 6419 departs before its original departure time
-Origin problem on itinerary 6419
-Itinerary 6420 departs before its original departure time
-Origin problem on itinerary 6420
-Itinerary 6421 departs before its original departure time
-Origin problem on itinerary 6421
-Itinerary 6422 departs before its original departure time
-Origin problem on itinerary 6422
 Itinerary 6427 departs before its original departure time
 Origin problem on itinerary 6427
 Itinerary 6428 departs before its original departure time
@@ -2764,10 +2503,6 @@ Itinerary 6430 departs before its original departure time
 Origin problem on itinerary 6430
 Itinerary 6431 departs before its original departure time
 Origin problem on itinerary 6431
-Itinerary 6502 departs before its original departure time
-Origin problem on itinerary 6502
-Itinerary 6503 departs before its original departure time
-Origin problem on itinerary 6503
 Itinerary 6559 departs before its original departure time
 Origin problem on itinerary 6559
 Final destination problem on itinerary 6559
@@ -2828,20 +2563,12 @@ Itinerary 6710 departs before its original departure time
 Origin problem on itinerary 6710
 Itinerary 6711 departs before its original departure time
 Origin problem on itinerary 6711
-Itinerary 6718 departs before its original departure time
-Origin problem on itinerary 6718
-Itinerary 6719 departs before its original departure time
-Origin problem on itinerary 6719
 Itinerary 6728 departs before its original departure time
 Origin problem on itinerary 6728
 Final destination problem on itinerary 6728
 Itinerary 6729 departs before its original departure time
 Origin problem on itinerary 6729
 Final destination problem on itinerary 6729
-Itinerary 6734 departs before its original departure time
-Origin problem on itinerary 6734
-Itinerary 6735 departs before its original departure time
-Origin problem on itinerary 6735
 Itinerary 6818 departs before its original departure time
 Origin problem on itinerary 6818
 Itinerary 6819 departs before its original departure time
@@ -2850,10 +2577,6 @@ Itinerary 6822 departs before its original departure time
 Origin problem on itinerary 6822
 Itinerary 6823 departs before its original departure time
 Origin problem on itinerary 6823
-Itinerary 6876 departs before its original departure time
-Origin problem on itinerary 6876
-Itinerary 6877 departs before its original departure time
-Origin problem on itinerary 6877
 Itinerary 6878 departs before its original departure time
 Origin problem on itinerary 6878
 Final destination problem on itinerary 6878
@@ -2969,12 +2692,6 @@ Itinerary 7131 departs before its original departure time
 Origin problem on itinerary 7131
 Itinerary 7132 departs before its original departure time
 Origin problem on itinerary 7132
-Itinerary 7135 departs before its original departure time
-Origin problem on itinerary 7135
-Itinerary 7136 departs before its original departure time
-Origin problem on itinerary 7136
-Itinerary 7137 departs before its original departure time
-Origin problem on itinerary 7137
 Itinerary 7210 departs before its original departure time
 Origin problem on itinerary 7210
 Final destination problem on itinerary 7210
@@ -2987,10 +2704,6 @@ Final destination problem on itinerary 7219
 Itinerary 7220 departs before its original departure time
 Origin problem on itinerary 7220
 Final destination problem on itinerary 7220
-Itinerary 7221 departs before its original departure time
-Origin problem on itinerary 7221
-Itinerary 7222 departs before its original departure time
-Origin problem on itinerary 7222
 Itinerary 7225 departs before its original departure time
 Origin problem on itinerary 7225
 Itinerary 7226 departs before its original departure time
@@ -3013,14 +2726,6 @@ Final destination problem on itinerary 7345
 Itinerary 7346 departs before its original departure time
 Origin problem on itinerary 7346
 Final destination problem on itinerary 7346
-Itinerary 7353 departs before its original departure time
-Origin problem on itinerary 7353
-Itinerary 7354 departs before its original departure time
-Origin problem on itinerary 7354
-Itinerary 7355 departs before its original departure time
-Origin problem on itinerary 7355
-Itinerary 7356 departs before its original departure time
-Origin problem on itinerary 7356
 Itinerary 7357 departs before its original departure time
 Origin problem on itinerary 7357
 Final destination problem on itinerary 7357
@@ -3057,10 +2762,6 @@ Final destination problem on itinerary 7453
 Itinerary 7454 departs before its original departure time
 Origin problem on itinerary 7454
 Final destination problem on itinerary 7454
-Itinerary 7602 departs before its original departure time
-Origin problem on itinerary 7602
-Itinerary 7603 departs before its original departure time
-Origin problem on itinerary 7603
 Itinerary 7633 departs before its original departure time
 Origin problem on itinerary 7633
 Itinerary 7634 departs before its original departure time
@@ -3145,24 +2846,12 @@ Final destination problem on itinerary 7931
 Itinerary 7932 departs before its original departure time
 Origin problem on itinerary 7932
 Final destination problem on itinerary 7932
-Itinerary 7941 departs before its original departure time
-Origin problem on itinerary 7941
-Itinerary 7942 departs before its original departure time
-Origin problem on itinerary 7942
 Itinerary 8007 departs before its original departure time
 Origin problem on itinerary 8007
 Final destination problem on itinerary 8007
 Itinerary 8008 departs before its original departure time
 Origin problem on itinerary 8008
 Final destination problem on itinerary 8008
-Itinerary 8031 departs before its original departure time
-Origin problem on itinerary 8031
-Itinerary 8032 departs before its original departure time
-Origin problem on itinerary 8032
-Itinerary 8033 departs before its original departure time
-Origin problem on itinerary 8033
-Itinerary 8034 departs before its original departure time
-Origin problem on itinerary 8034
 Itinerary 8037 departs before its original departure time
 Origin problem on itinerary 8037
 Itinerary 8038 departs before its original departure time
@@ -3252,22 +2941,6 @@ Final destination problem on itinerary 8225
 Itinerary 8226 departs before its original departure time
 Origin problem on itinerary 8226
 Final destination problem on itinerary 8226
-Itinerary 8231 departs before its original departure time
-Origin problem on itinerary 8231
-Itinerary 8232 departs before its original departure time
-Origin problem on itinerary 8232
-Itinerary 8235 departs before its original departure time
-Origin problem on itinerary 8235
-Itinerary 8236 departs before its original departure time
-Origin problem on itinerary 8236
-Itinerary 8255 departs before its original departure time
-Origin problem on itinerary 8255
-Itinerary 8256 departs before its original departure time
-Origin problem on itinerary 8256
-Itinerary 8259 departs before its original departure time
-Origin problem on itinerary 8259
-Itinerary 8260 departs before its original departure time
-Origin problem on itinerary 8260
 Itinerary 8269 departs before its original departure time
 Origin problem on itinerary 8269
 Final destination problem on itinerary 8269
@@ -3284,10 +2957,6 @@ Final destination problem on itinerary 8281
 Itinerary 8282 departs before its original departure time
 Origin problem on itinerary 8282
 Final destination problem on itinerary 8282
-Itinerary 8283 departs before its original departure time
-Origin problem on itinerary 8283
-Itinerary 8284 departs before its original departure time
-Origin problem on itinerary 8284
 Itinerary 8317 departs before its original departure time
 Origin problem on itinerary 8317
 Final destination problem on itinerary 8317
@@ -3300,10 +2969,6 @@ Final destination problem on itinerary 8321
 Itinerary 8322 departs before its original departure time
 Origin problem on itinerary 8322
 Final destination problem on itinerary 8322
-Itinerary 8363 departs before its original departure time
-Origin problem on itinerary 8363
-Itinerary 8364 departs before its original departure time
-Origin problem on itinerary 8364
 Itinerary 8371 departs before its original departure time
 Origin problem on itinerary 8371
 Itinerary 8372 departs before its original departure time
@@ -3318,14 +2983,6 @@ Final destination problem on itinerary 8425
 Itinerary 8426 departs before its original departure time
 Origin problem on itinerary 8426
 Final destination problem on itinerary 8426
-Itinerary 8427 departs before its original departure time
-Origin problem on itinerary 8427
-Itinerary 8428 departs before its original departure time
-Origin problem on itinerary 8428
-Itinerary 8431 departs before its original departure time
-Origin problem on itinerary 8431
-Itinerary 8432 departs before its original departure time
-Origin problem on itinerary 8432
 Itinerary 8465 departs before its original departure time
 Origin problem on itinerary 8465
 Final destination problem on itinerary 8465
@@ -3374,12 +3031,6 @@ Final destination problem on itinerary 8506
 Itinerary 8507 departs before its original departure time
 Origin problem on itinerary 8507
 Final destination problem on itinerary 8507
-Itinerary 8528 departs before its original departure time
-Origin problem on itinerary 8528
-Itinerary 8529 departs before its original departure time
-Origin problem on itinerary 8529
-Itinerary 8530 departs before its original departure time
-Origin problem on itinerary 8530
 Itinerary 8531 departs before its original departure time
 Origin problem on itinerary 8531
 Final destination problem on itinerary 8531
@@ -3477,14 +3128,6 @@ Itinerary 8611 departs before its original departure time
 Origin problem on itinerary 8611
 Itinerary 8612 departs before its original departure time
 Origin problem on itinerary 8612
-Itinerary 8615 departs before its original departure time
-Origin problem on itinerary 8615
-Itinerary 8616 departs before its original departure time
-Origin problem on itinerary 8616
-Itinerary 8617 departs before its original departure time
-Origin problem on itinerary 8617
-Itinerary 8618 departs before its original departure time
-Origin problem on itinerary 8618
 Itinerary 8621 departs before its original departure time
 Origin problem on itinerary 8621
 Itinerary 8622 departs before its original departure time
@@ -3566,10 +3209,6 @@ Final destination problem on itinerary 8735
 Itinerary 8736 departs before its original departure time
 Origin problem on itinerary 8736
 Final destination problem on itinerary 8736
-Itinerary 8751 departs before its original departure time
-Origin problem on itinerary 8751
-Itinerary 8752 departs before its original departure time
-Origin problem on itinerary 8752
 Itinerary 8758 departs before its original departure time
 Origin problem on itinerary 8758
 Final destination problem on itinerary 8758
@@ -3600,14 +3239,6 @@ Final destination problem on itinerary 8790
 Itinerary 8791 departs before its original departure time
 Origin problem on itinerary 8791
 Final destination problem on itinerary 8791
-Itinerary 8792 departs before its original departure time
-Origin problem on itinerary 8792
-Itinerary 8793 departs before its original departure time
-Origin problem on itinerary 8793
-Itinerary 8794 departs before its original departure time
-Origin problem on itinerary 8794
-Itinerary 8795 departs before its original departure time
-Origin problem on itinerary 8795
 Itinerary 8810 departs before its original departure time
 Origin problem on itinerary 8810
 Final destination problem on itinerary 8810
@@ -3743,24 +3374,12 @@ Final destination problem on itinerary 9038
 Itinerary 9039 departs before its original departure time
 Origin problem on itinerary 9039
 Final destination problem on itinerary 9039
-Itinerary 9040 departs before its original departure time
-Origin problem on itinerary 9040
-Itinerary 9041 departs before its original departure time
-Origin problem on itinerary 9041
 Itinerary 9042 departs before its original departure time
 Origin problem on itinerary 9042
 Final destination problem on itinerary 9042
 Itinerary 9043 departs before its original departure time
 Origin problem on itinerary 9043
 Final destination problem on itinerary 9043
-Itinerary 9044 departs before its original departure time
-Origin problem on itinerary 9044
-Itinerary 9045 departs before its original departure time
-Origin problem on itinerary 9045
-Itinerary 9046 departs before its original departure time
-Origin problem on itinerary 9046
-Itinerary 9047 departs before its original departure time
-Origin problem on itinerary 9047
 Itinerary 9055 departs before its original departure time
 Origin problem on itinerary 9055
 Final destination problem on itinerary 9055
@@ -3896,10 +3515,6 @@ Final destination problem on itinerary 9236
 Itinerary 9237 departs before its original departure time
 Origin problem on itinerary 9237
 Final destination problem on itinerary 9237
-Itinerary 9248 departs before its original departure time
-Origin problem on itinerary 9248
-Itinerary 9249 departs before its original departure time
-Origin problem on itinerary 9249
 Itinerary 9250 departs before its original departure time
 Origin problem on itinerary 9250
 Final destination problem on itinerary 9250
@@ -4056,10 +3671,6 @@ Final destination problem on itinerary 9601
 Itinerary 9602 departs before its original departure time
 Origin problem on itinerary 9602
 Final destination problem on itinerary 9602
-Itinerary 9603 departs before its original departure time
-Origin problem on itinerary 9603
-Itinerary 9604 departs before its original departure time
-Origin problem on itinerary 9604
 Itinerary 9621 departs before its original departure time
 Origin problem on itinerary 9621
 Final destination problem on itinerary 9621
@@ -4222,10 +3833,6 @@ Final destination problem on itinerary 9837
 Itinerary 9838 departs before its original departure time
 Origin problem on itinerary 9838
 Final destination problem on itinerary 9838
-Itinerary 9839 departs before its original departure time
-Origin problem on itinerary 9839
-Itinerary 9840 departs before its original departure time
-Origin problem on itinerary 9840
 Itinerary 9843 departs before its original departure time
 Origin problem on itinerary 9843
 Itinerary 9844 departs before its original departure time
@@ -4336,10 +3943,6 @@ Final destination problem on itinerary 9977
 Itinerary 9978 departs before its original departure time
 Origin problem on itinerary 9978
 Final destination problem on itinerary 9978
-Itinerary 9993 departs before its original departure time
-Origin problem on itinerary 9993
-Itinerary 9994 departs before its original departure time
-Origin problem on itinerary 9994
 Itinerary 9995 departs before its original departure time
 Origin problem on itinerary 9995
 Final destination problem on itinerary 9995
@@ -4370,28 +3973,6 @@ Final destination problem on itinerary 10011
 Itinerary 10012 departs before its original departure time
 Origin problem on itinerary 10012
 Final destination problem on itinerary 10012
-Itinerary 10037 departs before its original departure time
-Origin problem on itinerary 10037
-Itinerary 10038 departs before its original departure time
-Origin problem on itinerary 10038
-Itinerary 10039 departs before its original departure time
-Origin problem on itinerary 10039
-Itinerary 10044 departs before its original departure time
-Origin problem on itinerary 10044
-Itinerary 10045 departs before its original departure time
-Origin problem on itinerary 10045
-Itinerary 10062 departs before its original departure time
-Origin problem on itinerary 10062
-Itinerary 10063 departs before its original departure time
-Origin problem on itinerary 10063
-Itinerary 10064 departs before its original departure time
-Origin problem on itinerary 10064
-Itinerary 10065 departs before its original departure time
-Origin problem on itinerary 10065
-Itinerary 10068 departs before its original departure time
-Origin problem on itinerary 10068
-Itinerary 10069 departs before its original departure time
-Origin problem on itinerary 10069
 Itinerary 10070 departs before its original departure time
 Origin problem on itinerary 10070
 Final destination problem on itinerary 10070
@@ -4467,12 +4048,6 @@ Final destination problem on itinerary 10123
 Itinerary 10124 departs before its original departure time
 Origin problem on itinerary 10124
 Final destination problem on itinerary 10124
-Itinerary 10125 departs before its original departure time
-Origin problem on itinerary 10125
-Itinerary 10126 departs before its original departure time
-Origin problem on itinerary 10126
-Itinerary 10127 departs before its original departure time
-Origin problem on itinerary 10127
 Itinerary 10144 departs before its original departure time
 Origin problem on itinerary 10144
 Final destination problem on itinerary 10144
@@ -4533,26 +4108,10 @@ Itinerary 10200 departs before its original departure time
 Origin problem on itinerary 10200
 Itinerary 10201 departs before its original departure time
 Origin problem on itinerary 10201
-Itinerary 10272 departs before its original departure time
-Origin problem on itinerary 10272
-Itinerary 10273 departs before its original departure time
-Origin problem on itinerary 10273
 Itinerary 10278 departs before its original departure time
 Origin problem on itinerary 10278
 Itinerary 10279 departs before its original departure time
 Origin problem on itinerary 10279
-Itinerary 10309 departs before its original departure time
-Origin problem on itinerary 10309
-Itinerary 10310 departs before its original departure time
-Origin problem on itinerary 10310
-Itinerary 10311 departs before its original departure time
-Origin problem on itinerary 10311
-Itinerary 10312 departs before its original departure time
-Origin problem on itinerary 10312
-Itinerary 10326 departs before its original departure time
-Origin problem on itinerary 10326
-Itinerary 10327 departs before its original departure time
-Origin problem on itinerary 10327
 Itinerary 10353 departs before its original departure time
 Origin problem on itinerary 10353
 Final destination problem on itinerary 10353
@@ -4628,14 +4187,6 @@ Final destination problem on itinerary 10601
 Itinerary 10602 departs before its original departure time
 Origin problem on itinerary 10602
 Final destination problem on itinerary 10602
-Itinerary 10603 departs before its original departure time
-Origin problem on itinerary 10603
-Itinerary 10604 departs before its original departure time
-Origin problem on itinerary 10604
-Itinerary 10605 departs before its original departure time
-Origin problem on itinerary 10605
-Itinerary 10606 departs before its original departure time
-Origin problem on itinerary 10606
 Itinerary 10607 departs before its original departure time
 Origin problem on itinerary 10607
 Final destination problem on itinerary 10607
@@ -4681,10 +4232,6 @@ Final destination problem on itinerary 10662
 Itinerary 10663 departs before its original departure time
 Origin problem on itinerary 10663
 Final destination problem on itinerary 10663
-Itinerary 10680 departs before its original departure time
-Origin problem on itinerary 10680
-Itinerary 10681 departs before its original departure time
-Origin problem on itinerary 10681
 Itinerary 10682 departs before its original departure time
 Origin problem on itinerary 10682
 Final destination problem on itinerary 10682
@@ -4723,10 +4270,6 @@ Final destination problem on itinerary 10808
 Itinerary 10809 departs before its original departure time
 Origin problem on itinerary 10809
 Final destination problem on itinerary 10809
-Itinerary 10822 departs before its original departure time
-Origin problem on itinerary 10822
-Itinerary 10823 departs before its original departure time
-Origin problem on itinerary 10823
 Itinerary 10833 departs before its original departure time
 Origin problem on itinerary 10833
 Final destination problem on itinerary 10833
@@ -4756,14 +4299,6 @@ Final destination problem on itinerary 10918
 Itinerary 10919 departs before its original departure time
 Origin problem on itinerary 10919
 Final destination problem on itinerary 10919
-Itinerary 10956 departs before its original departure time
-Origin problem on itinerary 10956
-Itinerary 10957 departs before its original departure time
-Origin problem on itinerary 10957
-Itinerary 10958 departs before its original departure time
-Origin problem on itinerary 10958
-Itinerary 10959 departs before its original departure time
-Origin problem on itinerary 10959
 Itinerary 10960 departs before its original departure time
 Origin problem on itinerary 10960
 Final destination problem on itinerary 10960
@@ -4773,10 +4308,6 @@ Final destination problem on itinerary 10961
 Itinerary 10962 departs before its original departure time
 Origin problem on itinerary 10962
 Final destination problem on itinerary 10962
-Itinerary 10963 departs before its original departure time
-Origin problem on itinerary 10963
-Itinerary 10964 departs before its original departure time
-Origin problem on itinerary 10964
 Itinerary 10976 departs before its original departure time
 Origin problem on itinerary 10976
 Itinerary 10977 departs before its original departure time
@@ -4809,14 +4340,6 @@ Final destination problem on itinerary 11030
 Itinerary 11031 departs before its original departure time
 Origin problem on itinerary 11031
 Final destination problem on itinerary 11031
-Itinerary 11032 departs before its original departure time
-Origin problem on itinerary 11032
-Itinerary 11033 departs before its original departure time
-Origin problem on itinerary 11033
-Itinerary 11034 departs before its original departure time
-Origin problem on itinerary 11034
-Itinerary 11035 departs before its original departure time
-Origin problem on itinerary 11035
 Itinerary 11038 departs before its original departure time
 Origin problem on itinerary 11038
 Itinerary 11039 departs before its original departure time
@@ -4841,10 +4364,6 @@ Final destination problem on itinerary 11080
 Itinerary 11081 departs before its original departure time
 Origin problem on itinerary 11081
 Final destination problem on itinerary 11081
-Itinerary 11082 departs before its original departure time
-Origin problem on itinerary 11082
-Itinerary 11083 departs before its original departure time
-Origin problem on itinerary 11083
 Itinerary 11084 departs before its original departure time
 Origin problem on itinerary 11084
 Final destination problem on itinerary 11084
@@ -4951,14 +4470,6 @@ Final destination problem on itinerary 11413
 Itinerary 11414 departs before its original departure time
 Origin problem on itinerary 11414
 Final destination problem on itinerary 11414
-Itinerary 11419 departs before its original departure time
-Origin problem on itinerary 11419
-Itinerary 11420 departs before its original departure time
-Origin problem on itinerary 11420
-Itinerary 11421 departs before its original departure time
-Origin problem on itinerary 11421
-Itinerary 11422 departs before its original departure time
-Origin problem on itinerary 11422
 Itinerary 11429 departs before its original departure time
 Origin problem on itinerary 11429
 Final destination problem on itinerary 11429
@@ -4971,10 +4482,6 @@ Final destination problem on itinerary 11431
 Itinerary 11432 departs before its original departure time
 Origin problem on itinerary 11432
 Final destination problem on itinerary 11432
-Itinerary 11441 departs before its original departure time
-Origin problem on itinerary 11441
-Itinerary 11442 departs before its original departure time
-Origin problem on itinerary 11442
 Itinerary 11443 departs before its original departure time
 Origin problem on itinerary 11443
 Final destination problem on itinerary 11443
@@ -5021,12 +4528,6 @@ Final destination problem on itinerary 11502
 Itinerary 11503 departs before its original departure time
 Origin problem on itinerary 11503
 Final destination problem on itinerary 11503
-Itinerary 11515 departs before its original departure time
-Origin problem on itinerary 11515
-Itinerary 11516 departs before its original departure time
-Origin problem on itinerary 11516
-Itinerary 11517 departs before its original departure time
-Origin problem on itinerary 11517
 Itinerary 11518 departs before its original departure time
 Origin problem on itinerary 11518
 Final destination problem on itinerary 11518

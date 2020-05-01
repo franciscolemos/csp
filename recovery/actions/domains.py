@@ -41,7 +41,7 @@ class flights:
         #Initialize the domain
         return self.criticalFligh
     
-    def ranges(self, movingFlights, airportDic, fixedFlights, rotation, index): #only complying with airp. cap.
+    def ranges(self, movingFlights, airportDic): #only complying with airp. cap.
         domains = {}
         noCombos = 1
         try:
@@ -56,9 +56,15 @@ class flights:
                         airportDic[destination][int(arr/60)]['noArr'] + 1 <= airportDic[destination][int(dep/60)]['capArr']]):
                         domain.append(t)
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
-                if noCombos > 3 * 10**6:
+                if noCombos > 5 * 10**6:
+                    print("Excessive", noCombos)
+                    import pdb; pdb.set_trace()
                     return [],  -1
                 domains[f['flight']] = domain
+            # if noCombos > 90 * 10**6:
+            #     print("Excessive", noCombos)
+            #     #import pdb; pdb.set_trace()
+            #     return [],  -1
         except:
             print("Exception finding ranges@domains.py")
             import pdb; pdb.set_trace()
