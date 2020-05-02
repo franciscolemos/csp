@@ -38,7 +38,7 @@ class ARP:
         self.aircraftScheduleDic = i.aircraftScheduleDic #1 aircraft to n flights
         i.flightSchedule()
         self.flightScheduleSA = i.flightScheduleSA #all the flights + room to un-cancel flights for airport cap. purpose
-        self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic(self.flightScheduleSA, self.distSA)
+        self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic()
         #determine the planning horizon
         endDateTime = datetime.combine(datetime.date(self.configDic['endDate']),
             datetime.time(self.configDic['endTime']))
@@ -140,7 +140,5 @@ if __name__ == "__main__":
         #add while loop
         arp = ARP(path)
         arp.findSolution()
-        #PRP(self.solutionARP, self.itineraryDic).findSolution()
-        #solution.cost(self.solutionARP, self.itineraryDic)
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)

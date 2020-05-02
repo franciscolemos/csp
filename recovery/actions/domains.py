@@ -58,7 +58,7 @@ class flights:
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
                 if noCombos > 5 * 10**6:
                     print("Excessive", noCombos)
-                    import pdb; pdb.set_trace()
+                    #import pdb; pdb.set_trace()
                     return [],  -1
                 domains[f['flight']] = domain
             # if noCombos > 90 * 10**6:

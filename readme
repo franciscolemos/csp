@@ -25,13 +25,22 @@ Create aircraft list with solution;
 Create aircraft list without solution and iterate;
 Update airport capacity to constraint ranges;
 
+remove random aircraftList
+remove transpcom from aircraft dict.
 debug airport capacity
-
-
-Test the feasibility of the solutions
+Test the feasibility of the recovery
 Save the feasible solution and the cost
 
-(Simmulated annealing)
+refactor read itineraries
+
+debug airport capacity
+recover infeasible rotations
+
+Fixed flights feasibility
+Itinerary feasibility
+Passnger feasibility
+
+(Simmulated annealing for _noCombos)
 
 
 Export the solution with the feasible rotations;

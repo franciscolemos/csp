@@ -37,3 +37,4 @@
             # np.array(np.meshgrid(*flightRanges.values())).T.reshape(-1,len(flightRanges))
             # product between a set of vectors
             # list(set(temp1) - set(temp2)) diff. between two lists
+            # itineraryLine = list(filter(None, itineraryLine)) # clean empty values from list
