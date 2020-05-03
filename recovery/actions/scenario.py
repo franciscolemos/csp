@@ -7,3 +7,4 @@ def echo(noFlights, noAircrafts, noAirports, noItineraries, noAltFlights, noAltA
     print("No. of disrupted aircrafts", noAltAircrafts)
     print("No. of disrupted airports", noAltAirports)
     print("Recovery period", noDays)
+

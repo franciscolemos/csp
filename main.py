@@ -104,8 +104,10 @@ class ARP:
         import copy; aircraftTmpList = copy.deepcopy(aircraftList)
         print("rotationSize, noCombos, delta0, delta1")
         aircraftSolList = [] #list of aircraft that have a feasibe rotation
+        start = time.time()
+        _noCombos = 0.1
         while len(aircraftSolList) != len(aircraftList): #verify if the lists have the same size
-            
+            print("No. combos", _noCombos * 10**6)
             for aircraft in aircraftTmpList: #iterate through the aircraft list
                 # if aircraft == "A318#33":
                 #     import pdb; pdb.set_trace()
@@ -115,33 +117,58 @@ class ARP:
                 if(index != -1): #search the solution
                     fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
                     movingFlights = rotation[index:] if fixedFlights.size == 0 else rotation[index:][rotation[index:] != fixedFlights]
-                    flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic)
+                    flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic, _noCombos)
+                    
                     if noCombos == -1:
                         print("Continue")
                         continue
 
-                    start = time.time()
+                    # start = time.time()
                     flightCombinations = product(*flightRanges.values())
-                    delta0 = time.time() - start
-                    start = time.time()
-                    _noCombos = 1
-                    for flight in flightCombinations: #generate the possible combinations
-                        x = flight[0] + 1
-                        if x == 0:
-                            y = 2
-                        _noCombos += 1
-                    delta1 = time.time() - start
-                    print(len(flightRanges), noCombos, delta0, delta1)
+                    print("flightCombination: ", noCombos, len(list(set(aircraftList) - set(aircraftSolList))))
+                    # delta0 = time.time() - start
+                    # start = time.time()
+                    
+                    for combo in flightCombinations: #generate the possible combinations
+                        copyRotation = copy.deepcopy(rotation)
+                        # print("combo :", combo)
+                        solution.newRotation(combo, copyRotation[index:]) 
+                        # print("comboRotation: \n", copyRotation)
+                        # import pdb; pdb.set_trace()
+                        copyRotation = copyRotation[copyRotation['cancelFlight'] != 1 ]#only with flights not cancelled
+                        if len(copyRotation) == len(copyRotation[:index]): #cause the recovery only has cancelled flights
+                            # print("only cancelled flights")
+                            # import pdb; pdb.set_trace()
+                            continue
+                        copyRotation = np.sort(copyRotation, order = 'altDepInt')
+                        if len(feasibility.continuity(copyRotation)) > 0: continue #cont.
+                        if len(feasibility.TT(copyRotation)) > 0: continue
+                        infMaintList = []
+                        if len(feasibility.dep(copyRotation, self.airportDic)) > 0: continue #airp. dep. cap. (might not be necessary)
+                        if len(feasibility.arr(copyRotation, self.airportDic)) > 0: continue #airp. arr. cap. (might not be necessary)
+                        print("solution found!!!!")
+                        self.solutionARP.append(copyRotation) #save the feasible rotation (to be replaced) 
+                        solution.saveAirportCap(copyRotation, self.airportDic) # update the airp. cap.(to be replaced)
+                        break
+                        #import pdb; pdb.set_trace()
+                        
+                        
+
+
+
                    
                     #self.solutionARP.append(rotation[index:]) #save the feasible rotation (to be replaced) 
                     #solution.saveAirportCap(rotation[index:], self.airportDic) # update the airp. cap.(to be replaced) 
-                    self.solutionARP.append(rotation[:index]) #save the feasible rotation (to be replaced) 
-                    solution.saveAirportCap(rotation[:index], self.airportDic) # update the airp. cap.(to be replaced)
+                    # self.solutionARP.append(rotation[:index]) #save the feasible rotation (to be replaced) 
+                    # solution.saveAirportCap(rotation[:index], self.airportDic) # update the airp. cap.(to be replaced)
                 aircraftSolList.append(aircraft) #add the aircraft w/ feasible solution
                 print(len(aircraftSolList))
-                
+            _noCombos += 0.1
             aircraftTmpList = list(set(aircraftList) - set(aircraftSolList)) #check the differences between two lists
-            
+        
+        delta1 = time.time() - start
+        print(len(flightRanges), noCombos, delta0, delta1)
+        import pdb; pdb.set_trace()  
 
 if __name__ == "__main__":
     for path in paths.paths:

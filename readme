@@ -33,9 +33,17 @@ Save the feasible solution and the cost
 
 refactor read itineraries
 
-debug airport capacity
-recover infeasible rotations
-debug tt and tr
+debug airport capacity (changed dtype in altAirport)
+
+create comboRotation
+create recoveredRotation
+verify recoveredRotation feasibility (check if airp. cap necessary to be verified)
+update no. of combinations
+save feasible recoveredRotation
+
+optimize domains: singleton propagation: fixed flights: delayed, outside rtw
+
+debug tt and tr (reconsider)
 
 Limit the iterations of excessive iterations
 Iterate through all path sets
