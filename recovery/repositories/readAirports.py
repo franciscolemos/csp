@@ -98,6 +98,7 @@ class readAirports:
                     airportSchedule[i]['noArr'] = noArr
                 i += 1
         self.airportDic[airport.airport] = airportSchedule
+
         
     def infeasCap(self):
         size = self.noAirports * self.noDays * 24

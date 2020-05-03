@@ -11,6 +11,7 @@ def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
         #update airp. arr. cap.
         index = int(flight['altArrInt']/60)
         airportCap[flight['destination']][index]['noArr'] += 1
+    return airportCap
 
 def cost(solutionARP, itineraryDic):
     pass

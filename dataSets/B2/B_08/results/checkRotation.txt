@@ -1,1 +1,45 @@
-Maintenance position not respected for aircraft A319#20
+Wrong initial position for aircraft A340#16
+Wrong initial position for aircraft A318#17
+Wrong initial position for aircraft ERJ135#18
+Wrong initial position for aircraft A319#20
+Wrong initial position for aircraft A318#24
+Wrong initial position for aircraft A318#33
+Turn-round time violated on flight 2866 on 2008-Mar-01 operated by aircraft A318#33
+Rotation continuity problem on aircraft A318#33
+Wrong initial position for aircraft A318#34
+Wrong initial position for aircraft A319#38
+Wrong initial position for aircraft A320#48
+Wrong initial position for aircraft A320#56
+Wrong initial position for aircraft A320#59
+Wrong initial position for aircraft CRJ700#67
+Wrong initial position for aircraft F100#87
+Wrong initial position for aircraft ERJ135#93
+Wrong initial position for aircraft A320#105
+Wrong initial position for aircraft A321#106
+Wrong initial position for aircraft A321#114
+Wrong initial position for aircraft A318#125
+Wrong initial position for aircraft A319#126
+Wrong initial position for aircraft A319#127
+Wrong initial position for aircraft A320#128
+Wrong initial position for aircraft A320#129
+Wrong initial position for aircraft A320#138
+Wrong initial position for aircraft A320#139
+Wrong initial position for aircraft A320#141
+Wrong initial position for aircraft A321#147
+Wrong initial position for aircraft A319#149
+Wrong initial position for aircraft A320#152
+Wrong initial position for aircraft A320#153
+Wrong initial position for aircraft ERJ135#159
+Wrong initial position for aircraft A319#163
+Wrong initial position for aircraft A320#168
+Wrong initial position for aircraft ERJ135#178
+Wrong initial position for aircraft A319#187
+Wrong initial position for aircraft A319#188
+Wrong initial position for aircraft A321#197
+Wrong initial position for aircraft A321#200
+Turn-round time violated on flight 6888 on 2008-Mar-01 operated by aircraft A320#222
+Turn-round time violated on flight 5818 on 2008-Mar-01 operated by aircraft A320#222
+Rotation continuity problem on aircraft A320#222
+Wrong initial position for aircraft CRJ100#225
+Wrong initial position for aircraft CRJ100#226
+Wrong initial position for aircraft A320#235

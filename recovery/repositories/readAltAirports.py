@@ -17,7 +17,7 @@ class readAltAirport:
         self.altAirportsSA = []
         self.dtypeA = np.dtype([('airport', np.unicode, 3), ('startDate', np.unicode, 8), ('startTime', np.unicode, 5), ('endDate', np.unicode, 8), ('endTime', np.unicode, 5), 
                         ('capDep', np.int8), ('capArr', np.int8)])
-        self.dtypeAA = np.dtype([('airport', 'S3'), ('startDateTime', datetime ), ('startInt', np.int16), ('endDateTime', datetime),
+        self.dtypeAA = np.dtype([('airport', np.unicode, 3), ('startDateTime', datetime ), ('startInt', np.int16), ('endDateTime', datetime),
             ('endInt', np.int16), ('capDep', np.int8), ('capArr', np.int8)])
         self.minDate = minDate
  

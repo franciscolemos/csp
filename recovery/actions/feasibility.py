@@ -1,5 +1,5 @@
-import pdb
 import datetime
+from recovery.dal.classesDtype import dtype as dt
 #import fileExport as fE
 import time
 #import funcsDate as fD
@@ -32,29 +32,31 @@ def maint(flightSchedule):
 #dep. airp. cap.
 def dep(flightSchedule, airportDic):
     flightDepList = []
+    flightIndex = 0
     for flight in flightSchedule[flightSchedule['flight'] != '']:
-        try:
-            index = int(flight['altDepInt'] / 60)
-            noDep = airportDic[flight['origin']][index]['noDep']
-            capDep = airportDic[flight['origin']][index]['capDep']
-            if noDep + 1 > capDep:
-                flightDepList.append(flight)
-        except Exception as e:
-            print("Exception dep:", e)
-    index = np.where(flightSchedule == flightDepList)        
-    return np.asarray(index).flatten()
+        index = int(flight['altDepInt'] / 60)
+        noDep = airportDic[flight['origin']][index]['noDep']
+        capDep = airportDic[flight['origin']][index]['capDep']
+        if noDep + 1 > capDep:
+            flightDepList.append(flightIndex)
+            #import pdb; pdb.set_trace()
+        flightIndex += 1
+    return flightDepList
+        
 
 #arr. airp. cap.
 def arr(flightSchedule, airportDic):
     flightArrList = []
+    flightIndex = 0
     for flight in flightSchedule[flightSchedule['flight'] != '']:
         index = int(flight['altArrInt'] / 60)
         noArr = airportDic[flight['destination']][index]['noArr']
         capArr = airportDic[flight['destination']][index]['capArr']
         if noArr + 1 > capArr:
-            flightArrList.append(flight)
-    index =  np.where(flightSchedule == flightArrList)
-    return np.asarray(index).flatten()
+            flightArrList.append(flightIndex)
+            #import pdb; pdb.set_trace()
+        flightIndex += 1
+    return flightArrList
 
 class ARP():
 

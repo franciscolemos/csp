@@ -35,7 +35,10 @@ refactor read itineraries
 
 debug airport capacity
 recover infeasible rotations
+debug tt and tr
 
+Limit the iterations of excessive iterations
+Iterate through all path sets
 Fixed flights feasibility
 Itinerary feasibility
 Passnger feasibility

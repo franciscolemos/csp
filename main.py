@@ -79,20 +79,22 @@ class ARP:
         
         infDepList = feasibility.dep(rotation, self.airportDic) #airp. dep. cap.
         infArrList = feasibility.arr(rotation, self.airportDic) #airp. arr. cap.
-        
-        feasible = len(infContList) + len(infTTList) + len(infMaintList) + len(infDepList) + len(infArrList)
-        if feasible == 0:
-            self.solutionARP.append(rotation) #save the feasible rotation
-            solution.saveAirportCap(rotation, self.airportDic) #update the airp. cap.
-            return -1, []
-        else:
-            try:
-                #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
-                index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
-                return int(index), rotation #because it has to include the aircraft to export the solution
-            except Exception as e:
-                print("Exception initialize:", e)
-                import pdb; pdb.set_trace()
+        try:
+            feasible = len(infContList) + len(infTTList) + len(infMaintList) + len(infDepList) + len(infArrList)
+
+            print("feasible:", len(infContList), len(infTTList), len(infMaintList), len(infDepList), len(infArrList))
+            if feasible == 0:
+                self.solutionARP.append(rotation) #save the feasible rotation
+                solution.saveAirportCap(rotation, self.airportDic) #update the airp. cap.
+                return -1, []
+            else:
+                
+                    #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
+                    index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
+                    return int(index), rotation #because it has to include the aircraft to export the solution
+        except Exception as e:
+            print("Exception initialize:", e)
+            import pdb; pdb.set_trace()
         #visualize the graphs
     
     def findSolution(self):
@@ -103,15 +105,19 @@ class ARP:
         print("rotationSize, noCombos, delta0, delta1")
         aircraftSolList = [] #list of aircraft that have a feasibe rotation
         while len(aircraftSolList) != len(aircraftList): #verify if the lists have the same size
+            
             for aircraft in aircraftTmpList: #iterate through the aircraft list
-                #aircraft = "A318#33"
-                print(aircraft)
+                # if aircraft == "A318#33":
+                #     import pdb; pdb.set_trace()
+                
                 index, rotation = self.initialize(aircraft) #save a feasible rotation or return the index of inf.
+
                 if(index != -1): #search the solution
                     fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
                     movingFlights = rotation[index:] if fixedFlights.size == 0 else rotation[index:][rotation[index:] != fixedFlights]
                     flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic)
                     if noCombos == -1:
+                        print("Continue")
                         continue
 
                     start = time.time()
@@ -127,8 +133,10 @@ class ARP:
                     delta1 = time.time() - start
                     print(len(flightRanges), noCombos, delta0, delta1)
                    
-                    self.solutionARP.append(rotation[:index]) #save the feasible rotation
-                    solution.saveAirportCap(rotation[:index], self.airportDic) #update the airp. cap.
+                    #self.solutionARP.append(rotation[index:]) #save the feasible rotation (to be replaced) 
+                    #solution.saveAirportCap(rotation[index:], self.airportDic) # update the airp. cap.(to be replaced) 
+                    self.solutionARP.append(rotation[:index]) #save the feasible rotation (to be replaced) 
+                    solution.saveAirportCap(rotation[:index], self.airportDic) # update the airp. cap.(to be replaced)
                 aircraftSolList.append(aircraft) #add the aircraft w/ feasible solution
                 print(len(aircraftSolList))
                 
