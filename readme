@@ -41,7 +41,9 @@ verify recoveredRotation feasibility (check if airp. cap necessary to be verifie
 update no. of combinations
 save feasible recoveredRotation
 
-optimize domains: singleton propagation: fixed flights: delayed, outside rtw
+
+optimize domains: singleton propagation: fixed flights: delayed
+
 
 debug tt and tr (reconsider)
 

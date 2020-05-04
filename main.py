@@ -116,6 +116,7 @@ class ARP:
 
                 if(index != -1): #search the solution
                     fixedFlights = self.domainFlights.fixed(rotation[index:])#find the fixed flights
+
                     movingFlights = rotation[index:] if fixedFlights.size == 0 else rotation[index:][rotation[index:] != fixedFlights]
                     flightRanges, noCombos = self.domainFlights.ranges(movingFlights, self.airportDic, _noCombos)
                     
@@ -125,30 +126,31 @@ class ARP:
 
                     # start = time.time()
                     flightCombinations = product(*flightRanges.values())
-                    print("flightCombination: ", noCombos, len(list(set(aircraftList) - set(aircraftSolList))))
+                    remainAirc = len(list(set(aircraftList) - set(aircraftSolList)))
+                    print("flightCombination: ", noCombos, remainAirc)
+                    if remainAirc < 5:
+                        print(rotation)
+                        import pdb; pdb.set_trace()
                     # delta0 = time.time() - start
                     # start = time.time()
-                    
                     for combo in flightCombinations: #generate the possible combinations
-                        copyRotation = copy.deepcopy(rotation)
-                        # print("combo :", combo)
-                        solution.newRotation(combo, copyRotation[index:]) 
-                        # print("comboRotation: \n", copyRotation)
-                        # import pdb; pdb.set_trace()
-                        copyRotation = copyRotation[copyRotation['cancelFlight'] != 1 ]#only with flights not cancelled
-                        if len(copyRotation) == len(copyRotation[:index]): #cause the recovery only has cancelled flights
-                            # print("only cancelled flights")
-                            # import pdb; pdb.set_trace()
+                        copyRotation0 = copy.deepcopy(rotation) #starting copy of the rotation
+                        solution.newRotation(combo, copyRotation0[index:]) #find a solution
+                        copyRotation1 = copyRotation0[copyRotation0['cancelFlight'] != 1 ]#only with flights not cancelled, but keep copyRotation0
+                        if len(copyRotation1) == len(copyRotation0[:index]): #cause the recovery only has cancelled flights
                             continue
-                        copyRotation = np.sort(copyRotation, order = 'altDepInt')
-                        if len(feasibility.continuity(copyRotation)) > 0: continue #cont.
-                        if len(feasibility.TT(copyRotation)) > 0: continue
+                        copyRotation1 = np.sort(copyRotation1, order = 'altDepInt')
+                        if len(feasibility.continuity(copyRotation1)) > 0: continue #cont.
+                        if len(feasibility.TT(copyRotation1)) > 0: continue
                         infMaintList = []
-                        if len(feasibility.dep(copyRotation, self.airportDic)) > 0: continue #airp. dep. cap. (might not be necessary)
-                        if len(feasibility.arr(copyRotation, self.airportDic)) > 0: continue #airp. arr. cap. (might not be necessary)
-                        print("solution found!!!!")
-                        self.solutionARP.append(copyRotation) #save the feasible rotation (to be replaced) 
-                        solution.saveAirportCap(copyRotation, self.airportDic) # update the airp. cap.(to be replaced)
+                        if len(feasibility.dep(copyRotation1, self.airportDic)) > 0: continue #airp. dep. cap. (might not be necessary)
+                        if len(feasibility.arr(copyRotation1, self.airportDic)) > 0: continue #airp. arr. cap. (might not be necessary)
+
+                        print("solution de merda found!!!!")
+                        
+
+                        self.solutionARP.append(copyRotation0) #save the feasible rotation (to be replaced) 
+                        solution.saveAirportCap(copyRotation0, self.airportDic) # update the airp. cap.(to be replaced)
                         break
                         #import pdb; pdb.set_trace()
                         

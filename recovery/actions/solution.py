@@ -13,15 +13,19 @@ def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
         airportCap[flight['destination']][index]['noArr'] += 1
     return airportCap
 
-def newRotation(combo, rotation):
+def newRotation(combo, rotation): 
+    i = 0  
     for delay, flight in zip(combo, rotation):
-        if delay == -1: 
+        if flight['depInt'] != flight['altDepInt']: #fixed flight
+            i += 1
+            continue
+        if delay == -1: #cancel the flight
             flight['cancelFlight'] = 1
         else:
             flight['altDepInt'] += delay
             flight['altArrInt'] += delay
-
-
+        rotation[i] = flight #update the rotation
+        i += 1
 
 def cost(solutionARP, itineraryDic):
     pass
