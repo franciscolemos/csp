@@ -1,0 +1,9 @@
+Arrival flight 4986 on 2008-Mar-02 after the end of recovery period 
+Maintenance position not respected for aircraft A319#20
+Maintenance position not respected for aircraft A318#125
+Arrival flight 1720 on 2008-Mar-02 after the end of recovery period 
+Arrival flight 4910 on 2008-Mar-02 after the end of recovery period 
+Arrival flight 5723 on 2008-Mar-02 after the end of recovery period 
+Maintenance position not respected for aircraft A321#147
+Arrival flight 5618 on 2008-Mar-02 after the end of recovery period 
+Wrong initial position for aircraft ERJ135#207

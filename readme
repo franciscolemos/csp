@@ -38,22 +38,25 @@ debug airport capacity (changed dtype in altAirport)
 create comboRotation
 create recoveredRotation
 verify recoveredRotation feasibility (check if airp. cap necessary to be verified)
-update no. of combinations
+dynamic no. of combinations
 save feasible recoveredRotation
 
+debuged rotation solution tuples
 
-optimize domains: singleton propagation: fixed flights: delayed
+Traceability header
+Find the aircraft w/ previous flights
+Refactor ARP into actions
 
+Debug movingFlights
+Verify airport capacity (check why it is infeasible)
+Feasibility: if previous flight is cancelled then the next one must also be cancelled (done)
+B08 debug Disrupted flight 1102 cancelled (they are not showing in the solution, outside RTW)
+B08 debug Fixed flight 61 cancelled (they are not showing in the solution)
+B08 debug Arrival flight 4986 on 2008-Mar-02 after the end of recovery period (done)
+B08 debug Maintenance position not respected for aircraft A321#147
 
-debug tt and tr (reconsider)
-
-Limit the iterations of excessive iterations
-Iterate through all path sets
-Fixed flights feasibility
-Itinerary feasibility
-Passnger feasibility
-
-(Simmulated annealing for _noCombos)
+define heuristic to retrieve best solution (Simmulated annealing for _noCombos)
+debug export rotation solution
 
 
 Export the solution with the feasible rotations;

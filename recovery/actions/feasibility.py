@@ -9,6 +9,16 @@ import numpy as np
 from pprint import pprint
 import pandas as pd
 
+def previous(flightSchedule):
+    previousList = flightSchedule[(flightSchedule['previous'] != '0') & (flightSchedule['previous'] != '')] #because of created flights
+    for flight in previousList: #flights w/ previous
+        date = flight['flight'][-8:] #get the date
+        #import pdb; pdb.set_trace()
+        previousFlight = flight['previous'] + date #previous flight
+        cancelFlight = flightSchedule[flightSchedule['flight'] == previousFlight]['cancelFlight']
+        if (cancelFlight == 1) & (flight['cancelFlight'] != 1):
+            return [-1] #next flight not cancelled
+    return [] #feasible
 def continuity(flightSchedule):
     index =  np.where(flightSchedule['destination'][:-1] != flightSchedule['origin'][1:]) # this matrix will be 1 row smaller 
     if len(index) > 2:

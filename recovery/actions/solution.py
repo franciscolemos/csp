@@ -57,17 +57,19 @@ def export(flightScheduleSA, itineraryDic, minDate, path):
             altArrTime = datetime.datetime.strptime(str(noHours) + ":" + str(noMinutes), dt.fmtTime)
             
             previous = fRA['previous']
-                
-            if (altDepDate - date).days > 0:
-                depNextDay = "+" + str((altDepDate - fRA.date).days)
-            else:
-                depNextDay = ""
+            try:    
+                if (altDepDate - date).days > 0:
+                    depNextDay = "+" + str((altDepDate - date).days) #fRA deleted
+                else:
+                    depNextDay = ""
 
-            if (altArrDate - date).days > 0:
-                arrNextDay = "+" + str((altArrDate - date).days)
-            else:
-                arrNextDay = ""
-            
+                if (altArrDate - date).days > 0:
+                    arrNextDay = "+" + str((altArrDate - date).days)
+                else:
+                    arrNextDay = ""
+            except:
+                print("Exception finding export@solution.py")
+                import pdb; pdb.set_trace()
             cancelFlight = fRA['cancelFlight']
             aircraft = fRA['aircraft']
             if (cancelFlight == 1):

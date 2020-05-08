@@ -52,13 +52,13 @@ class flights:
                     dep = f['altDepInt'] + t
                     destination = f['destination']
                     arr = f['altArrInt'] + t
+                    if arr > self.configDic['endInt']: #because the flight arrives outside the RTW
+                        break #moves to the next flight  
                     if all([airportDic[origin][int(dep/60)]['noDep'] + 1 <= airportDic[origin][int(dep/60)]['capDep'],
                         airportDic[destination][int(arr/60)]['noArr'] + 1 <= airportDic[destination][int(dep/60)]['capArr']]):
                         domain.append(t)
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
                 if noCombos > _noCombos * 10**6:
-                    print("Excessive1: ", noCombos, _noCombos)
-                    #import pdb; pdb.set_trace()
                     return [],  -1
                 domains[f['flight']] = domain
             # if noCombos > 90 * 10**6:
@@ -72,7 +72,7 @@ class flights:
 
         if noCombos > _noCombos * 10**6:
             print("Excessive2: ", noCombos)
-            #import pdb; pdb.set_trace()
+            import pdb; pdb.set_trace()
             return [],  -1
 
         return domains, noCombos
