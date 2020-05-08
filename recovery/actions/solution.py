@@ -4,7 +4,10 @@ from recovery.dal.classesDtype import dtype as dt
 import numpy as np
 
 def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
-    for flight in flightSchedule[flightSchedule['flight'] != '']:
+    for flight in flightSchedule[(flightSchedule['flight'] != '') & (flightSchedule['cancelFlight'] != 1)]:
+        if flight['cancelFlight'] == 1:
+            print("Airport capacity cancelled flight update")
+            import pdb; pdb.set_trace()
         #update airp. dep. cap.
         index = int(flight['altDepInt']/60)
         airportCap[flight['origin']][index]['noDep'] += 1
@@ -14,11 +17,15 @@ def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
     return airportCap
 
 def newRotation(combo, rotation): 
-    i = 0  
+    i = 0
+      
     for delay, flight in zip(combo, rotation):
+        if len(combo) != len(rotation):
+            print("Diff. size between combo and rotation")
+            import pdb; pdb.set_trace()
         if flight['depInt'] != flight['altDepInt']: #fixed flight
-            i += 1
-            continue
+            print("Using combo to update newRotation@solution")
+            import pdb; pdb.set_trace()
         if delay == -1: #cancel the flight
             flight['cancelFlight'] = 1
         else:

@@ -1,4 +1,1 @@
-Maintenance position not respected for aircraft A321#110
-Maintenance position not respected for aircraft A318#125
-Maintenance position not respected for aircraft A321#147
-Wrong initial position for aircraft ERJ135#207
+Maintenance position not respected for aircraft A319#20
