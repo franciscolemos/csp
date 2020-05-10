@@ -3,8 +3,27 @@ import datetime
 from recovery.dal.classesDtype import dtype as dt
 import numpy as np
 
-def value(flightSchedule):
-    pass
+
+def verifyFlightRanges(flightRanges, rotation, index):
+    if len(flightRanges) != len(rotation[index:]):
+        print("No. ranges diff. remaining flights")
+        import pdb; pdb.set_trace()
+
+def verifyCombo(combo, rotation, index):
+    if(len(combo) != len(rotation[index:])):
+        print("Combo size is diff. from remaining rotation")
+        import pdb; pdb.set_trace()
+
+def verifyRotation(rotation, movingFlights, fixedFlights, index):
+    if len(rotation) != len(rotation[:index]) + len(movingFlights) + len(fixedFlights):
+        print("Diff. in length")
+        import pdb; pdb.set_trace()
+
+def value(combo):
+    noCancel = sum([t for t in combo if t == -1])
+    totalDelay = sum([t for t in combo if t > 0])
+    return noCancel, totalDelay
+
 def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
     for flight in flightSchedule[(flightSchedule['flight'] != '') & (flightSchedule['cancelFlight'] != 1)]:
         if flight['cancelFlight'] == 1:

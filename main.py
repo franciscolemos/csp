@@ -13,6 +13,7 @@ import random
 import copy
 import time
 from itertools import product
+from recovery.dal.classesDtype import dtype as dt
 
 class ARP:
     def __init__(self, path):
@@ -69,9 +70,9 @@ class ARP:
         infTTList = feasibility.TT(rotation) #TT
         
         rotationMaint = np.sort(self.aircraftScheduleDic[aircraft], order = 'altDepInt') #select the aircr. and sort the rotation
-        _rotationMaint = rotationMaint[rotationMaint['flight'] == 'm'] #find if the rotation has maint. scheduled
+        self._rotationMaint = rotationMaint[rotationMaint['flight'] == 'm'] #find if the rotation has maint. scheduled
         infMaintList = []
-        if len(_rotationMaint) > 0:
+        if len(self._rotationMaint) > 0:
             infMaintList = feasibility.maint(rotationMaint) # find if maint. const. is infeas.
         
         infDepList = feasibility.dep(rotation, self.airportDic) #airp. dep. cap.
@@ -135,52 +136,61 @@ class ARP:
                         print(aircraft, _noCombos, "Excessive", noCombos, remainAirc, len(aircraftSolList))
                         continue #resume next aircraft
                     
-                    if len(flightRanges) != len(rotation[index:]):
-                        print("No. ranges diff. remaining flights")
-                        import pdb; pdb.set_trace()
+                    solution.verifyFlightRanges(flightRanges, rotation, index)
+                    if len(self._rotationMaint) > 0:
+                        rotationMaint = np.zeros(1, dt.dtypeFS)
+                        rotationMaint['aircraft'][0] = aircraft
+                        rotationMaint['flight'][0] = 'm'
+                        rotationMaint['origin'][0] = self._rotationMaint['origin'][0]
+                        rotationMaint['depInt'][0] = self._rotationMaint['depInt'][0]
+                        rotationMaint['altDepInt'][0] = self._rotationMaint['altDepInt'][0]
+                        rotationMaint['destination'][0] = self._rotationMaint['destination'][0]
+                        rotationMaint['arrInt'][0] = self._rotationMaint['arrInt'][0]
+                        rotationMaint['altArrInt'][0] = self._rotationMaint['altArrInt'][0]
 
                     flightCombinations = product(*flightRanges.values()) #find all the combinations
-
+                    solutionValue = []
                     for combo in flightCombinations: #generate the possible combinations
                         rotation = copy.deepcopy(rotationOriginal) #keep a copy of the original because of new rotation
+                        solution.newRotation(combo, rotation[index:]) #add the combo
+                        solution.verifyCombo(combo, rotation, index) #compare the size of combo w/ rotation
+                        solution.verifyRotation(rotation, movingFlights, fixedFlights, index) #compare rotation size w/ ...
 
-                        #movingFlights = copy.deepcopy(copyMovingFlights)
-                        if(len(combo) != len(rotation[index:])):
-                            print("Combo size is diff. from remaining rotation")
-                            import pdb; pdb.set_trace()
-
-                        solution.newRotation(combo, rotation[index:])
-
-                        if len(rotation) != len(rotation[:index]) + len(movingFlights) + len(fixedFlights):
-                            print("Diff. in length")
-                            import pdb; pdb.set_trace()
-
-                        if -1 * len(combo) == sum(combo): #all flights are cancelled
+                        if -1 * len(combo) == sum(combo): #all flights are cancelled, discard this solution for now
                             continue 
                         
-                        rotation = rotation[rotation['cancelFlight'] != 1] #only cancelled flights
+                        rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
 
-                        if (len(feasibility.dep(rotation[index:], airpCapCopy)) > 0) | (len(feasibility.arr(rotation[index:], airpCapCopy)) > 0):
-                            print("Airp. cap. exceed!")
-                            #import pdb; pdb.set_trace()                        
+                        if (len(feasibility.dep(rotationCopy, airpCapCopy)) > 0) | (len(feasibility.arr(rotationCopy, airpCapCopy)) > 0):
+                            print("1 - Airp. cap. exceed for aircraft: ", aircraft)
+                                                  
 
                         if len(rotation[(rotation['previous'] != '0') & (rotation['previous'] != '')]) > 0: # because previous flight exist
                             if len(feasibility.previous(rotation)) > 0:
                                 continue
-                        if len(feasibility.previous(rotation)) > 0:
+                        if len(feasibility.previous(rotation)) > 0: #because it necessary to check if the previous flight exists
                             continue
-                        if len(feasibility.continuity(rotation)) > 0:
+                        if len(feasibility.continuity(rotationCopy)) > 0:#only flights not cancelled in the copy
                             continue #cont.
-                        if len(feasibility.TT(rotation)) > 0:
+                        if len(feasibility.TT(rotationCopy)) > 0:#only flights not cancelled in the copy
                             continue
-                        infMaintList = []
-                        if len(feasibility.dep(rotation, airpCapCopy)) > 0: #use airpCapCopy because it has the fixed flights
+
+                        if len(self._rotationMaint) > 0:
+                            rotationMaint = np.concatenate((rotationCopy, rotationMaint))
+                            infMaintList = feasibility.maint(rotationMaint)
+                            if len(infMaintList) > 0:
+                                continue
+                            
+                        if len(feasibility.dep(rotationCopy, airpCapCopy)) > 0:#only flights not cancelled in the copy 
+                            print("2 - Airp. dep. cap. exceed for aircraft: ", aircraft)
                             continue #airp. dep. cap. (might not be necessary)
-                        if len(feasibility.arr(rotation, airpCapCopy)) > 0: #use airpCapCopy because it has the fixed flights
+                        if len(feasibility.arr(rotationCopy, airpCapCopy)) > 0: #only flights not cancelled in the copy
+                            print("3 - Airp. arr. cap. exceed for aircraft: ", aircraft)
                             continue #airp. arr. cap. (might not be necessary)
                         
-                        value = solution.value(rotation)
-                        
+                        solutionValue.append([solution.value(combo), combo])
+
+                        #import pdb; pdb.set_trace()
                         self.solutionARP.append(rotation) #save the feasible rotation (to be replaced) 
                         solution.saveAirportCap(rotation, self.airportDic) # update the airp. cap.(to be replaced)
                         #print(aircraft, _noCombos, "savedShitSolution", noCombos, remainAirc, len(aircraftSolList))

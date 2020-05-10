@@ -45,6 +45,7 @@ def dep(flightSchedule, airportDic):
     flightIndex = 0
 
     for flight in flightSchedule[flightSchedule['flight'] != '']:
+        if flight['cancelFlight'] == 1: continue
         index = int(flight['altDepInt'] / 60)
         noDep = airportDic[flight['origin']][index]['noDep']
         capDep = airportDic[flight['origin']][index]['capDep']
@@ -61,6 +62,7 @@ def arr(flightSchedule, airportDic):
     flightIndex = 0
 
     for flight in flightSchedule[flightSchedule['flight'] != '']:
+        if flight['cancelFlight'] == 1: continue
         index = int(flight['altArrInt'] / 60)
         noArr = airportDic[flight['destination']][index]['noArr']
         capArr = airportDic[flight['destination']][index]['capArr']
