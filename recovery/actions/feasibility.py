@@ -43,6 +43,7 @@ def maint(flightSchedule):
 def dep(flightSchedule, airportDic):
     flightDepList = []
     flightIndex = 0
+
     for flight in flightSchedule[flightSchedule['flight'] != '']:
         index = int(flight['altDepInt'] / 60)
         noDep = airportDic[flight['origin']][index]['noDep']
@@ -58,6 +59,7 @@ def dep(flightSchedule, airportDic):
 def arr(flightSchedule, airportDic):
     flightArrList = []
     flightIndex = 0
+
     for flight in flightSchedule[flightSchedule['flight'] != '']:
         index = int(flight['altArrInt'] / 60)
         noArr = airportDic[flight['destination']][index]['noArr']
@@ -66,6 +68,7 @@ def arr(flightSchedule, airportDic):
             flightArrList.append(flightIndex)
             #import pdb; pdb.set_trace()
         flightIndex += 1
+    
     return flightArrList
 
 class ARP():

@@ -41,11 +41,24 @@ class flights:
         #Initialize the domain
         return self.criticalFligh
     
-    def ranges(self, movingFlights, airportDic, _noCombos): #only complying with airp. cap.
+    def ranges(self, rotation, airportDic, _noCombos): #only complying with airp. cap.
         domains = {}
         noCombos = 1
         try:
-            for f in movingFlights:
+            for f in rotation: #iterate through the rotation
+                domain = [] #initalize the empty domain for each flight
+                if f['cancelFlight'] != 0:
+                    print("Flight cancelled ranges@domains.py")
+                    import pudb; pudb.set_trace() #it should nto even be here
+                    continue
+                if f['altDepInt'] != f['depInt']: #because it is a fixed flight
+                    domain.append(0) #the only delay is zero
+                    domains[f['flight']] = domain # because of combos
+                    continue
+                if f['altDepInt'] > self.configDic['endInt']: #because it departs outside the RTW
+                    domain.append(0) #the only delay is zero
+                    domains[f['flight']] = domain # because of combos
+                    continue
                 domain = [-1] #add flight cancellation
                 for t in range(0, maxDelay, deltaT): #find the feasible time slots
                     origin = f['origin']
@@ -55,8 +68,14 @@ class flights:
                     if arr > self.configDic['endInt']: #because the flight arrives outside the RTW
                         break #moves to the next flight  
                     if all([airportDic[origin][int(dep/60)]['noDep'] + 1 <= airportDic[origin][int(dep/60)]['capDep'],
-                        airportDic[destination][int(arr/60)]['noArr'] + 1 <= airportDic[destination][int(dep/60)]['capArr']]):
+                        airportDic[destination][int(arr/60)]['noArr'] + 1 <= airportDic[destination][int(arr/60)]['capArr']]):
+                        
                         domain.append(t)
+
+                # if f['flight'] == '954702/03/08':
+                #     print("flightRanges for A319#101")
+                #     import pdb; pdb.set_trace()
+
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
                 if noCombos > _noCombos * 10**6:
                     return [],  -1

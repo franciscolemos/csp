@@ -3,6 +3,8 @@ import datetime
 from recovery.dal.classesDtype import dtype as dt
 import numpy as np
 
+def value(flightSchedule):
+    pass
 def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
     for flight in flightSchedule[(flightSchedule['flight'] != '') & (flightSchedule['cancelFlight'] != 1)]:
         if flight['cancelFlight'] == 1:
@@ -18,14 +20,11 @@ def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
 
 def newRotation(combo, rotation): 
     i = 0
-      
     for delay, flight in zip(combo, rotation):
         if len(combo) != len(rotation):
             print("Diff. size between combo and rotation")
             import pdb; pdb.set_trace()
-        if flight['depInt'] != flight['altDepInt']: #fixed flight
-            print("Using combo to update newRotation@solution")
-            import pdb; pdb.set_trace()
+
         if delay == -1: #cancel the flight
             flight['cancelFlight'] = 1
         else:

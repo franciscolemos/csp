@@ -47,13 +47,16 @@ Traceability header
 Find the aircraft w/ previous flights
 Refactor ARP into actions
 
-Debug movingFlights
+Debug movingFlights (done)
 Verify airport capacity (check why it is infeasible)
 Feasibility: if previous flight is cancelled then the next one must also be cancelled (done)
-B08 debug Disrupted flight 1102 cancelled (they are not showing in the solution, outside RTW)
-B08 debug Fixed flight 61 cancelled (they are not showing in the solution)
+B08 debug Disrupted flight 1102 cancelled (they are not showing in the solution, outside RTW)(done)
+B08 debug Fixed flight 61 cancelled (they are not showing in the solution) (done)
 B08 debug Arrival flight 4986 on 2008-Mar-02 after the end of recovery period (done)
-B08 debug Maintenance position not respected for aircraft A321#147
+
+Add transpcom to the solution
+B08 Disrupted flight 2866 cancelled A318#33
+B08 debug Maintenance position not respected for aircraft A319#20
 
 define heuristic to retrieve best solution (Simmulated annealing for _noCombos)
 debug export rotation solution
