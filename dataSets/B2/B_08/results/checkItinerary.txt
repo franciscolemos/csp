@@ -232,6 +232,7 @@ Cancelled flight 4528 is taken on itinerary 998
 Cancelled flight 4337 is taken on itinerary 999
 Cancelled flight 2988 is taken on itinerary 1003
 Cancelled flight 4525 is taken on itinerary 1009
+Cancelled flight 4482 is taken on itinerary 1010
 Cancelled flight 4483 is taken on itinerary 1012
 Cancelled flight 7318 is taken on itinerary 1012
 Cancelled flight 4483 is taken on itinerary 1013
@@ -460,6 +461,7 @@ Cancelled flight 5801 is taken on itinerary 1822
 Cancelled flight 5801 is taken on itinerary 1823
 Cancelled flight 5726 is taken on itinerary 1828
 Cancelled flight 5726 is taken on itinerary 1829
+Cancelled flight 5726 is taken on itinerary 1832
 Cancelled flight 5852 is taken on itinerary 1833
 Cancelled flight 6937 is taken on itinerary 1834
 Cancelled flight 7074 is taken on itinerary 1837
@@ -481,8 +483,10 @@ Cancelled flight 6886 is taken on itinerary 1896
 Cancelled flight 6914 is taken on itinerary 1897
 Cancelled flight 5841 is taken on itinerary 1901
 Cancelled flight 5841 is taken on itinerary 1902
+Cancelled flight 5726 is taken on itinerary 1907
 Cancelled flight 7389 is taken on itinerary 1913
 Cancelled flight 5818 is taken on itinerary 1916
+Cancelled flight 5726 is taken on itinerary 1917
 Cancelled flight 5818 is taken on itinerary 1920
 Cancelled flight 5818 is taken on itinerary 1921
 Cancelled flight 5861 is taken on itinerary 1939
@@ -611,9 +615,11 @@ Cancelled flight 4690 is taken on itinerary 2264
 Cancelled flight 7313 is taken on itinerary 2278
 Cancelled flight 7313 is taken on itinerary 2279
 Cancelled flight 2062 is taken on itinerary 2287
+Cancelled flight 4482 is taken on itinerary 2298
 Cancelled flight 2062 is taken on itinerary 2303
 Connection time not respected between flight 7353 and flight 1564 on itinerary 2307
 Connection time not respected between flight 7353 and flight 1564 on itinerary 2308
+Cancelled flight 4482 is taken on itinerary 2315
 Cancelled flight 7804 is taken on itinerary 2321
 Cancelled flight 7367 is taken on itinerary 2334
 Cancelled flight 4690 is taken on itinerary 2334
@@ -900,6 +906,7 @@ Cancelled flight 5793 is taken on itinerary 3494
 Cancelled flight 2988 is taken on itinerary 3506
 Cancelled flight 4525 is taken on itinerary 3511
 Cancelled flight 4525 is taken on itinerary 3512
+Cancelled flight 4482 is taken on itinerary 3513
 Cancelled flight 4483 is taken on itinerary 3517
 Cancelled flight 7366 is taken on itinerary 3517
 Cancelled flight 4483 is taken on itinerary 3518
@@ -1128,6 +1135,7 @@ Cancelled flight 5799 is taken on itinerary 4287
 Cancelled flight 5801 is taken on itinerary 4294
 Cancelled flight 5801 is taken on itinerary 4295
 Cancelled flight 5726 is taken on itinerary 4299
+Cancelled flight 5726 is taken on itinerary 4304
 Cancelled flight 5852 is taken on itinerary 4306
 Cancelled flight 6922 is taken on itinerary 4313
 Cancelled flight 6937 is taken on itinerary 4315
@@ -1140,6 +1148,7 @@ Cancelled flight 5831 is taken on itinerary 4338
 Cancelled flight 5686 is taken on itinerary 4338
 Cancelled flight 5833 is taken on itinerary 4344
 Cancelled flight 5834 is taken on itinerary 4346
+Cancelled flight 5726 is taken on itinerary 4364
 Cancelled flight 7389 is taken on itinerary 4367
 Cancelled flight 5818 is taken on itinerary 4374
 Cancelled flight 5818 is taken on itinerary 4379
@@ -1155,6 +1164,7 @@ Cancelled flight 6881 is taken on itinerary 4400
 Cancelled flight 6881 is taken on itinerary 4401
 Cancelled flight 5834 is taken on itinerary 4401
 Cancelled flight 6988 is taken on itinerary 4411
+Cancelled flight 5726 is taken on itinerary 4412
 Cancelled flight 5818 is taken on itinerary 4417
 Cancelled flight 6950 is taken on itinerary 4418
 Cancelled flight 6950 is taken on itinerary 4419
@@ -1277,6 +1287,8 @@ Cancelled flight 7295 is taken on itinerary 4736
 Cancelled flight 7295 is taken on itinerary 4737
 Cancelled flight 7295 is taken on itinerary 4738
 Cancelled flight 4690 is taken on itinerary 4738
+Cancelled flight 4482 is taken on itinerary 4742
+Cancelled flight 4482 is taken on itinerary 4743
 Cancelled flight 2418 is taken on itinerary 4747
 Cancelled flight 7313 is taken on itinerary 4753
 Cancelled flight 7313 is taken on itinerary 4754
@@ -1671,6 +1683,8 @@ Cancelled flight 4337 is taken on itinerary 7319
 Cancelled flight 4337 is taken on itinerary 7320
 Cancelled flight 4480 is taken on itinerary 7345
 Cancelled flight 4480 is taken on itinerary 7346
+Cancelled flight 4482 is taken on itinerary 7357
+Cancelled flight 4482 is taken on itinerary 7358
 Cancelled flight 4483 is taken on itinerary 7363
 Cancelled flight 4483 is taken on itinerary 7364
 Cancelled flight 4485 is taken on itinerary 7374
@@ -1930,6 +1944,9 @@ Cancelled flight 5726 is taken on itinerary 9118
 Cancelled flight 5726 is taken on itinerary 9119
 Cancelled flight 5726 is taken on itinerary 9120
 Cancelled flight 5726 is taken on itinerary 9121
+Cancelled flight 5726 is taken on itinerary 9122
+Cancelled flight 5726 is taken on itinerary 9123
+Cancelled flight 5726 is taken on itinerary 9124
 Cancelled flight 5727 is taken on itinerary 9125
 Cancelled flight 5727 is taken on itinerary 9126
 Cancelled flight 5727 is taken on itinerary 9127
