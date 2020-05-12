@@ -14,6 +14,7 @@ import copy
 import time
 from itertools import product
 from recovery.dal.classesDtype import dtype as dt
+import pandas as pd
 
 class ARP:
     def __init__(self, path):
@@ -140,7 +141,7 @@ class ARP:
                         continue #resume next aircraft
                     solution.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
                     if len(self._rotationMaint) > 0:
-                        rotationMaint = addMaint() #creates the maint to be later added to the rotation
+                        rotationMaint = self.addMaint() #creates the maint to be later added to the rotation
                     flightCombinations = product(*flightRanges.values()) #find all the combinations
                     solutionValue = [] #initializes the solution value for later appraisal
                     for combo in flightCombinations: #loop through the possible combinations
@@ -166,11 +167,11 @@ class ARP:
                             infMaintList = feasibility.maint(rotationMaint)
                             if len(infMaintList) > 0:
                                 continue
-                        solutionValue.append([solution.value(combo), combo])
+                        solutionValue.append(solution.value(combo))
 
-                    import pdb; pdb.set_trace()
-                    combo = bestSolution(solutionValue) #returns the best combo
-                    solution.newRotation(combo, rotationOriginal[index:]) #generates the best rotation
+                    df = pd.DataFrame(solutionValue)
+                    df = df.sort_values(by=[0, 1], ascending=[False, True])
+                    solution.newRotation(df.iloc[0][2], rotationOriginal[index:]) #generates the best rotation
                     self.solutionARP.append(rotationOriginal) #save the feasible rotation (to be replaced) 
                     solution.saveAirportCap(rotationOriginal, self.airportDic) # update the airp. cap.(to be replaced)
 
@@ -186,7 +187,7 @@ class ARP:
         aircraftList =  list(self.aircraftDic.keys())
         while solutionFound == 0:
             #random.shuffle(aircraftList)
-            solutionFound = loopAircraftList(aircraftList)
+            solutionFound = self.loopAircraftList(aircraftList)
             if solutionFound :
                 print("Solution founf!!!")
         delta1 = time.time() - start

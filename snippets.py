@@ -38,3 +38,6 @@
             # product between a set of vectors
             # list(set(temp1) - set(temp2)) diff. between two lists
             # itineraryLine = list(filter(None, itineraryLine)) # clean empty values from list
+            # [e for l in [(0, 2640), (900, 900, 660, 180)] for e in l] flatten a list of tuples
+            # df = pd.DataFrame(table)
+            # df.sort_values(by= [0, 1], ascending=[False, True])

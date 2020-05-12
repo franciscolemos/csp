@@ -59,6 +59,9 @@ B08 Disrupted flight 2866 cancelled A318#33
 Add maint. feasibility
 
 Refactor solution because of infeasible solutions: fixed flights in infeasible airp. time slots
+
+Derive function to sort the feasible solutions using pandas
+
 define heuristic to retrieve best solution (Simmulated annealing for _noCombos)
 noZeros = noCombos
 create numpy array dtype(np.int8, np.u1)

@@ -22,7 +22,7 @@ def verifyRotation(rotation, movingFlights, fixedFlights, index):
 def value(combo):
     noCancel = sum([t for t in combo if t == -1])
     totalDelay = sum([t for t in combo if t > 0])
-    return noCancel, totalDelay
+    return noCancel, totalDelay, combo
 
 def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
     for flight in flightSchedule[(flightSchedule['flight'] != '') & (flightSchedule['cancelFlight'] != 1)]:
