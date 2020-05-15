@@ -34,7 +34,12 @@ def TT(flightSchedule):
 def maint(flightSchedule):
     maintStart = flightSchedule[flightSchedule['flight'] == 'm']['altDepInt'][0]
     maintOrigin = flightSchedule[flightSchedule['flight'] == 'm']['origin'][0]
-    flightBeforeMaint = flightSchedule[(flightSchedule['altDepInt'] <= maintStart) & (flightSchedule['flight'] != 'm')][-1]
+    flightBeforeMaint = flightSchedule[(flightSchedule['altDepInt'] <= maintStart) & (flightSchedule['flight'] != 'm')]
+    if len(flightBeforeMaint) > 0:
+        flightBeforeMaint = flightBeforeMaint[-1]
+    else:
+        return [-1]
+
     if (maintStart - flightBeforeMaint['altArrInt'] < 0) | (maintOrigin != flightBeforeMaint['destination']):
         index = np.where(flightBeforeMaint)
         return np.asarray(index).flatten()

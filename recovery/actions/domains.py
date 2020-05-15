@@ -52,6 +52,8 @@ class flights:
                     import pudb; pudb.set_trace() #it should nto even be here
                     continue
                 if f['altDepInt'] != f['depInt']: #because it is a fixed flight
+                    # print("Singleton!!!")
+                    # import pdb; pdb.set_trace()
                     domain.append(0) #the only delay is zero
                     domains[f['flight']] = domain # because of combos
                     continue
@@ -77,7 +79,7 @@ class flights:
                 #     import pdb; pdb.set_trace()
 
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
-                if noCombos > _noCombos * 10**6:
+                if noCombos > _noCombos * 10**5:
                     return [],  -1
                 domains[f['flight']] = domain
             # if noCombos > 90 * 10**6:
@@ -89,7 +91,7 @@ class flights:
             import pdb; pdb.set_trace()
             return [],  -1
 
-        if noCombos > _noCombos * 10**6:
+        if noCombos > _noCombos * 10**5:
             print("Excessive2: ", noCombos)
             import pdb; pdb.set_trace()
             return [],  -1
