@@ -41,7 +41,7 @@ class readItineraries:
                     itinerary.cabin = str(itineraryLine[j]).strip() # F B E
                     cabinInt = dt.cabinInt[itinerary.cabin]
                     j += 1
-                    flightList.append((index, str(itinerary.idFlight + itinerary.date), cabinInt, 0)) # 0 assumes the flight is not cancelled
+                    flightList.append((index, str(itinerary.idFlight + itinerary.date), cabinInt, -1)) # 0 assumes the flight is not cancelled
                     index += 1
                 flightSA = np.array(flightList, self.dtypeItinFS)
                 itineraryDic[itinerary.idItinerary]['flightSchedule'] = flightSA

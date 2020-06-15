@@ -121,6 +121,22 @@ def newRotation(combo, rotation):
         rotation[i] = flight #update the rotation
         i += 1
 
+def updateItin(flightScheduleSA, itineraryDic):
+    flight = {}
+    for itinerary, flightSchedule in itineraryDic.items():
+        fs = flightSchedule['flightSchedule'] #flights in the itinerary
+        for f in fs: #loop through the itin. flight schedule to update the flights
+            cancelFlight = flight.get(f['flight'], False) #get the cancel value or false
+            if cancelFlight: #if the flight is in the flight dict.
+                f['cancelFlight'] = cancelFlight #update itin. flight schedule
+            else: #search, update add the flight to the flight dcit.
+                cancelFlight = flightScheduleSA[flightScheduleSA['flight'] == f['flight']]['cancelFlight']
+                if len(cancelFlight) == 0:
+                    print("Un-existing flight: ", f['flight'])
+                    pdb.set_trace()
+                f['cancelFlight'] = cancelFlight[0] #update itin. flight schedule
+                flight[f['flight']] = cancelFlight[0] #update the flight dict. 
+
 def export(flightScheduleSA, itineraryDic, minDate, path):
     sb = ""
     for fSA in flightScheduleSA:

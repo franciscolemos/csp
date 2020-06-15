@@ -4,7 +4,7 @@ class dtype:
     fmtDate = '%d/%m/%y'
     fmtTime = '%H:%M'
     #data type for the itinerary flight schedule
-    dtypeItinFS0= np.dtype([('flightIndex', np.uint8), ('flight', np.unicode, 13), ('cabin', np.int8), ('cancelFlight', np.uint8)])
+    dtypeItinFS0= np.dtype([('flightIndex', np.uint8), ('flight', np.unicode, 13), ('cabin', np.int8), ('cancelFlight', np.int8)])
     #extended data type for the itinerary flight schedule
     dtypeItinFS1= np.dtype([('flightIndex', np.uint8), ('flight', np.unicode, 13), ('cabin', np.int8), ('trip', np.int8), ('aircraft', np.unicode, 15),
         ('origin', np.unicode, 3 ), ('depInt', np.int16), ('altDepInt', np.int16), 

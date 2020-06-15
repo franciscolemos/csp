@@ -63,9 +63,9 @@ class ARP:
         self.solutionARP = []
 
     def initialize(self, aircraft, airportDic): #check if the roation is feasible
-        rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
-
-        rotation = rotation[(rotation['cancelFlight'] == 0) & (rotation['flight']!= '')] #only flying flights
+        rotationOriginal = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
+        rotationOriginal = rotationOriginal[rotationOriginal['flight']!= ''] #remove created flights
+        rotation = rotationOriginal[(rotationOriginal['cancelFlight'] == 0) ] #only flying flights
         rotation = np.sort(rotation, order = 'altDepInt') #sort ascending
         #check rotation feasibility
         infContList = feasibility.continuity(rotation) #cont.
@@ -84,14 +84,14 @@ class ARP:
 
             #print("feasible:", len(infContList), len(infTTList), len(infMaintList), len(infDepList), len(infArrList))
             if feasible == 0:
-                self.solutionARP.append(rotation) #save the feasible rotation
-                solution.saveAirportCap(rotation, airportDic) #update the airp. cap.
+                self.solutionARP.append(rotationOriginal) #save the feasible rotation w/ cancelled flights
+                solution.saveAirportCap(rotation, airportDic) #update the airp. cap. only w/ cancelFlight == 0
                 return -1, []
             else:
                 
                     #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
                     index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
-                    return int(index), rotation #because it has to include the aircraft to export the solution
+                    return int(index), rotationOriginal #because it has to include the aircraft to export the solution
         except Exception as e:
             print("Exception initialize:", e)
             import pdb; pdb.set_trace()
@@ -120,7 +120,6 @@ class ARP:
             remainAirc = len(list(set(aircraftList) - set(aircraftSolList)))
             for aircraft in aircraftTmpList: #iterate through the aircraft list
                 print(aircraft)
-                #aircraft = "F100#87"
                 if('TranspCom' in aircraft): #immediatly add the surface transport
                     aircraftSolList.append(aircraft)
                     rotation = self.flightScheduleSA[self.flightScheduleSA['aircraft'] == aircraft]
@@ -213,7 +212,6 @@ class ARP:
                 print(aircraft, len(aircraftSolList), _noCombos)
             
             #import pdb; pdb.set_trace()
-            
             _noCombos += 0.1 #increase the order of magnitude of the no. of combos
             aircraftTmpList = list(set(aircraftList) - set(aircraftSolList)) #check the differences between two lists
         
@@ -242,12 +240,16 @@ class ARP:
                 #import pdb; pdb.set_trace()
             delta1 = time.time() - start
             print(go, delta1, solutionFound)
-            cost.total()
+            #cost.total()
 
 if __name__ == "__main__":
     
     for path in paths.paths:
+        start = time.time()
         arp = ARP(path)
-        cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
+        #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
         arp.findSolution()
+        solution.updateItin(np.concatenate(arp.solutionARP).ravel(), arp.itineraryDic)
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
+        delta1 = time.time() - start
+        print("Solution time for the ARP: ", delta1)

@@ -1,7 +1,9 @@
+import  numpy as np
 def passengerDelay(flightScheduleSA, flightSchedule):
         fS = np.sort(flightSchedule['flightSchedule'], order = 'flightIndex') #ascend sort
         flight = flightSchedule['flightSchedule']['flight'][-1]
         import pdb; pdb.set_trace()
+        
         fSSol = fS[fS['cancelFlight'] == 0]
         if len(fSSol) > 0:
             solDestination = fSSol['destination'][-1]
