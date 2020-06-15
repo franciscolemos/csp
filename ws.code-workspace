@@ -6,6 +6,8 @@
 		}
 	],
 	"settings": {
-		"python.pythonPath": "C:\\Users\\chico\\.virtualenvs\\dfs-vAOtlZ1R\\Scripts\\python.exe"
-	}
+		"python.pythonPath": "C:\\Users\\chico\\.virtualenvs\\dfs-vAOtlZ1R\\Scripts\\python.exe",
+		"workbench.colorTheme": "Quiet Light"
+	},
+
 }

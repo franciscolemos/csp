@@ -62,11 +62,12 @@ Refactor solution because of infeasible solutions: fixed flights in infeasible a
 
 Derive function to sort the feasible solutions using pandas
 
-define heuristic to retrieve best solution (Simmulated annealing for _noCombos)
-noZeros = noCombos
-create numpy array dtype(np.int8, np.u1)
+Copy flightScheduleSA (to be updated with the rotation of the cancelled)
+Singleton propagation
+Update airp. cap.
+Update Copy flightScheduleSA
+Remove aircraft from aircSolList
 
-B08 debug Maintenance position not respected for aircraft A319#20
 
 
 Export the solution with the feasible rotations;

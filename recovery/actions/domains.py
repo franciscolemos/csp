@@ -2,6 +2,8 @@ import numpy as np
 import copy
 from recovery.repositories.data import maxDelay
 from recovery.repositories.data import deltaT
+from recovery.actions import feasibility
+
 class flights:
     def __init__(self, configDic):
         self.configDic = configDic
@@ -44,20 +46,27 @@ class flights:
     def ranges(self, rotation, airportDic, _noCombos): #only complying with airp. cap.
         domains = {}
         noCombos = 1
+        singletonList = []
         try:
             for f in rotation: #iterate through the rotation
                 domain = [] #initalize the empty domain for each flight
                 if f['cancelFlight'] != 0:
-                    print("Flight cancelled ranges@domains.py")
-                    import pudb; pudb.set_trace() #it should nto even be here
                     continue
                 if f['altDepInt'] != f['depInt']: #because it is a fixed flight
                     # print("Singleton!!!")
                     # import pdb; pdb.set_trace()
                     domain.append(0) #the only delay is zero
                     domains[f['flight']] = domain # because of combos
+                    if len(feasibility.dep(rotation, airportDic)) > 0:
+                        print("Singleton found with necessary backtracking for dep.")
+                        singletonList.append([f,'dep'])
+                        #import pdb; pdb.set_trace()
+                    if len(feasibility.arr(rotation, airportDic)) > 0:
+                        print("Singleton found with necessary backtracking for arr.")
+                        singletonList.append([f, 'arr'])
+                        #import pdb; pdb.set_trace()
                     continue
-                if f['altDepInt'] > self.configDic['endInt']: #because it departs outside the RTW
+                if f['altDepInt'] > self.configDic['endInt']: #because it departs outside the RTW (another singleton)
                     domain.append(0) #the only delay is zero
                     domains[f['flight']] = domain # because of combos
                     continue
@@ -71,29 +80,22 @@ class flights:
                         break #moves to the next flight  
                     if all([airportDic[origin][int(dep/60)]['noDep'] + 1 <= airportDic[origin][int(dep/60)]['capDep'],
                         airportDic[destination][int(arr/60)]['noArr'] + 1 <= airportDic[destination][int(arr/60)]['capArr']]):
-                        
                         domain.append(t)
-
-                # if f['flight'] == '954702/03/08':
-                #     print("flightRanges for A319#101")
-                #     import pdb; pdb.set_trace()
 
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
                 if noCombos > _noCombos * 10**5:
-                    return [],  -1
+                    #import pdb; pdb.set_trace()
+                    return [],  -1, []
                 domains[f['flight']] = domain
-            # if noCombos > 90 * 10**6:
-            #     print("Excessive", noCombos)
-            #     #import pdb; pdb.set_trace()
-            #     return [],  -1
-        except:
-            print("Exception finding ranges@domains.py")
-            import pdb; pdb.set_trace()
-            return [],  -1
+
+        except Exception as ex:
+            #print("Exception finding ranges@domains.py", ex.message)
+            #import pdb; pdb.set_trace()
+            return [],  -1, []
 
         if noCombos > _noCombos * 10**5:
             print("Excessive2: ", noCombos)
             import pdb; pdb.set_trace()
             return [],  -1
 
-        return domains, noCombos
+        return domains, noCombos, singletonList

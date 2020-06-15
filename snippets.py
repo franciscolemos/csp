@@ -41,4 +41,7 @@
             # [e for l in [(0, 2640), (900, 900, 660, 180)] for e in l] flatten a list of tuples
             # df = pd.DataFrame(table)
             # df.sort_values(by= [0, 1], ascending=[False, True])
-            #np.concatenate(self.solutionARP).ravel() flatten list of numpy arrays
+            # np.concatenate(self.solutionARP).ravel() flatten list of numpy arrays
+            #  python -m site --user-site get python packages
+            # np.setdiff1d(a, b) diff. between two numpy arrays
+            

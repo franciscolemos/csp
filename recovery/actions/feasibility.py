@@ -32,17 +32,29 @@ def TT(flightSchedule):
     return np.asarray(index).flatten() + 1 #the problem is on the next row in the original rotation
 
 def maint(flightSchedule):
+    
     maintStart = flightSchedule[flightSchedule['flight'] == 'm']['altDepInt'][0]
+    maintEnd = flightSchedule[flightSchedule['flight'] == 'm']['altArrInt'][0]
     maintOrigin = flightSchedule[flightSchedule['flight'] == 'm']['origin'][0]
     flightBeforeMaint = flightSchedule[(flightSchedule['altDepInt'] <= maintStart) & (flightSchedule['flight'] != 'm')]
     if len(flightBeforeMaint) > 0:
         flightBeforeMaint = flightBeforeMaint[-1]
     else:
         return [-1]
+    
 
+    #flights arr. after maint. start
     if (maintStart - flightBeforeMaint['altArrInt'] < 0) | (maintOrigin != flightBeforeMaint['destination']):
-        index = np.where(flightBeforeMaint)
+        index = np.where(flightSchedule['flight'] == flightBeforeMaint['flight'])
         return np.asarray(index).flatten()
+    
+    #flights departing during maint.
+    flightDuringMaint = flightSchedule[(flightSchedule['altDepInt'] >= maintStart) & (flightSchedule['flight'] != 'm')
+        & (flightSchedule['altDepInt'] <= maintEnd)]
+    if len(flightDuringMaint) > 0:
+        index = np.where(flightSchedule['flight']  == flightDuringMaint['flight'][0] )
+        return np.asarray(index).flatten()
+
     return []
 #dep. airp. cap.
 def dep(flightSchedule, airportDic):
