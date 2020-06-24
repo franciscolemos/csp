@@ -29,7 +29,7 @@ def value(combo):
     return noCancel, totalDelay, combo
 
 def singletonRecovery(solutionARP, singletonList, airpCapCopy, configDic): #remove the flights form the airp. cap.
-
+    solutionARP = np.concatenate(solutionARP).ravel()
     for singleton in singletonList: #remove the flights
         if singleton[1] == 'dep':
             startInt = 60 * int(singleton[0]['altDepInt']/60) #find the start of the time slot of the dep.
