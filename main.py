@@ -140,7 +140,7 @@ class ARP:
                     
                     if len(singletonList) >= 1: #[(flight, 'dep')]
                         #import pdb; pdb.set_trace()
-                        if solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, aircraftSolList, self.configDic) == -1:
+                        if solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) == -1:
                             return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
                     
                     if noCombos == -1: #excssive no. combos
@@ -237,7 +237,7 @@ class ARP:
             #import pdb; pdb.set_trace()
             if solutionFound[0] == -1:
                 print("Solution found!!!")
-                #import pdb; pdb.set_trace()
+                import pdb; pdb.set_trace()
             delta1 = time.time() - start
             print(go, delta1, solutionFound)
             #cost.total()
