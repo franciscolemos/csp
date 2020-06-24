@@ -66,9 +66,27 @@ class flights:
                         singletonList.append([f, 'arr'])
                         #import pdb; pdb.set_trace()
                     continue
-                if f['altDepInt'] > self.configDic['endInt']: #because it departs outside the RTW (another singleton)
+                if f['depInt'] < self.configDic['startInt']:#because it departs outside the RTW (another singleton)
                     domain.append(0) #the only delay is zero
                     domains[f['flight']] = domain # because of combos
+                    if len(feasibility.dep(rotation, airportDic)) > 0:
+                        print("Singleton found with necessary backtracking for dep.")
+                        singletonList.append([f,'dep'])
+                        #import pdb; pdb.set_trace()
+                    if len(feasibility.arr(rotation, airportDic)) > 0:
+                        print("Singleton found with necessary backtracking for arr.")
+                        singletonList.append([f, 'arr'])
+                    continue
+                if f['depInt'] > self.configDic['endInt']: #because it departs outside the RTW (another singleton)
+                    domain.append(0) #the only delay is zero
+                    domains[f['flight']] = domain # because of combos
+                    if len(feasibility.dep(rotation, airportDic)) > 0:
+                        print("Singleton found with necessary backtracking for dep.")
+                        singletonList.append([f,'dep'])
+                        #import pdb; pdb.set_trace()
+                    if len(feasibility.arr(rotation, airportDic)) > 0:
+                        print("Singleton found with necessary backtracking for arr.")
+                        singletonList.append([f, 'arr'])
                     continue
                 domain = [-1] #add flight cancellation
                 for t in range(0, maxDelay, deltaT): #find the feasible time slots

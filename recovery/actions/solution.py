@@ -28,9 +28,8 @@ def value(combo):
     totalDelay = sum([t for t in combo if t > 0])
     return noCancel, totalDelay, combo
 
-def singletonRecovery(solutionARP, singletonList, airpCapCopy, aircraftSolList, configDic):
-    solutionARP = np.concatenate(solutionARP).ravel() #flatten list of numpy arrays
-    #import pdb; pdb.set_trace() #check if solutionARP is updated
+def singletonRecovery(solutionARP, singletonList, airpCapCopy, configDic): #remove the flights form the airp. cap.
+
     for singleton in singletonList: #remove the flights
         if singleton[1] == 'dep':
             startInt = 60 * int(singleton[0]['altDepInt']/60) #find the start of the time slot of the dep.
@@ -40,7 +39,7 @@ def singletonRecovery(solutionARP, singletonList, airpCapCopy, aircraftSolList, 
             flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= startInt) & (flight2Cancel['altDepInt'] < endInt) ]
             
             #import pdb; pdb.set_trace()
-            if updateMulti(flight2Cancel, airpCapCopy, solutionARP, aircraftSolList, configDic) == -1:
+            if updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic) == -1:
                 return -1
             #import pdb; pdb.set_trace()
 
@@ -52,7 +51,7 @@ def singletonRecovery(solutionARP, singletonList, airpCapCopy, aircraftSolList, 
             flight2Cancel = flight2Cancel[(flight2Cancel['altArrInt'] >= startInt) & (flight2Cancel['altArrInt'] < endInt) ]
             
             #import pdb; pdb.set_trace()
-            if updateMulti(flight2Cancel, airpCapCopy, solutionARP, aircraftSolList, configDic) == -1:
+            if updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic) == -1:
                 return -1
             #import pdb; pdb.set_trace()
 
@@ -71,13 +70,7 @@ def airpCapRemove(flightSchedule, airportCap):
         airportCap[flight['destination']][index]['noArr'] -= 1
     return airportCap
 
-def rotationRemove(flightSchedule, solutionARP):
-    #import pdb; pdb.set_trace()
-    size = len(solutionARP)
-    solutionARP = np.setdiff1d(solutionARP, flightSchedule)
-    verifySingletonSol(size, solutionARP, flightSchedule)
-
-def updateMulti(flight2Cancel, airpCapCopy, solutionARP, aircraftSolList, configDic): #update airp. cap. ARP sol. and airc. sol. list
+def updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic): #update airp. cap. ARP sol. and airc. sol. list
     #import pdb; pdb.set_trace()
     #return the flight list that can be cancelled
     if(len(flight2Cancel) == 0):
@@ -86,14 +79,13 @@ def updateMulti(flight2Cancel, airpCapCopy, solutionARP, aircraftSolList, config
         return -1
     flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= configDic['startInt']) & (flight2Cancel['altDepInt'] <= configDic['endInt'])]
     if(len(flight2Cancel[0]) == 0):
+        import pdb; pdb.set_trace()
         return -1 #There are no flights that can be cancelled, the ARP solution is infeasible
+    
     airc2Cancel = flight2Cancel[0]['aircraft'] #because it will be used to find the aircraft rotation
     rotationCancelAll = solutionARP[solutionARP['aircraft'] == airc2Cancel] #aircraft rotation
-    
     airpCapRemove(rotationCancelAll, airpCapCopy) #remove the entire rotation from the airp. cap.
-    rotationRemove(rotationCancelAll, solutionARP) #remove the entire rotation from the ARP solution
-    aircraftSolList = list(set(aircraftSolList) - set(airc2Cancel)) #remove aircraft from the aircraftSolList 
-    flight2Cancel[0]['cancelFlight'] = 1 #cancel the first flight from the list
+    
 
 def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
     for flight in flightSchedule[(flightSchedule['flight'] != '') & (flightSchedule['cancelFlight'] != 1)]:
