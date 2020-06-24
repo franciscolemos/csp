@@ -62,7 +62,8 @@ class ARP:
 
         self.solutionARP = []
 
-    def initialize(self, aircraft, airportDic): #check if the roation is feasible
+    def initialize(self, aircraft, airportDic, delta, saveAirportCap = True): #check if the roation is feasible
+
         rotationOriginal = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
         rotationOriginal = rotationOriginal[rotationOriginal['flight']!= ''] #remove created flights
         rotation = rotationOriginal[(rotationOriginal['cancelFlight'] == 0) ] #only flying flights
@@ -77,15 +78,16 @@ class ARP:
         if len(self._rotationMaint) > 0:
             infMaintList = feasibility.maint(rotationMaint) # find if maint. const. is infeas.
         
-        infDepList = feasibility.dep(rotation, airportDic) #airp. dep. cap.
-        infArrList = feasibility.arr(rotation, airportDic) #airp. arr. cap.
+        infDepList = feasibility.dep(rotation, airportDic, delta) #airp. dep. cap.
+        infArrList = feasibility.arr(rotation, airportDic, delta) #airp. arr. cap.
         try:
             feasible = len(infContList) + len(infTTList) + len(infMaintList) + len(infDepList) + len(infArrList)
 
             #print("feasible:", len(infContList), len(infTTList), len(infMaintList), len(infDepList), len(infArrList))
             if feasible == 0:
-                self.solutionARP.append(rotationOriginal) #save the feasible rotation w/ cancelled flights
-                solution.saveAirportCap(rotation, airportDic) #update the airp. cap. only w/ cancelFlight == 0
+                if saveAirportCap:
+                    self.solutionARP.append(rotationOriginal) #save the feasible rotation w/ cancelled flights
+                    solution.saveAirportCap(rotation, airportDic) #update the airp. cap. only w/ cancelFlight == 0
                 return -1, []
             else:
                 
@@ -125,7 +127,7 @@ class ARP:
                     rotation = self.flightScheduleSA[self.flightScheduleSA['aircraft'] == aircraft]
                     self.solutionARP.append(rotation)
                     continue
-                index, rotationOriginal = self.initialize(aircraft, airportDic) #save a feasible rotation or return the index of inf.
+                index, rotationOriginal = self.initialize(aircraft, airportDic, 1) #save a feasible rotation or return the index of inf.
                 if(index != -1): #search the solution
                     #import pdb; pdb.set_trace()
                     rotation = copy.deepcopy(rotationOriginal) #copy the original rotation 
@@ -236,8 +238,18 @@ class ARP:
             solutionFound = self.loopAircraftList(aircraftList, airportDic)
             #import pdb; pdb.set_trace()
             if solutionFound[0] == -1:
-                print("Solution found!!!")
-                import pdb; pdb.set_trace()
+                print("Partial solution found!!!")
+                self.fSNOTranspComSA = np.concatenate(self.solutionARP).ravel()
+                for aircraft in aircraftList:
+                    try:
+                        if('TranspCom' in aircraft):
+                            continue
+                        index, rotationOriginal = self.initialize(aircraft, airportDic, 0, False)
+                        if(index != -1):
+                            print(rotationOriginal)
+                            import pdb; pdb.set_trace()
+                    except:
+                        import pdb; pdb.set_trace()
             delta1 = time.time() - start
             print(go, delta1, solutionFound)
             #cost.total()
