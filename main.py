@@ -62,7 +62,7 @@ class ARP:
 
         self.solutionARP = []
 
-    def initialize(self, aircraft, airportDic, delta, saveAirportCap = True): #check if the roation is feasible
+    def initialize(self, aircraft, airportDic, delta = 1, saveAirportCap = True): #check if the roation is feasible
 
         rotationOriginal = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
         rotationOriginal = rotationOriginal[rotationOriginal['flight']!= ''] #remove created flights
@@ -88,7 +88,7 @@ class ARP:
                 if saveAirportCap:
                     self.solutionARP.append(rotationOriginal) #save the feasible rotation w/ cancelled flights
                     solution.saveAirportCap(rotation, airportDic) #update the airp. cap. only w/ cancelFlight == 0
-                return -1, []
+                return -1, [] #for repair to determine if the problem is dep. or arr.
             else:
                 
                     #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
@@ -127,7 +127,7 @@ class ARP:
                     rotation = self.flightScheduleSA[self.flightScheduleSA['aircraft'] == aircraft]
                     self.solutionARP.append(rotation)
                     continue
-                index, rotationOriginal = self.initialize(aircraft, airportDic, 1) #save a feasible rotation or return the index of inf.
+                index, rotationOriginal  = self.initialize(aircraft, airportDic) #save a feasible rotation or return the index of inf.
                 if(index != -1): #search the solution
                     #import pdb; pdb.set_trace()
                     rotation = copy.deepcopy(rotationOriginal) #copy the original rotation 
@@ -180,7 +180,6 @@ class ARP:
                                 continue
 
                         if (len(self._rotationMaint) > 0):
-                            
                             rotationMaintConcat = np.concatenate((rotationCopy, rotationMaint))
                             rotationMaintConcat = np.sort(rotationMaintConcat, order = 'altDepInt')
                             infMaintList = feasibility.maint(rotationMaintConcat)
@@ -240,19 +239,39 @@ class ARP:
             if solutionFound[0] == -1:
                 print("Partial solution found!!!")
                 self.fSNOTranspComSA = np.concatenate(self.solutionARP).ravel()
+                #loop until recover
+
                 for aircraft in aircraftList:
-                    try:
-                        if('TranspCom' in aircraft):
+                    if('TranspCom' in aircraft):
+                        continue
+                    index, rotationOriginal = self.initialize(aircraft, airportDic, 0, False)
+                    if(index != -1):
+                        fixedFlights = self.domainFlights.fixed(rotationOriginal[index])
+                        if fixedFlights['flight'] == rotationOriginal[index]['flight']:
                             continue
-                        index, rotationOriginal = self.initialize(aircraft, airportDic, 0, False)
-                        if(index != -1):
-                            print(rotationOriginal)
-                            import pdb; pdb.set_trace()
-                    except:
-                        import pdb; pdb.set_trace()
+                        print(aircraft)
+                        foundIndex = np.in1d(self.fSNOTranspComSA, rotationOriginal[index:]).nonzero()[0] #find the indices that need to be deleted
+                        self.fSNOTranspComSA = np.delete(self.fSNOTranspComSA, foundIndex) #delete the indices
+                        for  flight in rotationOriginal[index:]:
+                            flight['cancelFlight'] = 1
+
+                        self.fSNOTranspComSA = np.concatenate((self.fSNOTranspComSA, rotationOriginal[index:])) #add the new rotation to the solution
+
+                        solution.airpCapRemove(rotationOriginal[index:], airportDic) #update airp. cap.
+                        #import pdb; pdb.set_trace()
+                        #self.repair(rotationOriginal[index:], airportDic)
+                
+                self.solutionARP = self.fSNOTranspComSA
+
             delta1 = time.time() - start
             print(go, delta1, solutionFound)
             #cost.total()
+    
+    def repair(self, rotation, airportDic):
+        #cancel all the flights until the end of the rotation
+        for  flight in rotation:
+            flight['cancelFlight'] = 1
+        solution.airpCapRemove(rotation, airportDic) #remove the remaining part of the rotation
 
 if __name__ == "__main__":
     
@@ -261,7 +280,7 @@ if __name__ == "__main__":
         arp = ARP(path)
         #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
         arp.findSolution()
-        solution.updateItin(np.concatenate(arp.solutionARP).ravel(), arp.itineraryDic)
+        solution.updateItin(arp.solutionARP, arp.itineraryDic)
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
         delta1 = time.time() - start
         print("Solution time for the ARP: ", delta1)

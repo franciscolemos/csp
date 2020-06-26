@@ -43,7 +43,7 @@ class flights:
         #Initialize the domain
         return self.criticalFligh
     
-    def ranges(self, rotation, airportDic, _noCombos): #only complying with airp. cap.
+    def ranges(self, rotation, airportDic, _noCombos, delta = 1): #only complying with airp. cap.
         domains = {}
         noCombos = 1
         singletonList = []
@@ -96,8 +96,8 @@ class flights:
                     arr = f['altArrInt'] + t
                     if arr > self.configDic['endInt']: #because the flight arrives outside the RTW
                         break #moves to the next flight  
-                    if all([airportDic[origin][int(dep/60)]['noDep'] + 1 <= airportDic[origin][int(dep/60)]['capDep'],
-                        airportDic[destination][int(arr/60)]['noArr'] + 1 <= airportDic[destination][int(arr/60)]['capArr']]):
+                    if all([airportDic[origin][int(dep/60)]['noDep'] + delta <= airportDic[origin][int(dep/60)]['capDep'],
+                        airportDic[destination][int(arr/60)]['noArr'] + delta <= airportDic[destination][int(arr/60)]['capArr']]):
                         domain.append(t)
 
                 noCombos *= len(domain) #calculate as the end result of the size of the domain

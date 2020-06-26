@@ -45,4 +45,7 @@
             #  python -m site --user-site get python packages
             # np.setdiff1d(a, b) diff. between two numpy arrays
             # found_index = np.in1d(input_series, val).nonzero()[0] new_array = numpy.delete(input_series, found_index)
+
+            flightRanges, noCombos, singletonList = self.domainFlights.ranges(rotationOriginal[index:], airportDic, 10, 0)
+            solution.verifyFlightRanges(flightRanges, rotationOriginal, index)
             
