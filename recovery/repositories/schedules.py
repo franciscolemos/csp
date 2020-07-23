@@ -60,7 +60,7 @@ class initialize:
                 if self.altFlightDic.get(flight[0], None) != None:
                     delay = self.altFlightDic[flight[0]]['delayAltFlight']
                 if delay != 0:
-                    if self.altFlightDic[flight[0]] == -1: #cancelled flight
+                    if delay == -1: #cancelled flight
                         altDepInt = depInt #in the case of flight creation
                         altArrInt = arrInt #in the case of flight creation
                         cancelFlight = 1
@@ -116,5 +116,8 @@ class initialize:
                 self.flightScheduleSA[i]['altArrInt'] = flight['altArrInt']
                 self.flightScheduleSA[i]['previous'] = flight['previous']
                 self.flightScheduleSA[i]['tt'] = flight['tt']
+                self.flightScheduleSA[i]['altFlight'] = flight['delay'] #('altFlight', np.int16), ('altAirc', np.uint8), ('newFlight', np.uint8)
+                self.flightScheduleSA[i]['altAirc'] = flight['broken']
+                self.flightScheduleSA[i]['newFlight'] = 0
                 self.flightScheduleSA[i]['cancelFlight'] = flight['cancelFlight']
                 i += 1

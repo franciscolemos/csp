@@ -4,12 +4,14 @@ from recovery.dal.classesDtype import dtype as dt
 import numpy as np
 
 def verifyFlightRanges(flightRanges, rotation, index):
-    if len(flightRanges) != len(rotation[index:]):
+    sizeRotation = len(rotation[index:][rotation[index:]['cancelFlight'] != 1]) #only consider flights not cancelled
+    if len(flightRanges) != sizeRotation:
         print("No. ranges diff. remaining flights verifyFlightRanges@solution.py")
         import pdb; pdb.set_trace()
 
 def verifyCombo(combo, rotation, index):
-    if(len(combo) != len(rotation[index:])):
+    sizeRotation = len(rotation[index:][rotation[index:]['altFlight'] != -1]) #only consider flights not cancelled
+    if len(combo) != sizeRotation:
         print("Combo size is diff. from remaining rotation verifyCombo@solution.py")
         import pdb; pdb.set_trace()
 
@@ -78,6 +80,8 @@ def updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic): #update air
     if(len(flight2Cancel[0]) == 0):
         return -1
     flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= configDic['startInt']) & (flight2Cancel['altDepInt'] <= configDic['endInt'])]
+    if(len(flight2Cancel) == 0):
+        return -1 #There are no flights that can be cancelled, the ARP solution is infeasible
     if(len(flight2Cancel[0]) == 0):
         import pdb; pdb.set_trace()
         return -1 #There are no flights that can be cancelled, the ARP solution is infeasible

@@ -143,6 +143,7 @@ class ARP:
                     if len(singletonList) >= 1: #[(flight, 'dep')]
                         #import pdb; pdb.set_trace()
                         if solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) == -1:
+                            import pdb; pdb.set_trace()
                             return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
                     
                     if noCombos == -1: #excssive no. combos

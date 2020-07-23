@@ -1,8 +1,6 @@
-Itinerary 652 departs before its original departure time
-Origin problem on itinerary 652
-Itinerary 653 departs before its original departure time
-Origin problem on itinerary 653
-Itinerary 654 departs before its original departure time
-Origin problem on itinerary 654
-Itinerary 655 departs before its original departure time
-Origin problem on itinerary 655
+Final destination problem on itinerary 343
+Final destination problem on itinerary 345
+Final destination problem on itinerary 1933
+Final destination problem on itinerary 1935
+Final destination problem on itinerary 1937
+Final destination problem on itinerary 1939
