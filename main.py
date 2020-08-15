@@ -153,40 +153,20 @@ class ARP:
                     start = time.time()
 
                     solution.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
+                    
+                    rotationMaint = []
                     if len(self._rotationMaint) > 0:
                         rotationMaint = self.addMaint(aircraft) #creates the maint to be later added to the rotation
                     flightCombinations = product(*flightRanges.values()) #find all the combinations
                     solutionValue = [] #initializes the solution value for later appraisal
 
                     for combo in flightCombinations: #loop through the possible combinations
-                        rotation = copy.deepcopy(rotationOriginal) #keep a copy of the original because of new rotation
-                        solution.newRotation(combo, rotation[index:]) #add the combo to the rotation
-                        solution.verifyCombo(combo, rotation, index) #compare the size of combo w/ rotation
-                        solution.verifyRotation(rotation, movingFlights, fixedFlights, index) #compare rotation size w/ ...
-                        rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
-                        rotationCopy = np.sort(rotationCopy, order = 'altDepInt')
-                        
-                        if len(feasibility.continuity(rotationCopy)) > 0:#only flights not cancelled in the copy
-                            continue #cont.
-                        if len(feasibility.TT(rotationCopy)) > 0:#only flights not cancelled in the copy
+                        allConstraints = feasibility.allConstraints(rotationOriginal, combo, index
+                        , movingFlights, fixedFlights, airpCapCopy, self._rotationMaint, rotationMaint) #check the sol. feas.
+                        if allConstraints == -1:
                             continue
-
-
-                        if (len(feasibility.dep(rotationCopy, airpCapCopy)) > 0) | (len(feasibility.arr(rotationCopy, airpCapCopy)) > 0):
-                            import pdb; pdb.set_trace()
-                            break                     
-                            #return 0, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
-                        if len(rotation[(rotation['previous'] != '0') & (rotation['previous'] != '')]) > 0: # because previous flight exist
-                            if len(feasibility.previous(rotation)) > 0:
-                                continue
-
-                        if (len(self._rotationMaint) > 0):
-                            rotationMaintConcat = np.concatenate((rotationCopy, rotationMaint))
-                            rotationMaintConcat = np.sort(rotationMaintConcat, order = 'altDepInt')
-                            infMaintList = feasibility.maint(rotationMaintConcat)
-                            if len(infMaintList) > 0:
-                                continue
-
+                        if allConstraints == -2: #airp. cap. problem
+                            return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
                         solutionValue.append(solution.value(combo))
                     try:
                         df = pd.DataFrame(solutionValue)

@@ -3,6 +3,7 @@ import copy
 from recovery.repositories.data import maxDelay
 from recovery.repositories.data import deltaT
 from recovery.actions import feasibility
+from recovery.dal.classesDtype import dtype as dt
 
 class flights:
     def __init__(self, configDic):
@@ -53,15 +54,14 @@ class flights:
                 if f['cancelFlight'] != 0:
                     continue
                 if f['altDepInt'] != f['depInt']: #because it is a fixed flight
-                    # print("Singleton!!!")
-                    # import pdb; pdb.set_trace()
                     domain.append(0) #the only delay is zero
                     domains[f['flight']] = domain # because of combos
-                    if len(feasibility.dep(rotation, airportDic)) > 0:
+                    _f = np.array(f, dtype = dt.dtypeFS)
+                    if len(feasibility.dep(_f, airportDic)) > 0:
                         print("Singleton found with necessary backtracking for dep.")
                         singletonList.append([f,'dep'])
                         #import pdb; pdb.set_trace()
-                    if len(feasibility.arr(rotation, airportDic)) > 0:
+                    if len(feasibility.arr(_f, airportDic)) > 0:
                         print("Singleton found with necessary backtracking for arr.")
                         singletonList.append([f, 'arr'])
                         #import pdb; pdb.set_trace()
@@ -69,22 +69,24 @@ class flights:
                 if f['depInt'] < self.configDic['startInt']:#because it departs outside the RTW (another singleton)
                     domain.append(0) #the only delay is zero
                     domains[f['flight']] = domain # because of combos
-                    if len(feasibility.dep(rotation, airportDic)) > 0:
+                    _f = np.array(f, dtype = dt.dtypeFS)
+                    if len(feasibility.dep(_f, airportDic)) > 0:
                         print("Singleton found with necessary backtracking for dep.")
                         singletonList.append([f,'dep'])
                         #import pdb; pdb.set_trace()
-                    if len(feasibility.arr(rotation, airportDic)) > 0:
+                    if len(feasibility.arr(_f, airportDic)) > 0:
                         print("Singleton found with necessary backtracking for arr.")
                         singletonList.append([f, 'arr'])
                     continue
                 if f['depInt'] > self.configDic['endInt']: #because it departs outside the RTW (another singleton)
                     domain.append(0) #the only delay is zero
                     domains[f['flight']] = domain # because of combos
-                    if len(feasibility.dep(rotation, airportDic)) > 0:
+                    _f = np.array(f, dtype = dt.dtypeFS)
+                    if len(feasibility.dep(_f, airportDic)) > 0:
                         print("Singleton found with necessary backtracking for dep.")
                         singletonList.append([f,'dep'])
                         #import pdb; pdb.set_trace()
-                    if len(feasibility.arr(rotation, airportDic)) > 0:
+                    if len(feasibility.arr(_f, airportDic)) > 0:
                         print("Singleton found with necessary backtracking for arr.")
                         singletonList.append([f, 'arr'])
                     continue

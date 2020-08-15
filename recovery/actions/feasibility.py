@@ -1,9 +1,8 @@
 import datetime
 from recovery.dal.classesDtype import dtype as dt
-#import fileExport as fE
+from recovery.actions import solution
 import time
-#import funcsDate as fD
-#import initialize as i
+import copy
 from numpy import array
 import numpy as np
 from pprint import pprint
@@ -56,6 +55,7 @@ def maint(flightSchedule):
         return np.asarray(index).flatten()
 
     return []
+
 #dep. airp. cap.
 def dep(flightSchedule, airportDic, delta = 1):
     flightDepList = []
@@ -70,8 +70,7 @@ def dep(flightSchedule, airportDic, delta = 1):
             flightDepList.append(flightIndex)
             #import pdb; pdb.set_trace()
         flightIndex += 1
-    return flightDepList
-        
+    return flightDepList 
 
 #arr. airp. cap.
 def arr(flightSchedule, airportDic, delta = 1):
@@ -90,6 +89,45 @@ def arr(flightSchedule, airportDic, delta = 1):
     
     return flightArrList
 
+def airportCap(airportDic):
+    infeasCap = []
+    for airport, capArr in airportDic.items():
+        for cap in capArr:
+            if cap['noArr'] > cap['capArr']:
+                print('No. or arr.', cap['noArr'],' is bigger that arr. cap.', cap['capArr'], 'for airport', airport)
+                infeasCap.append([airport, cap, 'arr.'])
+            if cap['noDep'] > cap['capDep']:
+                print('No. or dep.', cap['noDep'],' is bigger that dep. cap.', cap['capDep'], 'for airport', airport)
+                infeasCap.append([airport, cap, 'dep.'])
+    return infeasCap  
+
+def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, airpCapCopy, _rotationMaint, rotationMaint):
+    rotation = copy.deepcopy(rotationOriginal) #keep a copy of the original because of new rotation
+    solution.newRotation(combo, rotation[index:]) #add the combo to the rotation
+    solution.verifyCombo(combo, rotation, index) #compare the size of combo w/ rotation
+    solution.verifyRotation(rotation, movingFlights, fixedFlights, index) #compare rotation size w/ ...
+    rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
+    rotationCopy = np.sort(rotationCopy, order = 'altDepInt')
+    
+    if len(continuity(rotationCopy)) > 0:#only flights not cancelled in the copy
+        return -1 #cont.
+    if len(TT(rotationCopy)) > 0:#only flights not cancelled in the copy
+        return -1
+
+    if (len(dep(rotationCopy, airpCapCopy)) > 0) | (len(arr(rotationCopy, airpCapCopy)) > 0):
+        import pdb; pdb.set_trace()
+        return -2                    
+        #return 0, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
+    if len(rotation[(rotation['previous'] != '0') & (rotation['previous'] != '')]) > 0: # because previous flight exist
+        if len(previous(rotation)) > 0:
+            return -1
+
+    if (len(_rotationMaint) > 0):
+        rotationMaintConcat = np.concatenate((rotationCopy, rotationMaint))
+        rotationMaintConcat = np.sort(rotationMaintConcat, order = 'altDepInt')
+        infMaintList = maint(rotationMaintConcat)
+        if len(infMaintList) > 0:
+            return -1
 
 class ARP():
 

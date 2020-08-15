@@ -80,6 +80,7 @@ def updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic): #update air
     if(len(flight2Cancel[0]) == 0):
         return -1
     flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= configDic['startInt']) & (flight2Cancel['altDepInt'] <= configDic['endInt'])]
+    flight2Cancel = flight2Cancel[flight2Cancel['family'] != 'TranspCom']
     if(len(flight2Cancel) == 0):
         return -1 #There are no flights that can be cancelled, the ARP solution is infeasible
     if(len(flight2Cancel[0]) == 0):
