@@ -140,15 +140,16 @@ class ARP:
                      #flight ranges and combinations only for moving flight after disruption index with updated airp. cap. for fixed flights
                     flightRanges, noCombos, singletonList = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
                     
+                    if noCombos == -1: #excssive no. combos
+                        continue #resume next aircraft
+
                     if len(singletonList) >= 1: #[(flight, 'dep')]
                         #import pdb; pdb.set_trace()
                         if solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) == -1:
                             import pdb; pdb.set_trace()
                             return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
                     
-                    if noCombos == -1: #excssive no. combos
-                        #print(aircraft, _noCombos, "Excessive", noCombos, remainAirc, len(aircraftSolList))
-                        continue #resume next aircraft
+
                     
                     start = time.time()
 
@@ -196,7 +197,8 @@ class ARP:
             #import pdb; pdb.set_trace()
             _noCombos += 0.1 #increase the order of magnitude of the no. of combos
             aircraftTmpList = list(set(aircraftList) - set(aircraftSolList)) #check the differences between two lists
-        
+            aircraftTmpList.sort()
+            
         dfSolutionKpiExport = pd.DataFrame(solutionKpiExport, columns = ["aircraft", "delta1", "noFlights", "noCombos", "singletonList", "noSolutions"])
         dfSolutionKpiExport.to_csv("dfSolutionKpiExport02.csv", header = True, index = False)
 
@@ -210,9 +212,9 @@ class ARP:
         while solutionFound[0] != -1:
             start = time.time()
             go += 1
-            #print("let's go: ", go)
-            random.seed(go)
-            random.shuffle(aircraftList)
+            aircraftList.sort()
+            #random.seed(go)
+            #random.shuffle(aircraftList)
             self.solutionARP = []
             airportDic = copy.deepcopy(self.airportOriginaltDic)
             solutionFound = self.loopAircraftList(aircraftList, airportDic)

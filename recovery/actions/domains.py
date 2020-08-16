@@ -47,17 +47,14 @@ class flights:
     def makeWayForSingleton(self, domain, domains, f, airportDic, singletonList):
         domain.append(0) #the only delay is zero
         domains[f['flight']] = domain # because of combos
-        
         _f = np.array(f, dtype = dt.dtypeFS)
         if len(feasibility.dep(_f, airportDic)) > 0:
             print("Singleton found with necessary backtracking for dep.")
             singletonList.append([f,'dep'])
-            #makeway for the singleton!!!!!!
         if len(feasibility.arr(_f, airportDic)) > 0:
             print("Singleton found with necessary backtracking for arr.")
             singletonList.append([f, 'arr'])
-            #makeway for the singleton!!!!!!
-            #import pdb; pdb.set_trace()    
+ 
 
 
 
@@ -71,19 +68,13 @@ class flights:
                 if f['cancelFlight'] != 0:
                     continue
                 if f['altDepInt'] != f['depInt']: #because it is a fixed flight
-                    import pdb; pdb.set_trace()
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
-                    import pdb; pdb.set_trace()
                     continue
                 if f['depInt'] < self.configDic['startInt']:#because it departs outside the RTW (another singleton)
-                    import pdb; pdb.set_trace()
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
-                    import pdb; pdb.set_trace()
                     continue
                 if f['depInt'] > self.configDic['endInt']: #because it departs outside the RTW (another singleton)
-                    import pdb; pdb.set_trace()
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
-                    import pdb; pdb.set_trace()
                     continue
                 domain = [-1] #add flight cancellation
                 for t in range(0, maxDelay, deltaT): #find the feasible time slots
