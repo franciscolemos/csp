@@ -35,7 +35,7 @@ paths = ["dataSets/A1/A01_6088570",
     "dataSets/X/XB04_DATA"]
 '''
 #paths = ["dataSets/A1/A01_6088570"]
-#paths = ["dataSets/A1/A02_6088570"]
+paths = ["dataSets/A1/A02_6088570"]
 #paths = ["dataSets/A1/A03_6088570"]
 #paths = ["dataSets/A1/A04_6088570"]
 #paths = ["dataSets/A1/A05_6088570"]
@@ -65,4 +65,4 @@ paths = ["dataSets/A1/A01_6088570",
 #paths = ["dataSets/X/XB01_DATA"]
 #paths = ["dataSets/X/XB02_DATA"]
 #paths = ["dataSets/X/XB03_DATA"]
-paths = ["dataSets/X/XB04_DATA"]
+#paths = ["dataSets/X/XB04_DATA"]
