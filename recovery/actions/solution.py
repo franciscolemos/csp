@@ -1,36 +1,127 @@
 import pdb
 import datetime
 from recovery.dal.classesDtype import dtype as dt
+from recovery.actions.funcsDate import int2DateTime
 import numpy as np
+
+def verifyNullFlights(rotation): #verify if there are any null flights
+    if(len(rotation[rotation['flight'] == '']) > 0):
+        print("Null flights in the rotation verify NullFlights@solution.py")
+        pdb.set_trace()
+
+def verifyNewFlights(rotationCancel, newFlights):
+    if len(rotationCancel) != len(newFlights):
+        print("No. cancelled flights diff. of no. new flights verifyNewFlights@solution.py")
+        pdb.set_trace()
 
 def verifyFlightRanges(flightRanges, rotation, index):
     sizeRotation = len(rotation[index:][rotation[index:]['cancelFlight'] != 1]) #only consider flights not cancelled
     if len(flightRanges) != sizeRotation:
         print("No. ranges diff. remaining flights verifyFlightRanges@solution.py")
-        import pdb; pdb.set_trace()
+        pdb.set_trace()
 
 def verifyCombo(combo, rotation, index):
-    sizeRotation = len(rotation[index:][rotation[index:]['altFlight'] != -1]) #only consider flights not cancelled
+    rotationDisr = rotation[index:]
+    rotationDisr = rotationDisr[(rotationDisr['altFlight'] != -1) & (rotationDisr['altAirc'] != -1)]
+    sizeRotation = len(rotationDisr) #only consider flights not disr.
     if len(combo) != sizeRotation:
         print("Combo size is diff. from remaining rotation verifyCombo@solution.py")
-        import pdb; pdb.set_trace()
+        pdb.set_trace()
 
 def verifyRotation(rotation, movingFlights, fixedFlights, index):
     if len(rotation) != len(rotation[:index]) + len(movingFlights) + len(fixedFlights):
         print("Diff. in rotation length verifyRotation@solution.py")
-        import pdb; pdb.set_trace()
+        pdb.set_trace()
 
 def verifySingletonSol(size, solutionARP, flightSchedule):
     if size != len(solutionARP) + len(flightSchedule):
         print("Diff. in solutionARP length verifySingletonSol@solution.py")
-        import pdb; pdb.set_trace()
+        pdb.set_trace()
+
+def verifyNewRotation(combo, rotation):
+    if len(combo) != len(rotation):
+        print("Diff. in size between rotation and combo")
+        pdb.set_trace()
+
+def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get minDate, startInt:
+    newFlights = rotation[rotation['flight'] == ''] #new flights
+    rotationCancel = rotation[(rotation['altAirc'] == -1)] #flight cancelled by disr.
+    startDep = rotationCancel[0]['depInt'] #offset
+    verifyNewFlights(rotationCancel, newFlights) #check if no. of avail. slots equals 
+    index = 0
+    start = endInt + 1
+    for cancelFlight, newFlight in zip(rotationCancel, newFlights): #loops through cancelled flights and new flights
+        if index != 0: #to get the current the tt
+            start = previousArr + cancelFlight['tt'] #it should be the next flight
+        maxFlight += 1
+        newFlight = cancelFlight
+        newFlight['depInt'] = start #dep.
+        newFlight['altDepInt'] = newFlight['depInt'] # alt dep.
+        flightDate = int2DateTime(newFlight['depInt'], configDic['startDate']) #datetime when the broken period ends
+        flightDate = flightDate.strftime('%d/%m/%y') #because the sol.checker has a bug
+        flight = str(maxFlight) + flightDate
+        dist = distSA[(distSA['origin'] == cancelFlight['origin']) & (distSA['destination'] == cancelFlight['destination'])]['dist'][0]
+        newFlight['arrInt'] = newFlight['depInt'] + dist
+        newFlight['altArrInt'] = newFlight['arrInt']
+        newFlight['flight'] = flight
+        newFlight['cancelFlight'] = 0
+        newFlight['newFlight'] = 1
+        newFlight['altAirc']  = 0
+        newFlight['altFlight'] = 0
+        newFlights[index] = newFlight
+        previousArr = newFlight['arrInt'] #to get the arrival + tt for the next dep.
+        if previousArr > configDic['endInt']:
+            break
+        index += 1
+
+    rotation[rotation['flight'] == ''] = newFlights #update the rotation; rotation[rotation['flight'] == ''] != newFlights
+    rotation = rotation[rotation['flight'] != '']
+    #pdb.set_trace()
+    return rotation, maxFlight
+
+def newFlights(rotation, distSA, maxFlight, endInt, configDic):
+    newFlights = rotation[rotation['flight'] == ''] #new flights
+    rotationCancel = rotation[(rotation['altFlight'] == -1)] #flight cancelled by disr.
+    startDep = 0 #offset
+    rotation[rotation['flight'] == ''] = newFlights #update the rotation
+    verifyNewFlights(rotationCancel, newFlights) #check if no. of avail. slots equals 
+    index = 0
+    for cancelFlight, newFlight in zip(rotationCancel, newFlights): #loops through cancelled flights and new flights
+        maxFlight += 1 #increment the maxFlight
+        newFlight = cancelFlight
+        dep = cancelFlight['depInt']
+        if dep < configDic['startInt']: #to prevent from c reating fixed flight (which of course are of hardly any use)
+            dep = configDic['startInt']
+        newFlight['depInt'] = dep - startDep + endInt + 1 #dep.
+        newFlight['altDepInt'] = newFlight['depInt'] # alt dep.
+
+        flightDate = int2DateTime(newFlight['depInt'], configDic['startDate']) #datetime when the broken period ends
+        flightDate = flightDate.strftime('%d/%m/%y') #because the sol.checker has a bug
+        flight = str(maxFlight) + flightDate
+        dist = distSA[(distSA['origin'] == cancelFlight['origin']) & (distSA['destination'] == cancelFlight['destination'])]['dist'][0]
+        newFlight['arrInt'] = newFlight['depInt'] + dist
+        newFlight['altArrInt'] = newFlight['arrInt']
+        newFlight['flight'] = flight
+        newFlight['cancelFlight'] = 0
+        newFlight['newFlight'] = 1
+        newFlight['altAirc']  = 0
+        newFlight['altFlight'] = 0
+        newFlights[index] = newFlight
+        index += 1
+    rotation[rotation['flight'] == ''] = newFlights #update the rotation; rotation[rotation['flight'] == ''] != newFlights
+    rotation = rotation[rotation['flight'] != '']
+    return rotation, maxFlight   
+    
 
 def value(combo):
     noCancel = sum([t for t in combo if t == -1])
     totalDelay = sum([t for t in combo if t > 0])
     return noCancel, totalDelay, combo
 
-def singletonRecovery(solutionARP, singletonList, airpCapCopy, configDic): #remove the flights form the airp. cap.
+def singletonRecovery(solutionARPDic, singletonList, airpCapCopy, configDic): #remove the flights form the airp. cap.
+    solutionARP = []
+    for rotation in solutionARPDic.values():
+        solutionARP.append(rotation)
     solutionARP = np.concatenate(solutionARP).ravel()
     for singleton in singletonList: #remove the flights
         if singleton[1] == 'dep':
@@ -40,10 +131,11 @@ def singletonRecovery(solutionARP, singletonList, airpCapCopy, configDic): #remo
             flight2Cancel = solutionARP[(solutionARP['origin'] == origin) & (solutionARP['cancelFlight'] == 0)] #find the origin of flight to be cancelled
             flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= startInt) & (flight2Cancel['altDepInt'] < endInt) ]
             
-            #import pdb; pdb.set_trace()
-            if updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic) == -1:
+            airc2Cancel = updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic)
+            if  airc2Cancel == -1:
                 return -1
-            #import pdb; pdb.set_trace()
+            return airc2Cancel
+
 
         if singleton[1] == 'arr':
             startInt = 60 *  int(singleton[0]['altArrInt']/60) #find the start of the time slot of the arr.
@@ -52,10 +144,10 @@ def singletonRecovery(solutionARP, singletonList, airpCapCopy, configDic): #remo
             flight2Cancel = solutionARP[(solutionARP['destination'] == destination) & (solutionARP['cancelFlight'] == 0)] #find the origin of flight to be cancelled
             flight2Cancel = flight2Cancel[(flight2Cancel['altArrInt'] >= startInt) & (flight2Cancel['altArrInt'] < endInt) ]
             
-            #import pdb; pdb.set_trace()
-            if updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic) == -1:
+            airc2Cancel = updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic)
+            if  airc2Cancel == -1:
                 return -1
-            #import pdb; pdb.set_trace()
+            return airc2Cancel
 
 def airpCapRemove(flightSchedule, airportCap):
     #import pdb; pdb.set_trace()
@@ -90,7 +182,7 @@ def updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic): #update air
     airc2Cancel = flight2Cancel[0]['aircraft'] #because it will be used to find the aircraft rotation
     rotationCancelAll = solutionARP[solutionARP['aircraft'] == airc2Cancel] #aircraft rotation
     airpCapRemove(rotationCancelAll, airpCapCopy) #remove the entire rotation from the airp. cap.
-    
+    return airc2Cancel  #returns the airc. to cancel
 
 def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
     for flight in flightSchedule[(flightSchedule['flight'] != '') & (flightSchedule['cancelFlight'] != 1)]:
@@ -106,17 +198,17 @@ def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
         airportCap[flight['destination']][index]['noArr'] += 1
     return airportCap
 
-def newRotation(combo, rotation): 
-    i = 0
-    for delay, flight in zip(combo, rotation):
-        #verifyFlightRanges(flightRanges, rotation, 0)
+def newRotation(combo, rotation): #create rotation based on combo
+    verifyNewRotation(combo, rotation[rotation['cancelFlight'] == 0]) #compare the size of the combo w/ rotation without disr.
+    notCancel = rotation[rotation['cancelFlight'] == 0] #remove disr. flight
+    for delay, flight in zip(combo, notCancel):
         if delay == -1: #cancel the flight
             flight['cancelFlight'] = 1
         else:
-            flight['altDepInt'] += delay
+            flight['altDepInt'] += delay 
             flight['altArrInt'] += delay
-        rotation[i] = flight #update the rotation
-        i += 1
+    rotation[rotation['cancelFlight'] == 0] = notCancel #update the rotation w/ the sol.
+    return rotation
 
 def updateItin(flightScheduleSA, itineraryDic):
     flight = {}
@@ -130,7 +222,8 @@ def updateItin(flightScheduleSA, itineraryDic):
                 cancelFlight = flightScheduleSA[flightScheduleSA['flight'] == f['flight']]['cancelFlight']
                 if len(cancelFlight) == 0:
                     print("Un-existing flight: ", f['flight'])
-                    pdb.set_trace()
+                    #pdb.set_trace()
+                    continue
                 f['cancelFlight'] = cancelFlight[0] #update itin. flight schedule
                 flight[f['flight']] = cancelFlight[0] #update the flight dict. 
 

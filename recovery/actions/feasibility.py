@@ -62,14 +62,18 @@ def dep(flightSchedule, airportDic, delta = 1):
     flightIndex = 0
     
     for flight in flightSchedule[flightSchedule['flight'] != '']:
-        if flight['cancelFlight'] == 1: continue
-        index = int(flight['altDepInt'] / 60)
-        noDep = airportDic[flight['origin']][index]['noDep']
-        capDep = airportDic[flight['origin']][index]['capDep']
-        if noDep + delta > capDep:
-            flightDepList.append(flightIndex)
-            #import pdb; pdb.set_trace()
-        flightIndex += 1
+        try:
+            if flight['cancelFlight'] == 1: continue
+            index = int(flight['altDepInt'] / 60)
+            noDep = airportDic[flight['origin']][index]['noDep']
+            capDep = airportDic[flight['origin']][index]['capDep']
+            if noDep + delta > capDep:
+                flightDepList.append(flightIndex)
+                #import pdb; pdb.set_trace()
+            flightIndex += 1
+        except:
+            print("index is out of bounds")
+            import pdb; pdb.set_trace()
     return flightDepList 
 
 #arr. airp. cap.
@@ -109,15 +113,14 @@ def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, 
     rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
     rotationCopy = np.sort(rotationCopy, order = 'altDepInt')
     
-    if len(continuity(rotationCopy)) > 0:#only flights not cancelled in the copy
+    if len(continuity(rotationCopy)) > 0: #only flights not cancelled in the copy
         return -1 #cont.
-    if len(TT(rotationCopy)) > 0:#only flights not cancelled in the copy
+    if len(TT(rotationCopy)) > 0: #only flights not cancelled in the copy
         return -1
 
     if (len(dep(rotationCopy, airpCapCopy)) > 0) | (len(arr(rotationCopy, airpCapCopy)) > 0):
         import pdb; pdb.set_trace()
         return -2                    
-        #return 0, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
     if len(rotation[(rotation['previous'] != '0') & (rotation['previous'] != '')]) > 0: # because previous flight exist
         if len(previous(rotation)) > 0:
             return -1

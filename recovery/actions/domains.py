@@ -58,7 +58,7 @@ class flights:
 
 
 
-    def ranges(self, rotation, airportDic, _noCombos, delta = 1): #only complying with airp. cap.
+    def ranges(self, rotation, airportDic, _noCombos = -1, delta = 1): #only complying with airp. cap.
         domains = {}
         noCombos = 1
         singletonList = []
@@ -89,19 +89,21 @@ class flights:
                         domain.append(t)
 
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
-                if noCombos > _noCombos * 10**5:
-                    #import pdb; pdb.set_trace()
-                    return [],  -1, []
+                if _noCombos != -1:
+                    if noCombos > _noCombos * 10**5:
+                        # print(noCombos, domains, rotation)
+                        # import pdb; pdb.set_trace()
+                        return [],  -1, []
                 domains[f['flight']] = domain
 
         except Exception as ex:
             #print("Exception finding ranges@domains.py", ex.message)
             #import pdb; pdb.set_trace()
             return [],  -1, []
-
-        if noCombos > _noCombos * 10**5:
-            print("Excessive2: ", noCombos)
-            import pdb; pdb.set_trace()
-            return [],  -1
+        if _noCombos != -1:
+            if noCombos > _noCombos * 10**5:
+                print("Excessive2: ", noCombos)
+                import pdb; pdb.set_trace()
+                return [],  -1
 
         return domains, noCombos, singletonList
