@@ -290,10 +290,10 @@ if __name__ == "__main__":
         start = time.time()
         arp = ARP(path)
         # #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
-        arp.findSolution()
+        #arp.findSolution()
         dataSet = path.split("/")[-1]
-        solution.export2CSV(arp.solutionARP, dataSet)
-        solutionARP = solution.importCSV(dataSet)
+        #solution.export2CSV(arp.solutionARP, dataSet)
+        arp.solutionARP = solution.importCSV(dataSet)
         solution.updateItin(arp.solutionARP, arp.itineraryDic)
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
         delta1 = time.time() - start

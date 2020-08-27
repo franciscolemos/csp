@@ -216,7 +216,6 @@ def export2CSV(solutionARP, dataSet, path = "solutions"): #export the ARP soluti
     df = pd.DataFrame(solutionARP)
     df.to_csv(path + "\\" + dataSet + ".csv", index = False)
     
-
 def importCSV(dataSet, path = "solutions"): #import the CSV to solutionARPDic
     df = pd.read_csv(path + "\\" + dataSet + ".csv")
     solutionARP = np.zeros(len(df), dtype = dt.dtypeFS)
@@ -245,52 +244,53 @@ def updateItin(flightScheduleSA, itineraryDic):
 
 def export(flightScheduleSA, itineraryDic, minDate, path):
     sb = ""
+    newCancel = flightScheduleSA[(flightScheduleSA['newFlight'] == 1) & (flightScheduleSA['cancelFlight'] == 1)] #new flights that were cancelled
+    foundIndex = np.in1d(flightScheduleSA, newCancel).nonzero()[0] #indices of new flights that were cancelled
+    flightScheduleSA = np.delete(flightScheduleSA, foundIndex) #delete new flights that were cancelled
     for fSA in flightScheduleSA:
+        idFlight = fSA['flight'][:-8]
 
-        fSA = fSA[fSA['origin'] != ''] #this will remove the maint.
-        for fRA in fSA:
-            idFlight = fRA['flight'][:-8]
-            date = datetime.datetime.strptime(fRA['flight'][len(idFlight):], dt.fmtDate) #convert to date
-                                
-            originFlight = fRA['origin']
-            destinationFlight = fRA['destination']
-            altDepInt = fRA['altDepInt']
-            
-            noDays = int(altDepInt / (60*24))
-            noHours = int((altDepInt - noDays*60*24)/60)
-            noMinutes = (altDepInt - noDays*60*24 - noHours*60)
-            altDepDate = minDate + datetime.timedelta(days = noDays)
-            altDepTime = datetime.datetime.strptime(str(noHours) + ":" + str(noMinutes), dt.fmtTime)
+        date = datetime.datetime.strptime(fSA['flight'][len(idFlight):], dt.fmtDate) #convert to date
+                            
+        originFlight = fSA['origin']
+        destinationFlight = fSA['destination']
+        altDepInt = fSA['altDepInt']
+        
+        noDays = int(altDepInt / (60*24))
+        noHours = int((altDepInt - noDays*60*24)/60)
+        noMinutes = (altDepInt - noDays*60*24 - noHours*60)
+        altDepDate = minDate + datetime.timedelta(days = noDays)
+        altDepTime = datetime.datetime.strptime(str(noHours) + ":" + str(noMinutes), dt.fmtTime)
 
-            altArrInt = fRA['altArrInt']
-            noDays = int(altArrInt / (60*24))
-            noHours = int((altArrInt - noDays*60*24)/60)
-            noMinutes = (altArrInt - noDays*60*24 - noHours*60)
-            altArrDate = minDate + datetime.timedelta(days = noDays)
-            altArrTime = datetime.datetime.strptime(str(noHours) + ":" + str(noMinutes), dt.fmtTime)
-            
-            previous = fRA['previous']
-            try:    
-                if (altDepDate - date).days > 0:
-                    depNextDay = "+" + str((altDepDate - date).days) #fRA deleted
-                else:
-                    depNextDay = ""
+        altArrInt = fSA['altArrInt']
+        noDays = int(altArrInt / (60*24))
+        noHours = int((altArrInt - noDays*60*24)/60)
+        noMinutes = (altArrInt - noDays*60*24 - noHours*60)
+        altArrDate = minDate + datetime.timedelta(days = noDays)
+        altArrTime = datetime.datetime.strptime(str(noHours) + ":" + str(noMinutes), dt.fmtTime)
+        
+        previous = fSA['previous']
+        try:    
+            if (altDepDate - date).days > 0:
+                depNextDay = "+" + str((altDepDate - date).days) #fSA deleted
+            else:
+                depNextDay = ""
 
-                if (altArrDate - date).days > 0:
-                    arrNextDay = "+" + str((altArrDate - date).days)
-                else:
-                    arrNextDay = ""
-            except:
-                print("Exception finding export@solution.py")
-                import pdb; pdb.set_trace()
-            cancelFlight = fRA['cancelFlight']
-            aircraft = fRA['aircraft']
-            if (cancelFlight == 1):
-                aircraft = "cancelled"
-            sb += (str(idFlight) + " " + originFlight + " " + destinationFlight + " " +
-                    str(altDepTime.strftime(dt.fmtTime)) + depNextDay + " " + str(altArrTime.strftime(dt.fmtTime)) + arrNextDay + " " + str(previous) + " " +
-                    str(date.strftime(dt.fmtDate)) + " " + aircraft)
-            sb += "\n"
+            if (altArrDate - date).days > 0:
+                arrNextDay = "+" + str((altArrDate - date).days)
+            else:
+                arrNextDay = ""
+        except:
+            print("Exception finding export@solution.py")
+            import pdb; pdb.set_trace()
+        cancelFlight = fSA['cancelFlight']
+        aircraft = fSA['aircraft']
+        if (cancelFlight == 1):
+            aircraft = "cancelled"
+        sb += (str(idFlight) + " " + originFlight + " " + destinationFlight + " " +
+                str(altDepTime.strftime(dt.fmtTime)) + depNextDay + " " + str(altArrTime.strftime(dt.fmtTime)) + arrNextDay + " " + str(previous) + " " +
+                str(date.strftime(dt.fmtDate)) + " " + aircraft)
+        sb += "\n"
 
     sb += "#"
     # write string to sol_rotation
