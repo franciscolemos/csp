@@ -14,7 +14,7 @@ import random
 import copy
 import time
 from itertools import product
-from recovery.dal.classesDtype import dtype as dt
+from recovery.dal.classesDtype import dtype as dt 
 import pandas as pd
 import collections
 
@@ -289,8 +289,11 @@ if __name__ == "__main__":
     for path in paths.paths:
         start = time.time()
         arp = ARP(path)
-        #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
+        # #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
         arp.findSolution()
+        dataSet = path.split("/")[-1]
+        solution.export2CSV(arp.solutionARP, dataSet)
+        solutionARP = solution.importCSV(dataSet)
         solution.updateItin(arp.solutionARP, arp.itineraryDic)
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
         delta1 = time.time() - start

@@ -48,3 +48,4 @@
      
             # flightOrder =  collections.OrderedDict(sorted(self.flightDic.items())) order dictionary
             # lastFlight = flightOrder.popitem()[0]
+            #numpy.savetxt("foo.csv", a, delimiter=",")

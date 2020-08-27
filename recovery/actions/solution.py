@@ -3,6 +3,9 @@ import datetime
 from recovery.dal.classesDtype import dtype as dt
 from recovery.actions.funcsDate import int2DateTime
 import numpy as np
+import pandas as pd
+from numpy import genfromtxt
+
 
 def verifyNullFlights(rotation): #verify if there are any null flights
     if(len(rotation[rotation['flight'] == '']) > 0):
@@ -111,7 +114,6 @@ def newFlights(rotation, distSA, maxFlight, endInt, configDic):
     rotation[rotation['flight'] == ''] = newFlights #update the rotation; rotation[rotation['flight'] == ''] != newFlights
     rotation = rotation[rotation['flight'] != '']
     return rotation, maxFlight   
-    
 
 def value(combo):
     noCancel = sum([t for t in combo if t == -1])
@@ -209,6 +211,20 @@ def newRotation(combo, rotation): #create rotation based on combo
             flight['altArrInt'] += delay
     rotation[rotation['cancelFlight'] == 0] = notCancel #update the rotation w/ the sol.
     return rotation
+
+def export2CSV(solutionARP, dataSet, path = "solutions"): #export the ARP solution to CSV
+    df = pd.DataFrame(solutionARP)
+    df.to_csv(path + "\\" + dataSet + ".csv", index = False)
+    
+
+def importCSV(dataSet, path = "solutions"): #import the CSV to solutionARPDic
+    df = pd.read_csv(path + "\\" + dataSet + ".csv")
+    solutionARP = np.zeros(len(df), dtype = dt.dtypeFS)
+    index = 0
+    for rowDF in solutionARP:
+        solutionARP[index] = tuple(df.iloc[index])
+        index += 1
+    return solutionARP
 
 def updateItin(flightScheduleSA, itineraryDic):
     flight = {}
