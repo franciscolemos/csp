@@ -73,7 +73,7 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
         newFlight['altFlight'] = 0
         newFlights[index] = newFlight
         previousArr = newFlight['arrInt'] #to get the arrival + tt for the next dep.
-        if previousArr > configDic['endInt']:
+        if previousArr + newFlight['tt'] > configDic['endInt']:
             break
         index += 1
 
@@ -241,7 +241,7 @@ def updateItin(flightScheduleSA, itineraryDic):
                     continue
                 f['cancelFlight'] = cancelFlight[0] #update itin. flight schedule
                 flight[f['flight']] = cancelFlight[0] #update the flight dict. 
-
+        
 def export(flightScheduleSA, itineraryDic, minDate, path):
     sb = ""
     newCancel = flightScheduleSA[(flightScheduleSA['newFlight'] == 1) & (flightScheduleSA['cancelFlight'] == 1)] #new flights that were cancelled
@@ -298,12 +298,9 @@ def export(flightScheduleSA, itineraryDic, minDate, path):
     text_file.write(sb)
     text_file.close()
 
-    
     sb = ""
     for itinerary, fs in itineraryDic.items(): #fs flightSchedule
-        #try:
         sb += str(itinerary) + " " + fs['typeItinerary'] + " " + str(fs['price']) + " " + str(fs['count'])
-        #i.sort(key = lambda r: r.altDepInt) 
         _fs = fs['flightSchedule']
         _fs = np.sort(_fs, order = 'flightIndex')
         for f in _fs:
@@ -316,9 +313,7 @@ def export(flightScheduleSA, itineraryDic, minDate, path):
             else:
                 sb += " cancelled "
                 break
-        #except Exception as ex:
-            #print(ex)
-            #pdb.set_trace()   
+
         sb += "\n"
     sb += "#"
     text_file = open(path+"\\sol_itineraries.csv", "w")
