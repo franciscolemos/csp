@@ -19,6 +19,9 @@ class dtype:
     #delays
     maxDelay = {'LNS':960, 'inboundDC':1080, '1':1380, '2':1680, 'inboundI':2160} #max. available delays
     #data type for the aircraft schedule flights
+    dtypeAirc = np.dtype([('aircraft', np.unicode, 15), ('B', np.int16), ('E', np.int16), ('F', np.int16),
+        ('family', np.unicode, 15), ('hourOperatingCost', np.float), ('maintAirport', np.unicode, 3),
+        ('maintDuration', np.int16), ('maintStartInt', np.int16), ('maintEndInt', np.int16)])
     dtypeAS = np.dtype([('flight', np.unicode, 13),('idFlight', np.unicode, 5), ('date', 'datetime64[D]' ), ('origin', np.unicode, 3 ), ('depInt', np.int16), ('altDepInt', np.int16), 
         ('destination', np.unicode, 3), ('arrInt', np.int16), ('altArrInt', np.int16), ('previous', np.unicode, 5), ('tt', np.int16),
         ('delay', np.int16), ('broken', np.int8), ('cancelFlight', np.uint8)])

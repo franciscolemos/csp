@@ -6,6 +6,7 @@ from datetime import timedelta
 from recovery.dal.classesDtype import dtype as dt
 import recovery.dal.classesRoadef as ROADEF
 import recovery.actions.funcsDate as fD
+import numpy as np
 
 class readAircrafts:
     def __init__(self, path, file, minDate):
@@ -63,4 +64,21 @@ class readAircrafts:
                     aircraftDic[aircraft.aircraft]['maintDuration'] = aircraft.maintDuration
                 
                 line = fp.readline()
-        return aircraftDic
+        
+            # dtypeAirc = np.dtype([('aircraft', np.unicode, 15), ('B', np.int16), ('E', np.int16), ('F', np.int16),
+            # ('family', np.unicode, 15), ('hourOperatingCost', np.float), ('maintAirport', np.unicode, 3)]),
+            # ('maintDuration', np.int16), ('maintStartInt', np.int16), ('maintEndInt', np.int16)])
+
+            aircraftSA = np.zeros(len(aircraftDic), dt.dtypeAirc)
+            index = 0
+            for key, value in aircraftDic.items():
+                aircraftSA[index]['aircraft'] = key
+                aircraftSA[index]['maintAirport'] = value.get('maintAirport', '')
+                aircraftSA[index]['maintDuration'] = value.get('maintDuration', -1)
+                aircraftSA[index]['maintStartInt'] = value.get('maintStartInt', -1)
+                aircraftSA[index]['maintEndInt'] = value.get('maintEndInt', -1)
+                index += 1
+            
+            aircraftSA = np.sort(aircraftSA, order = 'maintAirport')[::-1]
+            
+        return aircraftDic, aircraftSA
