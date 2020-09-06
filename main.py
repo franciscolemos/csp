@@ -211,71 +211,15 @@ class ARP:
                                       
                     solution.newRotation(df.iloc[0][2], rotationOriginal[index:]) #generates the best rotation
                     
-                    
+                    ####################### start of taxi flights ###############
                     solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
                     solRot = np.sort(solRot, order = 'altDepInt')
                     originAirport = self.aircraftDic[aircraft]['originAirport']
                     initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
                     if len(initPosFeas) > 0: #infeas. init. pos.
-                        solutionUtils.wipRecover()
-                        distInitRot = self.distSA[(self.distSA['origin'] == originAirport) & (self.distSA['destination'] == solRot[0]['origin'])]
-                        distInitRot = distInitRot['dist'][0]
-                        #find airp. time slot for dep. @origin
-                        originSlots = airportDic[originAirport]
-                        originSlots = originSlots[originSlots['endInt'] < (solRot[0]['altDepInt'] - distInitRot)]
-                        originSlots = originSlots[originSlots['capDep'] > originSlots['noDep']]
-                        #find airp. time slot for arr. @dest.
-                        destSlots = airportDic[solRot[0]['origin']]
-                        destSlots = destSlots[destSlots['startInt'] < solRot[0]['altDepInt']]
-                        destSlots = destSlots[destSlots['capArr'] > destSlots['noArr']]
-
-                        otherIntervals = []
-                        i = -1; offset = -1
-                        for x in destSlots: #instatiate dest. slots
-                            otherIntervals.append(solutionUtils.interval(x['startInt'], x['endInt']))
-                        for os in originSlots:
-                            obj1 = solutionUtils.interval(os['startInt'], os['endInt']) + distInitRot #start end dist
-                            try: 
-                                i, offset = obj1.findIntersection(otherIntervals)
-                                print(i, offset, os)
-                                break
-                            except:
-                                continue
-                        if i != -1: #check if there is a taxi flight
-                            taxiFlight = np.zeros(1, dtype = dt.dtypeFS)
-                            taxiFlight[0] = copy.deepcopy(solRot[0])
-
-                            taxiFlight['origin'] = originAirport
-                            taxiFlight['depInt'] = os['startInt'] + offset #dep.
-                            taxiFlight['altDepInt'] = taxiFlight['depInt'] # alt dep.
-
-                            flightDate = int2DateTime(taxiFlight['depInt'][0], self.configDic['startDate']) #datetime when the broken period ends
-                            flightDate = flightDate.strftime('%d/%m/%y') #because the sol.checker has a bug
-                            self.maxFlight += 1
-                            flight = str(self.maxFlight) + flightDate
-
-                            taxiFlight['destination'][0] = solRot[0]['origin'] #origin of the first flight in sol. rot.
-                            taxiFlight['arrInt'] = taxiFlight['depInt'][0] + distInitRot
-                            taxiFlight['altArrInt'] = taxiFlight['arrInt'][0]
-                            taxiFlight['flight'] = flight
-                            taxiFlight['cancelFlight'] = 0
-                            taxiFlight['newFlight'] = 1
-                            taxiFlight['altAirc']  = 0
-                            taxiFlight['altFlight'] = 0
-                            rotationOriginal = np.concatenate((rotationOriginal, taxiFlight))
-                            
-                        else: #cancel the rotation
-                            print("No available taxi flight")
-                            for sr in solRot:
-                                if sr['origin'] != originAirport:
-                                    sr['cancelFlight'] = 1
-                                else:
-                                    break
-                            rotationOriginal[rotationOriginal['cancelFlight'] == 0] = solRot
-                            #import pdb; pdb.set_trace()
-
-                        print("inf. init. pos.")
-                        #import pdb; pdb.set_trace()    
+                        rotationOriginal, self.maxFlight = solutionUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
+                            rotationOriginal, self.configDic, self.maxFlight)
+                    ###################### end of taxi flights ##################
 
                     self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
                     solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
