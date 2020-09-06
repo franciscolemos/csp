@@ -49,3 +49,7 @@
             # flightOrder =  collections.OrderedDict(sorted(self.flightDic.items())) order dictionary
             # lastFlight = flightOrder.popitem()[0]
             #numpy.savetxt("foo.csv", a, delimiter=",")
+
+            #[print(key, value) for key, value in flightRanges.items()] Print a dictionary line by line using List Comprehension
+            #[value for value in arp.solutionARP.values()]
+            #solutionARP =  np.concatenate([value for value in arp.solutionARP.values()]).ravel()

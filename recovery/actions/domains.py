@@ -54,9 +54,6 @@ class flights:
         if len(feasibility.arr(_f, airportDic)) > 0:
             print("Singleton found with necessary backtracking for arr.")
             singletonList.append([f, 'arr'])
- 
-
-
 
     def ranges(self, rotation, airportDic, _noCombos = -1, delta = 1): #only complying with airp. cap.
         domains = {}
@@ -70,7 +67,7 @@ class flights:
                 if f['altDepInt'] != f['depInt']: #because it is a fixed flight
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
                     continue
-                if f['depInt'] < self.configDic['startInt']:#because it departs outside the RTW (another singleton)
+                if (f['depInt'] < self.configDic['startInt']) & (f['newFlight'] != 1):#because it departs outside the RTW (another singleton)
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
                     continue
                 if f['depInt'] > self.configDic['endInt']: #because it departs outside the RTW (another singleton)

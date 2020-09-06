@@ -6,15 +6,16 @@ import recovery.actions.funcsDate as fD
 from recovery.actions import scenario
 from datetime import datetime
 from recovery.actions import domains #domains is updated at each iteration
-import recovery.actions.dfs2 as aD #it is not necessary to import the entire package, only some modules
 from recovery.actions import feasibility
 from recovery.actions import solution
+from recovery.actions import solutionUtils
 from recovery.actions import cost
 import random
 import copy
 import time
 from itertools import product
-from recovery.dal.classesDtype import dtype as dt 
+from recovery.dal.classesDtype import dtype as dt
+from recovery.actions.funcsDate import int2DateTime
 import pandas as pd
 import collections
 
@@ -33,7 +34,7 @@ class ARP:
         self.flightDic = readFlights.readFlights(path, "flights.csv").read2Dic()  
         flightOrder =  collections.OrderedDict(sorted(self.flightDic.items())) #order dictionary
         self.maxFlight = flightOrder.popitem()[0] #get the value for the last key = max. flight
-        self.aircraftDic = readAircrafts.readAircrafts(path, "aircraft.csv", self.minDate).read2Dic()
+        self.aircraftDic, self.aircraftSA = readAircrafts.readAircrafts(path, "aircraft.csv", self.minDate).read2Dic()
         self.altAircraftDic = readAltAircraft.readAltAircraft(path, "alt_aircraft.csv", self.minDate).read2Dic()
         self.altAirportSA = readAltAirports.readAltAirport(path, "alt_airports.csv", self.minDate).read2SA() #atttrib. of SA
         self.altFlightDic = readAltFlights.readAltFlights(path, "alt_flights.csv").read2Dic()
@@ -110,6 +111,8 @@ class ARP:
             else:
                 #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
                 index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
+                #firstFlight = rotationOriginal[rotationOriginal['depInt'] >= self.configDic['startInt']][0]
+                #index = np.in1d(rotationOriginal, firstFlight).nonzero()[0]
                 return int(index), rotationOriginal #because it has to include the aircraft to export the solution
         except Exception as e:
             print("Exception initialize:", e)
@@ -128,13 +131,15 @@ class ARP:
         rotationMaint['altArrInt'][0] = self._rotationMaint['altArrInt'][0]
         return rotationMaint
 
-    def loopAircraftList(self, aircraftList, airportDic):
+    def loopAircraftList(self, aircraftList, airportDic): 
         import copy; aircraftTmpList = copy.deepcopy(aircraftList)
         solutionKpiExport = []
         noFlights = 0
         noCancelledFlights = 0
         aircraftSolList = [] #list of aircraft that have a feasibe rotation
         _noCombos = 0.1 #order of magnitude for the no. of combos
+        infAirc = []
+        feasible = -1
         while len(aircraftSolList) != len(aircraftList): #verify if the lists have the same size
             remainAirc = len(list(set(aircraftList) - set(aircraftSolList)))
             for aircraft in aircraftTmpList: #iterate through the aircraft list
@@ -195,11 +200,83 @@ class ARP:
                         df = pd.DataFrame(solutionValue)
                         df = df.sort_values(by=[0, 1], ascending=[False, True])
                     except:
-                        import pdb; pdb.set_trace()
-                        return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
+                        #import pdb; pdb.set_trace()
+                        infAirc.append([aircraft, rotationOriginal, index])
+                        print(infAirc)
+                        feasible = -2
+                        aircraftSolList.append(aircraft) 
+                        continue
+                        #return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
                         #import pdb; pdb.set_trace()
                                       
                     solution.newRotation(df.iloc[0][2], rotationOriginal[index:]) #generates the best rotation
+                    
+                    
+                    solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
+                    solRot = np.sort(solRot, order = 'altDepInt')
+                    originAirport = self.aircraftDic[aircraft]['originAirport']
+                    initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
+                    if len(initPosFeas) > 0: #infeas. init. pos.
+                        solutionUtils.wipRecover()
+                        distInitRot = self.distSA[(self.distSA['origin'] == originAirport) & (self.distSA['destination'] == solRot[0]['origin'])]
+                        distInitRot = distInitRot['dist'][0]
+                        #find airp. time slot for dep. @origin
+                        originSlots = airportDic[originAirport]
+                        originSlots = originSlots[originSlots['endInt'] < (solRot[0]['altDepInt'] - distInitRot)]
+                        originSlots = originSlots[originSlots['capDep'] > originSlots['noDep']]
+                        #find airp. time slot for arr. @dest.
+                        destSlots = airportDic[solRot[0]['origin']]
+                        destSlots = destSlots[destSlots['startInt'] < solRot[0]['altDepInt']]
+                        destSlots = destSlots[destSlots['capArr'] > destSlots['noArr']]
+
+                        otherIntervals = []
+                        i = -1; offset = -1
+                        for x in destSlots: #instatiate dest. slots
+                            otherIntervals.append(solutionUtils.interval(x['startInt'], x['endInt']))
+                        for os in originSlots:
+                            obj1 = solutionUtils.interval(os['startInt'], os['endInt']) + distInitRot #start end dist
+                            try: 
+                                i, offset = obj1.findIntersection(otherIntervals)
+                                print(i, offset, os)
+                                break
+                            except:
+                                continue
+                        if i != -1: #check if there is a taxi flight
+                            taxiFlight = np.zeros(1, dtype = dt.dtypeFS)
+                            taxiFlight[0] = copy.deepcopy(solRot[0])
+
+                            taxiFlight['origin'] = originAirport
+                            taxiFlight['depInt'] = os['startInt'] + offset #dep.
+                            taxiFlight['altDepInt'] = taxiFlight['depInt'] # alt dep.
+
+                            flightDate = int2DateTime(taxiFlight['depInt'][0], self.configDic['startDate']) #datetime when the broken period ends
+                            flightDate = flightDate.strftime('%d/%m/%y') #because the sol.checker has a bug
+                            self.maxFlight += 1
+                            flight = str(self.maxFlight) + flightDate
+
+                            taxiFlight['destination'][0] = solRot[0]['origin'] #origin of the first flight in sol. rot.
+                            taxiFlight['arrInt'] = taxiFlight['depInt'][0] + distInitRot
+                            taxiFlight['altArrInt'] = taxiFlight['arrInt'][0]
+                            taxiFlight['flight'] = flight
+                            taxiFlight['cancelFlight'] = 0
+                            taxiFlight['newFlight'] = 1
+                            taxiFlight['altAirc']  = 0
+                            taxiFlight['altFlight'] = 0
+                            rotationOriginal = np.concatenate((rotationOriginal, taxiFlight))
+                            
+                        else: #cancel the rotation
+                            print("No available taxi flight")
+                            for sr in solRot:
+                                if sr['origin'] != originAirport:
+                                    sr['cancelFlight'] = 1
+                                else:
+                                    break
+                            rotationOriginal[rotationOriginal['cancelFlight'] == 0] = solRot
+                            #import pdb; pdb.set_trace()
+
+                        print("inf. init. pos.")
+                        #import pdb; pdb.set_trace()    
+
                     self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
                     solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
                     noFlights += len(rotationOriginal[rotationOriginal['cancelFlight'] == 0])
@@ -225,17 +302,20 @@ class ARP:
         dfSolutionKpiExport = pd.DataFrame(solutionKpiExport, columns = ["aircraft", "delta1", "noFlights", "noCombos", "singletonList", "noSolutions"])
         dfSolutionKpiExport.to_csv("dfSolutionKpiExport02.csv", header = True, index = False)
 
-        return [-1]
+        return [feasible, infAirc]
+
 
     def findSolution(self):
         print("go delta1 aircraft _noCombos noAircrafts  noFlights noCancelledFlights ")
         solutionFound = [0]
-        aircraftList =  list(self.aircraftDic.keys())
+        aircraftList = self.aircraftSA['aircraft'] 
+        #aircraftList = list(self.aircraftDic.keys())
+        #import pdb; pdb.set_trace()
         go = 0
         while solutionFound[0] != -1:
             start = time.time()
             go += 1
-            aircraftList.sort()
+            #aircraftList.sort()
             #random.seed(go)
             #random.shuffle(aircraftList)
             self.solutionARP = {}
@@ -243,7 +323,7 @@ class ARP:
             solutionFound = self.loopAircraftList(aircraftList, airportDic) #airportDic will be updated
             #import pdb; pdb.set_trace()
             if solutionFound[0] == -1:
-                print("Partial solution found!!!")
+                print("Partial feasible solution found!!!")
                 solutionARP = []
                 for rotation in self.solutionARP.values(): #convert the sol. into no array
                     solutionARP.append(rotation)
@@ -273,7 +353,9 @@ class ARP:
                         #self.repair(rotationOriginal[index:], airportDic)
                 
                 self.solutionARP = self.fSNOTranspComSA
-
+            else:
+                print("Inf. sol.")
+                import pdb; pdb.set_trace()
             delta1 = time.time() - start
             print(go, delta1, solutionFound)
             #cost.total()
@@ -287,13 +369,15 @@ class ARP:
 if __name__ == "__main__":
     
     for path in paths.paths:
+
         start = time.time()
+        dataSet = path.split("/")[-1]
+        print("Dataset: ", dataSet)
         arp = ARP(path)
         # #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
-        #arp.findSolution()
-        dataSet = path.split("/")[-1]
+        arp.findSolution()
         #solution.export2CSV(arp.solutionARP, dataSet)
-        arp.solutionARP = solution.importCSV(dataSet)
+        #arp.solutionARP = solution.importCSV(dataSet)
         solution.updateItin(arp.solutionARP, arp.itineraryDic)
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
         delta1 = time.time() - start

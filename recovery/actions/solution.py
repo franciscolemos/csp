@@ -93,8 +93,8 @@ def newFlights(rotation, distSA, maxFlight, endInt, configDic):
         maxFlight += 1 #increment the maxFlight
         newFlight = cancelFlight
         dep = cancelFlight['depInt']
-        if dep < configDic['startInt']: #to prevent from c reating fixed flight (which of course are of hardly any use)
-            dep = configDic['startInt']
+        # if dep < configDic['startInt']: #to prevent from c reating fixed flight (which of course are of hardly any use)
+        #     dep = configDic['startInt']
         newFlight['depInt'] = dep - startDep + endInt + 1 #dep.
         newFlight['altDepInt'] = newFlight['depInt'] # alt dep.
 
