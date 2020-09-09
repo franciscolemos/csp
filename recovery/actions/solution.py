@@ -56,6 +56,11 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
     for cancelFlight, newFlight in zip(rotationCancel, newFlights): #loops through cancelled flights and new flights
         if index != 0: #to get the current the tt
             start = previousArr + cancelFlight['tt'] #it should be the next flight
+        
+        dist = distSA[(distSA['origin'] == cancelFlight['origin']) & (distSA['destination'] == cancelFlight['destination'])]['dist'][0]
+        if start + dist > configDic['endInt']: #to prevent flight arriving after the end of recovery period
+            continue #or break
+
         maxFlight += 1
         newFlight = cancelFlight
         newFlight['depInt'] = start #dep.
@@ -63,7 +68,6 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
         flightDate = int2DateTime(newFlight['depInt'], configDic['startDate']) #datetime when the broken period ends
         flightDate = flightDate.strftime('%d/%m/%y') #because the sol.checker has a bug
         flight = str(maxFlight) + flightDate
-        dist = distSA[(distSA['origin'] == cancelFlight['origin']) & (distSA['destination'] == cancelFlight['destination'])]['dist'][0]
         newFlight['arrInt'] = newFlight['depInt'] + dist
         newFlight['altArrInt'] = newFlight['arrInt']
         newFlight['flight'] = flight
@@ -74,7 +78,7 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
         newFlights[index] = newFlight
         previousArr = newFlight['arrInt'] #to get the arrival + tt for the next dep.
         if previousArr + newFlight['tt'] > configDic['endInt']:
-            break
+            break #or continue
         index += 1
 
     rotation[rotation['flight'] == ''] = newFlights #update the rotation; rotation[rotation['flight'] == ''] != newFlights

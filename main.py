@@ -81,6 +81,8 @@ class ARP:
                 #generates feasible solution however it is not appropriate to handle other types of disruption
                 #it is necessary to implement GA
             else: #the fligth has been cancelled
+              
+
                 rotationOriginal, self.maxFlight = solution.newFlights(rotationOriginal, self.distSA, 
                 self.maxFlight, -1, self.configDic)
         
@@ -150,8 +152,8 @@ class ARP:
                     self.solutionARP[aircraft] = rotation
                     continue
                 index, rotationOriginal  = self.initialize(aircraft, airportDic) #save a feasible rotation or return the index of inf.
+                
                 if(index != -1): #search the solution
-                    #import pdb; pdb.set_trace()
                     rotation = copy.deepcopy(rotationOriginal) #copy the original rotation 
                     fixedFlights = self.domainFlights.fixed(rotation[index:]) #find the fixed flights: disrupted and outside RTW
                     if fixedFlights.size == 0: #if there are no fixed flights
@@ -206,20 +208,22 @@ class ARP:
                         feasible = -2
                         aircraftSolList.append(aircraft) 
                         continue
-                        #return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
-                        #import pdb; pdb.set_trace()
-                                      
+
                     solution.newRotation(df.iloc[0][2], rotationOriginal[index:]) #generates the best rotation
                     
                     ####################### start of taxi flights ###############
                     solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
-                    solRot = np.sort(solRot, order = 'altDepInt')
-                    originAirport = self.aircraftDic[aircraft]['originAirport']
-                    initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
-                    if len(initPosFeas) > 0: #infeas. init. pos.
-                        rotationOriginal, self.maxFlight = solutionUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
-                            rotationOriginal, self.configDic, self.maxFlight)
+                    if len(solRot) > 0: # the rotation can have all flights cancelled
+                        solRot = np.sort(solRot, order = 'altDepInt')
+                        originAirport = self.aircraftDic[aircraft]['originAirport']
+                        initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
+                        if len(initPosFeas) > 0: #infeas. init. pos.
+                            rotationOriginal, self.maxFlight = solutionUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
+                                rotationOriginal, self.configDic, self.maxFlight)
                     ###################### end of taxi flights ##################
+                    
+                    # if aircraft == "A321#2":
+                    #     import pdb; pdb.set_trace()
 
                     self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
                     solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
@@ -231,9 +235,9 @@ class ARP:
                     solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue)])
 
                 else:
-                    rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
-                    noFlights += len(rotation[rotation['cancelFlight'] == 0] )
-                    noCancelledFlights += len(rotation[rotation['cancelFlight'] == 1])
+                    rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft] #update
+                    noFlights += len(rotation[rotation['cancelFlight'] == 0] ) #update
+                    noCancelledFlights += len(rotation[rotation['cancelFlight'] == 1]) #update
                 #import pdb; pdb.set_trace()
                 aircraftSolList.append(aircraft) #add the aircraft w/ feasible solution
                 print(aircraft, len(aircraftSolList), _noCombos)
@@ -320,7 +324,7 @@ if __name__ == "__main__":
         arp = ARP(path)
         # #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
         arp.findSolution()
-        #solution.export2CSV(arp.solutionARP, dataSet)
+        solution.export2CSV(arp.solutionARP, dataSet)
         #arp.solutionARP = solution.importCSV(dataSet)
         solution.updateItin(arp.solutionARP, arp.itineraryDic)
         solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)

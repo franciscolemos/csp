@@ -38,6 +38,8 @@ Connection time not respected between flight 4596 and flight 4591 on itinerary 1
 Connection time not respected between flight 4596 and flight 4591 on itinerary 1536
 Connection time not respected between flight 4599 and flight 2662 on itinerary 1538
 Connection time not respected between flight 4602 and flight 4569 on itinerary 1562
+Connection time not respected between flight 4630 and flight 4637 on itinerary 1609
+Connection time not respected between flight 4630 and flight 4637 on itinerary 1611
 Connection time not respected between flight 4679 and flight 4276 on itinerary 1728
 Connection time not respected between flight 4723 and flight 4676 on itinerary 1775
 Connection time not respected between flight 4837 and flight 3076 on itinerary 1824

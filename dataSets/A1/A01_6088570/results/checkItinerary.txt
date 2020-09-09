@@ -18,10 +18,6 @@ Connection time not respected between flight 4599 and flight 2655 on itinerary 1
 Connection time not respected between flight 4599 and flight 2655 on itinerary 104
 Connection time not respected between flight 4238 and flight 1377 on itinerary 135
 Connection time not respected between flight 146 and flight 4587 on itinerary 306
-Connection time not respected between flight 148 and flight 4629 on itinerary 310
-Connection time not respected between flight 148 and flight 4629 on itinerary 312
-Connection time not respected between flight 2643 and flight 4630 on itinerary 343
-Connection time not respected between flight 2643 and flight 4630 on itinerary 345
 Connection time not respected between flight 150 and flight 4591 on itinerary 429
 Connection time not respected between flight 2625 and flight 4594 on itinerary 482
 Connection time not respected between flight 2625 and flight 4594 on itinerary 484
@@ -50,6 +46,7 @@ Connection time not respected between flight 2908 and flight 4421 on itinerary 1
 Connection time not respected between flight 2908 and flight 4421 on itinerary 1113
 Connection time not respected between flight 4202 and flight 4319 on itinerary 1132
 Connection time not respected between flight 4202 and flight 4319 on itinerary 1134
+Connection time not respected between flight 4630 and flight 4499 on itinerary 1172
 Connection time not respected between flight 150 and flight 4637 on itinerary 1200
 Connection time not respected between flight 5125 and flight 5093 on itinerary 1265
 Connection time not respected between flight 5125 and flight 5093 on itinerary 1267
@@ -57,4 +54,6 @@ Connection time not respected between flight 3000 and flight 2867 on itinerary 1
 Connection time not respected between flight 4723 and flight 4703 on itinerary 1680
 Connection time not respected between flight 4723 and flight 4703 on itinerary 1682
 Connection time not respected between flight 4723 and flight 4703 on itinerary 1683
+Connection time not respected between flight 4630 and flight 4533 on itinerary 1709
 Connection time not respected between flight 2903 and flight 4534 on itinerary 1866
+Connection time not respected between flight 4630 and flight 4533 on itinerary 1874
