@@ -1,6 +1,6 @@
 import datetime
 
-maxDelay = 960
+maxDelay = 960 + 60
 deltaT = 60
 
 configDic = {'endDate': datetime.datetime(2008, 3, 3, 0, 0),
