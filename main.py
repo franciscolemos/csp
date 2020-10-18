@@ -18,7 +18,7 @@ from recovery.dal.classesDtype import dtype as dt
 from recovery.actions.funcsDate import int2DateTime
 import pandas as pd
 import collections
-
+import sys
 class ARP:
     def __init__(self, path):
         self.solution = {}
@@ -140,7 +140,6 @@ class ARP:
         noCancelledFlights = 0
         aircraftSolList = [] #list of aircraft that have a feasibe rotation
         _noCombos = 0.1 #order of magnitude for the no. of combos
-        maxCombos = 1 * 10 ** 8
         infAirc = []
         feasible = -1
         while len(aircraftSolList) != len(aircraftList): #verify if the lists have the same size
@@ -163,16 +162,10 @@ class ARP:
                         movingFlights = np.setdiff1d(rotation[index:], fixedFlights) 
                     airpCapCopy = copy.deepcopy(airportDic) #copy the airp. cap. solution
                      #flight ranges and combinations only for moving flight after disruption index with updated airp. cap. for fixed flights
-                    flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
+                    flightRanges, noCombos, singletonList = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
                     
-
-
                     if noCombos == -1: #excssive no. combos
-                        if totalCombos > maxCombos:
-                            #import pdb; pdb.set_trace()
-                            continue #resume next aircraft
-                        else:
-                            continue #resume next aircraft
+                        continue #resume next aircraft
    
                     while len(singletonList) >= 1: #[(flight, 'dep')]
                         #import pdb; pdb.set_trace()
@@ -185,7 +178,7 @@ class ARP:
                             airportDic = copy.deepcopy(airpCapCopy) #update airportDic
                             aircraftSolList = list(set(aircraftSolList) - set([airc2Cancel])) #remove the aircraft from aircraftSolList
                             rotationPop = self.solutionARP.pop(airc2Cancel, None) #remove the rotation from self.solutionARP
-                            flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
+                            flightRanges, noCombos, singletonList = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
 
                     start = time.time()
 
@@ -257,7 +250,8 @@ class ARP:
         dfSolutionKpiExport = pd.DataFrame(solutionKpiExport, columns = ["aircraft", "delta1", "noFlights", "noCombos", "singletonList", "noSolutions"])
         dfSolutionKpiExport.to_csv("dfSolutionKpiExport02.csv", header = True, index = False)
 
-        return [-1, infAirc]
+        return [feasible, infAirc]
+
 
     def findSolution(self):
         print("go delta1 aircraft _noCombos noAircrafts  noFlights noCancelledFlights ")
@@ -290,7 +284,7 @@ class ARP:
                     index, rotationOriginal = self.initialize(aircraft, airportDic, 0, False)
                     if(index != -1):
                         print('infeasible partial solution')
-                        import pdb; pdb.set_trace()
+                        #import pdb; pdb.set_trace()
                         fixedFlights = self.domainFlights.fixed(rotationOriginal[index])
                         if fixedFlights['flight'] == rotationOriginal[index]['flight']:
                             continue
@@ -320,19 +314,12 @@ class ARP:
             flight['cancelFlight'] = 1
         solution.airpCapRemove(rotation, airportDic) #remove the remaining part of the rotation
 
-import sys
-
-def main(argv):
-    try:
-        argv1 = sys.argv[1]
-    except getopt.GetoptError:
-        print('main.py <inputfile>')
-        sys.exit(2)
-    return argv1 
-
 if __name__ == "__main__":
     start = time.time()
-    path = main(sys.argv[1:])
+    try:
+         path = sys.argv[1]
+    except:
+        path = paths.paths[0]
     dataSet = path.split("/")[-1]
     print("Dataset: ", dataSet)
     arp = ARP(path)

@@ -1,0 +1,10 @@
+start cmd.exe /c python main.py dataSets/A1/A05_6088570
+start cmd.exe /c python main.py dataSets/A2/A10_6088590
+start cmd.exe /c python main.py dataSets/B1/B_04
+start cmd.exe /c python main.py dataSets/B2/B_09
+start cmd.exe /c python main.py dataSets/X/X01_DATA
+start cmd.exe /c python main.py dataSets/X/X02_DATA
+start cmd.exe /c python main.py dataSets/X/X03_DATA
+start cmd.exe /c python main.py dataSets/X/X04_DATA
+start cmd.exe /c python main.py dataSets/X/XA01_DATA
+start cmd.exe /c python main.py dataSets/X/XA03_DATA

@@ -73,7 +73,6 @@ Connection time not respected between flight 5799 and flight 6890 on itinerary 1
 Connection time not respected between flight 5833 and flight 6882 on itinerary 1794
 Connection time not respected between flight 5833 and flight 6882 on itinerary 1795
 Connection time not respected between flight 5833 and flight 6884 on itinerary 1796
-Connection time not respected between flight 5833 and flight 6912 on itinerary 1797
 Connection time not respected between flight 5833 and flight 6931 on itinerary 1798
 Connection time not respected between flight 6885 and flight 5838 on itinerary 1855
 Connection time not respected between flight 6895 and flight 7064 on itinerary 1879
@@ -184,7 +183,6 @@ Connection time not respected between flight 5794 and flight 4372 on itinerary 4
 Connection time not respected between flight 5833 and flight 5688 on itinerary 4142
 Connection time not respected between flight 5833 and flight 6882 on itinerary 4143
 Connection time not respected between flight 5833 and flight 6884 on itinerary 4144
-Connection time not respected between flight 5833 and flight 6912 on itinerary 4145
 Connection time not respected between flight 6885 and flight 5838 on itinerary 4196
 Connection time not respected between flight 6895 and flight 6992 on itinerary 4217
 Connection time not respected between flight 6895 and flight 7064 on itinerary 4219
