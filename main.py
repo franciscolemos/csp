@@ -1,4 +1,14 @@
-# Using a Python dictionary to act as an adjacency list
+"""
+Algorithm
+====================================
+
+Abstract
+_________
+
+In this project we present a novel approach to recover disruption in commercial aviation. We use the ROADEF 2009 Challenge flight rotation and the current model finds soltions for the disrupted rotations. The model is decomposed into the aircraft recovery problem (ARP) and the passenger recovery problem (PRP). In the ARP we combine constraint satisfaction programming and a genetic algorithm to find an initial feasible solutions. In the PRP we use the shortest path to reallocate passengers to aircraft with available seating capacity to fly them for the place they are stranded to their destination.
+
+"""
+
 import sys
 from recovery.actions import solution
 import pdb

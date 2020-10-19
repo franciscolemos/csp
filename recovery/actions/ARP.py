@@ -1,3 +1,20 @@
+"""
+Aircraft recovery problem (ARP) algorithm
+==========================================
+
+Abstract
+_________
+
+The ARP.py files is the main file to find solutions for the ARP. this is where all the logic is stored. Initially the module loads the data for aircraft, airport capacity, congigurations for the recovery time window, distances, flight schedules, aircraft rotation, itineraries, aircraft position and disruptions. After the data is loaded a set of data structures are created in order to determine for each aircraft if its rotation is feasible. If the aircraft's rotation is feasible it is added to the ARP solution and airport capacity is updated.
+
+If the aircraft's rotation is infeasible, the model will use an algorithm to find the airport time slots with available departure and arrival capacity for each of the flights of the aircraft rotation. The result of the latter is a a set of vectors, whose cross product will determine the search space to find a solution. Each search space size is compared with the size with a limit value starting at 10,000 combinations. If the search space is wthin the limit the algorithm will find all the feasible solutions for the infeasible aircraft rotation and accept the one that has least flight cancellations followed by the least amount of delay.
+
+The previous paragraphs describe constraint satisfaction programming (CSP). By first inserting the feasible aircraft rotations, we will reduce the airport capacity, which in turn will reduce the search space to find feasible domains for the infeasible aircraft rotation flights.
+
+On the other hand, if the search space is graeter than the limit value the algorithm continues to the next aircraft rotation. After lopping through all the aircraft the limit value for the search spece size is increase by 10,000. When the limit value is graeter than 80,000 we use a genetic algorithm to find feasible solutions in a reasonable computing time. From the set of feasible solutions obtained the algorithm will accept the best, using the same criteria followed by CSP 
+Finally, after finding feasible solutions for all the aircraft rotations the ARP algorithm terminates.
+
+"""
 from recovery.repositories import *
 import collections
 from datetime import datetime
@@ -20,7 +37,32 @@ from recovery.actions.funcsDate import int2DateTime
 
 
 class ARP:
+    """ """
     def __init__(self, path):
+        """
+
+        Args:
+            path (str): Path to the data set
+        
+        Attributes:
+            flightRotationDic(dict): flight aircraft
+            minDate(datetime.datetime): Date of the first day starting at 00:00
+            configDic(dict): configuration data for data instance
+            aircraftRotationDic(dict): aircraft and respective flights
+            flightDic(dict): flightnumber and the respective origin, destination departure and arrival times
+            maxFlight(int): flight number maximum value 
+            aircraftDic(dict):
+            aircraftSA():
+            altAircraftDic(dict):
+            altAirportSA():
+            altFlightDic(dict):
+            distSA():
+            aircraftScheduleDic():
+            flightScheduleSA():
+            fSNOTranspComSA():
+            airportOriginaltDic():
+
+        """
         self.solution = {}
         self.visited = [] # Array to keep track of visited nodes.
         self.criticalFlight = []
@@ -55,7 +97,7 @@ class ARP:
         noDays = fD.dateDiffDays(maxDate, self.minDate) + 1 # + 1 day for arr. next()
         self.fSNOTranspComSA = self.flightScheduleSA[self.flightScheduleSA['family'] != "TranspCom"]
         self.airportOriginaltDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
-
+        import pdb; pdb.set_trace()
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportOriginaltDic),
                     len(self.itineraryDic),
                     #-1,
@@ -67,12 +109,21 @@ class ARP:
         self.solutionARP = {}
 
     def initialize(self, aircraft, airportDic, delta = 1, saveAirportCap = True): #check if the roation is feasible
-        rotationOriginal = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
+        """
+        This method retrieves the rotation for the specific aircraft. It afterwards checks if there are any flight slots  available to create new flights to counter the effect of disruption cause by flight cancellation or aircraft broken periods. In the case of flight creation, a new rotation is created to replaces the original one and the maximum flight number is updated.
 
+        The algorithm then follows by filtering the aircraft rotation so that it only has flight that are not cancelled and saving it to a temporary aircraft rotation. This aircraft rotation is sorted by departure time (the latter already considers the delays induced by disruption) and its continuity and transit time feasibility is checked. Maintenance is added to the aircraft rotation in the form of satic flight and feasibility is checked. The last feasibility checks regard airport departure and arrival capacity. For each of the feasibility checks the index of every infeasibility is recorded.
+
+
+        Args:
+            aircraft (str): Aircraft whose rotation is to be evaluated for feasibility
+
+        """
+        rotationOriginal = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
         #rotationOriginal = rotationOriginal[rotationOriginal['flight']!= ''] #remove created flights
         if len(rotationOriginal[rotationOriginal['flight'] == '']):
-            aircDisr =  self.altAircraftDic.get(aircraft, None) #check if the airc. has broke period
-            if aircDisr != None: #check if the airc. has broke period
+            aircDisr =  self.altAircraftDic.get(aircraft, None) #check if the airc. has broken period
+            if aircDisr != None: #check if the airc. has broken period
                 rotationOriginal, self.maxFlight = solution.newAircraftFlights(rotationOriginal, self.distSA, 
                 self.maxFlight, aircDisr['endInt'], self.configDic) #create new flights and update self.maxFlight
                 solution.verifyNullFlights(rotationOriginal)#verify if there are any null flights
@@ -81,8 +132,6 @@ class ARP:
                 #generates feasible solution however it is not appropriate to handle other types of disruption
                 #it is necessary to implement GA
             else: #the fligth has been cancelled
-              
-
                 rotationOriginal, self.maxFlight = solution.newFlights(rotationOriginal, self.distSA, 
                 self.maxFlight, -1, self.configDic)
         
@@ -134,6 +183,15 @@ class ARP:
         return rotationMaint
 
     def loopAircraftList(self, aircraftList, airportDic): 
+        """
+        This method loops through  the aircraft list. If the aircraft's rotation is feasible, it is added to the solution and the airport capacity is updated. If not then starting from the flight where the infeasibility lies, the algorithm tries to find the domains for each of the flights, the number of combinations and the list of singletons. The domains, consist of a set of vectors with time slots where there is available airport departure and arrival capacity. The number of  combinations consists consists of the number of rows resulting from the cross product of the vectors. A singleton consists of a flight that has domain of zero.
+
+
+        Args:
+            aircraftList (list<str>): Aircraft list
+            airportDic(dict): Dictionary with the capacity for departures and arrivals for every airport 
+
+        """
         import copy; aircraftTmpList = copy.deepcopy(aircraftList)
         solutionKpiExport = []
         noFlights = 0
