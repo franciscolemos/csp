@@ -100,6 +100,7 @@ class initialize:
                 self.aircraftScheduleDic[aircraft] = flightSchedule
             else:    
                 self.aircraftScheduleDic[aircraft] = tmpFlightSchedule
+        return self.aircraftScheduleDic
     def flightSchedule(self): #for the purpose of calculating no. dep. and no. arr.
         self.flightScheduleSA = np.zeros(self.noFlights, self.dtypeFS) #initialize the struct. array
         i = 0
@@ -121,3 +122,4 @@ class initialize:
                 self.flightScheduleSA[i]['newFlight'] = 0
                 self.flightScheduleSA[i]['cancelFlight'] = flight['cancelFlight']
                 i += 1
+        return self.flightScheduleSA 

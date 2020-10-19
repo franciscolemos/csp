@@ -83,10 +83,8 @@ class ARP:
         self.distSA = readDist.readDist(path, "dist.csv").read2SA()
         i = schedules.initialize(self.aircraftRotationDic, self.altAircraftDic, self.altFlightDic, 
             self.aircraftDic, self.flightDic, path, self.minDate)
-        i.aircraftSchedule() #included flight and aircr. disr. and, maint. {aircraft:flightSA}
-        self.aircraftScheduleDic = i.aircraftScheduleDic #1 aircraft to n flights
-        i.flightSchedule()
-        self.flightScheduleSA = i.flightScheduleSA #all the flights + room to un-cancel flights for airport cap. purpose
+        self.aircraftScheduleDic = i.aircraftSchedule() #included flight and aircr. disr. and, maint. {aircraft:flightSA} #1 aircraft to n flights
+        self.flightScheduleSA = i.flightSchedule() #all the flights + room to un-cancel flights for airport cap. purpose
         self.itineraryDic = readItineraries.readItineraries(path,"itineraries.csv").read2Dic()
         #determine the planning horizon
         endDateTime = datetime.combine(datetime.date(self.configDic['endDate']),
