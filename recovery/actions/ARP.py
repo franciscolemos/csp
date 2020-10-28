@@ -95,7 +95,7 @@ class ARP:
         noDays = fD.dateDiffDays(maxDate, self.minDate) + 1 # + 1 day for arr. next()
         self.fSNOTranspComSA = self.flightScheduleSA[self.flightScheduleSA['family'] != "TranspCom"]
         self.airportOriginaltDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportOriginaltDic),
                     len(self.itineraryDic),
                     #-1,
@@ -218,9 +218,13 @@ class ARP:
                         movingFlights = np.setdiff1d(rotation[index:], fixedFlights) 
                     airpCapCopy = copy.deepcopy(airportDic) #copy the airp. cap. solution
                      #flight ranges and combinations only for moving flight after disruption index with updated airp. cap. for fixed flights
-                    flightRanges, noCombos, singletonList = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
+                    flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
                     
                     if noCombos == -1: #excssive no. combos
+                        #import pdb; pdb.set_trace()
+                        #if totalCombos > 10**5:
+                        from recovery.actions import ga
+
                         continue #resume next aircraft
    
                     while len(singletonList) >= 1: #[(flight, 'dep')]
@@ -234,7 +238,7 @@ class ARP:
                             airportDic = copy.deepcopy(airpCapCopy) #update airportDic
                             aircraftSolList = list(set(aircraftSolList) - set([airc2Cancel])) #remove the aircraft from aircraftSolList
                             rotationPop = self.solutionARP.pop(airc2Cancel, None) #remove the rotation from self.solutionARP
-                            flightRanges, noCombos, singletonList = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
+                            flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
 
                     start = time.time()
 
@@ -246,7 +250,7 @@ class ARP:
                     flightCombinations = product(*flightRanges.values()) #find all the combinations
                     solutionValue = [] #initializes the solution value for later appraisal
 
-                    for combo in flightCombinations: #loop through the possible combinations
+                    for combo in np.array(list(flightCombinations)): #loop through the possible combinations
                         allConstraints = feasibility.allConstraints(rotationOriginal, combo, index
                         , movingFlights, fixedFlights, airpCapCopy, self._rotationMaint, rotationMaint) #check the sol. feas.
                         if allConstraints == -1:
