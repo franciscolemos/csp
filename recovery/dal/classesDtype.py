@@ -1,5 +1,12 @@
 import numpy as np
 
+class gaType:
+    WEIGHTS = (-1.0, 1.0, -1.0) # fitness weights
+    NO_GER = 3000 #no. gen.
+    TOURN_SIZE = 2 #tourn. size
+    IND_SIZE = 10 #size of the pop.
+    CXPB = 0.5 #CXPB  is the probability with which two individuals are crossed
+    MUTPB = 0.3 # MUTPB is the probability for mutating an individual
 class dtype:
     fmtDate = '%d/%m/%y'
     fmtTime = '%H:%M'

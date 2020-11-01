@@ -222,10 +222,22 @@ class ARP:
                     
                     if noCombos == -1: #excssive no. combos
                         #import pdb; pdb.set_trace()
-                        #if totalCombos > 10**5:
-                        from recovery.actions import ga
+                        #continue
+                        if totalCombos < 10**5:
+                            from recovery.actions import ga
+                            gaImp = ga.improvement(flightRanges, rotationOriginal, index)
+                            combo = gaImp.main()[0] #feasible sol.
+                            #check the sol. feas.
+                            rotationMaint = []
+                            if len(self._rotationMaint) > 0:
+                                rotationMaint = self.addMaint(aircraft) #creates the maint to be later added to the rotation
+                            allConstraints = feasibility.allConstraints(rotationOriginal, combo, index
+                                            , movingFlights, fixedFlights, airpCapCopy, 
+                                            self._rotationMaint, rotationMaint) #check the sol. feas.
 
-                        continue #resume next aircraft
+                            import pdb; pdb.set_trace()
+                        else:
+                            continue #resume next aircraft
    
                     while len(singletonList) >= 1: #[(flight, 'dep')]
                         #import pdb; pdb.set_trace()

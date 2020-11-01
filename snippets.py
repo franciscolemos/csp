@@ -53,3 +53,38 @@
             #[print(key, value) for key, value in flightRanges.items()] Print a dictionary line by line using List Comprehension
             #[value for value in arp.solutionARP.values()]
             #solutionARP =  np.concatenate([value for value in arp.solutionARP.values()]).ravel()
+
+            # def evaluate(self):
+            #     fitness = []
+            #     for individual in self.pop:
+            #         rotation = copy.deepcopy(self.rotationOriginal) #keep a copy of the original because of new rotation
+            #         #import pdb; pdb.set_trace()
+            #         solution.newRotation(individual[0], rotation[self.index:]) #add the combo to the rotation
+            #         rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
+            #         rotationCopy = np.sort(rotationCopy, order = 'altDepInt')
+            #         sizeInfCont = len(feasibility.continuity(rotationCopy))
+            #         sizeInfTT = len(feasibility.TT(rotationCopy))
+                
+            #         noInf = sizeInfCont + sizeInfTT
+            #         noCancel = sum([i for i in individual[0] if i == -1])
+            #         delay = sum([i for i in individual[0] if i != -1])
+            #         fitness.append([noInf, noCancel, delay])
+            #     return fitness
+
+            # offspring[::2] group every 2 elem. start at index 0 pick first
+            # offspring[1::2] group every 2 elem. start at index 1 pick first
+
+            # print("Before")
+            # for ind in self.pop:
+            #     print(ind, ind.fitness)
+
+            # self.pop.sort(key = lambda x: x.fitness, reverse =True)
+            
+            # print("After")
+            # for ind in self.pop:
+            #     print(ind, ind.fitness)
+
+            # print("init. sol.")
+            # fits = [ind.fitness.values for ind in self.pop]
+            # pprint.pprint(self.pop)
+            # pprint.pprint(fits)

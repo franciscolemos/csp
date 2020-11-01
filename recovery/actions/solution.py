@@ -208,6 +208,7 @@ def newRotation(combo, rotation): #create rotation based on combo
     verifyNewRotation(combo, rotation[rotation['cancelFlight'] == 0]) #compare the size of the combo w/ rotation without disr.
     notCancel = rotation[rotation['cancelFlight'] == 0] #remove disr. flight
     for delay, flight in zip(combo, notCancel):
+        #import pdb; pdb.set_trace()
         if delay == -1: #cancel the flight
             flight['cancelFlight'] = 1
         else:
