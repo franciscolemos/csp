@@ -34,7 +34,7 @@ from recovery.actions import solutionUtils
 from recovery.actions import cost
 import random
 from recovery.actions.funcsDate import int2DateTime
-
+from recovery.actions import ARPUtils
 
 class ARP:
     """ """
@@ -168,17 +168,23 @@ class ARP:
             import pdb; pdb.set_trace()
         #visualize the graphs
     
-    def addMaint(self, aircraft):
-        rotationMaint = np.zeros(1, dt.dtypeFS)
-        rotationMaint['aircraft'][0] = aircraft
-        rotationMaint['flight'][0] = 'm'
-        rotationMaint['origin'][0] = self._rotationMaint['origin'][0]
-        rotationMaint['depInt'][0] = self._rotationMaint['depInt'][0]
-        rotationMaint['altDepInt'][0] = self._rotationMaint['altDepInt'][0]
-        rotationMaint['destination'][0] = self._rotationMaint['destination'][0]
-        rotationMaint['arrInt'][0] = self._rotationMaint['arrInt'][0]
-        rotationMaint['altArrInt'][0] = self._rotationMaint['altArrInt'][0]
-        return rotationMaint
+    # def addMaint(self, aircraft):
+    #     """
+    #     Add aircraft maintenance to the flight schedule
+        
+    #     Args:
+    #         aircraftList (list<str>): Aircraft list
+    #     """ 
+    #     rotationMaint = np.zeros(1, dt.dtypeFS)
+    #     rotationMaint['aircraft'][0] = aircraft
+    #     rotationMaint['flight'][0] = 'm'
+    #     rotationMaint['origin'][0] = self._rotationMaint['origin'][0]
+    #     rotationMaint['depInt'][0] = self._rotationMaint['depInt'][0]
+    #     rotationMaint['altDepInt'][0] = self._rotationMaint['altDepInt'][0]
+    #     rotationMaint['destination'][0] = self._rotationMaint['destination'][0]
+    #     rotationMaint['arrInt'][0] = self._rotationMaint['arrInt'][0]
+    #     rotationMaint['altArrInt'][0] = self._rotationMaint['altArrInt'][0]
+    #     return rotationMaint
 
     def loopAircraftList(self, aircraftList, airportDic): 
         """
@@ -222,23 +228,21 @@ class ARP:
                     
                     if noCombos == -1: #excssive no. combos
                         #import pdb; pdb.set_trace()
-                        #continue
-                        if totalCombos < 10**5:
-                            from recovery.actions import ga
-                            gaImp = ga.improvement(flightRanges, rotationOriginal, index)
-                            combo = gaImp.main()[0] #feasible sol.
-                            #check the sol. feas.
-                            rotationMaint = []
-                            if len(self._rotationMaint) > 0:
-                                rotationMaint = self.addMaint(aircraft) #creates the maint to be later added to the rotation
-                            allConstraints = feasibility.allConstraints(rotationOriginal, combo, index
-                                            , movingFlights, fixedFlights, airpCapCopy, 
-                                            self._rotationMaint, rotationMaint) #check the sol. feas.
+                        continue
+                        # if (totalCombos < 10**5) & (len(self._rotationMaint) == 0):
+                        #     from recovery.actions import ga
+                        #     gaImp = ga.improvement(flightRanges, rotationOriginal, index)
+                        #     combo = gaImp.main()[0] #feasible sol.
+                        #     #check the sol. feas.
+                        #     rotationMaint = []
+                        #     allConstraints = feasibility.allConstraints(rotationOriginal, combo, index
+                        #                     , movingFlights, fixedFlights, airpCapCopy, 
+                        #                     self._rotationMaint, rotationMaint) #check the sol. feas.
 
-                            import pdb; pdb.set_trace()
-                        else:
-                            continue #resume next aircraft
-   
+                        #     import pdb; pdb.set_trace()
+                        # else:
+                        #     continue #resume next aircraft
+                    ############## start loop until all singletons removed ###########
                     while len(singletonList) >= 1: #[(flight, 'dep')]
                         #import pdb; pdb.set_trace()
                         airc2Cancel = solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) 
@@ -251,6 +255,7 @@ class ARP:
                             aircraftSolList = list(set(aircraftSolList) - set([airc2Cancel])) #remove the aircraft from aircraftSolList
                             rotationPop = self.solutionARP.pop(airc2Cancel, None) #remove the rotation from self.solutionARP
                             flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
+                    ############## end loop until all singletons removed ###########
 
                     start = time.time()
 
@@ -258,7 +263,7 @@ class ARP:
                     
                     rotationMaint = []
                     if len(self._rotationMaint) > 0:
-                        rotationMaint = self.addMaint(aircraft) #creates the maint to be later added to the rotation
+                        rotationMaint = ARPUtils.addMaint(aircraft) #creates the maint to be later added to the rotation
                     flightCombinations = product(*flightRanges.values()) #find all the combinations
                     solutionValue = [] #initializes the solution value for later appraisal
 
