@@ -29,8 +29,6 @@ from recovery.actions import solution
 from itertools import product
 import pandas as pd
 from recovery.dal.classesDtype import dtype as dt
-
-from recovery.actions import solutionUtils
 from recovery.actions import cost
 import random
 from recovery.actions.funcsDate import int2DateTime
@@ -122,15 +120,15 @@ class ARP:
         if len(rotationOriginal[rotationOriginal['flight'] == '']):
             aircDisr =  self.altAircraftDic.get(aircraft, None) #check if the airc. has broken period
             if aircDisr != None: #check if the airc. has broken period
-                rotationOriginal, self.maxFlight = solution.newAircraftFlights(rotationOriginal, self.distSA, 
+                rotationOriginal, self.maxFlight = ARPUtils.newAircraftFlights(rotationOriginal, self.distSA, 
                 self.maxFlight, aircDisr['endInt'], self.configDic) #create new flights and update self.maxFlight
-                solution.verifyNullFlights(rotationOriginal)#verify if there are any null flights
+                feasibility.verifyNullFlights(rotationOriginal)#verify if there are any null flights
 
                 #consider using available airc.
                 #generates feasible solution however it is not appropriate to handle other types of disruption
                 #it is necessary to implement GA
             else: #the fligth has been cancelled
-                rotationOriginal, self.maxFlight = solution.newFlights(rotationOriginal, self.distSA, 
+                rotationOriginal, self.maxFlight = ARPUtils.newFlights(rotationOriginal, self.distSA, 
                 self.maxFlight, -1, self.configDic)
         
         rotation = rotationOriginal[(rotationOriginal['cancelFlight'] == 0) ] #only flying flights
@@ -168,28 +166,9 @@ class ARP:
             import pdb; pdb.set_trace()
         #visualize the graphs
     
-    # def addMaint(self, aircraft):
-    #     """
-    #     Add aircraft maintenance to the flight schedule
-        
-    #     Args:
-    #         aircraftList (list<str>): Aircraft list
-    #     """ 
-    #     rotationMaint = np.zeros(1, dt.dtypeFS)
-    #     rotationMaint['aircraft'][0] = aircraft
-    #     rotationMaint['flight'][0] = 'm'
-    #     rotationMaint['origin'][0] = self._rotationMaint['origin'][0]
-    #     rotationMaint['depInt'][0] = self._rotationMaint['depInt'][0]
-    #     rotationMaint['altDepInt'][0] = self._rotationMaint['altDepInt'][0]
-    #     rotationMaint['destination'][0] = self._rotationMaint['destination'][0]
-    #     rotationMaint['arrInt'][0] = self._rotationMaint['arrInt'][0]
-    #     rotationMaint['altArrInt'][0] = self._rotationMaint['altArrInt'][0]
-    #     return rotationMaint
-
     def loopAircraftList(self, aircraftList, airportDic): 
         """
         This method loops through  the aircraft list. If the aircraft's rotation is feasible, it is added to the solution and the airport capacity is updated. If not then starting from the flight where the infeasibility lies, the algorithm tries to find the domains for each of the flights, the number of combinations and the list of singletons. The domains, consist of a set of vectors with time slots where there is available airport departure and arrival capacity. The number of  combinations consists consists of the number of rows resulting from the cross product of the vectors. A singleton consists of a flight that has domain of zero.
-
 
         Args:
             aircraftList (list<str>): Aircraft list
@@ -259,16 +238,18 @@ class ARP:
 
                     start = time.time()
 
-                    solution.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
+                    feasibility.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
                     
                     rotationMaint = []
                     if len(self._rotationMaint) > 0:
-                        rotationMaint = ARPUtils.addMaint(aircraft) #creates the maint to be later added to the rotation
+                        rotationMaint = ARPUtils.addMaint(aircraft, self._rotationMaint) #creates the maint to be later added to the rotation
                     flightCombinations = product(*flightRanges.values()) #find all the combinations
                     solutionValue = [] #initializes the solution value for later appraisal
-
-                    for combo in np.array(list(flightCombinations)): #loop through the possible combinations
-                        allConstraints = feasibility.allConstraints(rotationOriginal, combo, index
+                    solutions = np.array(list(flightCombinations))
+                    bestSol = solutions[0] #init. best sol.
+                    for combo in solutions: #loop through the possible combinations
+                        #dominance
+                        allConstraints = ARPUtils.allConstraints(rotationOriginal, combo, index
                         , movingFlights, fixedFlights, airpCapCopy, self._rotationMaint, rotationMaint) #check the sol. feas.
                         if allConstraints == -1:
                             continue
@@ -295,12 +276,9 @@ class ARP:
                         originAirport = self.aircraftDic[aircraft]['originAirport']
                         initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
                         if len(initPosFeas) > 0: #infeas. init. pos.
-                            rotationOriginal, self.maxFlight = solutionUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
+                            rotationOriginal, self.maxFlight = ARPUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
                                 rotationOriginal, self.configDic, self.maxFlight)
                     ###################### end of taxi flights ##################
-                    
-                    # if aircraft == "A321#2":
-                    #     import pdb; pdb.set_trace()
 
                     self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
                     solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)

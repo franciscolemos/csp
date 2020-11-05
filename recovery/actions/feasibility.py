@@ -7,6 +7,7 @@ from numpy import array
 import numpy as np
 from pprint import pprint
 import pandas as pd
+import pdb
 
 def previous(flightSchedule):
     previousList = flightSchedule[(flightSchedule['previous'] != '0') & (flightSchedule['previous'] != '')] #because of created flights
@@ -30,6 +31,7 @@ def TT(flightSchedule):
     if len(index) > 2:
         import pdb; pdb.set_trace()
     return np.asarray(index).flatten() + 1 #the problem is on the next row in the original rotation
+
 def maint(flightSchedule):
     
     maintStart = flightSchedule[flightSchedule['flight'] == 'm']['altDepInt'][0]
@@ -107,31 +109,42 @@ def initialPosition(flightSchedule, aircOrigin):
     if flightSchedule['origin'] != aircOrigin:
         return [0]
     return []
-def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, airpCapCopy, _rotationMaint, rotationMaint):
-    rotation = copy.deepcopy(rotationOriginal) #keep a copy of the original because of new rotation
-    solution.newRotation(combo, rotation[index:]) #add the combo to the rotation
-    solution.verifyCombo(combo, rotation, index) #compare the size of combo w/ rotation
-    solution.verifyRotation(rotation, movingFlights, fixedFlights, index) #compare rotation size w/ ...
-    rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
-    #add the initial position to the rotation
-    rotationCopy = np.sort(rotationCopy, order = 'altDepInt')
-    
-    if len(continuity(rotationCopy)) > 0: #only flights not cancelled in the copy
-        return -1 #cont.
-    if len(TT(rotationCopy)) > 0: #only flights not cancelled in the copy
-        return -1
 
-    if (len(dep(rotationCopy, airpCapCopy)) > 0) | (len(arr(rotationCopy, airpCapCopy)) > 0):
-        import pdb; pdb.set_trace()
-        return -2                    
-    if len(rotation[(rotation['previous'] != '0') & (rotation['previous'] != '')]) > 0: # because previous flight exist
-        if len(previous(rotation)) > 0:
-            return -1
+def verifyNullFlights(rotation): #verify if there are any null flights
+    if(len(rotation[rotation['flight'] == '']) > 0):
+        print("Null flights in the rotation verify NullFlights@solution.py")
+        pdb.set_trace()
 
-    if (len(_rotationMaint) > 0):
-        rotationMaintConcat = np.concatenate((rotationCopy, rotationMaint))
-        rotationMaintConcat = np.sort(rotationMaintConcat, order = 'altDepInt')
-        infMaintList = maint(rotationMaintConcat)
-        if len(infMaintList) > 0:
-            return -1
+def verifyNewFlights(rotationCancel, newFlights):
+    if len(rotationCancel) != len(newFlights):
+        print("No. cancelled flights diff. of no. new flights verifyNewFlights@solution.py")
+        pdb.set_trace()
 
+def verifyFlightRanges(flightRanges, rotation, index):
+    sizeRotation = len(rotation[index:][rotation[index:]['cancelFlight'] != 1]) #only consider flights not cancelled
+    if len(flightRanges) != sizeRotation:
+        print("No. ranges diff. remaining flights verifyFlightRanges@solution.py")
+        pdb.set_trace()
+
+def verifyCombo(combo, rotation, index):
+    rotationDisr = rotation[index:]
+    rotationDisr = rotationDisr[(rotationDisr['altFlight'] != -1) & (rotationDisr['altAirc'] != -1)]
+    sizeRotation = len(rotationDisr) #only consider flights not disr.
+    if len(combo) != sizeRotation:
+        print("Combo size is diff. from remaining rotation verifyCombo@solution.py")
+        pdb.set_trace()
+
+def verifyRotation(rotation, movingFlights, fixedFlights, index):
+    if len(rotation) != len(rotation[:index]) + len(movingFlights) + len(fixedFlights):
+        print("Diff. in rotation length verifyRotation@solution.py")
+        pdb.set_trace()
+
+def verifySingletonSol(size, solutionARP, flightSchedule):
+    if size != len(solutionARP) + len(flightSchedule):
+        print("Diff. in solutionARP length verifySingletonSol@solution.py")
+        pdb.set_trace()
+
+def verifyNewRotation(combo, rotation):
+    if len(combo) != len(rotation):
+        print("Diff. in size between rotation and combo")
+        pdb.set_trace()
