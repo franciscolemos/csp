@@ -4,6 +4,8 @@ Connection time not respected between flight 751 and flight 1824 on itinerary 90
 Connection time not respected between flight 823 and flight 1524 on itinerary 111
 Connection time not respected between flight 823 and flight 1524 on itinerary 112
 Connection time not respected between flight 823 and flight 1524 on itinerary 113
+Connection time not respected between flight 1003 and flight 1624 on itinerary 184
+Connection time not respected between flight 1003 and flight 2076 on itinerary 185
 Connection time not respected between flight 1122 and flight 2809 on itinerary 217
 Connection time not respected between flight 1123 and flight 2164 on itinerary 219
 Connection time not respected between flight 1123 and flight 2164 on itinerary 220
@@ -115,6 +117,8 @@ Connection time not respected between flight 823 and flight 1524 on itinerary 26
 Connection time not respected between flight 851 and flight 2324 on itinerary 2679
 Connection time not respected between flight 851 and flight 2324 on itinerary 2680
 Connection time not respected between flight 851 and flight 2324 on itinerary 2681
+Connection time not respected between flight 1003 and flight 1624 on itinerary 2742
+Connection time not respected between flight 1003 and flight 2076 on itinerary 2743
 Connection time not respected between flight 1122 and flight 2809 on itinerary 2776
 Connection time not respected between flight 1122 and flight 2809 on itinerary 2777
 Connection time not respected between flight 1123 and flight 2164 on itinerary 2780

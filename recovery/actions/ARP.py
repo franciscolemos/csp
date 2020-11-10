@@ -61,6 +61,7 @@ class ARP:
             airportOriginaltDic():
 
         """
+        self.dataSet = path.split("/")[-1]
         self.solution = {}
         self.visited = [] # Array to keep track of visited nodes.
         self.criticalFlight = []
@@ -246,29 +247,36 @@ class ARP:
                     flightCombinations = product(*flightRanges.values()) #find all the combinations
                     solutionValue = [] #initializes the solution value for later appraisal
                     solutions = np.array(list(flightCombinations))
-                    bestSol = solutions[0] #init. best sol.
+                    bestSol = []
                     for combo in solutions: #loop through the possible combinations
-                        #dominance
-                        allConstraints = ARPUtils.allConstraints(rotationOriginal, combo, index
+                        newSol = solution.value(combo)
+                        if len(bestSol) > 0: #propagation
+                            if (newSol[0] < bestSol[0]): #newSol has more cancel. flights
+                                continue
+                            if (newSol[0] == bestSol[0]) & (newSol[1] > bestSol[1]): #newSol has the same cancel and more delay
+                                continue
+                        
+                        allConstraints = ARPUtils.allConstraints(rotationOriginal, combo, index 
                         , movingFlights, fixedFlights, airpCapCopy, self._rotationMaint, rotationMaint) #check the sol. feas.
                         if allConstraints == -1:
                             continue
                         if allConstraints == -2: #airp. cap. problem
                             return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
-                        solutionValue.append(solution.value(combo))
-                    try:
-                        df = pd.DataFrame(solutionValue)
-                        df = df.sort_values(by=[0, 1], ascending=[False, True])
-                    except:
-                        #import pdb; pdb.set_trace()
-                        infAirc.append([aircraft, rotationOriginal, index])
-                        print(infAirc)
-                        feasible = -2
-                        aircraftSolList.append(aircraft) 
-                        continue
+                        
+                        if len(bestSol) > 0:
+                            if newSol[0] > bestSol[0]:
+                                bestSol = newSol
+                                continue
+                            if newSol[1] < bestSol[1]:
+                                bestSol = newSol
+                                continue
+                            if newSol[1] == bestSol[1]:
+                                if max(newSol[2]) < max(bestSol[2]):
+                                    bestSol = newSol
+                        else:
+                            bestSol = newSol
 
-                    solution.newRotation(df.iloc[0][2], rotationOriginal[index:]) #generates the best rotation
-                    
+                    solution.newRotation(bestSol[2], rotationOriginal[index:]) #generates the best rotation
                     ####################### start of taxi flights ###############
                     solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
                     if len(solRot) > 0: # the rotation can have all flights cancelled
@@ -287,7 +295,7 @@ class ARP:
 
                     delta1 = time.time() - start
 
-                    solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue)])
+                    solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue), bestSol[2]]) #df.iloc[0][2]]
 
                 else:
                     rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft] #update
@@ -302,8 +310,8 @@ class ARP:
             aircraftTmpList = list(set(aircraftList) - set(aircraftSolList)) #check the differences between two lists
             aircraftTmpList.sort()
 
-        dfSolutionKpiExport = pd.DataFrame(solutionKpiExport, columns = ["aircraft", "delta1", "noFlights", "noCombos", "singletonList", "noSolutions"])
-        dfSolutionKpiExport.to_csv("dfSolutionKpiExport02.csv", header = True, index = False)
+        dfSolutionKpiExport = pd.DataFrame(solutionKpiExport, columns = ["aircraft", "delta1", "noFlights", "noCombos", "singletonList", "noSolutions", "solution"])
+        dfSolutionKpiExport.to_csv("KPI03/dfSolutionKpiExport03_"+self.dataSet+".csv", header = True, index = False)
 
         return [feasible, infAirc]
 

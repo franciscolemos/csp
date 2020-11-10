@@ -139,7 +139,7 @@ def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, 
         import pdb; pdb.set_trace()
         return -2                    
     if len(rotation[(rotation['previous'] != '0') & (rotation['previous'] != '')]) > 0: # because previous flight exist
-        if len(previous(rotation)) > 0:
+        if len(feasibility.previous(rotation)) > 0:
             return -1
 
     if (len(_rotationMaint) > 0):
