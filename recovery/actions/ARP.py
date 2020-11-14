@@ -207,7 +207,11 @@ class ARP:
                     flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
                     
                     if noCombos == -1: #excssive no. combos
-                        #import pdb; pdb.set_trace()
+                        print(totalCombos)
+                        import pdb; pdb.set_trace()
+                        if len(self._rotationMaint) > 0:
+                            print('totalCombos: ', totalCombos)
+                            import pdb; pdb.set_trace()
                         continue
                         # if (totalCombos < 10**5) & (len(self._rotationMaint) == 0):
                         #     from recovery.actions import ga
@@ -275,8 +279,12 @@ class ARP:
                                     bestSol = newSol
                         else:
                             bestSol = newSol
-
-                    solution.newRotation(bestSol[2], rotationOriginal[index:]) #generates the best rotation
+                    try:
+                        solution.newRotation(bestSol[2], rotationOriginal[index:]) #generates the best rotation
+                    except:
+                        delta1 = time.time() - start
+                        print(aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue))
+                        import pdb; pdb.set_trace()
                     ####################### start of taxi flights ###############
                     solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
                     if len(solRot) > 0: # the rotation can have all flights cancelled

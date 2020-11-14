@@ -99,7 +99,7 @@ class flights:
             return [],  -1, [], -1
         if _noCombos != -1:
             if noCombos > _noCombos * 10**5:
-                print("Excessive2: ", noCombos)
+                #print("Excessive2: ", noCombos)
                 #import pdb; pdb.set_trace()
                 return domains, -1, [], noCombos
 
