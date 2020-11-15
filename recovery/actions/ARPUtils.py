@@ -104,13 +104,13 @@ def newFlights(rotation, distSA, maxFlight, endInt, configDic):
 
 def cancelLoop(rotation, flightRanges): #cancel loop flight to find feas. sol.
     origin = rotation[0]['origin'] #origin 
-    rotation[0]['cancelFlight'] = 1 #cancel the first infea. flight
+    #rotation[0]['cancelFlight'] = 1 #cancel the first infea. flight
     combo = [0] * len(flightRanges)
     combo[0] = -1
     for index, flight in enumerate(rotation[1:], 1): #start at second flight
         if flightRanges[flight['flight']][0] == -1: #the first value is cancel
             if (flight['origin'] != origin):
-                flight['cancelFlight'] = 1 #cancel the flight
+                #flight['cancelFlight'] = 1 #cancel the flight
                 combo[index] = -1 #add cancel. to combo
             else:
                 return tuple(combo)
