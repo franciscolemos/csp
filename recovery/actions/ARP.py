@@ -33,6 +33,8 @@ from recovery.actions import cost
 import random
 from recovery.actions.funcsDate import int2DateTime
 from recovery.actions import ARPUtils
+from recovery.dal.classesDtype import gaType as gt
+from recovery.actions import ga
 
 class ARP:
     """ """
@@ -102,7 +104,7 @@ class ARP:
                     len(self.altAirportSA), noDays - 1)
 
         self.domainFlights = domains.flights(self.configDic)
-
+        
         self.solutionARP = {}
 
     def initialize(self, aircraft, airportDic, delta = 1, saveAirportCap = True): #check if the roation is feasible
@@ -184,6 +186,8 @@ class ARP:
         _noCombos = 0.1 #order of magnitude for the no. of combos
         infAirc = []
         feasible = -1
+        START_COMBO = gt.START_COMBO
+        STEP_COMBO = gt.STEP_COMBO
         while len(aircraftSolList) != len(aircraftList): #verify if the lists have the same size
             remainAirc = len(list(set(aircraftList) - set(aircraftSolList)))
             for aircraft in aircraftTmpList: #iterate through the aircraft list
@@ -207,12 +211,19 @@ class ARP:
                     flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
                     
                     if noCombos == -1: #excssive no. combos
-                        print(totalCombos)
-                        import pdb; pdb.set_trace()
-                        if len(self._rotationMaint) > 0:
-                            print('totalCombos: ', totalCombos)
+                        if totalCombos > START_COMBO:
+                            if len(self._rotationMaint) > 0:
+                                print('ROTATION IN THE EXPLOSION totalCombos: ', totalCombos)
+                                import pdb; pdb.set_trace()
+                                continue
+                            print(totalCombos, START_COMBO)
+                            combo = ARPUtils.cancelLoop(rotation[index:], flightRanges) #init. combo
+                            gaImp = ga.improvement(flightRanges, rotation, index)
+                            bestSol = gaImp.main(combo)[0] #feasible sol.
                             import pdb; pdb.set_trace()
-                        continue
+                        else: #it is -gt the lower bound and -lt upper bound
+                            continue
+
                         # if (totalCombos < 10**5) & (len(self._rotationMaint) == 0):
                         #     from recovery.actions import ga
                         #     gaImp = ga.improvement(flightRanges, rotationOriginal, index)
@@ -314,6 +325,7 @@ class ARP:
                 print(aircraft, len(aircraftSolList), _noCombos)
             
             #import pdb; pdb.set_trace()
+            START_COMBO -= STEP_COMBO #decrease the start combo for GA
             _noCombos += 0.1 #increase the order of magnitude of the no. of combos
             aircraftTmpList = list(set(aircraftList) - set(aircraftSolList)) #check the differences between two lists
             aircraftTmpList.sort()

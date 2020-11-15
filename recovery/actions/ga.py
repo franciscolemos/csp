@@ -1,5 +1,6 @@
 import numpy as np
 from itertools import product
+import time
 from deap import base, creator
 import random
 from deap import tools
@@ -10,11 +11,9 @@ from recovery.dal.classesDtype import gaType as gt
 import pprint
 class improvement:
     def __init__(self, flightRanges, rotationOriginal, index):
-        flightCombinations = product(*flightRanges.values()) #all possible combination
-        self.searchSpace = np.array(list(flightCombinations)) #convert the cross product to numpy array
+        self.flightRanges = flightRanges
         self.rotationOriginal = rotationOriginal
         self.index = index
-        
         creator.create("FitnessMulti", base.Fitness, weights = gt.WEIGHTS) #min. noInfea, max. cancel., min. delay
         creator.create("Individual", list, fitness=creator.FitnessMulti)
         self.tb = base.Toolbox()
@@ -28,9 +27,10 @@ class improvement:
         self._bestSol = []
 
     def solGen(self):
-        size = len(self.searchSpace)
-        num = random.randint(0, size-1)
-        return tuple(self.searchSpace[num])
+        combo = []
+        for values in self.flightRanges.values():
+            combo.append(random.choice(values))
+        return tuple(combo)
 
     def mutate(self, mutant):
         size = len(self.searchSpace)
@@ -45,7 +45,7 @@ class improvement:
     
     def evaluate(self, individual):
         rotation = copy.deepcopy(self.rotationOriginal) #keep a copy of the original because of new rotation
-            #import pdb; pdb.set_trace()
+        import pdb; pdb.set_trace()
         solution.newRotation(individual[0], rotation[self.index:]) #add the combo to the rotation
         rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
         rotationCopy = np.sort(rotationCopy, order = 'altDepInt')
@@ -75,9 +75,11 @@ class improvement:
             #import pdb; pdb.set_trace()
         return False
     
-    def main(self):
+    def main(self, initSol = ()):
         #import pdb; pdb.set_trace()
         self.pop = self.createPop()
+        self.pop[0][0] = initSol
+        import pdb; pdb.set_trace()
         fitnesses = list(map(self.tb.evaluate, self.pop)) #calc. fitness for each ind. of the pop.
         for ind, fit in zip(self.pop, fitnesses): #match the fitness
             ind.fitness.values = fit
