@@ -216,28 +216,37 @@ class ARP:
                                 print('ROTATION IN THE EXPLOSION totalCombos: ', totalCombos)
                                 import pdb; pdb.set_trace()
                                 continue
+                            if len(fixedFlights) > 0:
+                                print('FIXED IN THE EXPLOSION totalCombos: ', totalCombos)
+                                import pdb; pdb.set_trace()
+                                continue
                             print(totalCombos, START_COMBO)
-                            combo = ARPUtils.cancelLoop(rotation[index:], flightRanges) #init. combo
-                            gaImp = ga.improvement(flightRanges, rotation, index)
-                            bestSol = gaImp.main(combo)[0] #feasible sol.
-                            import pdb; pdb.set_trace()
+                            combo = ARPUtils.delayCancel(rotation[index:], flightRanges)
+                            # combo = ARPUtils.cancelLoop(rotation[index:], flightRanges) #init. combo
+                            # gaImp = ga.improvement(flightRanges, rotation, index)
+                            # bestSol = gaImp.main(combo)[0] #feasible sol.
+                            #continue
+                            rotationMaint = []
+                            allConstraints = ARPUtils.allConstraints(rotationOriginal, combo, index
+                                            , movingFlights, fixedFlights, airpCapCopy, 
+                                            self._rotationMaint, rotationMaint) #check the sol. feas.
+                            if allConstraints == -1:
+                                #taxi flight
+                                print("Inf. sol.")
+                                import pdb; pdb.set_trace()
+                            else:
+                                solution.newRotation(combo, rotationOriginal[index:])
+                                aircraftSolList.append(aircraft) #add the aircraft w/ feasible solution
+                                self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
+                                solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
+                                noFlights += len(rotationOriginal[rotationOriginal['cancelFlight'] == 0])
+                                noCancelledFlights +=  len(rotationOriginal[rotationOriginal['cancelFlight'] == 1])
+                                print(aircraft, len(aircraftSolList), totalCombos)
+                                continue
                         else: #it is -gt the lower bound and -lt upper bound
                             continue
 
-                        # if (totalCombos < 10**5) & (len(self._rotationMaint) == 0):
-                        #     from recovery.actions import ga
-                        #     gaImp = ga.improvement(flightRanges, rotationOriginal, index)
-                        #     combo = gaImp.main()[0] #feasible sol.
-                        #     #check the sol. feas.
-                        #     rotationMaint = []
-                        #     allConstraints = feasibility.allConstraints(rotationOriginal, combo, index
-                        #                     , movingFlights, fixedFlights, airpCapCopy, 
-                        #                     self._rotationMaint, rotationMaint) #check the sol. feas.
 
-                        #     import pdb; pdb.set_trace()
-                        # else:
-                        #     continue #resume next aircraft
-                    ############## start loop until all singletons removed ###########
                     while len(singletonList) >= 1: #[(flight, 'dep')]
                         #import pdb; pdb.set_trace()
                         airc2Cancel = solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) 
@@ -285,9 +294,9 @@ class ARP:
                             if newSol[1] < bestSol[1]:
                                 bestSol = newSol
                                 continue
-                            if newSol[1] == bestSol[1]:
-                                if max(newSol[2]) < max(bestSol[2]):
-                                    bestSol = newSol
+                            if newSol[1] == bestSol[1]: #same value for delay
+                                if max(newSol[2]) < max(bestSol[2]): #new sol. is less convoluted
+                                    bestSol = newSol 
                         else:
                             bestSol = newSol
                     try:
@@ -313,7 +322,6 @@ class ARP:
                     noCancelledFlights +=  len(rotationOriginal[rotationOriginal['cancelFlight'] == 1])
 
                     delta1 = time.time() - start
-
                     solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue), bestSol[2]]) #df.iloc[0][2]]
 
                 else:

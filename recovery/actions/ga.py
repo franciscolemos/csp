@@ -21,7 +21,7 @@ class improvement:
         self.tb.register("individual", tools.initRepeat, creator.Individual, self.tb.attribute, n = 1)
         self.tb.register("population", tools.initRepeat, list, self.tb.individual)
         self.tb.register("evaluate", self.evaluate)
-        self.tb.register("mate", tools.cxTwoPoint)
+        self.tb.register("mate", tools.cxTwoPoint) #cxMessyOnePoint
         self.tb.register("mutate", self.mutate) #tools.mutFlipBit, indpb=0.05)
         self.tb.register("select", tools.selTournament, tournsize = gt.TOURN_SIZE)
         self._bestSol = []
@@ -30,13 +30,18 @@ class improvement:
         combo = []
         for values in self.flightRanges.values():
             combo.append(random.choice(values))
+            # size = int((len(values)/2))
+            # value = min(random.choices(values, k = size))
+            # combo.append(value)
         return tuple(combo)
 
     def mutate(self, mutant):
         combo = []
         for values in self.flightRanges.values():
             combo.append(random.choice(values))
-
+            # size = int((len(values)/2))
+            # value = min(random.choices(values, k = size))
+            # combo.append(value)
         mutant[0] = tuple(combo)
         return mutant,  #,
 
@@ -67,11 +72,18 @@ class improvement:
             if fitSol[1] > _bestSol[1][1]: #compare noCancel from new best solution w/ curr. best sol. 0 > -1 less cancel.
                     _bestSol[0] = pop[0][0] #update sol.
                     _bestSol[1] = fitSol #upadate fitness
+                    return True
             if fitSol[1] == _bestSol[1][1]: #compare noCancel from new best solution w/ curr. best sol. 0 == 0 less cancel.
                 if fitSol[2] < _bestSol[1][2]: #compare delay from new best solution w/ curr. best sol. 1140 < 1200
                     _bestSol[0] = pop[0][0] #update sol.
                     _bestSol[1] = fitSol #upadate fitness
-
+                    #trim the tree
+                    return True
+                if fitSol[2] == _bestSol[1][2]: #same value for delay
+                    if max(popSol) < max(_bestSol[0]): #new sol. is less convoluted
+                        _bestSol[0] = pop[0][0] #update sol.
+                        _bestSol[1] = fitSol #upadate fitness
+                        return True
             #import pdb; pdb.set_trace()
         return False
     
@@ -88,7 +100,7 @@ class improvement:
         g = 0
         while  g < gt.NO_GER: #max(fits) < 100 and
             g = g + 1 # A new generation
-            print("-- Generation %i --" % g)
+            #print("-- Generation %i --" % g)
             offspring = self.tb.select(self.pop, len(self.pop)) # Select the next generation individuals
             offspring = list(map(self.tb.clone, offspring)) # Clone the selected individuals
             # Apply crossover on the offspring
@@ -112,7 +124,7 @@ class improvement:
             self.pop[:] = offspring
 
             self.bestSol(self.pop, self._bestSol)
-            print("Best sol.: ", self._bestSol)
+            #print("Best sol.: ", self._bestSol)
             
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         return self._bestSol

@@ -6,7 +6,7 @@ class gaType:
     TOURN_SIZE = 2 #tourn. size
     IND_SIZE = 10 #size of the pop.
     CXPB = 0.5 #CXPB  is the probability with which two individuals are crossed
-    MUTPB = 0.3 # MUTPB is the probability for mutating an individual
+    MUTPB = 0.5 # MUTPB is the probability for mutating an individual
     START_COMBO = 3.00000000000000 * 10**8 #starting number of combos fo the 
     STEP_COMBO = 9.9900000000000 * 10**6 #combo step
     
