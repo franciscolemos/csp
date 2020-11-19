@@ -88,3 +88,11 @@
             # fits = [ind.fitness.values for ind in self.pop]
             # pprint.pprint(self.pop)
             # pprint.pprint(fits)
+
+            # flightCombinations = product(*flightRanges.values())
+            # solutions = np.array(list(flightCombinations))
+            # for sol in solutions:
+            #     _sol = chain.from_iterable([sol, combo])
+            #     _combo = np.array(list(_sol))
+            
+            

@@ -1,8 +1,0 @@
-Arrival capacity violated at airport CDG on 2006-Jan-07 (time window 22)
-Arrival capacity violated at airport LYS on 2006-Jan-07 (time window 22)
-Departure capacity violated at airport MRS on 2006-Jan-07 (time window 22)
-Departure capacity violated at airport NCE on 2006-Jan-07 (time window 21)
-Departure capacity violated at airport NCE on 2006-Jan-07 (time window 22)
-Departure capacity violated at airport NTE on 2006-Jan-07 (time window 23)
-Departure capacity violated at airport ORY on 2006-Jan-07 (time window 22)
-Departure capacity violated at airport SXB on 2006-Jan-07 (time window 21)
