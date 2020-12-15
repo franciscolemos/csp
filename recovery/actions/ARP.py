@@ -160,10 +160,11 @@ class ARP:
                 return -1, [] #for repair to determine if the problem is dep. or arr.
             else:
                 #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
+                
                 index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
                 #firstFlight = rotationOriginal[rotationOriginal['depInt'] >= self.configDic['startInt']][0]
                 #index = np.in1d(rotationOriginal, firstFlight).nonzero()[0]
-                return int(index), rotationOriginal #because it has to include the aircraft to export the solution
+                return int(index), np.sort(rotationOriginal[rotationOriginal['cancelFlight'] == 0], order = 'altDepInt')  #because it has to include the aircraft to export the solution
         except Exception as e:
             print("Exception initialize:", e)
             import pdb; pdb.set_trace()
@@ -211,6 +212,7 @@ class ARP:
                     flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
                     
                     if noCombos == -1: #excssive no. combos
+                        continue
                         if totalCombos > START_COMBO:
                             if len(self._rotationMaint) > 0:
                                 print('ROTATION IN THE EXPLOSION totalCombos: ', totalCombos)
