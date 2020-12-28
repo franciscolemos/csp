@@ -1,0 +1,1 @@
+Broken period not respected for aircraft A320#46

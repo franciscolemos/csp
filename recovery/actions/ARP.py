@@ -34,8 +34,7 @@ import random
 from recovery.actions.funcsDate import int2DateTime
 from recovery.actions import ARPUtils
 from recovery.dal.classesDtype import gaType as gt
-from recovery.actions import ga
-
+from recovery.actions.upperHeuristic import upperHeuristic
 class ARP:
     """ """
     def __init__(self, path):
@@ -211,204 +210,116 @@ class ARP:
                      #flight ranges and combinations only for moving flight after disruption index with updated airp. cap. for fixed flights
                     flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
                     
-                    if noCombos == -1: #excssive no. combos
-                        continue
+                    # if aircraft == 'A320#46':
+                    #     import pdb; pdb.set_trace()
+
+                    if (noCombos == -1): #excessive no. combos
+                        if len(self._rotationMaint) > 0:
+                            continue
                         if totalCombos > START_COMBO:
-                            if len(self._rotationMaint) > 0:
-                                print('ROTATION IN THE EXPLOSION totalCombos: ', totalCombos)
+                            uh = upperHeuristic(self.solutionARP, self.configDic, self.domainFlights, self._rotationMaint, _noCombos)
+                            uh.removeSingleton(singletonList, airpCapCopy, aircraftSolList, rotation, index)
+                            fixedRotation = uh.solve(flightRanges, rotation, index, aircraft)
+                            
+                            ####################### start of taxi flights ###############
+                            solRot = fixedRotation[fixedRotation['cancelFlight'] == 0] #later will be used to pick first flight
+                            if len(solRot) > 0: # the rotation can have all flights cancelled
+                                solRot = np.sort(solRot, order = 'altDepInt')
+                                originAirport = self.aircraftDic[aircraft]['originAirport']
+                                initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
+                                if len(initPosFeas) > 0: #infeas. init. pos.
+                                    fixedRotation, self.maxFlight = ARPUtils.wipRecover2(aircraft, self.altAircraftDic,self.distSA, originAirport, solRot, airportDic,
+                                        fixedRotation, self.configDic, self.maxFlight)
+                            ###################### end of taxi flights ##################
+                            # if aircraft == 'A320#46':
+                            #     import pdb; pdb.set_trace()                            
+                            convertRotation = ARPUtils.convertFlight(fixedRotation[(fixedRotation['newFlight'] == 1) 
+                                            & (fixedRotation['cancelFlight'] == 0)]
+                                            , self.minDate) #if a new flight is delayed for the next day converts it
+                            fixedRotation[(fixedRotation['newFlight'] == 1) 
+                                            & (fixedRotation['cancelFlight'] == 0)] = convertRotation
+                            # print(fixedRotation)
+                            # import pdb; pdb.set_trace() 
+                            self.solutionARP[aircraft] = fixedRotation #save the feasible rotation (to be replaced) 
+                            solution.saveAirportCap(fixedRotation, airportDic) # update the airp. cap.(to be replaced)
+                            START_COMBO -= STEP_COMBO
+                        else:
+                            continue
+                    else:
+                        while len(singletonList) >= 1: #[(flight, 'dep')]
+                            #import pdb; pdb.set_trace()
+                            airc2Cancel = solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) 
+                            if airc2Cancel == -1:
                                 import pdb; pdb.set_trace()
-                                continue
-                            if len(fixedFlights) > 0:
-                                print('FIXED IN THE EXPLOSION totalCombos: ', totalCombos)
-                                import pdb; pdb.set_trace()
-                                continue
-                            print(totalCombos, START_COMBO)
-                            combo = ARPUtils.delayCancel(rotation[index:], flightRanges)
-                            # combo = ARPUtils.cancelLoop(rotation[index:], flightRanges) #init. combo
-                            # gaImp = ga.improvement(flightRanges, rotation, index)
-                            # bestSol = gaImp.main(combo)[0] #feasible sol.
-                            #continue
-                            rotationMaint = []
-                            allConstraints = ARPUtils.allConstraints(rotationOriginal, combo, index
-                                            , movingFlights, fixedFlights, airpCapCopy, 
-                                            self._rotationMaint, rotationMaint) #check the sol. feas.
-                            if allConstraints == -1: #continuity problem
-                                #taxi flight
-                                print("Inf. sol. 1")
-                                ####################### start of taxi flights ###############
-                                solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
-                                if len(solRot) > 0: # the rotation can have all flights cancelled
-                                    solRot = np.sort(solRot, order = 'altDepInt')
-                                    originAirport = self.aircraftDic[aircraft]['originAirport']
-                                    initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
-                                    if len(initPosFeas) > 0: #infeas. init. pos.
-                                        rotationOriginal, self.maxFlight = ARPUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
-                                            rotationOriginal, self.configDic, self.maxFlight)
-                                ###################### end of taxi flights ##################
-                                flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[:index], airpCapCopy, _noCombos)
-                                flightCombinations = product(*flightRanges.values()) #find all the combinations
-                                solutionValue = [] #initializes the solution value for later appraisal
-                                solutions = np.array(list(flightCombinations))
-                                _bestSol = []
-                                rotationMaint = []
-                                for sol in solutions:
-                                    _sol = chain.from_iterable([sol, combo])
-                                    _combo = np.array(list(_sol))
-                                    _newSol = solution.value(_combo)
-                                    if len(_bestSol) > 0: #propagation
-                                        if (_newSol[0] < _bestSol[0]): #newSol has more cancel. flights
-                                            continue
-                                        if (_newSol[0] == _bestSol[0]) & (_newSol[1] > _bestSol[1]): #newSol has the same cancel and more delay
-                                            continue
-                                    allConstraints = ARPUtils.allConstraints(rotationOriginal, _combo, 0 
-                                    , rotationOriginal, fixedFlights, airpCapCopy, self._rotationMaint, rotationMaint) #check the sol. feas. # movingFlights == rotationOriginal
-                                    if allConstraints == -1:
-                                        continue
-                                    if allConstraints == -2: #airp. cap. problem
-                                        return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
-                                    
-                                    if len(_bestSol) > 0:
-                                        if _newSol[0] > _bestSol[0]:
-                                            _bestSol = _newSol
-                                            continue
-                                        if _newSol[1] < _bestSol[1]:
-                                            _bestSol = _newSol
-                                            continue
-                                        if _newSol[1] == _bestSol[1]: #same value for delay
-                                            if max(_newSol[2]) < max(_bestSol[2]): #new sol. is less convoluted
-                                                _bestSol = _newSol 
-                                    else:
-                                        _bestSol = _newSol                                    
-                                if len(_bestSol) > 0:
-                                    combo = _bestSol[2]
-                                    index = 0
-                                    solution.newRotation(combo, rotationOriginal[index:])
-                                    
-                                    ####################### start of taxi flights ###############
-                                    solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
-                                    if len(solRot) > 0: # the rotation can have all flights cancelled
-                                        solRot = np.sort(solRot, order = 'altDepInt')
-                                        originAirport = self.aircraftDic[aircraft]['originAirport']
-                                        initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
-                                        if len(initPosFeas) > 0: #infeas. init. pos.
-                                            rotationOriginal, self.maxFlight = ARPUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
-                                                rotationOriginal, self.configDic, self.maxFlight)
-                                    ###################### end of taxi flights ##################                    
-
-                                    aircraftSolList.append(aircraft) #add the aircraft w/ feasible solution
-                                    self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
-                                    solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
-                                    noFlights += len(rotationOriginal[rotationOriginal['cancelFlight'] == 0])
-                                    noCancelledFlights +=  len(rotationOriginal[rotationOriginal['cancelFlight'] == 1])
-                                    print(aircraft, len(aircraftSolList), totalCombos)
-                                    continue
-                                else:
-                                    print("Inf. sol. 2")
-                                    import pdb; pdb.set_trace()
-                                
+                                return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights
                             else:
-                                solution.newRotation(combo, rotationOriginal[index:])
+                                print("airc2Cancel: ", airc2Cancel)
+                                airportDic = copy.deepcopy(airpCapCopy) #update airportDic
+                                aircraftSolList = list(set(aircraftSolList) - set([airc2Cancel])) #remove the aircraft from aircraftSolList
+                                rotationPop = self.solutionARP.pop(airc2Cancel, None) #remove the rotation from self.solutionARP
+                                flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
+                        ############## end loop until all singletons removed ###########
 
-
-                                ####################### start of taxi flights ###############
-                                solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
-                                if len(solRot) > 0: # the rotation can have all flights cancelled
-                                    solRot = np.sort(solRot, order = 'altDepInt')
-                                    originAirport = self.aircraftDic[aircraft]['originAirport']
-                                    initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
-                                    if len(initPosFeas) > 0: #infeas. init. pos.
-                                        rotationOriginal, self.maxFlight = ARPUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
-                                            rotationOriginal, self.configDic, self.maxFlight)
-                                ###################### end of taxi flights ##################
-
-
-                                aircraftSolList.append(aircraft) #add the aircraft w/ feasible solution
-                                self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
-                                solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
-                                noFlights += len(rotationOriginal[rotationOriginal['cancelFlight'] == 0])
-                                noCancelledFlights +=  len(rotationOriginal[rotationOriginal['cancelFlight'] == 1])
-                                print(aircraft, len(aircraftSolList), totalCombos)
+                        start = time.time()
+                        feasibility.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
+                        rotationMaint = []
+                        if len(self._rotationMaint) > 0:
+                            rotationMaint = ARPUtils.addMaint(aircraft, self._rotationMaint) #creates the maint to be later added to the rotation
+                        flightCombinations = product(*flightRanges.values()) #find all the combinations
+                        solutionValue = [] #initializes the solution value for later appraisal
+                        solutions = np.array(list(flightCombinations))
+                        bestSol = []
+                        for combo in solutions: #loop through the possible combinations
+                            newSol = solution.value(combo)
+                            if len(bestSol) > 0: #propagation
+                                if (newSol[0] < bestSol[0]): #newSol has more cancel. flights
+                                    continue
+                                if (newSol[0] == bestSol[0]) & (newSol[1] > bestSol[1]): #newSol has the same cancel and more delay
+                                    continue
+                            
+                            allConstraints = ARPUtils.allConstraints(rotationOriginal, combo, index 
+                            , movingFlights, fixedFlights, airpCapCopy, self._rotationMaint, rotationMaint) #check the sol. feas.
+                            if allConstraints == -1:
                                 continue
-                        else: #it is -gt the lower bound and -lt upper bound
-                            continue
-
-
-                    while len(singletonList) >= 1: #[(flight, 'dep')]
-                        #import pdb; pdb.set_trace()
-                        airc2Cancel = solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) 
-                        if airc2Cancel == -1:
+                            if allConstraints == -2: #airp. cap. problem
+                                return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
+                            
+                            if len(bestSol) > 0:
+                                if newSol[0] > bestSol[0]:
+                                    bestSol = newSol
+                                    continue
+                                if newSol[1] < bestSol[1]:
+                                    bestSol = newSol
+                                    continue
+                                if newSol[1] == bestSol[1]: #same value for delay
+                                    if max(newSol[2]) < max(bestSol[2]): #new sol. is less convoluted
+                                        bestSol = newSol 
+                            else:
+                                bestSol = newSol
+                        try:
+                            solution.newRotation(bestSol[2], rotationOriginal[index:]) #generates the best rotation
+                        except:
+                            delta1 = time.time() - start
+                            print(aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue))
                             import pdb; pdb.set_trace()
-                            return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights
-                        else:
-                            print("airc2Cancel: ", airc2Cancel)
-                            airportDic = copy.deepcopy(airpCapCopy) #update airportDic
-                            aircraftSolList = list(set(aircraftSolList) - set([airc2Cancel])) #remove the aircraft from aircraftSolList
-                            rotationPop = self.solutionARP.pop(airc2Cancel, None) #remove the rotation from self.solutionARP
-                            flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
-                    ############## end loop until all singletons removed ###########
+                        ####################### start of taxi flights ###############
+                        solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
+                        if len(solRot) > 0: # the rotation can have all flights cancelled
+                            solRot = np.sort(solRot, order = 'altDepInt')
+                            originAirport = self.aircraftDic[aircraft]['originAirport']
+                            initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
+                            if len(initPosFeas) > 0: #infeas. init. pos.
+                                rotationOriginal, self.maxFlight = ARPUtils.wipRecover2(aircraft, self.altAircraftDic, self.distSA, originAirport, solRot, airportDic,
+                                    rotationOriginal, self.configDic, self.maxFlight)
+                        ###################### end of taxi flights ##################
 
-                    start = time.time()
+                        self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
+                        solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
+                        noFlights += len(rotationOriginal[rotationOriginal['cancelFlight'] == 0])
+                        noCancelledFlights +=  len(rotationOriginal[rotationOriginal['cancelFlight'] == 1])
 
-                    feasibility.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
-                    
-                    rotationMaint = []
-                    if len(self._rotationMaint) > 0:
-                        rotationMaint = ARPUtils.addMaint(aircraft, self._rotationMaint) #creates the maint to be later added to the rotation
-                    flightCombinations = product(*flightRanges.values()) #find all the combinations
-                    solutionValue = [] #initializes the solution value for later appraisal
-                    solutions = np.array(list(flightCombinations))
-                    bestSol = []
-                    for combo in solutions: #loop through the possible combinations
-                        newSol = solution.value(combo)
-                        if len(bestSol) > 0: #propagation
-                            if (newSol[0] < bestSol[0]): #newSol has more cancel. flights
-                                continue
-                            if (newSol[0] == bestSol[0]) & (newSol[1] > bestSol[1]): #newSol has the same cancel and more delay
-                                continue
-                        
-                        allConstraints = ARPUtils.allConstraints(rotationOriginal, combo, index 
-                        , movingFlights, fixedFlights, airpCapCopy, self._rotationMaint, rotationMaint) #check the sol. feas.
-                        if allConstraints == -1:
-                            continue
-                        if allConstraints == -2: #airp. cap. problem
-                            return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights 
-                        
-                        if len(bestSol) > 0:
-                            if newSol[0] > bestSol[0]:
-                                bestSol = newSol
-                                continue
-                            if newSol[1] < bestSol[1]:
-                                bestSol = newSol
-                                continue
-                            if newSol[1] == bestSol[1]: #same value for delay
-                                if max(newSol[2]) < max(bestSol[2]): #new sol. is less convoluted
-                                    bestSol = newSol 
-                        else:
-                            bestSol = newSol
-                    try:
-                        solution.newRotation(bestSol[2], rotationOriginal[index:]) #generates the best rotation
-                    except:
                         delta1 = time.time() - start
-                        print(aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue))
-                        import pdb; pdb.set_trace()
-                    ####################### start of taxi flights ###############
-                    solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0] #later will be used to pick first flight
-                    if len(solRot) > 0: # the rotation can have all flights cancelled
-                        solRot = np.sort(solRot, order = 'altDepInt')
-                        originAirport = self.aircraftDic[aircraft]['originAirport']
-                        initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
-                        if len(initPosFeas) > 0: #infeas. init. pos.
-                            rotationOriginal, self.maxFlight = ARPUtils.wipRecover2(self.distSA, originAirport, solRot, airportDic,
-                                rotationOriginal, self.configDic, self.maxFlight)
-                    ###################### end of taxi flights ##################
-
-                    self.solutionARP[aircraft] = rotationOriginal #save the feasible rotation (to be replaced) 
-                    solution.saveAirportCap(rotationOriginal, airportDic) # update the airp. cap.(to be replaced)
-                    noFlights += len(rotationOriginal[rotationOriginal['cancelFlight'] == 0])
-                    noCancelledFlights +=  len(rotationOriginal[rotationOriginal['cancelFlight'] == 1])
-
-                    delta1 = time.time() - start
-                    solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue), bestSol[2]]) #df.iloc[0][2]]
+                        solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue), bestSol[2]]) #df.iloc[0][2]]
 
                 else:
                     rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft] #update

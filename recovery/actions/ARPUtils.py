@@ -4,6 +4,8 @@ from recovery.actions import feasibility
 from recovery.actions.funcsDate import int2DateTime
 import numpy as np
 import copy
+import datetime
+from recovery.dal.classesDtype import dtype as dt
 class interval:
     def __init__(self, a, b): #"An interval of the form [a, b["
         self.a = a
@@ -102,74 +104,6 @@ def newFlights(rotation, distSA, maxFlight, endInt, configDic):
     rotation = rotation[rotation['flight'] != '']
     return rotation, maxFlight   
 
-def cancelLoop(rotation, flightRanges): #cancel loop, starting on the first flight, to find feas. sol.
-    origin = rotation[0]['origin'] #origin 
-    combo = [0] * len(flightRanges)
-    combo[0] = -1
-    for index, flight in enumerate(rotation[1:], 1): #start at second flight
-        if flightRanges[flight['flight']][0] == -1: #the first value is cancel
-            if (flight['origin'] != origin):
-                combo[index] = -1 #add cancel. to combo
-            else:
-                return tuple(combo)
-        else: #singleton
-            print("Singleton found")
-            import pdb; pdb.set_trace()
-            return False
-
-def delayCancel(rotation, flightRanges):
-    newCombo = [-2] * len(rotation) #new combo
-    bestCombo = [-2] * len(rotation) #best combo
-    bestSol = []
-    tmpRotation = copy.deepcopy(rotation) #copy the original rotation
-    
-    for index, flight in enumerate(tmpRotation): #loop through the flights in the temp. rotation
-        newCombo = copy.deepcopy(bestCombo)
-        #import pdb; pdb.set_trace()
-        for delay in flightRanges[flight['flight']]: #loop through the delays
-            newFlight = copy.deepcopy(flight) #copy the curr. flight
-            #if the solution is worse continue
-
-            newCombo[index] = delay #delay is feasible [-1, -2, ... -2], [180, -1, ..., -2]
-            _newCombo = [i for i in newCombo if i > -2] #full new combo [-180]
-            newSol = solution.value(_newCombo) #full new sol. (0, 180, [180])
-            
-            #print("index:", index, "newCombo[index]:", newCombo[index], "_newCombo:", _newCombo, "newSol:", newSol, "bestSol:", bestSol)
-            #import pdb; pdb.set_trace()
-
-            if bestCombo[index] != -2: #the combo is init.
-                if (bestSol[0] == 0) & (newSol[1] > bestSol[1]): #newSol has the same cancel and more delay
-                    break
-                if (newSol[0] < bestSol[0]): #newSol has more cancel. flights
-                    continue
-                if (newSol[0] == bestSol[0]) & (newSol[1] > bestSol[1]): #newSol has the same cancel and more delay
-                    continue
-              
-            #print("index:", index, "newCombo:", newCombo[index], "_newCombo:", _newCombo, "newSol:", newSol)       
-            if delay == -1: #cancel flight
-                newFlight['cancelFlight'] = 1
-                newFlight['altFlight'] = -1
-            else:
-                newFlight['cancelFlight'] = 0
-                newFlight['altFlight'] = delay
-                newFlight['altDepInt'] += delay
-                newFlight['altArrInt'] += delay
-            
-            _tmpRotation = copy.deepcopy(tmpRotation)
-            _tmpRotation[index] = newFlight #update the flight
-            __tmpRotation = _tmpRotation[:index + 1]
-            if len(feasibility.continuity(__tmpRotation[__tmpRotation['cancelFlight'] != 1])) > 0 :
-                continue #infeasible
-            if len(feasibility.TT(__tmpRotation[__tmpRotation['cancelFlight'] != 1])) > 0 :
-                continue #infeasible
-            
-            tmpRotation = copy.deepcopy(_tmpRotation)
-            bestCombo[index] = delay #[-1, -2, ... -2], [180, -1, ..., -2]
-            bestSol = newSol
-            
-
-    #add verify sol. 
-    return bestSol[2] #return the combo
 def addMaint(aircraft, _rotationMaint):
     """
     Add aircraft maintenance to the flight schedule
@@ -187,6 +121,23 @@ def addMaint(aircraft, _rotationMaint):
     rotationMaint['arrInt'][0] = _rotationMaint['arrInt'][0]
     rotationMaint['altArrInt'][0] = _rotationMaint['altArrInt'][0]
     return rotationMaint
+
+def luAllContraints(combo, rotation, lIndex, uIndex):
+    solution.newPartialRotation(combo, rotation[lIndex:uIndex]) # fin the new partial solution
+    newRotation = rotation[:uIndex] #only the part until the upper index
+    newRotation = newRotation[newRotation['cancelFlight'] == 0] #remove the cancelled flights
+    newRotation = np.sort(newRotation[:uIndex], order = 'altDepInt') #order the rotation
+
+    if len(feasibility.continuity(newRotation)) > 0: #only flights not cancelled in the copy
+        return -1 #cont.
+    if len(feasibility.TT(newRotation)) > 0: #only flights not cancelled in the copy
+        return -1
+
+    # print(combo)
+    # print(rotation[:uIndex], "\n")
+    # print(newRotation)
+    # import pdb; pdb.set_trace()
+    # return -1
 
 def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, airpCapCopy, _rotationMaint, rotationMaint):
     rotation = copy.deepcopy(rotationOriginal) #keep a copy of the original because of new rotation
@@ -217,8 +168,15 @@ def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, 
         if len(infMaintList) > 0:
             return -1
 
-def wipRecover2(distSA, originAirport, solRot, airportDic, rotationOriginal, configDic, maxFlight): #wrong init. pos. recovery
+def wipRecover2(aircraft, altAircraftDic, distSA, originAirport, solRot, airportDic, rotationOriginal, configDic, maxFlight): #wrong init. pos. recovery
     #loop through solRot to try find a taxi flight or find the airc. origin airp.
+    altSI = -1
+    altEI = -1
+    if aircraft in altAircraftDic:
+        altSI = altAircraftDic[aircraft]['startInt'] #start of airc. broken period
+        altEI = altAircraftDic[aircraft]['endInt'] #end of of airc. broken period
+    # if aircraft == 'A319#40':
+    #     import pdb; pdb.set_trace()    
     for sr in solRot:
         if sr['origin'] == originAirport:
             print("Airc. Origin airp = Flight origin")
@@ -226,22 +184,51 @@ def wipRecover2(distSA, originAirport, solRot, airportDic, rotationOriginal, con
             rotationOriginal[rotationOriginal['cancelFlight'] == 0] = solRot
             return rotationOriginal, maxFlight
                 
-        distInitRot = distSA[(distSA['origin'] == originAirport) & (distSA['destination'] == sr['origin'])]
+        distInitRot = distSA[(distSA['origin'] == originAirport) & (distSA['destination'] == sr['origin'])] #dist. for airc. origin to solRot flight
         distInitRot = distInitRot['dist'][0] #dist. for airc. origin to solRot flight
-        #find airp. time slot for dep. @origin
-        originSlots = airportDic[originAirport]
-        originSlots = originSlots[originSlots['endInt'] < (sr['altDepInt'] - distInitRot)]
-        originSlots = originSlots[originSlots['capDep'] > originSlots['noDep']]
+        
+        originSlots = airportDic[originAirport] #find airp. time slot for dep. @origin
+        originSlots = originSlots[originSlots['capDep'] > originSlots['noDep']] #find airp. time slot for dep. @origin w/ avail. dep. cap.
+        #originSlots = originSlots[originSlots['endInt'] < (sr['altDepInt'] - distInitRot)] #previous version
+        originSlotsUpper =  originSlots[originSlots['endInt'] > (sr['altDepInt'] - distInitRot - sr['tt'])] #upper slots dep. of next flight - dist. - tt
+        originSlotsLower =  np.setdiff1d(originSlots, originSlotsUpper)
+
+        if (altSI >= 0) & (altEI >= 0): #if there is a airc. break. period
+            originSlotsAircBreakDown = originSlotsLower[(originSlotsLower['startInt'] >= altSI) 
+                                        & (originSlotsLower['startInt'] < altEI)] #slots inside  the aircraft
+            _originSlots = np.setdiff1d(originSlotsLower, originSlotsAircBreakDown)
+        else:
+            _originSlots = originSlotsLower
+        
+        if len(_originSlots) == 0:
+            print("No available taxi flight")
+            sr['cancelFlight'] = 1
+            continue
+        
         #find airp. time slot for arr. @dest.
         destSlots = airportDic[sr['origin']]
-        destSlots = destSlots[destSlots['startInt'] < sr['altDepInt']]
+        #destSlots = destSlots[destSlots['startInt'] < sr['altDepInt']]
         destSlots = destSlots[destSlots['capArr'] > destSlots['noArr']]
+        destSlotsUpper = destSlots[destSlots['endInt'] > (sr['altDepInt'] - sr['tt'])]
+        destSlotsLower = np.setdiff1d(destSlots, destSlotsUpper)
+
+        if (altSI >= 0) & (altEI >= 0): #if there is a airc. break. period
+            destSlotsAircBreakDown = destSlotsLower[(destSlotsLower['startInt'] >= altSI) 
+                                        & (destSlotsLower['startInt'] < altEI)] #slots inside  the aircraft
+            _destSlots = np.setdiff1d(destSlotsLower, destSlotsAircBreakDown)
+        else:
+            _destSlots = destSlotsLower
+
+        if len(_destSlots) == 0:
+            print("No available taxi flight")
+            sr['cancelFlight'] = 1
+            continue
 
         otherIntervals = []
         i = -1; offset = -1
-        for x in destSlots: #instatiate dest. slots
+        for x in _destSlots: #instatiate dest. slots
             otherIntervals.append(interval(x['startInt'], x['endInt']))
-        for os in originSlots:
+        for os in _originSlots:
             obj1 = interval(os['startInt'], os['endInt']) + distInitRot #start end dist
             try: 
                 i, offset = obj1.findIntersection(otherIntervals)
@@ -288,3 +275,22 @@ def wipRecover2(distSA, originAirport, solRot, airportDic, rotationOriginal, con
     import pdb; pdb.set_trace()
     rotationOriginal[rotationOriginal['cancelFlight'] == 0] = solRot
     return rotationOriginal, maxFlight
+
+def convertFlight(rotation, minDate):
+    for flight in rotation:
+        date = datetime.datetime.strptime(flight['flight'][-8:], dt.fmtDate) #convert to date
+        altDepInt = flight['altDepInt']
+        noDays = int(altDepInt / (60*24))
+        altDepDate = minDate + datetime.timedelta(days = noDays)
+        daysDiff = (altDepDate - date).days
+        if daysDiff> 0:
+            newFlightDate = date + datetime.timedelta(days = 1) #add the no. of days to the flight's date
+            newFlightDateString = newFlightDate.strftime(dt.fmtDate) #format the flight's date to string
+            flight['flight'] = flight['flight'][:-8] + newFlightDateString #update the flight
+            flight['altDepInt'] = flight['altDepInt'] - daysDiff * 60 * 24 #update the dep.
+            flight['depInt'] = flight['altDepInt']
+            flight['altArrInt'] = flight['altArrInt'] - daysDiff * 60 * 24 #update the arr.
+            flight['arrInt'] = flight['altArrInt']
+            newFlight = copy.deepcopy(flight)
+            flight = newFlight
+    return rotation

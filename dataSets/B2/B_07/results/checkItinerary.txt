@@ -143,8 +143,6 @@ Connection time not respected between flight 5801 and flight 5718 on itinerary 4
 Connection time not respected between flight 6881 and flight 5686 on itinerary 4399
 Connection time not respected between flight 6881 and flight 5688 on itinerary 4400
 Connection time not respected between flight 6881 and flight 5834 on itinerary 4401
-Connection time not respected between flight 6895 and flight 7064 on itinerary 4433
-Connection time not respected between flight 6895 and flight 7064 on itinerary 4434
 Connection time not respected between flight 6993 and flight 7132 on itinerary 4530
 Connection time not respected between flight 6993 and flight 7132 on itinerary 4531
 Connection time not respected between flight 7061 and flight 7126 on itinerary 4570

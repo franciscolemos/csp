@@ -33,11 +33,10 @@ Connection time not respected between flight 3084 and flight 3003 on itinerary 6
 Connection time not respected between flight 3084 and flight 3003 on itinerary 658
 Connection time not respected between flight 3086 and flight 2991 on itinerary 664
 Connection time not respected between flight 3086 and flight 2991 on itinerary 666
-Connection time not respected between flight 3092 and flight 4237 on itinerary 680
-Connection time not respected between flight 3092 and flight 4237 on itinerary 682
 Connection time not respected between flight 3097 and flight 4700 on itinerary 690
 Connection time not respected between flight 3097 and flight 4768 on itinerary 692
 Connection time not respected between flight 3097 and flight 4768 on itinerary 693
+Connection time not respected between flight 3097 and flight 3092 on itinerary 694
 Connection time not respected between flight 3097 and flight 3106 on itinerary 695
 Connection time not respected between flight 3107 and flight 4564 on itinerary 720
 Connection time not respected between flight 3108 and flight 2981 on itinerary 724

@@ -90,6 +90,15 @@ def saveAirportCap(flightSchedule, airportCap): #update the airp. cap.
         airportCap[flight['destination']][index]['noArr'] += 1
     return airportCap
 
+def newPartialRotation(combo, rotation):
+    for delay, flight in zip(combo, rotation):
+        if delay == -1: #cancel the flight
+            flight['cancelFlight'] = 1
+        else:
+            flight['altDepInt'] += delay 
+            flight['altArrInt'] += delay
+    return rotation
+        
 def newRotation(combo, rotation): #create rotation based on combo
     feasibility.verifyNewRotation(combo, rotation[rotation['cancelFlight'] == 0]) #compare the size of the combo w/ rotation without disr.
     notCancel = rotation[rotation['cancelFlight'] == 0] #remove disr. flight

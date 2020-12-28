@@ -77,10 +77,13 @@ class initialize:
                 if self.altAircraftDic.get(aircraft, None)  != None:
                     startInt = self.altAircraftDic[aircraft]['startInt']
                     endInt = self.altAircraftDic[aircraft]['endInt']
-                    if (altDepInt >= startInt and altDepInt <= endInt):
+                    if (altDepInt >= startInt) and (altDepInt <= endInt):
                         broken = -1 
                         cancelFlight = 1
-
+                    if (altArrInt >= startInt) and (altArrInt <= endInt):
+                        broken = -1 
+                        cancelFlight = 1
+                        
                 tmpFlightSchedule[i] = (flight[0], idFlight, date, origin, depInt, altDepInt, destination, arrInt, altArrInt, previous, tt,  delay, broken, cancelFlight)
                 i += 1
                 

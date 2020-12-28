@@ -73,8 +73,6 @@ Connection time not respected between flight 5808 and flight 7854 on itinerary 1
 Connection time not respected between flight 5808 and flight 7854 on itinerary 1757
 Connection time not respected between flight 6881 and flight 5686 on itinerary 1853
 Connection time not respected between flight 6885 and flight 5838 on itinerary 1855
-Connection time not respected between flight 6895 and flight 7064 on itinerary 1879
-Connection time not respected between flight 6895 and flight 7064 on itinerary 1880
 Connection time not respected between flight 6993 and flight 7132 on itinerary 1958
 Connection time not respected between flight 6993 and flight 7132 on itinerary 1959
 Connection time not respected between flight 7061 and flight 7122 on itinerary 1994
@@ -178,10 +176,6 @@ Connection time not respected between flight 5808 and flight 7509 on itinerary 4
 Connection time not respected between flight 5808 and flight 7854 on itinerary 4100
 Connection time not respected between flight 6881 and flight 5686 on itinerary 4194
 Connection time not respected between flight 6885 and flight 5838 on itinerary 4196
-Connection time not respected between flight 6895 and flight 7064 on itinerary 4219
-Connection time not respected between flight 6895 and flight 7064 on itinerary 4220
-Connection time not respected between flight 6895 and flight 7134 on itinerary 4221
-Connection time not respected between flight 6895 and flight 7138 on itinerary 4222
 Connection time not respected between flight 6993 and flight 7132 on itinerary 4296
 Connection time not respected between flight 6993 and flight 7132 on itinerary 4297
 Connection time not respected between flight 7061 and flight 7122 on itinerary 4333

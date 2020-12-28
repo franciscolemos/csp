@@ -64,5 +64,5 @@ paths = ["dataSets/A1/A01_6088570",
 #paths = ["dataSets/X/XA04_DATA"]
 #paths = ["dataSets/X/XB01_DATA"]
 #paths = ["dataSets/X/XB02_DATA"]
-paths = ["dataSets/X/XB03_DATA"]
-#paths = ["dataSets/X/XB04_DATA"]
+#paths = ["dataSets/X/XB03_DATA"]
+paths = ["dataSets/X/XB04_DATA"]
