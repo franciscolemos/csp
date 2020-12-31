@@ -215,6 +215,7 @@ class ARP:
 
                     if (noCombos == -1): #excessive no. combos
                         if len(self._rotationMaint) > 0:
+                            import pdb; pdb.set_trace()
                             continue
                         if totalCombos > START_COMBO:
                             uh = upperHeuristic(self.solutionARP, self.configDic, self.domainFlights, self._rotationMaint, _noCombos)
@@ -242,7 +243,6 @@ class ARP:
                             # import pdb; pdb.set_trace() 
                             self.solutionARP[aircraft] = fixedRotation #save the feasible rotation (to be replaced) 
                             solution.saveAirportCap(fixedRotation, airportDic) # update the airp. cap.(to be replaced)
-                            START_COMBO -= STEP_COMBO
                         else:
                             continue
                     else:
