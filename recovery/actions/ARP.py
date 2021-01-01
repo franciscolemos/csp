@@ -35,6 +35,7 @@ from recovery.actions.funcsDate import int2DateTime
 from recovery.actions import ARPUtils
 from recovery.dal.classesDtype import gaType as gt
 from recovery.actions.upperHeuristic import upperHeuristic
+from recovery.actions.btf import flightPlan as fp
 class ARP:
     """ """
     def __init__(self, path):
@@ -94,6 +95,12 @@ class ARP:
             maxDate = endDateTime 
         noDays = fD.dateDiffDays(maxDate, self.minDate) + 1 # + 1 day for arr. next()
         self.fSNOTranspComSA = self.flightScheduleSA[self.flightScheduleSA['family'] != "TranspCom"]
+        ##################### Start BTF ########################
+        flightPlan = fp.flightPlan(self.distSA)
+        flightPlan.fSDistModel(self.fSNOTranspComSA)
+        flightPlan.fsPTF() #init. the total flight time and fuel consumed for each of flights
+        import pdb; pdb.set_trace()
+        ##################### End BTF ##########################
         self.airportOriginaltDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
         #import pdb; pdb.set_trace()
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportOriginaltDic),
@@ -339,7 +346,6 @@ class ARP:
         dfSolutionKpiExport.to_csv("KPI03/dfSolutionKpiExport03_"+self.dataSet+".csv", header = True, index = False)
 
         return [feasible, infAirc]
-
 
     def findSolution(self):
         print("go delta1 aircraft _noCombos noAircrafts  noFlights noCancelledFlights ")
