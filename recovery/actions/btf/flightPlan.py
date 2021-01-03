@@ -47,6 +47,7 @@ class flightPlan:
         self.engineLTOSA = self.airportsDat.engineLTOSA
         self.cumulPhaseSA = []
         self.flightDic = {}
+        self.btfDic = {}
         self.flightDF = pd.DataFrame(columns=['key', 'origin', 'model', 'destination', 'cumulTime', 'physDist', 'cumulConsumedFuel'])
         self.flightScrapeDic = {}
         self.flightNotArrivedSA = []
@@ -59,6 +60,7 @@ class flightPlan:
             fSNOTranspComSA (dtypeFS): Flight schedule
             
         """
+        unknownAirp = []
         a = 0
         _hD = hD.headDist()
         for f in fSNOTranspComSA:
@@ -73,7 +75,6 @@ class flightPlan:
             
             bearing = _hD.heading((latOriginAirport, lonOriginAirport), (latDestinationAirport, lonDestinationAirport))
             geomagHeading = geomag.mag_heading(bearing,dlat=latOriginAirport,dlon=lonOriginAirport)
-            #import pdb; pdb.set_trace()
             physDist = _hD.haversine((latOriginAirport, lonOriginAirport), (latDestinationAirport, lonDestinationAirport))
             
             bearingPhysDistFlSA = dt.bearDistFl[(dt.bearDistFl['lBound'] <= geomagHeading) & (dt.bearDistFl['uBound'] > geomagHeading)]
@@ -95,6 +96,7 @@ class flightPlan:
             year = 2000  + int(f['flight'][-2:]) #to determine taxiOut and taxiIn time
             self.fsDistDic[f['flight']] = {'origin':f['origin'] , 'destination':f['destination'], 'year':year,
                 'model':model, 'physDist':physDist, 'fl':fl, 'windSpeed':windSpeed, 'intensity':intensity }
+
     def fsPTF(self):
         """
             This method loops through the flight schedule and derives the flight phases for taxi-out, take-off, climb, cruise, descent, approach and landing, and taxi-in
@@ -123,6 +125,7 @@ class flightPlan:
                 aircraftEngine = self.aircraftEngineSA[self.aircraftEngineSA['modelBADA'] == model]#det. the set of available engines
                 if len(aircraftEngine) == 0: #if there isn't any available aircraft model
                     print("There is no available available aircraft model for ", model)
+
                 if len(aircraftEngine) == 1: #if there is only a sinlge aircraft moldel
                     engine = aircraftEngine['engineId'] #engine type
                     noEngines = aircraftEngine['noEngine'] #no. engines
@@ -175,6 +178,8 @@ class flightPlan:
                         int(int(cumulPhaseSA['cumulTime'][-1])/60), 
                         int(fs[1]['physDist']), 
                         int(cumulPhaseSA['cumulConsumedFuel'][-1])]
+                    # self.btfDic[key] = {'cumulTime':int(int(cumulPhaseSA['cumulTime'][-1])/60), 
+                    #     'physDist':int(fs[1]['physDist'])}
                     i += 1
                 except:
                     continue
@@ -187,6 +192,16 @@ class flightPlan:
         # pprint(blockTime)
         # pdb.set_trace()
         self.flightDF.to_csv('./recovery/btf/results/flightPlanList.csv',index=False)
+    
+    def fsBTF(self, fs): #loop through flightDF and update flight sched.
+        for index, flight in self.flightDF.iterrows():
+            newfs  = fs[(fs['origin'] == flight['origin']) & (fs['destination'] == flight['destination']) & (fs['family'] == flight['model'])]
+            if len(newfs) == 0:
+                #print("unexisting flight schedule:", flight['origin'], flight['destination'], flight['model'])
+                continue
+            newfs['arrInt'] = newfs['depInt'] + flight['cumulTime']
+            newfs['altArrInt'] = newfs['altDepInt'] + flight['cumulTime']
+    
     def descStat(self):
         flightArrivedSA = genfromtxt('./dataSets/flightAware/flightListArrived.csv', 
             delimiter=',', dtype = dt.flightHistory) #read the flightListArrived.csv

@@ -95,12 +95,14 @@ class ARP:
             maxDate = endDateTime 
         noDays = fD.dateDiffDays(maxDate, self.minDate) + 1 # + 1 day for arr. next()
         self.fSNOTranspComSA = self.flightScheduleSA[self.flightScheduleSA['family'] != "TranspCom"]
+
         ##################### Start BTF ########################
-        flightPlan = fp.flightPlan(self.distSA)
-        flightPlan.fSDistModel(self.fSNOTranspComSA)
-        flightPlan.fsPTF() #init. the total flight time and fuel consumed for each of flights
-        import pdb; pdb.set_trace()
+        # flightPlan = fp.flightPlan(self.distSA)
+        # flightPlan.fSDistModel(self.fSNOTranspComSA) 
+        # flightPlan.fsPTF() #init. the total flight time and fuel consumed for each of flights
+        # flightPlan.fsBTF(self.fSNOTranspComSA) #converts the original FS to the BTF
         ##################### End BTF ##########################
+
         self.airportOriginaltDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
         #import pdb; pdb.set_trace()
         scenario.echo(len(self.flightDic), len(self.aircraftDic), len(self.airportOriginaltDic),
