@@ -1,0 +1,65 @@
+dateTime,dataInstance,checkAircraftBreakdownPeriod,checkAircraftCapacity,checkAircraftCreation,checkAircraftSwap,checkAirportCapacity,checkCancellationofCreatedRotation,checkFixedFlights,checkFlight,checkItinerary,checkPassengerReac,checkRotation
+28/32 no maint. in upper heuristic,20210110_2221,A01_6088570,0,0,0,0,0,0,0,0,4950,0,0
+28/32 no maint. in upper heuristic,20210110_2221,A02_6088570,0,0,0,0,0,0,0,0,6055,0,0
+28/32 no maint. in upper heuristic,20210110_2221,A03_6088570,0,0,0,0,0,0,0,0,6071,88,0
+28/32 no maint. in upper heuristic,20210110_2221,A04_6088570,0,0,0,0,0,0,0,0,12309,354,0
+28/32 no maint. in upper heuristic,20210110_2221,A05_6088570,0,0,0,0,0,0,0,0,25935,7760,0
+28/32 no maint. in upper heuristic,20210110_2221,A06_6088590,0,0,0,0,0,0,0,0,3964,0,0
+28/32 no maint. in upper heuristic,20210110_2221,A07_6088590,0,0,0,0,0,0,0,0,4965,0,0
+28/32 no maint. in upper heuristic,20210110_2221,A08_6088590,0,0,0,0,0,0,0,0,5991,90,0
+28/32 no maint. in upper heuristic,20210110_2221,A09_6088590,0,0,0,0,0,0,0,0,8183,265,0
+28/32 no maint. in upper heuristic,20210110_2221,A10_6088590,0,0,0,0,0,0,0,0,28638,5481,0
+28/32 no maint. in upper heuristic,20210110_2221,B_01,0,0,0,0,0,0,0,0,15144,6095,0
+28/32 no maint. in upper heuristic,20210110_2221,B_02,0,0,0,0,0,0,0,0,16420,7885,0
+28/32 no maint. in upper heuristic,20210110_2221,B_03,0,0,0,0,0,0,0,0,18459,6230,0
+28/32 no maint. in upper heuristic,20210110_2221,B_04,0,0,0,0,0,0,0,0,40107,14968,319
+28/32 no maint. in upper heuristic,20210110_2221,B_05,0,0,0,0,0,0,0,0,29714,28168,0
+28/32 no maint. in upper heuristic,20210110_2221,B_06,0,0,0,0,0,0,0,0,14042,5875,0
+28/32 no maint. in upper heuristic,20210110_2221,B_07,0,0,0,0,0,0,0,0,14127,7891,0
+28/32 no maint. in upper heuristic,20210110_2221,B_08,0,0,0,0,0,0,0,0,16847,5514,0
+28/32 no maint. in upper heuristic,20210110_2221,B_09,0,0,0,0,0,0,180,0,17185,7488,57
+28/32 no maint. in upper heuristic,20210110_2221,B_10,0,0,0,0,0,0,0,0,30240,30991,0
+28/32 no maint. in upper heuristic,20210110_2221,X01_DATA,0,0,0,0,0,0,0,0,14865,1257,0
+28/32 no maint. in upper heuristic,20210110_2221,X02_DATA,0,0,0,0,0,0,0,0,0,1257,0
+28/32 no maint. in upper heuristic,20210110_2221,X03_DATA,0,0,0,0,0,0,0,0,19792,1031,0
+28/32 no maint. in upper heuristic,20210110_2221,X04_DATA,0,0,0,0,0,0,0,0,0,807,0
+28/32 no maint. in upper heuristic,20210110_2221,XA01_DATA,0,0,0,0,0,0,0,0,6071,178,0
+28/32 no maint. in upper heuristic,20210110_2221,XA02_DATA,0,0,0,0,0,0,0,0,24487,7235,0
+28/32 no maint. in upper heuristic,20210110_2221,XA03_DATA,0,0,0,0,0,0,0,0,5821,403,0
+28/32 no maint. in upper heuristic,20210110_2221,XA04_DATA,0,0,0,0,0,0,0,0,26337,5574,0
+28/32 no maint. in upper heuristic,20210110_2221,XB01_DATA,0,0,0,0,0,0,0,0,17609,6501,0
+28/32 no maint. in upper heuristic,20210110_2221,XB02_DATA,0,0,0,0,0,0,0,0,28017,28709,0
+28/32 no maint. in upper heuristic,20210110_2221,XB03_DATA,0,0,0,0,0,0,0,0,17424,8794,0
+28/32 no maint. in upper heuristic,20210110_2221,XB04_DATA,0,0,0,0,0,0,0,0,25492,30994,0
+30/32 maint. in upper heuristic,20210110_2223,A01_6088570,0,0,0,0,0,0,0,0,4950,0,0
+30/32 maint. in upper heuristic,20210110_2223,A02_6088570,0,0,0,0,0,0,0,0,6055,0,0
+30/32 maint. in upper heuristic,20210110_2223,A03_6088570,0,0,0,0,0,0,0,0,6071,88,0
+30/32 maint. in upper heuristic,20210110_2223,A04_6088570,0,0,0,0,0,0,0,0,12309,354,0
+30/32 maint. in upper heuristic,20210110_2223,A05_6088570,0,0,0,0,0,0,0,0,20088,7276,0
+30/32 maint. in upper heuristic,20210110_2223,A06_6088590,0,0,0,0,0,0,0,0,3964,0,0
+30/32 maint. in upper heuristic,20210110_2223,A07_6088590,0,0,0,0,0,0,0,0,4965,0,0
+30/32 maint. in upper heuristic,20210110_2223,A08_6088590,0,0,0,0,0,0,0,0,5991,90,0
+30/32 maint. in upper heuristic,20210110_2223,A09_6088590,0,0,0,0,0,0,0,0,8183,265,0
+30/32 maint. in upper heuristic,20210110_2223,A10_6088590,0,0,0,0,0,0,0,0,22291,5028,0
+30/32 maint. in upper heuristic,20210110_2223,B_01,0,0,0,0,0,0,0,0,15144,6095,0
+30/32 maint. in upper heuristic,20210110_2223,B_02,0,0,0,0,0,0,0,0,16420,7885,0
+30/32 maint. in upper heuristic,20210110_2223,B_03,0,0,0,0,0,0,0,0,18459,6230,0
+30/32 maint. in upper heuristic,20210110_2223,B_04,0,0,0,0,0,0,0,0,40107,14968,319
+30/32 maint. in upper heuristic,20210110_2223,B_05,0,0,0,0,0,0,0,0,18138,28306,0
+30/32 maint. in upper heuristic,20210110_2223,B_06,0,0,0,0,0,0,0,0,14042,5875,0
+30/32 maint. in upper heuristic,20210110_2223,B_07,0,0,0,0,0,0,0,0,14127,7891,0
+30/32 maint. in upper heuristic,20210110_2223,B_08,0,0,0,0,0,0,0,0,16847,5514,0
+30/32 maint. in upper heuristic,20210110_2223,B_09,0,0,0,0,0,0,0,0,42477,14974,319
+30/32 maint. in upper heuristic,20210110_2223,B_10,0,0,0,0,0,0,0,0,21200,26964,0
+30/32 maint. in upper heuristic,20210110_2223,X01_DATA,0,0,0,0,0,0,0,0,14865,1257,0
+30/32 maint. in upper heuristic,20210110_2223,X02_DATA,0,0,0,0,0,0,0,0,0,1257,0
+30/32 maint. in upper heuristic,20210110_2223,X03_DATA,0,0,0,0,0,0,0,0,19792,1031,0
+30/32 maint. in upper heuristic,20210110_2223,X04_DATA,0,0,0,0,0,0,0,0,0,807,0
+30/32 maint. in upper heuristic,20210110_2223,XA01_DATA,0,0,0,0,0,0,0,0,6071,178,0
+30/32 maint. in upper heuristic,20210110_2223,XA02_DATA,0,0,0,0,0,0,0,0,19577,8118,0
+30/32 maint. in upper heuristic,20210110_2223,XA03_DATA,0,0,0,0,0,0,0,0,5821,403,0
+30/32 maint. in upper heuristic,20210110_2223,XA04_DATA,0,0,0,0,0,0,0,0,21945,6058,0
+30/32 maint. in upper heuristic,20210110_2223,XB01_DATA,0,0,0,0,0,0,0,0,17609,6501,0
+30/32 maint. in upper heuristic,20210110_2223,XB02_DATA,0,0,0,0,0,0,0,0,18394,27858,0
+30/32 maint. in upper heuristic,20210110_2223,XB03_DATA,0,0,0,0,0,0,0,0,17424,8794,0
+30/32 maint. in upper heuristic,20210110_2223,XB04_DATA,0,0,0,0,0,0,0,0,21612,28843,0

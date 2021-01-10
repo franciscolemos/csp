@@ -1,7 +1,4 @@
-
-
-'''
-paths = ["dataSets/A1/A01_6088570",
+pathList = ["dataSets/A1/A01_6088570",
     "dataSets/A1/A02_6088570",
     "dataSets/A1/A03_6088570",
     "dataSets/A1/A04_6088570",
@@ -33,7 +30,7 @@ paths = ["dataSets/A1/A01_6088570",
     "dataSets/X/XB02_DATA",
     "dataSets/X/XB03_DATA",
     "dataSets/X/XB04_DATA"]
-'''
+
 #paths = ["dataSets/A1/A01_6088570"]
 #paths = ["dataSets/A1/A02_6088570"]
 #paths = ["dataSets/A1/A03_6088570"]
@@ -54,9 +51,9 @@ paths = ["dataSets/A1/A01_6088570",
 #paths = ["dataSets/B2/B_08"]
 #paths = ["dataSets/B2/B_09"]
 #paths = ["dataSets/B2/B_10"]
-paths = ["dataSets/X/X01_DATA"]
+#paths = ["dataSets/X/X01_DATA"]
 #paths = ["dataSets/X/X02_DATA"]
-#paths = ["dataSets/X/X03_DATA"]
+paths = ["dataSets/X/X03_DATA"]
 #paths = ["dataSets/X/X04_DATA"]
 #paths = ["dataSets/X/XA01_DATA"]
 #paths = ["dataSets/X/XA02_DATA"]

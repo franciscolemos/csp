@@ -218,14 +218,18 @@ class ARP:
                     airpCapCopy = copy.deepcopy(airportDic) #copy the airp. cap. solution
                      #flight ranges and combinations only for moving flight after disruption index with updated airp. cap. for fixed flights
                     flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy, _noCombos)
-                    
-                    # if aircraft == 'A320#46':
-                    #     import pdb; pdb.set_trace()
 
                     if (noCombos == -1): #excessive no. combos
-                        if len(self._rotationMaint) > 0:
-                            import pdb; pdb.set_trace()
-                            continue
+                        # if len(self._rotationMaint) > 0:
+                        #     if len(self._rotationMaint) > 0:
+                        #         rotationMaint = ARPUtils.addMaint(aircraft, self._rotationMaint) #creates the maint to be later added to the rotation
+                        #     rotation = np.concatenate((rotation, rotationMaint))
+                        #     rotation = np.sort(rotation, order = 'altDepInt')
+                        #     uh = upperHeuristic(self.solutionARP, self.configDic, self.domainFlights, self._rotationMaint, _noCombos)
+                        #     criticalFlights = uh.findCriticalFlight(rotation)
+                        #     flightRanges['m'] = [0]
+                        #     import pdb; pdb.set_trace()
+                        #     continue
                         if totalCombos > START_COMBO:
                             uh = upperHeuristic(self.solutionARP, self.configDic, self.domainFlights, self._rotationMaint, _noCombos)
                             uh.removeSingleton(singletonList, airpCapCopy, aircraftSolList, rotation, index)

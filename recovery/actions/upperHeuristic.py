@@ -14,6 +14,13 @@ class upperHeuristic:
         self._rotationMaint = _rotationMaint
         self._noCombos = _noCombos
 
+    def findCriticalFlight(self, rotation):
+        criticalFlights = []
+        startRotation = self._rotationMaint['altDepInt'][0] #start maint.
+        airpRotation = self._rotationMaint['origin'][0] #origin maint.
+        criticalFlights = rotation[(rotation['destination'] == airpRotation) & (rotation['altDepInt'] <= startRotation )]
+        return criticalFlights[:-1]
+
     def solve(self, flightRanges, rotation, index, aircraft):
         start = time.time()
         feasibility.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]

@@ -1,1 +1,5 @@
 Maintenance position not respected for aircraft A319#20
+Aircraft A318#33 arrives after maintenance start time on 2008-Mar-02 (07:00:00)
+Maintenance position not respected for aircraft A318#33
+Aircraft A318#33 leaves before end of maintenance  on 2008-Mar-02
+Maintenance position not respected for aircraft A320#79
