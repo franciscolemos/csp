@@ -70,7 +70,7 @@ class flights:
                 if (f['depInt'] < self.configDic['startInt']) & (f['newFlight'] != 1):#because it departs outside the RTW (another singleton)
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
                     continue
-                if f['depInt'] > self.configDic['endInt']: #because it departs outside the RTW (another singleton)
+                if (f['depInt'] > self.configDic['endInt']) & (f['newFlight'] != 1): #because it departs outside the RTW (another singleton)
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
                     continue
                 domain = [-1] #add flight cancellation

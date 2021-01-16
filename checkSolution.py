@@ -29,7 +29,7 @@ for path in pathList:
     print(dataSet)
     os.chdir(path)
     os.system("solutionChecker-win32.exe")
-    sizeLine['version'] = '30/32 maint. in upper heuristic'
+    sizeLine['version'] = '32/32 continue after rtw'
     sizeLine['dateTime'].append(today)
     sizeLine['dataInstance'].append(dataSet)
     sizeLine['checkAircraftBreakdownPeriod'].append(os.path.getsize("./results/checkAircraftBreakdownPeriod.txt"))

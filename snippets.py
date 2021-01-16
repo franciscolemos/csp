@@ -45,54 +45,58 @@
             #  python -m site --user-site get python packages
             # np.setdiff1d(a, b) diff. between two numpy arrays
             # found_index = np.in1d(input_series, val).nonzero()[0] new_array = numpy.delete(input_series, found_index)
-     
             # flightOrder =  collections.OrderedDict(sorted(self.flightDic.items())) order dictionary
-            # lastFlight = flightOrder.popitem()[0]
-            #numpy.savetxt("foo.csv", a, delimiter=",")
-
             #[print(key, value) for key, value in flightRanges.items()] Print a dictionary line by line using List Comprehension
-            #[value for value in arp.solutionARP.values()]
-            #solutionARP =  np.concatenate([value for value in arp.solutionARP.values()]).ravel()
 
-            # def evaluate(self):
-            #     fitness = []
-            #     for individual in self.pop:
-            #         rotation = copy.deepcopy(self.rotationOriginal) #keep a copy of the original because of new rotation
-            #         #import pdb; pdb.set_trace()
-            #         solution.newRotation(individual[0], rotation[self.index:]) #add the combo to the rotation
-            #         rotationCopy = copy.deepcopy(rotation[rotation['cancelFlight'] != 1]) #only flights not cancelled in the copy
-            #         rotationCopy = np.sort(rotationCopy, order = 'altDepInt')
-            #         sizeInfCont = len(feasibility.continuity(rotationCopy))
-            #         sizeInfTT = len(feasibility.TT(rotationCopy))
-                
-            #         noInf = sizeInfCont + sizeInfTT
-            #         noCancel = sum([i for i in individual[0] if i == -1])
-            #         delay = sum([i for i in individual[0] if i != -1])
-            #         fitness.append([noInf, noCancel, delay])
-            #     return fitness
 
-            # offspring[::2] group every 2 elem. start at index 0 pick first
-            # offspring[1::2] group every 2 elem. start at index 1 pick first
+# if inf. is tt delay the first fight and re-run
+                    #comply with tt
+                    if rotation[index-1]['destination'] == rotation[index]['origin']:
+                        originDep = rotation[index-1]['altDepInt'] + rotation[index -1]['tt']
+                        if originDep > rotation[index]['altDepint']:
+                            import pdb; pdb.set_trace()
+                            offset = originDep - rotation[index]['altDepInt']
+                            rotation[index]['altDepInt'] = originDep
+                            rotation[index]['altArrInt'] += offset
 
-            # print("Before")
-            # for ind in self.pop:
-            #     print(ind, ind.fitness)
+# solRot = rotationOriginal[rotationOriginal['cancelFlight'] == 0]
+# solRot = np.sort(solRot, order = 'altDepInt')
+# if index > 0:
+#     originAirport = rotationOriginal['destination'][index -1]
+# else:
+#     originAirport = self.aircraftDic[aircraft]['originAirport']
+# rotationOriginal, self.maxFlight = ARPUtils.maintRecover(aircraft, self.distSA, originAirport, solRot, airportDic
+#         , self.configDic, self.maxFlight, rotationMaint, index)
 
-            # self.pop.sort(key = lambda x: x.fitness, reverse =True)
-            
-            # print("After")
-            # for ind in self.pop:
-            #     print(ind, ind.fitness)
 
-            # print("init. sol.")
-            # fits = [ind.fitness.values for ind in self.pop]
-            # pprint.pprint(self.pop)
-            # pprint.pprint(fits)
 
-            # flightCombinations = product(*flightRanges.values())
-            # solutions = np.array(list(flightCombinations))
-            # for sol in solutions:
-            #     _sol = chain.from_iterable([sol, combo])
-            #     _combo = np.array(list(_sol))
+# def maintRecover(aircraft, distSA, originAirport, solRot, airportDic, configDic, maxFlight, rotationMaint, index):
+#     originDep = solRot[index-1]['altDepInt'] + solRot[index -1]['tt']
+#     originSlots = airportDic[originAirport] #find airp. time slot for dep. @origin
+#     originSlots = originSlots[originSlots['capDep'] > originSlots['noDep']] #find airp. time slot for dep. @origin w/ avail. dep. cap.
+#     originSlotsUpper =  originSlots[originSlots['endInt'] > (originDep)] #upper slots for dep.
+#      #find the min. dep. time
+#     for sr in solRot[index:]:
+#         sr['cancelFlight'] = 1 #cancel the flight
+#         destination = sr['destination'] #destination
+#         destSlots = airportDic[destination] #dest. airp. slots
+#         destSlots = destSlots[destSlots['capArr'] > destSlots['noArr']] #dest. airp. slots w/ avail. cap.
+#         dist = distSA[(distSA['origin'] == originAirport) & (distSA['destination'] == destination)]['dist'][0] # flight dist.
+#         destSlotsUpper = destSlots[destSlots['endInt'] > originDep + dist]
+
+
+
+# if len(bestSol) > 0:
+#     if newSol[0] > bestSol[0]:
+#         bestSol = newSol
+#         continue
+#     if newSol[1] < bestSol[1]:
+#         bestSol = newSol
+#         continue
+#     if newSol[1] == bestSol[1]: #same value for delay
+#         if max(newSol[2]) < max(bestSol[2]): #new sol. is less convoluted
+#             bestSol = newSol 
+# else:
+#     bestSol = newSol
             
             

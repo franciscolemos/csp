@@ -11,10 +11,12 @@ start cmd.exe /c python main.py dataSets/A2/A10_6088590
 start cmd.exe /c python main.py dataSets/B1/B_01
 start cmd.exe /c python main.py dataSets/B1/B_02
 start cmd.exe /c python main.py dataSets/B1/B_03
+start cmd.exe /c python main.py dataSets/B1/B_04
 start cmd.exe /c python main.py dataSets/B1/B_05
 start cmd.exe /c python main.py dataSets/B2/B_06
 start cmd.exe /c python main.py dataSets/B2/B_07
 start cmd.exe /c python main.py dataSets/B2/B_08
+start cmd.exe /c python main.py dataSets/B2/B_09
 start cmd.exe /c python main.py dataSets/B2/B_10
 start cmd.exe /c python main.py dataSets/X/X01_DATA
 start cmd.exe /c python main.py dataSets/X/X02_DATA

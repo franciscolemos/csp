@@ -29,8 +29,6 @@ Connection time not respected between flight 150 and flight 4595 on itinerary 31
 Connection time not respected between flight 150 and flight 4595 on itinerary 317
 Connection time not respected between flight 150 and flight 4595 on itinerary 319
 Connection time not respected between flight 150 and flight 4591 on itinerary 429
-Connection time not respected between flight 3004 and flight 4237 on itinerary 531
-Connection time not respected between flight 3004 and flight 4237 on itinerary 533
 Connection time not respected between flight 4704 and flight 2647 on itinerary 636
 Connection time not respected between flight 4703 and flight 2980 on itinerary 638
 Connection time not respected between flight 4658 and flight 2582 on itinerary 644
@@ -55,14 +53,9 @@ Connection time not respected between flight 3004 and flight 4169 on itinerary 9
 Connection time not respected between flight 4366 and flight 4317 on itinerary 956
 Connection time not respected between flight 4366 and flight 4317 on itinerary 958
 Connection time not respected between flight 3004 and flight 4169 on itinerary 1097
-Connection time not respected between flight 2908 and flight 4421 on itinerary 1111
-Connection time not respected between flight 2908 and flight 4421 on itinerary 1113
 Connection time not respected between flight 2795 and flight 4411 on itinerary 1144
 Connection time not respected between flight 2795 and flight 4411 on itinerary 1146
 Connection time not respected between flight 4630 and flight 4499 on itinerary 1172
-Connection time not respected between flight 150 and flight 4637 on itinerary 1200
-Connection time not respected between flight 3102 and flight 3007 on itinerary 1483
-Connection time not respected between flight 3102 and flight 3007 on itinerary 1485
 Connection time not respected between flight 2968 and flight 4295 on itinerary 1657
 Connection time not respected between flight 2968 and flight 4295 on itinerary 1659
 Connection time not respected between flight 2968 and flight 3119 on itinerary 1662

@@ -1,4 +1,4 @@
-dateTime,dataInstance,checkAircraftBreakdownPeriod,checkAircraftCapacity,checkAircraftCreation,checkAircraftSwap,checkAirportCapacity,checkCancellationofCreatedRotation,checkFixedFlights,checkFlight,checkItinerary,checkPassengerReac,checkRotation
+dateTime,day,dataInstance,checkAircraftBreakdownPeriod,checkAircraftCapacity,checkAircraftCreation,checkAircraftSwap,checkAirportCapacity,checkCancellationofCreatedRotation,checkFixedFlights,checkFlight,checkItinerary,checkPassengerReac,checkRotation
 28/32 no maint. in upper heuristic,20210110_2221,A01_6088570,0,0,0,0,0,0,0,0,4950,0,0
 28/32 no maint. in upper heuristic,20210110_2221,A02_6088570,0,0,0,0,0,0,0,0,6055,0,0
 28/32 no maint. in upper heuristic,20210110_2221,A03_6088570,0,0,0,0,0,0,0,0,6071,88,0
@@ -63,3 +63,64 @@ dateTime,dataInstance,checkAircraftBreakdownPeriod,checkAircraftCapacity,checkAi
 30/32 maint. in upper heuristic,20210110_2223,XB02_DATA,0,0,0,0,0,0,0,0,18394,27858,0
 30/32 maint. in upper heuristic,20210110_2223,XB03_DATA,0,0,0,0,0,0,0,0,17424,8794,0
 30/32 maint. in upper heuristic,20210110_2223,XB04_DATA,0,0,0,0,0,0,0,0,21612,28843,0
+29/32 delay in tt inf.,20210115_0119,A01_6088570,0,0,0,0,0,0,0,0,5367,0,0
+29/32 delay in tt inf.,20210115_0119,A02_6088570,0,0,0,0,0,0,0,0,5463,0,0
+29/32 delay in tt inf.,20210115_0119,A03_6088570,0,0,0,0,0,0,0,0,4887,88,0
+29/32 delay in tt inf.,20210115_0119,A04_6088570,0,0,0,0,0,0,0,0,12394,0,0
+29/32 delay in tt inf.,20210115_0119,A05_6088570,0,0,0,0,0,0,0,0,21565,16126,0
+29/32 delay in tt inf.,20210115_0119,A06_6088590,0,0,0,0,0,0,0,0,3873,0,0
+29/32 delay in tt inf.,20210115_0119,A07_6088590,0,0,0,0,0,0,0,0,4797,0,0
+29/32 delay in tt inf.,20210115_0119,A08_6088590,0,0,0,0,0,0,0,0,5482,90,0
+29/32 delay in tt inf.,20210115_0119,A09_6088590,0,0,0,0,0,0,0,0,9023,0,0
+29/32 delay in tt inf.,20210115_0119,A10_6088590,0,0,0,0,0,0,0,0,23263,9763,0
+29/32 delay in tt inf.,20210115_0119,B_01,0,0,0,0,0,0,0,0,15221,5964,0
+29/32 delay in tt inf.,20210115_0119,B_03,0,0,0,0,0,0,0,0,18961,6234,0
+29/32 delay in tt inf.,20210115_0119,B_04,0,0,0,0,0,0,0,0,21679,8388,0
+29/32 delay in tt inf.,20210115_0119,B_05,0,0,0,0,0,0,0,0,17624,29580,0
+29/32 delay in tt inf.,20210115_0119,B_06,0,0,0,0,0,0,0,0,14705,5565,0
+29/32 delay in tt inf.,20210115_0119,B_08,0,0,0,0,0,0,0,0,17850,5384,0
+29/32 delay in tt inf.,20210115_0119,B_09,0,0,0,0,0,0,0,0,19801,8307,0
+29/32 delay in tt inf.,20210115_0119,B_10,0,0,0,0,0,0,0,0,19239,27691,0
+29/32 delay in tt inf.,20210115_0119,X01_DATA,0,0,0,0,0,0,0,0,14865,1257,0
+29/32 delay in tt inf.,20210115_0119,X02_DATA,0,0,0,0,0,0,0,0,0,1257,0
+29/32 delay in tt inf.,20210115_0119,X03_DATA,0,0,0,0,0,0,0,0,19792,1031,0
+29/32 delay in tt inf.,20210115_0119,X04_DATA,0,0,0,0,0,0,0,0,0,807,0
+29/32 delay in tt inf.,20210115_0119,XA01_DATA,0,0,0,0,0,0,0,0,4887,178,0
+29/32 delay in tt inf.,20210115_0119,XA02_DATA,0,0,0,0,0,0,0,0,22125,15750,0
+29/32 delay in tt inf.,20210115_0119,XA03_DATA,0,0,0,0,0,0,0,0,5482,403,0
+29/32 delay in tt inf.,20210115_0119,XA04_DATA,0,0,0,0,0,0,0,0,23505,10668,0
+29/32 delay in tt inf.,20210115_0119,XB01_DATA,0,0,0,0,0,0,0,0,17769,7400,57
+29/32 delay in tt inf.,20210115_0119,XB03_DATA,0,0,0,0,0,0,0,0,16488,7721,0
+29/32 delay in tt inf.,20210115_0119,XB04_DATA,0,0,0,0,0,0,0,0,15606,27682,0
+32/32 continue after rtw,20210115_2018,A01_6088570,0,0,0,0,0,0,0,0,5281,0,0
+32/32 continue after rtw,20210115_2018,A02_6088570,0,0,0,0,0,0,0,0,5463,0,0
+32/32 continue after rtw,20210115_2018,A03_6088570,0,0,0,0,0,0,0,0,4887,88,0
+32/32 continue after rtw,20210115_2018,A04_6088570,0,0,0,0,0,0,0,0,11721,354,0
+32/32 continue after rtw,20210115_2018,A05_6088570,0,0,0,0,0,0,0,0,22155,14963,0
+32/32 continue after rtw,20210115_2018,A06_6088590,0,0,0,0,0,0,0,0,3877,0,0
+32/32 continue after rtw,20210115_2018,A07_6088590,0,0,0,0,0,0,0,0,4797,0,0
+32/32 continue after rtw,20210115_2018,A08_6088590,0,0,0,0,0,0,0,0,5482,90,0
+32/32 continue after rtw,20210115_2018,A09_6088590,0,0,0,0,0,0,0,0,9622,265,0
+32/32 continue after rtw,20210115_2018,A10_6088590,0,0,0,0,0,0,0,0,24106,12043,0
+32/32 continue after rtw,20210115_2018,B_01,0,0,0,0,0,0,0,0,14133,5645,0
+32/32 continue after rtw,20210115_2018,B_02,0,0,0,0,0,0,0,0,15569,6630,0
+32/32 continue after rtw,20210115_2018,B_03,0,0,0,0,0,0,0,0,14813,5555,0
+32/32 continue after rtw,20210115_2018,B_04,0,0,0,0,0,0,0,0,21103,7976,0
+32/32 continue after rtw,20210115_2018,B_05,0,0,0,0,0,0,0,0,18876,27063,0
+32/32 continue after rtw,20210115_2018,B_06,0,0,0,0,0,0,0,0,13618,5474,0
+32/32 continue after rtw,20210115_2018,B_07,0,0,0,0,0,0,0,0,13951,6370,0
+32/32 continue after rtw,20210115_2018,B_08,0,0,0,0,0,0,0,0,13958,5608,0
+32/32 continue after rtw,20210115_2018,B_09,0,0,0,0,0,0,0,0,18208,8123,0
+32/32 continue after rtw,20210115_2018,B_10,0,0,0,0,0,0,0,0,22097,26615,0
+32/32 continue after rtw,20210115_2018,X01_DATA,0,0,0,0,0,0,0,0,14865,1257,0
+32/32 continue after rtw,20210115_2018,X02_DATA,0,0,0,0,0,0,0,0,0,1257,0
+32/32 continue after rtw,20210115_2018,X03_DATA,0,0,0,0,0,0,0,0,19792,1031,0
+32/32 continue after rtw,20210115_2018,X04_DATA,0,0,0,0,0,0,0,0,0,807,0
+32/32 continue after rtw,20210115_2018,XA01_DATA,0,0,0,0,0,0,0,0,4887,178,0
+32/32 continue after rtw,20210115_2018,XA02_DATA,0,0,0,0,0,0,0,0,21456,17787,0
+32/32 continue after rtw,20210115_2018,XA03_DATA,0,0,0,0,0,0,0,0,5482,403,0
+32/32 continue after rtw,20210115_2018,XA04_DATA,0,0,0,0,0,0,0,0,21476,12443,0
+32/32 continue after rtw,20210115_2018,XB01_DATA,0,0,0,0,0,0,0,0,16343,6275,0
+32/32 continue after rtw,20210115_2018,XB02_DATA,0,0,0,0,0,0,0,0,18963,26430,0
+32/32 continue after rtw,20210115_2018,XB03_DATA,0,0,0,0,0,0,0,0,15488,7000,0
+32/32 continue after rtw,20210115_2018,XB04_DATA,0,0,0,0,0,0,0,0,23113,26740,0
