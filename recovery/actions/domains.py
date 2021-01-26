@@ -62,17 +62,16 @@ class flights:
         try:
             for f in rotation: #iterate through the rotation
                 domain = [] #initalize the empty domain for each flight
-                if f['cancelFlight'] != 0:
-                    continue
+
                 if f['altDepInt'] != f['depInt']: #because it is a fixed flight
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
                     continue
-                if (f['depInt'] < self.configDic['startInt']) & (f['newFlight'] != 1):#because it departs outside the RTW (another singleton)
-                    self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
-                    continue
-                if (f['depInt'] > self.configDic['endInt']) & (f['newFlight'] != 1): #because it departs outside the RTW (another singleton)
-                    self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
-                    continue
+                # if (f['depInt'] < self.configDic['startInt']) & (f['newFlight'] != 1):#because it departs outside the RTW (another singleton)
+                #     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
+                #     continue
+                # if (f['depInt'] > self.configDic['endInt']) & (f['newFlight'] != 1): #because it departs outside the RTW (another singleton)
+                #     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
+                #     continue
                 domain = [-1] #add flight cancellation
                 for t in range(0, maxDelay, deltaT): #find the feasible time slots
                     origin = f['origin']
@@ -86,21 +85,12 @@ class flights:
                         domain.append(t)
 
                 noCombos *= len(domain) #calculate as the end result of the size of the domain
-                # if _noCombos != -1:
-                #     if noCombos > _noCombos * 10**5:
-                #         # print(noCombos, domains, rotation)
-                #         # import pdb; pdb.set_trace()
-                #         return [],  -1, []
                 domains[f['flight']] = domain
 
-        except Exception as ex:
-            #print("Exception finding ranges@domains.py", ex.message)
-            #import pdb; pdb.set_trace()
+        except:
             return [],  -1, [], -1
         if _noCombos != -1:
             if noCombos > _noCombos * 10**5:
-                #print("Excessive2: ", noCombos)
-                #import pdb; pdb.set_trace()
                 return domains, -1, [], noCombos
 
         return domains, noCombos, singletonList, noCombos

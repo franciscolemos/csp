@@ -22,6 +22,7 @@ sizeLine['checkFlight'] = []
 sizeLine['checkItinerary'] = []
 sizeLine['checkPassengerReac'] = []
 sizeLine['checkRotation'] = []
+sizeLine['costs'] = []
 today = datetime.now().strftime("%Y%m%d_%H%M")
 
 for path in pathList:
@@ -29,7 +30,7 @@ for path in pathList:
     print(dataSet)
     os.chdir(path)
     os.system("solutionChecker-win32.exe")
-    sizeLine['version'] = '32/32 continue after rtw'
+    sizeLine['version'] = '32/32 Remove depInt <> RTW'
     sizeLine['dateTime'].append(today)
     sizeLine['dataInstance'].append(dataSet)
     sizeLine['checkAircraftBreakdownPeriod'].append(os.path.getsize("./results/checkAircraftBreakdownPeriod.txt"))
@@ -43,7 +44,14 @@ for path in pathList:
     sizeLine['checkItinerary'].append(os.path.getsize("./results/checkItinerary.txt"))
     sizeLine['checkPassengerReac'].append(os.path.getsize("./results/checkPassengerReac.txt"))
     sizeLine['checkRotation'].append(os.path.getsize("./results/checkRotation.txt"))
+    os.system("costChecker-win32.exe > results/cost.txt")
+    costs = np.genfromtxt('results/cost.txt', delimiter=':')
+    sizeLine['costs'].append(costs[-1][1])
     os.chdir("../../../")
 
 dataSetSizes = pd.DataFrame(sizeLine)
-dataSetSizes.to_csv('./results/prpInf.csv', mode='a', index=False, header = False)
+try:
+    dataSetSizes.to_csv('./results/prpInf.csv', mode='a', index=False, header = False)
+except:
+    import pdb; pdb.set_trace()
+    dataSetSizes.to_csv('./results/prpInf.csv', mode='a', index=False, header = False)
