@@ -34,8 +34,7 @@ class interval:
 def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get minDate, startInt:
     newFlights = rotation[rotation['flight'] == ''] #new flights
     rotationCancel = rotation[(rotation['altAirc'] == -1)] #flight cancelled by disr.
-    startDep = rotationCancel[0]['depInt'] #offset
-    feasibility.verifyNewFlights(rotationCancel, newFlights) #check if no. of avail. slots equals 
+    #feasibility.verifyNewFlights(rotationCancel, newFlights) #check if no. of avail. slots equals 
     index = 0
     start = endInt + 1
     for cancelFlight, newFlight in zip(rotationCancel, newFlights): #loops through cancelled flights and new flights
