@@ -83,6 +83,8 @@ Connection time not respected between flight 7129 and flight 7018 on itinerary 2
 Connection time not respected between flight 7129 and flight 7018 on itinerary 2013
 Connection time not respected between flight 7149 and flight 7018 on itinerary 2020
 Connection time not respected between flight 7149 and flight 7018 on itinerary 2021
+Connection time not respected between flight 7245 and flight 9568 on itinerary 2077
+Connection time not respected between flight 7245 and flight 9568 on itinerary 2078
 Connection time not respected between flight 7253 and flight 1186 on itinerary 2093
 Connection time not respected between flight 7253 and flight 1198 on itinerary 2094
 Connection time not respected between flight 7253 and flight 1422 on itinerary 2095

@@ -22,6 +22,8 @@ Connection time not respected between flight 4594 and flight 4595 on itinerary 4
 Connection time not respected between flight 4594 and flight 4595 on itinerary 458
 Connection time not respected between flight 2973 and flight 2517 on itinerary 509
 Connection time not respected between flight 2973 and flight 2517 on itinerary 511
+Connection time not respected between flight 5226 and flight 4436 on itinerary 525
+Connection time not respected between flight 5226 and flight 4436 on itinerary 527
 Connection time not respected between flight 2969 and flight 2519 on itinerary 572
 Connection time not respected between flight 2969 and flight 2519 on itinerary 574
 Connection time not respected between flight 2976 and flight 4345 on itinerary 583
@@ -33,6 +35,8 @@ Connection time not respected between flight 4368 and flight 4321 on itinerary 7
 Connection time not respected between flight 3000 and flight 2867 on itinerary 806
 Connection time not respected between flight 3074 and flight 4317 on itinerary 865
 Connection time not respected between flight 3074 and flight 1375 on itinerary 867
+Connection time not respected between flight 5212 and flight 2609 on itinerary 871
+Connection time not respected between flight 5212 and flight 2609 on itinerary 873
 Connection time not respected between flight 3082 and flight 4319 on itinerary 875
 Connection time not respected between flight 3082 and flight 4319 on itinerary 877
 Connection time not respected between flight 3085 and flight 3094 on itinerary 879

@@ -37,6 +37,7 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
     #feasibility.verifyNewFlights(rotationCancel, newFlights) #check if no. of avail. slots equals 
     index = 0
     start = endInt + 1
+    _flight = {}
     for cancelFlight, newFlight in zip(rotationCancel, newFlights): #loops through cancelled flights and new flights
         if index != 0: #to get the current the tt
             start = previousArr + cancelFlight['tt'] #it should be the next flight
@@ -44,6 +45,9 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
         dist = distSA[(distSA['origin'] == cancelFlight['origin']) & (distSA['destination'] == cancelFlight['destination'])]['dist'][0]
         if start + dist > configDic['endInt']: #to prevent flight arriving after the end of recovery period
             continue #or break
+        
+        tmpFlight = cancelFlight['flight']
+        newFlight['_flight'] = tmpFlight
 
         maxFlight += 1
         newFlight = cancelFlight
@@ -52,6 +56,7 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
         flightDate = int2DateTime(newFlight['depInt'], configDic['startDate']) #datetime when the broken period ends
         flightDate = flightDate.strftime('%d/%m/%y') #because the sol.checker has a bug
         flight = str(maxFlight) + flightDate
+        _flight[tmpFlight] = flight
         newFlight['arrInt'] = newFlight['depInt'] + dist
         newFlight['altArrInt'] = newFlight['arrInt']
         newFlight['flight'] = flight
@@ -68,7 +73,7 @@ def newAircraftFlights(rotation, distSA, maxFlight, endInt, configDic): #get min
     rotation[rotation['flight'] == ''] = newFlights #update the rotation; rotation[rotation['flight'] == ''] != newFlights
     rotation = rotation[rotation['flight'] != '']
     #pdb.set_trace()
-    return rotation, maxFlight
+    return rotation, maxFlight, _flight
 
 def newFlights(rotation, distSA, maxFlight, endInt, configDic):
     newFlights = rotation[rotation['flight'] == ''] #new flights
@@ -77,8 +82,12 @@ def newFlights(rotation, distSA, maxFlight, endInt, configDic):
     rotation[rotation['flight'] == ''] = newFlights #update the rotation
     feasibility.verifyNewFlights(rotationCancel, newFlights) #check if no. of avail. slots equals 
     index = 0
+    _flight = {}
     for cancelFlight, newFlight in zip(rotationCancel, newFlights): #loops through cancelled flights and new flights
         maxFlight += 1 #increment the maxFlight
+        tmpFlight = cancelFlight['flight']
+        newFlight['_flight'] = tmpFlight
+
         newFlight = cancelFlight
         dep = cancelFlight['depInt']
         # if dep < configDic['startInt']: #to prevent from c reating fixed flight (which of course are of hardly any use)
@@ -89,6 +98,7 @@ def newFlights(rotation, distSA, maxFlight, endInt, configDic):
         flightDate = int2DateTime(newFlight['depInt'], configDic['startDate']) #datetime when the broken period ends
         flightDate = flightDate.strftime('%d/%m/%y') #because the sol.checker has a bug
         flight = str(maxFlight) + flightDate
+        _flight[tmpFlight] = flight
         dist = distSA[(distSA['origin'] == cancelFlight['origin']) & (distSA['destination'] == cancelFlight['destination'])]['dist'][0]
         newFlight['arrInt'] = newFlight['depInt'] + dist
         newFlight['altArrInt'] = newFlight['arrInt']
@@ -101,7 +111,7 @@ def newFlights(rotation, distSA, maxFlight, endInt, configDic):
         index += 1
     rotation[rotation['flight'] == ''] = newFlights #update the rotation; rotation[rotation['flight'] == ''] != newFlights
     rotation = rotation[rotation['flight'] != '']
-    return rotation, maxFlight   
+    return rotation, maxFlight, _flight  
 
 def addMaint(aircraft, _rotationMaint):
     """

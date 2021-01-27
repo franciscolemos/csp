@@ -1,0 +1,6 @@
+Connection time not respected between flight 10146 and flight 2544 on itinerary 976
+Connection time not respected between flight 10146 and flight 2544 on itinerary 977
+Connection time not respected between flight 10146 and flight 2544 on itinerary 978
+Connection time not respected between flight 10146 and flight 3286 on itinerary 6050
+Connection time not respected between flight 10146 and flight 7646 on itinerary 6051
+Connection time not respected between flight 10146 and flight 7656 on itinerary 6052

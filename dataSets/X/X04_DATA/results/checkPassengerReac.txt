@@ -16,3 +16,5 @@ Final destination problem on itinerary 9266
 Final destination problem on itinerary 9287
 Final destination problem on itinerary 9297
 Final destination problem on itinerary 9352
+Violation of 18h max delay on itinerary 12431
+Violation of 18h max delay on itinerary 12439

@@ -47,6 +47,7 @@ Connection time not respected between flight 4574 and flight 4515 on itinerary 1
 Connection time not respected between flight 4574 and flight 4515 on itinerary 1466
 Connection time not respected between flight 4630 and flight 4637 on itinerary 1609
 Connection time not respected between flight 4630 and flight 4637 on itinerary 1611
+Connection time not respected between flight 5167 and flight 4631 on itinerary 1664
 Connection time not respected between flight 4658 and flight 4577 on itinerary 1684
 Connection time not respected between flight 4658 and flight 4577 on itinerary 1686
 Connection time not respected between flight 4703 and flight 2980 on itinerary 1759

@@ -66,12 +66,12 @@ class flights:
                 if f['altDepInt'] != f['depInt']: #because it is a fixed flight
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
                     continue
-                # if (f['depInt'] < self.configDic['startInt']) & (f['newFlight'] != 1):#because it departs outside the RTW (another singleton)
-                #     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
-                #     continue
-                # if (f['depInt'] > self.configDic['endInt']) & (f['newFlight'] != 1): #because it departs outside the RTW (another singleton)
-                #     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
-                #     continue
+                if (f['depInt'] < self.configDic['startInt']) & (f['newFlight'] != 1):#because it departs outside the RTW (another singleton)
+                    self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
+                    continue
+                if (f['depInt'] > self.configDic['endInt']) & (f['newFlight'] != 1): #because it departs outside the RTW (another singleton)
+                    self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
+                    continue
                 domain = [-1] #add flight cancellation
                 for t in range(0, maxDelay, deltaT): #find the feasible time slots
                     origin = f['origin']

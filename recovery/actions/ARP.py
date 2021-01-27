@@ -112,7 +112,7 @@ class ARP:
                     len(self.altAirportSA), noDays - 1)
 
         self.domainFlights = domains.flights(self.configDic)
-        
+        self.newFlight = {}
         self.solutionARP = {}
 
     def initialize(self, aircraft, airportDic, delta = 1, saveAirportCap = True): #check if the roation is feasible
@@ -131,17 +131,18 @@ class ARP:
         if len(rotationOriginal[rotationOriginal['flight'] == '']):
             aircDisr =  self.altAircraftDic.get(aircraft, None) #check if the airc. has broken period
             if aircDisr != None: #check if the airc. has broken period
-                rotationOriginal, self.maxFlight = ARPUtils.newAircraftFlights(rotationOriginal, self.distSA, 
+                rotationOriginal, self.maxFlight, _flight = ARPUtils.newAircraftFlights(rotationOriginal, self.distSA, 
                 self.maxFlight, aircDisr['endInt'], self.configDic) #create new flights and update self.maxFlight
                 feasibility.verifyNullFlights(rotationOriginal)#verify if there are any null flights
-
                 #consider using available airc.
                 #generates feasible solution however it is not appropriate to handle other types of disruption
                 #it is necessary to implement GA
             else: #the fligth has been cancelled
-                rotationOriginal, self.maxFlight = ARPUtils.newFlights(rotationOriginal, self.distSA, 
+                rotationOriginal, self.maxFlight, _flight = ARPUtils.newFlights(rotationOriginal, self.distSA, 
                 self.maxFlight, -1, self.configDic)
-        
+            
+            self.newFlight = {**self.newFlight, **_flight}
+
         rotation = rotationOriginal[(rotationOriginal['cancelFlight'] == 0) ] #only flying flights
         rotation = np.sort(rotation, order = 'altDepInt') #sort ascending
         #check rotation feasibility

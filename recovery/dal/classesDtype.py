@@ -41,8 +41,8 @@ class dtype:
         ('origin', np.unicode, 3 ), ('depInt', np.int16), ('altDepInt', np.int16),
         ('destination', np.unicode, 3), ('arrInt', np.int16), ('altArrInt', np.int16),
         ('previous', np.unicode, 5), ('tt', np.int16),
-        ('altFlight', np.int16), ('altAirc', np.int8), ('newFlight', np.uint8),
-         ('cancelFlight', np.uint8)])
+        ('altFlight', np.int16), ('altAirc', np.int8), ('newFlight', np.uint8), ('_flight', np.unicode, 13),
+        ('cancelFlight', np.uint8)])
     #data type for flight schedule with dist.
     dtypeFSD = np.dtype([('aircraft', np.unicode, 15), ('family', np.unicode, 15), ('flight', np.unicode, 13), 
         ('origin', np.unicode, 3 ), ('dist', np.int16), ('physDist', np.float), ('timeDist', np.float)])

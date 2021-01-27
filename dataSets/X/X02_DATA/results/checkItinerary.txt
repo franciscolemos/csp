@@ -1,0 +1,13 @@
+Connection time not respected between flight 10151 and flight 10 on itinerary 494
+Connection time not respected between flight 10151 and flight 10 on itinerary 495
+Connection time not respected between flight 10151 and flight 10 on itinerary 496
+Connection time not respected between flight 10147 and flight 1896 on itinerary 915
+Connection time not respected between flight 10145 and flight 2584 on itinerary 3121
+Connection time not respected between flight 10151 and flight 10 on itinerary 5419
+Connection time not respected between flight 10151 and flight 10 on itinerary 5420
+Connection time not respected between flight 10151 and flight 26 on itinerary 5421
+Connection time not respected between flight 10147 and flight 1896 on itinerary 5815
+Connection time not respected between flight 10145 and flight 7622 on itinerary 7998
+Connection time not respected between flight 10145 and flight 7624 on itinerary 7999
+Connection time not respected between flight 10145 and flight 7624 on itinerary 8000
+Connection time not respected between flight 10145 and flight 7638 on itinerary 8001

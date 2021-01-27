@@ -30,7 +30,7 @@ if __name__ == "__main__":
     arp.findSolution()
     solution.export2CSV(arp.solutionARP, dataSet)
     #arp.solutionARP = solution.importCSV(dataSet)
-    solution.updateItin(arp.solutionARP, arp.itineraryDic)
+    solution.updateItin(arp.solutionARP, arp.itineraryDic, arp.newFlight)
     solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
     delta1 = time.time() - start
     print("Solution time for the ARP: ", delta1)

@@ -61,6 +61,7 @@ Connection time not respected between flight 5693 and flight 5792 on itinerary 1
 Connection time not respected between flight 5719 and flight 5810 on itinerary 1736
 Connection time not respected between flight 5782 and flight 7413 on itinerary 1768
 Connection time not respected between flight 5789 and flight 5706 on itinerary 1788
+Connection time not respected between flight 6891 and flight 9576 on itinerary 1962
 Connection time not respected between flight 6981 and flight 6931 on itinerary 2046
 Connection time not respected between flight 6981 and flight 6942 on itinerary 2047
 Connection time not respected between flight 6981 and flight 6942 on itinerary 2048
@@ -90,6 +91,10 @@ Connection time not respected between flight 1277 and flight 1280 on itinerary 2
 Connection time not respected between flight 1277 and flight 1280 on itinerary 2884
 Connection time not respected between flight 1277 and flight 1294 on itinerary 2885
 Connection time not respected between flight 1277 and flight 1306 on itinerary 2886
+Connection time not respected between flight 9585 and flight 7292 on itinerary 2915
+Connection time not respected between flight 9585 and flight 7346 on itinerary 2916
+Connection time not respected between flight 9585 and flight 7346 on itinerary 2917
+Connection time not respected between flight 9585 and flight 7358 on itinerary 2918
 Connection time not respected between flight 1328 and flight 5487 on itinerary 2921
 Connection time not respected between flight 1381 and flight 7216 on itinerary 2935
 Connection time not respected between flight 1381 and flight 7230 on itinerary 2936

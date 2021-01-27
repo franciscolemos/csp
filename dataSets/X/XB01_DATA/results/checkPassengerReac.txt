@@ -48,7 +48,6 @@ Final destination problem on itinerary 1766
 Final destination problem on itinerary 1767
 Final destination problem on itinerary 1768
 Final destination problem on itinerary 1781
-Final destination problem on itinerary 1797
 Final destination problem on itinerary 1836
 Final destination problem on itinerary 1839
 Final destination problem on itinerary 1853
@@ -109,8 +108,6 @@ Final destination problem on itinerary 4072
 Final destination problem on itinerary 4102
 Final destination problem on itinerary 4118
 Final destination problem on itinerary 4119
-Final destination problem on itinerary 4145
-Final destination problem on itinerary 4150
 Final destination problem on itinerary 4179
 Final destination problem on itinerary 4181
 Final destination problem on itinerary 4182
@@ -138,3 +135,4 @@ Final destination problem on itinerary 4680
 Final destination problem on itinerary 4688
 Final destination problem on itinerary 4689
 Final destination problem on itinerary 4721
+Violation of 18h max delay on itinerary 9494

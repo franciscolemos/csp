@@ -123,6 +123,7 @@ class initialize:
                 self.flightScheduleSA[i]['altFlight'] = flight['delay'] #('altFlight', np.int16), ('altAirc', np.uint8), ('newFlight', np.uint8)
                 self.flightScheduleSA[i]['altAirc'] = flight['broken']
                 self.flightScheduleSA[i]['newFlight'] = 0
+                self.flightScheduleSA[i]['newFlight'] = '-1'
                 self.flightScheduleSA[i]['cancelFlight'] = flight['cancelFlight']
                 i += 1
         return self.flightScheduleSA 

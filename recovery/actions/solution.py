@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from numpy import genfromtxt
 
+
 def value(combo):
     noCancel = sum([t for t in combo if t == -1])
     totalDelay = sum([t for t in combo if t > 0])
@@ -125,11 +126,17 @@ def importCSV(dataSet, path = "solutions"): #import the CSV to solutionARPDic
         index += 1
     return solutionARP
 
-def updateItin(flightScheduleSA, itineraryDic):
+def updateItin(flightScheduleSA, itineraryDic, newFlightDic):
     flight = {}
     for itinerary, flightSchedule in itineraryDic.items():
         fs = flightSchedule['flightSchedule'] #flights in the itinerary
         for f in fs: #loop through the itin. flight schedule to update the flights
+            newFlight = newFlightDic.get(f['flight'], False)
+            if newFlight:
+                cancelFlight = flightScheduleSA[flightScheduleSA['flight'] == newFlight]['cancelFlight']
+                f['flight'] = newFlight
+                f['cancelFlight'] = cancelFlight[0] #update itin. flight schedule
+                continue
             cancelFlight = flight.get(f['flight'], False) #get the cancel value or false
             if cancelFlight: #if the flight is in the flight dict.
                 f['cancelFlight'] = cancelFlight #update itin. flight schedule

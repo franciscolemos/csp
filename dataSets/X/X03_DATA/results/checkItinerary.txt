@@ -1,3 +1,6 @@
+Connection time not respected between flight 10145 and flight 2544 on itinerary 976
+Connection time not respected between flight 10145 and flight 2544 on itinerary 977
+Connection time not respected between flight 10145 and flight 2544 on itinerary 978
 Connection time not respected between flight 4501 and flight 608 on itinerary 2233
 Connection time not respected between flight 4501 and flight 608 on itinerary 2234
 Connection time not respected between flight 5712 and flight 6038 on itinerary 2960
@@ -120,6 +123,9 @@ Connection time not respected between flight 7549 and flight 7438 on itinerary 4
 Connection time not respected between flight 7549 and flight 7456 on itinerary 4316
 Connection time not respected between flight 7757 and flight 7376 on itinerary 4616
 Connection time not respected between flight 7757 and flight 7454 on itinerary 4617
+Connection time not respected between flight 10145 and flight 3286 on itinerary 6050
+Connection time not respected between flight 10145 and flight 7646 on itinerary 6051
+Connection time not respected between flight 10145 and flight 7656 on itinerary 6052
 Connection time not respected between flight 4501 and flight 608 on itinerary 7251
 Connection time not respected between flight 5712 and flight 6038 on itinerary 7906
 Connection time not respected between flight 5714 and flight 6246 on itinerary 7912
