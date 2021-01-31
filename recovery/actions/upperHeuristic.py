@@ -24,7 +24,6 @@ class upperHeuristic:
     def solve(self, flightRanges, rotation, index, aircraft):
         start = time.time()
         feasibility.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
-        rotationMaint = []
         if len(self._rotationMaint) > 0:
             rotationMaint = ARPUtils.addMaint(aircraft, self._rotationMaint) #creates the maint to be later added to the rotation
         lIndex = index
@@ -34,7 +33,7 @@ class upperHeuristic:
         flightRangesRemaining = self.removeFlightRanges(flightRangesCopy, rotation[uIndex:]) #flightRanges - upper rotation
         self.verifyLengths(rotation, lIndex, partialFlightRanges, flightRangesRemaining)
         
-        solutionValue = [] #initializes the solution value for later appraisal
+        #solutionValue = [] #initializes the solution value for later appraisal
         solutions = np.array(list(flightCombinations))
         fixedRotation = copy.deepcopy(rotation)
         while True:
@@ -106,7 +105,7 @@ class upperHeuristic:
     def verifyComboRotation(self, combo, rotation):
         if len(combo) != len(rotation):
             print("Diff. sizes in combo and the recovery rotation part")
-            print(len(combo), len(rotatio))
+            print(len(combo), len(rotation))
             import pdb; pdb.set_trace()
 
     def removeSingleton(self, singletonList, airpCapCopy, aircraftSolList, rotation, index):
