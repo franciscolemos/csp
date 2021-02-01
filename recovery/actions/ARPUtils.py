@@ -142,12 +142,6 @@ def luAllContraints(combo, rotation, lIndex, uIndex):
     if len(feasibility.TT(newRotation)) > 0: #only flights not cancelled in the copy
         return -1
 
-    # print(combo)
-    # print(rotation[:uIndex], "\n")
-    # print(newRotation)
-    # import pdb; pdb.set_trace()
-    # return -1
-
 def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, airpCapCopy, _rotationMaint, rotationMaint):
     rotation = copy.deepcopy(rotationOriginal) #keep a copy of the original because of new rotation
     solution.newRotation(combo, rotation[index:]) #add the combo to the rotation
@@ -177,28 +171,23 @@ def allConstraints(rotationOriginal, combo, index, movingFlights, fixedFlights, 
         if len(infMaintList) > 0:
             return -1
 
-def wipRecover2(aircraft, altAircraftDic, distSA, originAirport, solRot, airportDic, rotationOriginal, configDic, maxFlight): #wrong init. pos. recovery
+def wipRecover2(aircraft, altAircraftDic, distSA, originAirport, solRot, airportDic, configDic, maxFlight): #wrong init. pos. recovery
     #loop through solRot to try find a taxi flight or find the airc. origin airp.
     altSI = -1
     altEI = -1
     if aircraft in altAircraftDic:
         altSI = altAircraftDic[aircraft]['startInt'] #start of airc. broken period
-        altEI = altAircraftDic[aircraft]['endInt'] #end of of airc. broken period
-    # if aircraft == 'A319#40':
-    #     import pdb; pdb.set_trace()    
+        altEI = altAircraftDic[aircraft]['endInt'] #end of of airc. broken period  
     for sr in solRot:
         if sr['origin'] == originAirport:
             print("Airc. Origin airp = Flight origin")
-            #import pdb; pdb.set_trace()
-            rotationOriginal[rotationOriginal['cancelFlight'] == 0] = solRot
-            return rotationOriginal, maxFlight
+            return solRot, maxFlight
                 
         distInitRot = distSA[(distSA['origin'] == originAirport) & (distSA['destination'] == sr['origin'])] #dist. for airc. origin to solRot flight
         distInitRot = distInitRot['dist'][0] #dist. for airc. origin to solRot flight
         
         originSlots = airportDic[originAirport] #find airp. time slot for dep. @origin
         originSlots = originSlots[originSlots['capDep'] > originSlots['noDep']] #find airp. time slot for dep. @origin w/ avail. dep. cap.
-        #originSlots = originSlots[originSlots['endInt'] < (sr['altDepInt'] - distInitRot)] #previous version
         originSlotsUpper =  originSlots[originSlots['endInt'] > (sr['altDepInt'] - distInitRot - sr['tt'])] #upper slots dep. of next flight - dist. - tt
         originSlotsLower =  np.setdiff1d(originSlots, originSlotsUpper)
 
@@ -216,7 +205,6 @@ def wipRecover2(aircraft, altAircraftDic, distSA, originAirport, solRot, airport
         
         #find airp. time slot for arr. @dest.
         destSlots = airportDic[sr['origin']]
-        #destSlots = destSlots[destSlots['startInt'] < sr['altDepInt']]
         destSlots = destSlots[destSlots['capArr'] > destSlots['noArr']]
         destSlotsUpper = destSlots[destSlots['endInt'] > (sr['altDepInt'] - sr['tt'])]
         destSlotsLower = np.setdiff1d(destSlots, destSlotsUpper)
@@ -264,26 +252,21 @@ def wipRecover2(aircraft, altAircraftDic, distSA, originAirport, solRot, airport
             taxiFlight['flight'] = flight
             taxiFlight['cancelFlight'] = 0
             taxiFlight['newFlight'] = 1
+            taxiFlight['_flight'] = '-1'
             taxiFlight['altAirc']  = 0
             taxiFlight['altFlight'] = 0
             print("Taxi flight found!!!")
-            #import pdb; pdb.set_trace()
-            rotationOriginal[rotationOriginal['cancelFlight'] == 0] = solRot
-            rotationOriginal = np.concatenate((rotationOriginal, taxiFlight))
-            return rotationOriginal, maxFlight
+            solRot = np.concatenate((solRot, taxiFlight))
+            return solRot, maxFlight
         ################################## start optional else ############################
         # it's optional because the search procedure becomes less expensive since the airp.
         # cap slots are filled w/ inf. solutions;
         # the solution can be recovered in the end; 
         else: #cancel the rotation
             print("No available taxi flight")
-            #import pdb; pdb.set_trace()
             sr['cancelFlight'] = 1
         ################################## en optional else ################################
-    
-    import pdb; pdb.set_trace()
-    rotationOriginal[rotationOriginal['cancelFlight'] == 0] = solRot
-    return rotationOriginal, maxFlight
+    return solRot, maxFlight
 
 def convertFlight(rotation, minDate):
     for flight in rotation:

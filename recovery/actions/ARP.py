@@ -242,11 +242,9 @@ class ARP:
                                 originAirport = self.aircraftDic[aircraft]['originAirport']
                                 initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
                                 if len(initPosFeas) > 0: #infeas. init. pos.
-                                    fixedRotation, self.maxFlight = ARPUtils.wipRecover2(aircraft, self.altAircraftDic,self.distSA, originAirport, solRot, airportDic,
-                                        fixedRotation, self.configDic, self.maxFlight)
+                                    fixedRotation, self.maxFlight = ARPUtils.wipRecover2(aircraft, self.altAircraftDic,self.distSA, originAirport, solRot, airportDic
+                                        , self.configDic, self.maxFlight)
                             ###################### end of taxi flights ##################
-                            # if aircraft == 'A320#46':
-                            #     import pdb; pdb.set_trace()                            
                             convertRotation = ARPUtils.convertFlight(fixedRotation[(fixedRotation['newFlight'] == 1) 
                                             & (fixedRotation['cancelFlight'] == 0)]
                                             , self.minDate) #if a new flight is delayed for the next day converts it
@@ -271,7 +269,7 @@ class ARP:
                                 rotationPop = self.solutionARP.pop(airc2Cancel, None) #remove the rotation from self.solutionARP
                                 flightRanges, noCombos, singletonList, totalCombos = self.domainFlights.ranges(rotation[index:], airpCapCopy) #_noCombos = -1, delta = 1
                         ############## end loop until all singletons removed ###########
-
+       
                         start = time.time()
                         feasibility.verifyFlightRanges(flightRanges, rotation, index) #check if flight ranges has the same size of rotation[index:]
                         rotationMaint = []
@@ -309,8 +307,8 @@ class ARP:
                             originAirport = self.aircraftDic[aircraft]['originAirport']
                             initPosFeas = feasibility.initialPosition(solRot[0], originAirport)
                             if len(initPosFeas) > 0: #infeas. init. pos.
-                                rotation, self.maxFlight = ARPUtils.wipRecover2(aircraft, self.altAircraftDic, self.distSA, originAirport, solRot, airportDic,
-                                    rotation, self.configDic, self.maxFlight)
+                                rotation, self.maxFlight = ARPUtils.wipRecover2(aircraft, self.altAircraftDic, self.distSA, originAirport, solRot, airportDic
+                                    , self.configDic, self.maxFlight)
                         ###################### end of taxi flights ##################
 
                         self.solutionARP[aircraft] = rotation #save the feasible rotation (to be replaced) 

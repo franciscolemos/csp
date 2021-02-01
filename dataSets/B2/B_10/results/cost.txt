@@ -1,12 +1,12 @@
-Passenger Delay Cost: 615498.00
-Outbound Trip Cancellation Cost: 15276400.00
-Inbound Trip Cancellation Cost: 46361250.00
+Passenger Delay Cost: 521023.50
+Outbound Trip Cancellation Cost: 14484100.00
+Inbound Trip Cancellation Cost: 43739250.00
 Downgrading cost: 0.00
-Cancellation Legal Compensation Cost: 37074067.40
-Delay Legal Compensation Cost: 400125.00
-Flight Operating Cost Decrease: 1985450.00
-Flight Operating Cost Increase: 142850.00
+Cancellation Legal Compensation Cost: 35236448.60
+Delay Legal Compensation Cost: 347070.00
+Flight Operating Cost Decrease: 772000.00
+Flight Operating Cost Increase: 108250.00
 Swapped Aircraft Flight Operating Cost: 0.00
 Penalties for non-compliant location of aircraft: 152000.00
 
-Total Cost: 98036740.40
+Total Cost: 93816142.10

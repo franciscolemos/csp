@@ -3,44 +3,33 @@ Final destination problem on itinerary 2
 Final destination problem on itinerary 4
 Final destination problem on itinerary 5
 Violation of 18h max delay on itinerary 20
-Final destination problem on itinerary 21
-Final destination problem on itinerary 23
 Violation of 18h max delay on itinerary 32
 Violation of 18h max delay on itinerary 50
 Final destination problem on itinerary 51
 Final destination problem on itinerary 53
 Final destination problem on itinerary 56
-Final destination problem on itinerary 80
-Final destination problem on itinerary 82
 Final destination problem on itinerary 90
 Final destination problem on itinerary 91
 Final destination problem on itinerary 93
 Final destination problem on itinerary 94
-Final destination problem on itinerary 96
-Final destination problem on itinerary 99
-Final destination problem on itinerary 101
-Final destination problem on itinerary 115
-Final destination problem on itinerary 117
-Final destination problem on itinerary 138
-Final destination problem on itinerary 140
+Final destination problem on itinerary 97
+Final destination problem on itinerary 125
+Final destination problem on itinerary 127
+Final destination problem on itinerary 130
 Violation of 18h max delay on itinerary 155
-Final destination problem on itinerary 166
-Violation of 18h max delay on itinerary 181
+Final destination problem on itinerary 156
+Final destination problem on itinerary 158
+Final destination problem on itinerary 159
 Final destination problem on itinerary 182
 Final destination problem on itinerary 183
 Final destination problem on itinerary 185
 Final destination problem on itinerary 186
-Final destination problem on itinerary 187
 Final destination problem on itinerary 188
-Final destination problem on itinerary 191
-Final destination problem on itinerary 193
-Final destination problem on itinerary 202
-Violation of 18h max delay on itinerary 217
-Violation of 18h max delay on itinerary 219
-Final destination problem on itinerary 227
-Final destination problem on itinerary 228
-Final destination problem on itinerary 231
-Final destination problem on itinerary 232
+Final destination problem on itinerary 189
+Final destination problem on itinerary 218
+Final destination problem on itinerary 220
+Final destination problem on itinerary 222
+Final destination problem on itinerary 224
 Final destination problem on itinerary 233
 Final destination problem on itinerary 234
 Violation of 18h max delay on itinerary 296
@@ -48,54 +37,36 @@ Final destination problem on itinerary 297
 Final destination problem on itinerary 298
 Final destination problem on itinerary 300
 Final destination problem on itinerary 301
-Final destination problem on itinerary 306
-Final destination problem on itinerary 308
+Final destination problem on itinerary 304
 Final destination problem on itinerary 317
-Violation of 18h max delay on itinerary 330
 Violation of 18h max delay on itinerary 400
+Final destination problem on itinerary 401
 Violation of 18h max delay on itinerary 410
 Final destination problem on itinerary 411
 Violation of 18h max delay on itinerary 412
 Final destination problem on itinerary 413
 Final destination problem on itinerary 415
 Final destination problem on itinerary 417
-Violation of 18h max delay on itinerary 446
 Final destination problem on itinerary 447
 Final destination problem on itinerary 449
-Violation of 18h max delay on itinerary 473
 Final destination problem on itinerary 475
-Violation of 18h max delay on itinerary 476
 Final destination problem on itinerary 478
 Final destination problem on itinerary 480
 Final destination problem on itinerary 483
-Final destination problem on itinerary 486
-Final destination problem on itinerary 487
-Final destination problem on itinerary 490
-Final destination problem on itinerary 491
-Final destination problem on itinerary 492
-Final destination problem on itinerary 493
 Final destination problem on itinerary 504
 Final destination problem on itinerary 506
-Final destination problem on itinerary 515
-Final destination problem on itinerary 516
 Final destination problem on itinerary 517
-Final destination problem on itinerary 518
 Final destination problem on itinerary 519
 Violation of 18h max delay on itinerary 536
 Final destination problem on itinerary 537
 Final destination problem on itinerary 539
 Final destination problem on itinerary 542
-Final destination problem on itinerary 549
 Violation of 18h max delay on itinerary 562
 Final destination problem on itinerary 563
 Final destination problem on itinerary 565
 Final destination problem on itinerary 568
-Final destination problem on itinerary 576
-Final destination problem on itinerary 578
+Violation of 18h max delay on itinerary 618
 Final destination problem on itinerary 621
-Final destination problem on itinerary 623
-Final destination problem on itinerary 625
-Violation of 18h max delay on itinerary 627
 Violation of 18h max delay on itinerary 644
 Final destination problem on itinerary 645
 Final destination problem on itinerary 647
@@ -105,197 +76,111 @@ Violation of 18h max delay on itinerary 651
 Final destination problem on itinerary 654
 Violation of 18h max delay on itinerary 655
 Violation of 18h max delay on itinerary 665
-Final destination problem on itinerary 669
+Final destination problem on itinerary 670
+Final destination problem on itinerary 686
+Final destination problem on itinerary 688
+Final destination problem on itinerary 691
 Violation of 18h max delay on itinerary 730
 Final destination problem on itinerary 731
 Final destination problem on itinerary 733
-Final destination problem on itinerary 735
 Final destination problem on itinerary 736
-Final destination problem on itinerary 745
 Violation of 18h max delay on itinerary 754
 Final destination problem on itinerary 755
 Final destination problem on itinerary 757
-Final destination problem on itinerary 758
 Final destination problem on itinerary 760
 Violation of 18h max delay on itinerary 785
 Final destination problem on itinerary 786
+Final destination problem on itinerary 791
+Final destination problem on itinerary 818
 Violation of 18h max delay on itinerary 838
-Final destination problem on itinerary 843
 Final destination problem on itinerary 844
+Violation of 18h max delay on itinerary 861
+Final destination problem on itinerary 867
 Violation of 18h max delay on itinerary 895
 Final destination problem on itinerary 896
 Final destination problem on itinerary 898
-Violation of 18h max delay on itinerary 916
+Final destination problem on itinerary 900
+Final destination problem on itinerary 901
 Final destination problem on itinerary 917
 Final destination problem on itinerary 920
-Violation of 18h max delay on itinerary 934
 Final destination problem on itinerary 940
-Final destination problem on itinerary 942
-Final destination problem on itinerary 944
 Violation of 18h max delay on itinerary 958
 Violation of 18h max delay on itinerary 963
-Final destination problem on itinerary 967
-Final destination problem on itinerary 973
+Final destination problem on itinerary 964
+Final destination problem on itinerary 972
+Final destination problem on itinerary 981
+Final destination problem on itinerary 983
 Final destination problem on itinerary 991
 Final destination problem on itinerary 993
 Final destination problem on itinerary 995
 Final destination problem on itinerary 1001
-Final destination problem on itinerary 1022
 Violation of 18h max delay on itinerary 1026
 Violation of 18h max delay on itinerary 1031
-Final destination problem on itinerary 1039
-Final destination problem on itinerary 1041
+Final destination problem on itinerary 1043
+Final destination problem on itinerary 1045
 Violation of 18h max delay on itinerary 1056
 Final destination problem on itinerary 1057
 Final destination problem on itinerary 1059
-Final destination problem on itinerary 1063
-Final destination problem on itinerary 1065
-Final destination problem on itinerary 1067
-Final destination problem on itinerary 1075
-Final destination problem on itinerary 1077
 Final destination problem on itinerary 1081
 Final destination problem on itinerary 1083
 Final destination problem on itinerary 1085
-Final destination problem on itinerary 1092
-Final destination problem on itinerary 1094
-Final destination problem on itinerary 1102
-Final destination problem on itinerary 1103
-Final destination problem on itinerary 1105
-Final destination problem on itinerary 1106
-Final destination problem on itinerary 1120
 Violation of 18h max delay on itinerary 1128
 Final destination problem on itinerary 1129
 Final destination problem on itinerary 1131
 Final destination problem on itinerary 1133
 Violation of 18h max delay on itinerary 1134
 Violation of 18h max delay on itinerary 1138
-Final destination problem on itinerary 1139
-Final destination problem on itinerary 1141
-Final destination problem on itinerary 1170
-Final destination problem on itinerary 1172
-Final destination problem on itinerary 1187
-Final destination problem on itinerary 1189
-Final destination problem on itinerary 1200
-Final destination problem on itinerary 1202
+Final destination problem on itinerary 1153
+Final destination problem on itinerary 1155
 Final destination problem on itinerary 1206
 Final destination problem on itinerary 1208
 Final destination problem on itinerary 1210
-Final destination problem on itinerary 1211
-Final destination problem on itinerary 1213
-Final destination problem on itinerary 1215
-Final destination problem on itinerary 1239
-Final destination problem on itinerary 1242
-Final destination problem on itinerary 1247
-Final destination problem on itinerary 1249
-Violation of 18h max delay on itinerary 1277
-Final destination problem on itinerary 1280
-Final destination problem on itinerary 1287
-Final destination problem on itinerary 1306
-Final destination problem on itinerary 1308
-Final destination problem on itinerary 1315
-Final destination problem on itinerary 1320
-Final destination problem on itinerary 1333
+Final destination problem on itinerary 1323
 Violation of 18h max delay on itinerary 1341
-Final destination problem on itinerary 1350
-Final destination problem on itinerary 1353
-Final destination problem on itinerary 1355
-Final destination problem on itinerary 1364
-Final destination problem on itinerary 1366
-Final destination problem on itinerary 1372
-Final destination problem on itinerary 1374
-Final destination problem on itinerary 1378
-Final destination problem on itinerary 1379
-Final destination problem on itinerary 1381
-Final destination problem on itinerary 1383
-Final destination problem on itinerary 1385
-Violation of 18h max delay on itinerary 1407
 Final destination problem on itinerary 1412
-Final destination problem on itinerary 1427
-Final destination problem on itinerary 1429
-Final destination problem on itinerary 1435
-Final destination problem on itinerary 1437
 Final destination problem on itinerary 1441
 Final destination problem on itinerary 1443
-Final destination problem on itinerary 1459
-Final destination problem on itinerary 1461
-Final destination problem on itinerary 1481
-Final destination problem on itinerary 1483
-Final destination problem on itinerary 1490
-Final destination problem on itinerary 1494
-Final destination problem on itinerary 1496
 Final destination problem on itinerary 1500
 Final destination problem on itinerary 1502
-Final destination problem on itinerary 1503
-Final destination problem on itinerary 1519
-Final destination problem on itinerary 1521
 Final destination problem on itinerary 1537
 Final destination problem on itinerary 1538
 Final destination problem on itinerary 1540
 Final destination problem on itinerary 1541
 Final destination problem on itinerary 1551
-Final destination problem on itinerary 1552
 Final destination problem on itinerary 1554
-Final destination problem on itinerary 1555
 Final destination problem on itinerary 1556
 Violation of 18h max delay on itinerary 1565
-Final destination problem on itinerary 1584
-Final destination problem on itinerary 1592
-Final destination problem on itinerary 1621
-Final destination problem on itinerary 1623
+Final destination problem on itinerary 1589
 Final destination problem on itinerary 1631
 Final destination problem on itinerary 1633
 Violation of 18h max delay on itinerary 1652
-Final destination problem on itinerary 1680
-Final destination problem on itinerary 1682
+Final destination problem on itinerary 1674
+Final destination problem on itinerary 1676
 Violation of 18h max delay on itinerary 1691
-Final destination problem on itinerary 1694
 Violation of 18h max delay on itinerary 1706
 Violation of 18h max delay on itinerary 1710
-Final destination problem on itinerary 1711
-Final destination problem on itinerary 1713
-Final destination problem on itinerary 1761
-Final destination problem on itinerary 1763
+Violation of 18h max delay on itinerary 1719
 Final destination problem on itinerary 1773
 Final destination problem on itinerary 1775
-Final destination problem on itinerary 1785
-Final destination problem on itinerary 1787
 Violation of 18h max delay on itinerary 1804
-Final destination problem on itinerary 1805
 Final destination problem on itinerary 1807
 Final destination problem on itinerary 1818
 Final destination problem on itinerary 1820
-Final destination problem on itinerary 1822
-Final destination problem on itinerary 1824
-Final destination problem on itinerary 1850
-Final destination problem on itinerary 1852
+Final destination problem on itinerary 1826
+Final destination problem on itinerary 1828
 Final destination problem on itinerary 1863
 Final destination problem on itinerary 1865
-Final destination problem on itinerary 1867
-Final destination problem on itinerary 1869
 Final destination problem on itinerary 1875
 Final destination problem on itinerary 1877
-Final destination problem on itinerary 1887
-Final destination problem on itinerary 1889
-Final destination problem on itinerary 1891
-Final destination problem on itinerary 1893
-Final destination problem on itinerary 1895
-Final destination problem on itinerary 1897
 Final destination problem on itinerary 1911
 Final destination problem on itinerary 1913
-Final destination problem on itinerary 1915
-Final destination problem on itinerary 1917
-Final destination problem on itinerary 1919
-Final destination problem on itinerary 1921
-Final destination problem on itinerary 1927
-Final destination problem on itinerary 1929
 Final destination problem on itinerary 1950
+Final destination problem on itinerary 1952
 Final destination problem on itinerary 1967
 Final destination problem on itinerary 1977
 Final destination problem on itinerary 1979
 Final destination problem on itinerary 2029
 Final destination problem on itinerary 2031
-Final destination problem on itinerary 2056
-Final destination problem on itinerary 2058
 Final destination problem on itinerary 2066
 Final destination problem on itinerary 2068
 Final destination problem on itinerary 2101
@@ -315,103 +200,104 @@ Final destination problem on itinerary 2213
 Final destination problem on itinerary 2241
 Final destination problem on itinerary 2243
 Final destination problem on itinerary 2296
-Final destination problem on itinerary 2298
-Final destination problem on itinerary 2335
-Final destination problem on itinerary 2337
+Final destination problem on itinerary 2424
+Final destination problem on itinerary 2426
+Final destination problem on itinerary 2428
+Final destination problem on itinerary 2430
 Final destination problem on itinerary 2432
 Final destination problem on itinerary 2434
 Final destination problem on itinerary 2436
 Final destination problem on itinerary 2438
 Final destination problem on itinerary 2467
 Final destination problem on itinerary 2469
+Final destination problem on itinerary 2502
 Final destination problem on itinerary 2517
 Final destination problem on itinerary 2519
 Final destination problem on itinerary 2521
 Final destination problem on itinerary 2523
+Final destination problem on itinerary 2525
+Final destination problem on itinerary 2528
 Final destination problem on itinerary 2553
-Final destination problem on itinerary 2575
-Final destination problem on itinerary 2577
-Final destination problem on itinerary 2580
-Final destination problem on itinerary 2587
 Final destination problem on itinerary 2592
+Final destination problem on itinerary 2617
 Final destination problem on itinerary 2618
-Final destination problem on itinerary 2641
-Final destination problem on itinerary 2665
-Final destination problem on itinerary 2667
-Final destination problem on itinerary 2735
-Final destination problem on itinerary 2737
-Final destination problem on itinerary 2756
-Final destination problem on itinerary 2758
-Final destination problem on itinerary 2819
-Final destination problem on itinerary 2821
-Final destination problem on itinerary 2824
-Final destination problem on itinerary 2851
-Final destination problem on itinerary 2853
+Final destination problem on itinerary 2704
+Final destination problem on itinerary 2706
+Final destination problem on itinerary 2792
+Final destination problem on itinerary 2799
 Final destination problem on itinerary 2855
 Final destination problem on itinerary 2857
-Final destination problem on itinerary 2859
-Final destination problem on itinerary 2861
-Final destination problem on itinerary 2903
+Final destination problem on itinerary 2902
 Final destination problem on itinerary 2904
-Final destination problem on itinerary 2951
 Final destination problem on itinerary 2952
+Final destination problem on itinerary 2954
+Final destination problem on itinerary 2956
 Final destination problem on itinerary 2964
-Final destination problem on itinerary 2976
-Final destination problem on itinerary 2979
-Final destination problem on itinerary 2985
-Final destination problem on itinerary 2993
-Final destination problem on itinerary 2995
+Final destination problem on itinerary 2997
+Final destination problem on itinerary 2999
 Final destination problem on itinerary 3024
 Final destination problem on itinerary 3026
 Final destination problem on itinerary 3039
 Final destination problem on itinerary 3041
 Final destination problem on itinerary 3054
 Final destination problem on itinerary 3056
-Final destination problem on itinerary 3120
+Final destination problem on itinerary 3062
+Final destination problem on itinerary 3064
+Final destination problem on itinerary 3106
 Final destination problem on itinerary 3122
+Final destination problem on itinerary 3123
+Final destination problem on itinerary 3125
+Final destination problem on itinerary 3127
 Final destination problem on itinerary 3136
 Final destination problem on itinerary 3142
 Final destination problem on itinerary 3144
+Final destination problem on itinerary 3194
+Final destination problem on itinerary 3196
 Final destination problem on itinerary 3199
 Final destination problem on itinerary 3226
 Final destination problem on itinerary 3228
 Final destination problem on itinerary 3241
-Final destination problem on itinerary 3278
-Final destination problem on itinerary 3284
-Final destination problem on itinerary 3286
+Final destination problem on itinerary 3267
+Final destination problem on itinerary 3269
+Final destination problem on itinerary 3273
+Final destination problem on itinerary 3296
+Final destination problem on itinerary 3298
 Final destination problem on itinerary 3301
-Final destination problem on itinerary 3336
-Final destination problem on itinerary 3344
-Final destination problem on itinerary 3346
-Final destination problem on itinerary 3398
-Final destination problem on itinerary 3400
-Final destination problem on itinerary 3406
-Final destination problem on itinerary 3408
-Final destination problem on itinerary 3423
+Final destination problem on itinerary 3386
+Final destination problem on itinerary 3410
+Final destination problem on itinerary 3412
 Final destination problem on itinerary 3425
-Final destination problem on itinerary 3430
-Final destination problem on itinerary 3433
-Final destination problem on itinerary 3435
 Final destination problem on itinerary 3443
 Final destination problem on itinerary 3445
-Final destination problem on itinerary 3454
-Final destination problem on itinerary 3478
-Final destination problem on itinerary 3480
+Final destination problem on itinerary 3457
+Final destination problem on itinerary 3459
+Final destination problem on itinerary 3517
+Final destination problem on itinerary 3519
+Final destination problem on itinerary 3543
+Final destination problem on itinerary 3545
 Final destination problem on itinerary 3549
 Final destination problem on itinerary 3551
+Final destination problem on itinerary 3561
+Final destination problem on itinerary 3563
 Final destination problem on itinerary 3586
 Final destination problem on itinerary 3614
 Final destination problem on itinerary 3616
-Final destination problem on itinerary 3630
-Final destination problem on itinerary 3632
 Final destination problem on itinerary 3634
 Final destination problem on itinerary 3636
 Final destination problem on itinerary 3651
 Final destination problem on itinerary 3653
+Final destination problem on itinerary 3754
+Final destination problem on itinerary 3756
+Final destination problem on itinerary 3780
+Final destination problem on itinerary 3782
+Final destination problem on itinerary 3809
+Final destination problem on itinerary 3811
+Final destination problem on itinerary 3821
+Final destination problem on itinerary 3823
 Final destination problem on itinerary 3829
 Final destination problem on itinerary 3831
-Final destination problem on itinerary 3924
-Final destination problem on itinerary 3932
-Final destination problem on itinerary 3933
-Final destination problem on itinerary 3949
+Final destination problem on itinerary 3860
+Final destination problem on itinerary 3862
+Final destination problem on itinerary 3898
+Final destination problem on itinerary 3900
 Final destination problem on itinerary 3951
