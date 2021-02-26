@@ -32,5 +32,6 @@ if __name__ == "__main__":
     #arp.solutionARP = solution.importCSV(dataSet)
     solution.updateItin(arp.solutionARP, arp.itineraryDic, arp.newFlight)
     solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
+    solution.exportKPI(arp.solutionARP)
     delta1 = time.time() - start
     print("Solution time for the ARP: ", delta1)
