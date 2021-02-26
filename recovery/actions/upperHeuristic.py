@@ -74,7 +74,7 @@ class upperHeuristic:
         for flight in rotation[lIndex:]: #loop through the rotation
             v = fr[flight['flight']]
             size *= len(v)
-            if size > self._noCombos * 10**5:
+            if size > self._noCombos: # * 10**5:
                 return uIndex, partialFlightRanges, sizeRanges
             uIndex += 1
             partialFlightRanges[flight['flight']] = v

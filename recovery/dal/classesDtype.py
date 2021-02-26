@@ -1,5 +1,13 @@
 import numpy as np
 
+class pincer:
+    MAX_DELAY = 960 #range upper limit
+    STEP_DOMAIN = 60 #domain step
+    START_UPPER = 3.00000000000000 * 10**12 #upper bound
+    STEP_UPPER = 100.0000000000000 * 10**9 #decrement step
+    START_LOWER = 4.000000000000000 * 10**4 #lower bound
+    STEP_LOWER = 1.0000000000000000 * 10**4  #increment step
+
 class gaType:
     WEIGHTS = (-1.0, 1.0, -1.0) # fitness weights
     NO_GER = 3000 #no. gen.
@@ -7,10 +15,7 @@ class gaType:
     IND_SIZE = 10 #size of the pop.
     CXPB = 0.5 #CXPB  is the probability with which two individuals are crossed
     MUTPB = 0.5 # MUTPB is the probability for mutating an individual
-    # START_COMBO = 3.00000000000000 * 10**9 #starting number of combos fo the 
-    # STEP_COMBO = 99.9900000000000 * 10**6 #combo step
-    START_COMBO = 3.00000000000000 * 10**12 #starting number of combos fo the 
-    STEP_COMBO = 99.9900000000000 * 10**9 #combo step
+
 class dtype:
     fmtDate = '%d/%m/%y'
     fmtTime = '%H:%M'

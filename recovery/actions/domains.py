@@ -1,7 +1,6 @@
 import numpy as np
 import copy
-from recovery.repositories.data import maxDelay
-from recovery.repositories.data import deltaT
+from recovery.dal.classesDtype import pincer
 from recovery.actions import feasibility
 from recovery.dal.classesDtype import dtype as dt
 
@@ -73,7 +72,7 @@ class flights:
                     self.makeWayForSingleton(domain, domains, f, airportDic, singletonList)
                     continue
                 domain = [-1] #add flight cancellation
-                for t in range(0, maxDelay, deltaT): #find the feasible time slots
+                for t in range(0, pincer.MAX_DELAY, pincer.STEP_DOMAIN): #find the feasible time slots
                     origin = f['origin']
                     dep = f['altDepInt'] + t
                     destination = f['destination']
@@ -90,7 +89,7 @@ class flights:
         except:
             return [],  -1, [], -1
         if _noCombos != -1:
-            if noCombos > _noCombos * 10**5:
+            if noCombos > _noCombos: #_noCombos * 10**5:
                 return domains, -1, [], noCombos
 
         return domains, noCombos, singletonList, noCombos

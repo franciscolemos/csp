@@ -33,7 +33,7 @@ from recovery.actions import cost
 import random
 from recovery.actions.funcsDate import int2DateTime
 from recovery.actions import ARPUtils
-from recovery.dal.classesDtype import gaType as gt
+from recovery.dal.classesDtype import pincer
 from recovery.actions.upperHeuristic import upperHeuristic
 from recovery.actions.btf import flightPlan as fp
 class ARP:
@@ -193,11 +193,11 @@ class ARP:
         noFlights = 0
         noCancelledFlights = 0
         aircraftSolList = [] #list of aircraft that have a feasibe rotation
-        _noCombos = 0.4 #order of magnitude for the no. of combos
+        _noCombos = pincer.START_LOWER #order of magnitude for the no. of combos
         infAirc = []
         feasible = -1
-        START_COMBO = gt.START_COMBO
-        STEP_COMBO = gt.STEP_COMBO
+        START_COMBO = pincer.START_UPPER
+        STEP_COMBO = pincer.STEP_UPPER
         while len(aircraftSolList) != len(aircraftList): #verify if the lists have the same size
             remainAirc = len(list(set(aircraftList) - set(aircraftSolList)))
             for aircraft in aircraftTmpList: #iterate through the aircraft list
@@ -328,8 +328,8 @@ class ARP:
                 print(aircraft, len(aircraftSolList), _noCombos)
             
             #import pdb; pdb.set_trace()
-            START_COMBO -= STEP_COMBO #decrease the start combo for GA
-            _noCombos += 0.1 #increase the order of magnitude of the no. of combos
+            START_COMBO -= pincer.STEP_UPPER #decrease the start of the upper bound
+            _noCombos += pincer.STEP_LOWER #increase the order of magnitude of the no. of combos
             aircraftTmpList = list(set(aircraftList) - set(aircraftSolList)) #check the differences between two lists
             aircraftTmpList.sort()
 
