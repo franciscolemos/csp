@@ -17,15 +17,20 @@ def singletonRecovery(solutionARPDic, singletonList, airpCapCopy, configDic): #r
     for rotation in solutionARPDic.values():
         solutionARP.append(rotation)
     solutionARP = np.concatenate(solutionARP).ravel()
+    # if singletonList[0][0][0] == 'A318#125':
+    #     pdb.set_trace()
     for singleton in singletonList: #remove the flights
         if singleton[1] == 'dep':
             startInt = 60 * int(singleton[0]['altDepInt']/60) #find the start of the time slot of the dep.
             endInt = startInt + 60
             origin = singleton[0]['origin']
             flight2Cancel = solutionARP[(solutionARP['origin'] == origin) & (solutionARP['cancelFlight'] == 0)] #find the origin of flight to be cancelled
-            flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= startInt) & (flight2Cancel['altDepInt'] < endInt) ]
-            
-            airc2Cancel = updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic)
+            flight2CancelList = flight2Cancel[(flight2Cancel['altDepInt'] >= startInt) & (flight2Cancel['altDepInt'] < endInt) ]
+            if len(flight2CancelList) == 0:
+                # pdb.set_trace()
+                flight2CancelList = flight2Cancel[(flight2Cancel['altDepInt'] < startInt) | (flight2Cancel['altDepInt'] > endInt) 
+                    & (flight2Cancel['newFlight'] == 1) ]   
+            airc2Cancel = updateMulti(flight2CancelList, airpCapCopy, solutionARP, configDic)
             if  airc2Cancel == -1:
                 return -1
             return airc2Cancel
@@ -35,9 +40,12 @@ def singletonRecovery(solutionARPDic, singletonList, airpCapCopy, configDic): #r
             endInt = startInt + 60
             destination = singleton[0]['destination']
             flight2Cancel = solutionARP[(solutionARP['destination'] == destination) & (solutionARP['cancelFlight'] == 0)] #find the origin of flight to be cancelled
-            flight2Cancel = flight2Cancel[(flight2Cancel['altArrInt'] >= startInt) & (flight2Cancel['altArrInt'] < endInt) ]
-            
-            airc2Cancel = updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic)
+            flight2CancelList = flight2Cancel[(flight2Cancel['altArrInt'] >= startInt) & (flight2Cancel['altArrInt'] < endInt) ]
+            if len(flight2CancelList) == 0:
+                pdb.set_trace()
+                flight2CancelList = flight2Cancel[(flight2Cancel['altDepInt'] < startInt) | (flight2Cancel['altDepInt'] > endInt) 
+                    & (flight2Cancel['newFlight'] == 1) ]  
+            airc2Cancel = updateMulti(flight2CancelList, airpCapCopy, solutionARP, configDic)
             if  airc2Cancel == -1:
                 return -1
             return airc2Cancel
@@ -64,9 +72,10 @@ def updateMulti(flight2Cancel, airpCapCopy, solutionARP, configDic): #update air
         return -1
     if(len(flight2Cancel[0]) == 0):
         return -1
-    flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= configDic['startInt']) & (flight2Cancel['altDepInt'] <= configDic['endInt'])]
+    #flight2Cancel = flight2Cancel[(flight2Cancel['altDepInt'] >= configDic['startInt']) & (flight2Cancel['altDepInt'] <= configDic['endInt'])]
     flight2Cancel = flight2Cancel[flight2Cancel['family'] != 'TranspCom']
     if(len(flight2Cancel) == 0):
+        import pdb; pdb.set_trace()
         return -1 #There are no flights that can be cancelled, the ARP solution is infeasible
     if(len(flight2Cancel[0]) == 0):
         import pdb; pdb.set_trace()
@@ -99,7 +108,14 @@ def newPartialRotation(combo, rotation):
             flight['altDepInt'] += delay 
             flight['altArrInt'] += delay
     return rotation
-        
+
+def partial(solutionARPDic):
+    solutionARP = []
+    for rotation in solutionARPDic.values(): #convert the sol. into no array
+        solutionARP.append(rotation)
+    fSNOTranspComSA = np.concatenate(solutionARP).ravel()
+    return fSNOTranspComSA
+
 def newRotation(combo, rotation): #create rotation based on combo
     feasibility.verifyNewRotation(combo, rotation[rotation['cancelFlight'] == 0]) #compare the size of the combo w/ rotation without disr.
     notCancel = rotation[rotation['cancelFlight'] == 0] #remove disr. flight
@@ -132,10 +148,13 @@ def updateItin(flightScheduleSA, itineraryDic, newFlightDic):
         fs = flightSchedule['flightSchedule'] #flights in the itinerary
         for f in fs: #loop through the itin. flight schedule to update the flights
             newFlight = newFlightDic.get(f['flight'], False)
-            if newFlight:
-                cancelFlight = flightScheduleSA[flightScheduleSA['flight'] == newFlight]['cancelFlight']
-                f['flight'] = newFlight
-                f['cancelFlight'] = cancelFlight[0] #update itin. flight schedule
+            try:
+                if newFlight:
+                    cancelFlight = flightScheduleSA[flightScheduleSA['flight'] == newFlight]['cancelFlight']
+                    f['flight'] = newFlight
+                    f['cancelFlight'] = cancelFlight[0] #update itin. flight schedule
+                    continue
+            except:
                 continue
             cancelFlight = flight.get(f['flight'], False) #get the cancel value or false
             if cancelFlight: #if the flight is in the flight dict.
@@ -226,3 +245,82 @@ def export(flightScheduleSA, itineraryDic, minDate, path):
     text_file = open(path+"\\sol_itineraries.csv", "w")
     text_file.write(sb)
     text_file.close()
+
+def exportKPI(arpSolution, path, dataSet, deltaTime):
+
+    import subprocess
+    import os
+    from datetime import datetime
+    import pandas as pd
+    import numpy as np
+    import pdb
+    from recovery.dal.classesDtype import pincer 
+    delayFlight = arpSolution[arpSolution['depInt'] != arpSolution['altDepInt']]
+    delayFlight = delayFlight[delayFlight['cancelFlight'] == 0] 
+    totalDelay = sum(delayFlight['altDepInt'] - (delayFlight['depInt'] + delayFlight['altFlight']))# altDepInt - (depInt + altFlight)
+    cancelFlight = arpSolution[arpSolution['cancelFlight'] == 1]
+    totalCancel = sum(cancelFlight['cancelFlight'])
+    sizeLine = {}
+    sizeLine['MAX_DELAY'] = []
+    sizeLine['STEP_DOMAIN'] = []
+    sizeLine['START_UPPER'] = []
+    sizeLine['STEP_UPPER'] = []
+    sizeLine['START_LOWER'] = []
+    sizeLine['STEP_LOWER'] = []
+    sizeLine['dateTime'] = []
+    sizeLine['dataInstance'] = []
+    sizeLine['checkAircraftBreakdownPeriod'] = []
+    sizeLine['checkAircraftCapacity'] = []
+    sizeLine['checkAircraftCreation'] = []
+    sizeLine['checkAircraftSwap'] = []
+    sizeLine['checkAirportCapacity'] = []
+    sizeLine['checkCancellationofCreatedRotation'] = []
+    sizeLine['checkFixedFlights'] = []
+    sizeLine['checkFlight'] = []
+    sizeLine['checkItinerary'] = []
+    sizeLine['checkPassengerReac'] = []
+    sizeLine['checkRotation'] = []
+    sizeLine['costs'] = []
+    sizeLine['deltaTime'] = []
+    sizeLine['totalDelay'] = []
+    sizeLine['totalCancel'] = []
+    today = datetime.now().strftime("%Y%m%d_%H%M")
+
+    os.chdir(path)
+    os.system("solutionChecker-win32.exe")
+
+    sizeLine['MAX_DELAY'].append(pincer.MAX_DELAY)
+    sizeLine['STEP_DOMAIN'].append(pincer.STEP_DOMAIN)
+    sizeLine['START_UPPER'].append(pincer.START_UPPER)
+    sizeLine['STEP_UPPER'].append(pincer.STEP_UPPER)
+    sizeLine['START_LOWER'].append(pincer.START_LOWER)
+    sizeLine['STEP_LOWER'].append(pincer.STEP_LOWER)
+    sizeLine['dateTime'].append(today)
+    sizeLine['dataInstance'].append(dataSet)
+    sizeLine['checkAircraftBreakdownPeriod'].append(os.path.getsize("./results/checkAircraftBreakdownPeriod.txt"))
+    sizeLine['checkAircraftCapacity'].append(os.path.getsize("./results/checkAircraftCapacity.txt"))
+    sizeLine['checkAircraftCreation'].append(os.path.getsize("./results/checkAircraftCreation.txt"))
+    sizeLine['checkAircraftSwap'].append(os.path.getsize("./results/checkAircraftSwap.txt"))
+    sizeLine['checkAirportCapacity'].append(os.path.getsize("./results/checkAirportCapacity.txt"))
+    sizeLine['checkCancellationofCreatedRotation'].append(os.path.getsize("./results/checkCancellationofCreatedRotation.txt"))
+    sizeLine['checkFixedFlights'].append(os.path.getsize("./results/checkFixedFlights.txt"))
+    sizeLine['checkFlight'].append(os.path.getsize("./results/checkFlight.txt"))
+    sizeLine['checkItinerary'].append(os.path.getsize("./results/checkItinerary.txt"))
+    sizeLine['checkPassengerReac'].append(os.path.getsize("./results/checkPassengerReac.txt"))
+    sizeLine['checkRotation'].append(os.path.getsize("./results/checkRotation.txt"))
+    os.system("costChecker-win32.exe > results/cost.txt")
+    costs = np.genfromtxt('results/cost.txt', delimiter=':')
+    sizeLine['costs'].append(costs[-1][1])
+    sizeLine['deltaTime'].append(deltaTime)
+
+    sizeLine['totalDelay'].append(totalDelay)
+    sizeLine['totalCancel'].append(totalCancel)
+
+    os.chdir("../../../")
+    fileKPI = './results/kpiBat.csv'
+    dataSetSizes = pd.DataFrame(sizeLine)
+    try:
+        dataSetSizes.to_csv(fileKPI, mode='a', index=False, header = False)
+    except:
+        import pdb; pdb.set_trace()
+        dataSetSizes.to_csv(fileKPI, mode='a', index=False, header = False)

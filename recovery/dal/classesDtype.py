@@ -1,10 +1,10 @@
 import numpy as np
 
 class pincer:
-    MAX_DELAY = 960 #range upper limit
+    MAX_DELAY = 1261 #range upper limit
     STEP_DOMAIN = 60 #domain step
     START_UPPER = 3.00000000000000 * 10**12 #upper bound
-    STEP_UPPER = 100.0000000000000 * 10**9 #decrement step
+    STEP_UPPER = 1.0000000000000 * 10**11 #decrement step
     START_LOWER = 4.000000000000000 * 10**4 #lower bound
     STEP_LOWER = 1.0000000000000000 * 10**4  #increment step
 

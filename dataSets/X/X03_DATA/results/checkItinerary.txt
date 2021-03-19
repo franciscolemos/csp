@@ -39,6 +39,7 @@ Connection time not respected between flight 6128 and flight 3312 on itinerary 3
 Connection time not respected between flight 6131 and flight 6044 on itinerary 3593
 Connection time not respected between flight 6131 and flight 6048 on itinerary 3594
 Connection time not respected between flight 6131 and flight 6050 on itinerary 3595
+Connection time not respected between flight 6131 and flight 6238 on itinerary 3596
 Connection time not respected between flight 6131 and flight 6268 on itinerary 3597
 Connection time not respected between flight 6132 and flight 3312 on itinerary 3601
 Connection time not respected between flight 6132 and flight 5485 on itinerary 3602
@@ -74,8 +75,6 @@ Connection time not respected between flight 6254 and flight 3396 on itinerary 3
 Connection time not respected between flight 6254 and flight 3396 on itinerary 3870
 Connection time not respected between flight 6258 and flight 7900 on itinerary 3898
 Connection time not respected between flight 6258 and flight 7900 on itinerary 3899
-Connection time not respected between flight 6259 and flight 6114 on itinerary 3903
-Connection time not respected between flight 6259 and flight 6120 on itinerary 3904
 Connection time not respected between flight 6264 and flight 3216 on itinerary 3919
 Connection time not respected between flight 6266 and flight 3221 on itinerary 3928
 Connection time not respected between flight 6266 and flight 5479 on itinerary 3929
@@ -100,8 +99,6 @@ Connection time not respected between flight 7404 and flight 7806 on itinerary 4
 Connection time not respected between flight 7404 and flight 7815 on itinerary 4124
 Connection time not respected between flight 7407 and flight 6156 on itinerary 4138
 Connection time not respected between flight 7407 and flight 6220 on itinerary 4139
-Connection time not respected between flight 7413 and flight 7484 on itinerary 4172
-Connection time not respected between flight 7413 and flight 7508 on itinerary 4173
 Connection time not respected between flight 7431 and flight 7334 on itinerary 4184
 Connection time not respected between flight 7433 and flight 7362 on itinerary 4190
 Connection time not respected between flight 7433 and flight 7452 on itinerary 4191
@@ -156,6 +153,7 @@ Connection time not respected between flight 6128 and flight 5745 on itinerary 8
 Connection time not respected between flight 6128 and flight 7845 on itinerary 8511
 Connection time not respected between flight 6131 and flight 6044 on itinerary 8525
 Connection time not respected between flight 6131 and flight 6236 on itinerary 8526
+Connection time not respected between flight 6131 and flight 6238 on itinerary 8527
 Connection time not respected between flight 6135 and flight 6238 on itinerary 8538
 Connection time not respected between flight 6135 and flight 6270 on itinerary 8539
 Connection time not respected between flight 6137 and flight 6270 on itinerary 8542
@@ -186,8 +184,6 @@ Connection time not respected between flight 6254 and flight 3396 on itinerary 8
 Connection time not respected between flight 6254 and flight 3396 on itinerary 8775
 Connection time not respected between flight 6258 and flight 7900 on itinerary 8793
 Connection time not respected between flight 6258 and flight 7900 on itinerary 8794
-Connection time not respected between flight 6259 and flight 6118 on itinerary 8801
-Connection time not respected between flight 6259 and flight 6120 on itinerary 8802
 Connection time not respected between flight 6261 and flight 6154 on itinerary 8809
 Connection time not respected between flight 6264 and flight 3216 on itinerary 8815
 Connection time not respected between flight 6264 and flight 7809 on itinerary 8818
@@ -218,6 +214,7 @@ Connection time not respected between flight 7404 and flight 7806 on itinerary 9
 Connection time not respected between flight 7404 and flight 7815 on itinerary 9056
 Connection time not respected between flight 7404 and flight 7824 on itinerary 9057
 Connection time not respected between flight 7407 and flight 6156 on itinerary 9065
+Connection time not respected between flight 7407 and flight 6218 on itinerary 9066
 Connection time not respected between flight 7431 and flight 7334 on itinerary 9107
 Connection time not respected between flight 7433 and flight 7351 on itinerary 9111
 Connection time not respected between flight 7451 and flight 7351 on itinerary 9127

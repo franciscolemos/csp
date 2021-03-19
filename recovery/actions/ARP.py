@@ -97,10 +97,18 @@ class ARP:
         self.fSNOTranspComSA = self.flightScheduleSA[self.flightScheduleSA['family'] != "TranspCom"]
 
         ##################### Start BTF ########################
+        # self.fsCopy = copy.deepcopy(self.fSNOTranspComSA)
         # flightPlan = fp.flightPlan(self.distSA)
         # flightPlan.fSDistModel(self.fSNOTranspComSA) 
         # flightPlan.fsPTF() #init. the total flight time and fuel consumed for each of flights
-        # flightPlan.fsBTF(self.fSNOTranspComSA) #converts the original FS to the BTF
+        # self.fSNOTranspComSA = flightPlan.fsBTF(self.fSNOTranspComSA, self.configDic) #converts the original FS to the BTF
+
+        # df = pd.DataFrame(self.fsCopy)
+        # df.to_csv('fsCopy_B08.csv', index = False)
+        # df = pd.DataFrame(self.fSNOTranspComSA)
+        # df.to_csv('fsNew_B08.csv', index = False)
+
+        # import pdb; pdb.set_trace()
         ##################### End BTF ##########################
 
         self.airportOriginaltDic = readAirports.readAirports(path, "airports.csv", noDays, self.altAirportSA, []).read2Dic() #does not include noDep/noArr 
@@ -250,16 +258,18 @@ class ARP:
                                             , self.minDate) #if a new flight is delayed for the next day converts it
                             fixedRotation[(fixedRotation['newFlight'] == 1) 
                                             & (fixedRotation['cancelFlight'] == 0)] = convertRotation
-                            # print(fixedRotation)
-                            # import pdb; pdb.set_trace() 
+                            
                             self.solutionARP[aircraft] = fixedRotation #save the feasible rotation (to be replaced) 
                             solution.saveAirportCap(fixedRotation, airportDic) # update the airp. cap.(to be replaced)
                         else:
                             continue
                     else:
+                        # if aircraft == 'A318#125':
+                        #     import pdb; pdb.set_trace() 
                         while len(singletonList) >= 1: #[(flight, 'dep')]
                             airc2Cancel = solution.singletonRecovery(self.solutionARP, singletonList, airpCapCopy, self.configDic) 
                             if airc2Cancel == -1:
+                                fsSA = solution.partial(self.solutionARP)
                                 import pdb; pdb.set_trace()
                                 return 1, aircraft, _noCombos, len(aircraftSolList),  noFlights, noCancelledFlights
                             else:
@@ -310,14 +320,18 @@ class ARP:
                                 rotation, self.maxFlight = ARPUtils.wipRecover2(aircraft, self.altAircraftDic, self.distSA, originAirport, solRot, airportDic
                                     , self.configDic, self.maxFlight)
                         ###################### end of taxi flights ##################
-
+                        # if aircraft == 'A318#125':
+                        #     import pdb; pdb.set_trace() 
                         self.solutionARP[aircraft] = rotation #save the feasible rotation (to be replaced) 
                         solution.saveAirportCap(rotation, airportDic) # update the airp. cap.(to be replaced)
                         noFlights += len(rotation[rotation['cancelFlight'] == 0])
                         noCancelledFlights +=  len(rotation[rotation['cancelFlight'] == 1])
 
                         delta1 = time.time() - start
-                        solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue), bestSol[2]]) #df.iloc[0][2]]
+                        if len(bestSol) > 0:
+                            solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue), bestSol[2]]) #df.iloc[0][2]]
+                        else:
+                            solutionKpiExport.append([aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue), [-1]]) #df.iloc[0][2]]
 
                 else:
                     rotation = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft] #update

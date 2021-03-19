@@ -33,6 +33,8 @@ Connection time not respected between flight 3075 and flight 4700 on itinerary 6
 Connection time not respected between flight 3075 and flight 4700 on itinerary 630
 Connection time not respected between flight 3075 and flight 3092 on itinerary 631
 Connection time not respected between flight 3075 and flight 4572 on itinerary 632
+Connection time not respected between flight 3080 and flight 2995 on itinerary 642
+Connection time not respected between flight 3080 and flight 2995 on itinerary 644
 Connection time not respected between flight 3082 and flight 2999 on itinerary 648
 Connection time not respected between flight 3082 and flight 2907 on itinerary 650
 Connection time not respected between flight 3084 and flight 3003 on itinerary 656
@@ -97,8 +99,8 @@ Connection time not respected between flight 4594 and flight 4595 on itinerary 1
 Connection time not respected between flight 4594 and flight 4595 on itinerary 1524
 Connection time not respected between flight 4594 and flight 4595 on itinerary 1525
 Connection time not respected between flight 4624 and flight 4577 on itinerary 1588
-Connection time not respected between flight 4634 and flight 4593 on itinerary 1615
-Connection time not respected between flight 4634 and flight 4593 on itinerary 1617
+Connection time not respected between flight 4630 and flight 4637 on itinerary 1609
+Connection time not respected between flight 4630 and flight 4637 on itinerary 1611
 Connection time not respected between flight 4650 and flight 4631 on itinerary 1664
 Connection time not respected between flight 4656 and flight 4551 on itinerary 1676
 Connection time not respected between flight 4673 and flight 2647 on itinerary 1704
@@ -107,8 +109,3 @@ Connection time not respected between flight 4673 and flight 2647 on itinerary 1
 Connection time not respected between flight 4673 and flight 2647 on itinerary 1710
 Connection time not respected between flight 4695 and flight 3090 on itinerary 1754
 Connection time not respected between flight 4695 and flight 3090 on itinerary 1756
-Connection time not respected between flight 4763 and flight 3106 on itinerary 1791
-Connection time not respected between flight 4763 and flight 3106 on itinerary 1795
-Connection time not respected between flight 4768 and flight 4492 on itinerary 1805
-Connection time not respected between flight 4768 and flight 4492 on itinerary 1807
-Connection time not respected between flight 4768 and flight 4492 on itinerary 1810

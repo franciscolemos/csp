@@ -13,14 +13,16 @@ import sys
 from recovery.actions import solution
 import pdb
 from recovery.actions import ARP
-
+import recovery
 import time
 from recovery.repositories import *
+from  recovery.repositories.paths import pathList
 
 if __name__ == "__main__":
+    #for path in pathList:
     start = time.time()
     try:
-         path = sys.argv[1]
+        path = sys.argv[1]
     except:
         path = paths.paths[0]
     dataSet = path.split("/")[-1]
@@ -28,10 +30,10 @@ if __name__ == "__main__":
     arp = ARP.ARP(path)
     # #cost.total(arp.flightScheduleSA, arp.itineraryDic, arp.configDic)
     arp.findSolution()
-    solution.export2CSV(arp.solutionARP, dataSet)
+    #solution.export2CSV(arp.solutionARP, dataSet)
     #arp.solutionARP = solution.importCSV(dataSet)
     solution.updateItin(arp.solutionARP, arp.itineraryDic, arp.newFlight)
     solution.export(arp.solutionARP, arp.itineraryDic, arp.minDate, path)
-    solution.exportKPI(arp.solutionARP)
-    delta1 = time.time() - start
-    print("Solution time for the ARP: ", delta1)
+    deltaTime = time.time() - start
+    solution.exportKPI(arp.solutionARP, path, dataSet, deltaTime)
+    print("Solution time for the ARP: ", deltaTime)

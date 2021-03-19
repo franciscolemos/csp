@@ -193,15 +193,38 @@ class flightPlan:
         # pdb.set_trace()
         self.flightDF.to_csv('./recovery/btf/results/flightPlanList.csv',index=False)
     
-    def fsBTF(self, fs): #loop through flightDF and update flight sched.
-        for index, flight in self.flightDF.iterrows():
-            newfs  = fs[(fs['origin'] == flight['origin']) & (fs['destination'] == flight['destination']) & (fs['family'] == flight['model'])]
-            if len(newfs) == 0:
-                #print("unexisting flight schedule:", flight['origin'], flight['destination'], flight['model'])
-                continue
-            newfs['arrInt'] = newfs['depInt'] + flight['cumulTime']
-            newfs['altArrInt'] = newfs['altDepInt'] + flight['cumulTime']
-    
+    def fsBTF(self, fs, configDic): #loop through flightDF and update flight sched.
+        startInt = configDic['startInt']
+        endInt = configDic['endInt']
+        fsFilter = fs[(fs['depInt'] == fs['altDepInt']) & (fs['depInt'] >= startInt) & (fs['depInt'] <= endInt)]
+        for flight in fsFilter:
+            newTime = self.flightDF[(self.flightDF['origin'] == flight['origin']) &
+                (self.flightDF['model'] == flight['family']) &
+                (self.flightDF['destination'] == flight['destination'])]['cumulTime']
+            if len(newTime) > 0:
+                indices = np.in1d(fs, flight).nonzero()[0]
+                for i in indices:
+                    fs[i]['arrInt'] = fs[i]['depInt'] + newTime
+                    fs[i]['altArrInt'] = fs[i]['altDepInt'] + newTime
+
+                # flight['arrInt'] = flight['depInt'] + newTime
+                # flight['altArrInt'] = flight['altDepInt'] + newTime
+        return fs    
+        # import pdb; pdb.set_trace()
+
+
+
+        # for index, flight in self.flightDF.iterrows():
+        #     newfs  = fs[(fs['origin'] == flight['origin']) & (fs['destination'] == flight['destination']) & (fs['family'] == flight['model'])]
+        #     if len(newfs) == 0:
+        #         #print("unexisting flight schedule:", flight['origin'], flight['destination'], flight['model'])
+        #         continue
+        #     indices = np.in1d(fs, newfs).nonzero()[0]
+        #     for i in indices:
+        #         fs[i]['arrInt'] = fs[i]['depInt'] + flight['cumulTime']
+        #         fs[i]['altArrInt'] = fs[i]['altDepInt'] + flight['cumulTime']
+        # return fs
+
     def descStat(self):
         flightArrivedSA = genfromtxt('./dataSets/flightAware/flightListArrived.csv', 
             delimiter=',', dtype = dt.flightHistory) #read the flightListArrived.csv
