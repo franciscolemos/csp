@@ -255,11 +255,20 @@ def exportKPI(arpSolution, path, dataSet, deltaTime):
     import numpy as np
     import pdb
     from recovery.dal.classesDtype import pincer 
-    delayFlight = arpSolution[arpSolution['depInt'] != arpSolution['altDepInt']]
-    delayFlight = delayFlight[delayFlight['cancelFlight'] == 0] 
-    totalDelay = sum(delayFlight['altDepInt'] - (delayFlight['depInt'] + delayFlight['altFlight']))# altDepInt - (depInt + altFlight)
-    cancelFlight = arpSolution[arpSolution['cancelFlight'] == 1]
+    delayFlight = arpSolution[arpSolution['altFlight'] == 0] #non disrupted flights
+    delayFlight = delayFlight[delayFlight['cancelFlight'] == 0] #non cancelled flights
+    totalDelay = sum(delayFlight['altDepInt'] - delayFlight['depInt']) #altDepInt - depInt
+    cancelFlight = arpSolution[(arpSolution['cancelFlight'] == 1) & (arpSolution['altFlight'] != -1)]
     totalCancel = sum(cancelFlight['cancelFlight'])
+    totalNewFlight = pincer.NEW_FLIGHT
+    if pincer.NEW_FLIGHT != -1:
+        newFlight = arpSolution[(arpSolution['newFlight'] == 1) & (arpSolution['cancelFlight'] == 0) & (arpSolution['taxiFlight'] == 0)] #new flight not cancelled not taxi flight
+        totalNewFlight = sum(newFlight['newFlight'])
+    totalTaxiFlight = pincer.TAXI_FLIGHT
+    if pincer.TAXI_FLIGHT != -1:
+        taxiFlight = arpSolution[(arpSolution['taxiFlight'] == 1) & (arpSolution['cancelFlight'] == 0)] #taxi flight not cancelled
+        totalTaxiFlight = sum(taxiFlight['taxiFlight'])
+    # pdb.set_trace()
     sizeLine = {}
     sizeLine['MAX_DELAY'] = []
     sizeLine['STEP_DOMAIN'] = []
@@ -284,6 +293,8 @@ def exportKPI(arpSolution, path, dataSet, deltaTime):
     sizeLine['deltaTime'] = []
     sizeLine['totalDelay'] = []
     sizeLine['totalCancel'] = []
+    sizeLine['newFlight'] = []
+    sizeLine['taxiFlight'] = []
     today = datetime.now().strftime("%Y%m%d_%H%M")
 
     os.chdir(path)
@@ -315,7 +326,8 @@ def exportKPI(arpSolution, path, dataSet, deltaTime):
 
     sizeLine['totalDelay'].append(totalDelay)
     sizeLine['totalCancel'].append(totalCancel)
-
+    sizeLine['newFlight'].append(totalNewFlight)
+    sizeLine['taxiFlight'].append(totalTaxiFlight)
     os.chdir("../../../")
     fileKPI = './results/kpiBat.csv'
     dataSetSizes = pd.DataFrame(sizeLine)
