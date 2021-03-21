@@ -94,15 +94,18 @@ class initialize:
                 maintEndInt = self.aircraftDic[aircraft]['maintEndInt']
                 tmpFlightSchedule[i] = ('m', 'm', maintStartDate, maintAirport, maintStartInt, maintStartInt, maintAirport, maintEndInt, maintEndInt, '0', 0,  0, 0, 0)
             
-            noCancelFlights = len(tmpFlightSchedule[tmpFlightSchedule['cancelFlight'] == 1]) #to create an struct. array to accomm. cancelled flights
-            if noCancelFlights > 0:
-                self.noFlights += noCancelFlights #get the total size of the available flights
-                flightSchedule = np.zeros(size + noCancelFlights, self.dtypeAS) #create a new struct. array
-                y = len(tmpFlightSchedule)
-                flightSchedule[0:y] = tmpFlightSchedule #copy the array to part fo the array
-                self.aircraftScheduleDic[aircraft] = flightSchedule
-            else:    
-                self.aircraftScheduleDic[aircraft] = tmpFlightSchedule
+            self.aircraftScheduleDic[aircraft] = tmpFlightSchedule
+            from recovery.dal.classesDtype import pincer
+            if pincer.NEW_FLIGHT != -1: #if new flights are allowed
+                noCancelFlights = len(tmpFlightSchedule[tmpFlightSchedule['cancelFlight'] == 1]) #to create an struct. array to accomm. cancelled flights
+                if noCancelFlights > 0:
+                    self.noFlights += noCancelFlights #get the total size of the available flights
+                    flightSchedule = np.zeros(size + noCancelFlights, self.dtypeAS) #create a new struct. array
+                    y = len(tmpFlightSchedule)
+                    flightSchedule[0:y] = tmpFlightSchedule #copy the array to part fo the array
+                    self.aircraftScheduleDic[aircraft] = flightSchedule
+                # else:    
+                #     self.aircraftScheduleDic[aircraft] = tmpFlightSchedule
         return self.aircraftScheduleDic
     def flightSchedule(self): #for the purpose of calculating no. dep. and no. arr.
         self.flightScheduleSA = np.zeros(self.noFlights, self.dtypeFS) #initialize the struct. array
@@ -123,6 +126,7 @@ class initialize:
                 self.flightScheduleSA[i]['altFlight'] = flight['delay'] #('altFlight', np.int16), ('altAirc', np.uint8), ('newFlight', np.uint8)
                 self.flightScheduleSA[i]['altAirc'] = flight['broken']
                 self.flightScheduleSA[i]['newFlight'] = 0
+                self.flightScheduleSA[i]['taxiFlight'] = 0
                 self.flightScheduleSA[i]['_flight'] = '-1'
                 self.flightScheduleSA[i]['cancelFlight'] = flight['cancelFlight']
                 i += 1
