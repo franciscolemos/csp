@@ -136,6 +136,7 @@ class ARP:
         """
         rotationOriginal = self.fSNOTranspComSA[self.fSNOTranspComSA['aircraft'] == aircraft]
         #rotationOriginal = rotationOriginal[rotationOriginal['flight']!= ''] #remove created flights
+        
         if len(rotationOriginal[rotationOriginal['flight'] == '']):
             aircDisr =  self.altAircraftDic.get(aircraft, None) #check if the airc. has broken period
             if aircDisr != None: #check if the airc. has broken period
@@ -177,7 +178,6 @@ class ARP:
                 return -1, [] #for repair to determine if the problem is dep. or arr.
             else:
                 #print("infeasiblities:", infContList, infTTList, infMaintList, infDepList, infArrList)
-                
                 index = min(np.concatenate((infContList, infTTList, infMaintList, infDepList, infArrList), axis = None)) #find tme min. index; wgere the problem begins
                 #firstFlight = rotationOriginal[rotationOriginal['depInt'] >= self.configDic['startInt']][0]
                 #index = np.in1d(rotationOriginal, firstFlight).nonzero()[0]
@@ -309,7 +309,8 @@ class ARP:
                         except:#bestSol[2] = [] 
                             delta1 = time.time() - start
                             print(aircraft, delta1, len(flightRanges), noCombos, singletonList, len(solutionValue))
-                            import pdb; pdb.set_trace()
+                            solution.newRotation(solutions[0], rotation[index:])
+                            #import pdb; pdb.set_trace()
                         ####################### start of taxi flights ###############
                         solRot = rotation[rotation['cancelFlight'] == 0] #later will be used to pick first flight
                         if len(solRot) > 0: # the rotation can have all flights cancelled
