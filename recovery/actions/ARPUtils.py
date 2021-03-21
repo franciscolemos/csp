@@ -252,6 +252,7 @@ def wipRecover2(aircraft, altAircraftDic, distSA, originAirport, solRot, airport
             taxiFlight['flight'] = flight
             taxiFlight['cancelFlight'] = 0
             taxiFlight['newFlight'] = 1
+            taxiFlight['taxiFlight'] = 1
             taxiFlight['_flight'] = '-1'
             taxiFlight['altAirc']  = 0
             taxiFlight['altFlight'] = 0
