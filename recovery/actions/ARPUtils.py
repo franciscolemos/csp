@@ -1,4 +1,5 @@
 from recovery.dal.classesDtype import dtype as dt
+from recovery.dal.classesDtype import pincer
 from recovery.actions import solution
 from recovery.actions import feasibility
 from recovery.actions.funcsDate import int2DateTime
@@ -182,7 +183,12 @@ def wipRecover2(aircraft, altAircraftDic, distSA, originAirport, solRot, airport
         if sr['origin'] == originAirport:
             print("Airc. Origin airp = Flight origin")
             return solRot, maxFlight
-                
+        
+        if pincer.TAXI_FLIGHT == -1:
+            print("No available taxi flight")
+            sr['cancelFlight'] = 1
+            continue
+
         distInitRot = distSA[(distSA['origin'] == originAirport) & (distSA['destination'] == sr['origin'])] #dist. for airc. origin to solRot flight
         distInitRot = distInitRot['dist'][0] #dist. for airc. origin to solRot flight
         
