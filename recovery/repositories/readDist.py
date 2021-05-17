@@ -8,13 +8,13 @@ class readDist:
     def __init__(self, path, file):
         self.path = path
         self.file = file
-        self.f = open(self.path + "\\" +  self.file, encoding="utf8")
+        self.f = open(self.path + "/" +  self.file, encoding="utf8")
         self.distSA = []
         self.dtypeD = np.dtype([('origin', np.unicode, 3), ('destination', np.unicode, 3),
             ('dist', np.int16), ('tripType', np.unicode, 1)])
 
     def read2SA(self):
-        tmpDistSA = genfromtxt(self.path + "\\" +  self.file, delimiter=' ', dtype = self.dtypeD)
+        tmpDistSA = genfromtxt(self.path + "/" +  self.file, delimiter=' ', dtype = self.dtypeD)
         self.dtypeD = np.dtype(self.dtypeD.descr + [('trip', np.int8)]) #update dtype to include
         y = len(tmpDistSA) #length of the array
         self.distSA = np.zeros(y, self.dtypeD) #initialize the str. array

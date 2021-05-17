@@ -8,12 +8,12 @@ class readItineraries:
     def __init__(self, path, file):
         self.path = path
         self.file = file
-        self.f = open(path + "\\" +  file, encoding="utf8")
+        self.f = open(path + "/" +  file, encoding="utf8")
         self.fmtDate = dt.fmtDate
         self.dtypeItinFS = dt.dtypeItinFS0
 
     def read2Dic(self):
-        with open(self.path + "\\" +  self.file) as csv_file:
+        with open(self.path + "/" +  self.file) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=' ')
             line_count = 0
             itineraryDic = {}

@@ -7,7 +7,7 @@ class readFlights:
         self.path = path
         self.file = file
         self.flightDic = {}
-        self.f = open(path + "\\" +  file, encoding="utf8")
+        self.f = open(path + "/" +  file, encoding="utf8")
         self.fmtDate = '%d/%m/%y'
         self.fmtTime = '%H:%M'
 

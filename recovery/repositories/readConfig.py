@@ -6,7 +6,7 @@ class readConfig:
     def __init__(self, path, file, minDate):
         self.path = path
         self.file = file
-        self.f = open(path + "\\" +  file, encoding="utf8")
+        self.f = open(path + "/" +  file, encoding="utf8")
         self.minDate = minDate
         self.configDic = {}        
     def read2Dic(self):

@@ -298,7 +298,7 @@ def exportKPI(arpSolution, path, dataSet, deltaTime):
     today = datetime.now().strftime("%Y%m%d_%H%M")
 
     os.chdir(path)
-    os.system("solutionChecker-win32.exe")
+    os.system("./solutionChecker-static.i686-64")
 
     sizeLine['MAX_DELAY'].append(pincer.MAX_DELAY)
     sizeLine['STEP_DOMAIN'].append(pincer.STEP_DOMAIN)
@@ -319,7 +319,7 @@ def exportKPI(arpSolution, path, dataSet, deltaTime):
     sizeLine['checkItinerary'].append(os.path.getsize("./results/checkItinerary.txt"))
     sizeLine['checkPassengerReac'].append(os.path.getsize("./results/checkPassengerReac.txt"))
     sizeLine['checkRotation'].append(os.path.getsize("./results/checkRotation.txt"))
-    os.system("costChecker-win32.exe > results/cost.txt")
+    os.system("./costChecker-static.i686-64 > results/cost.txt")
     costs = np.genfromtxt('results/cost.txt', delimiter=':')
     sizeLine['costs'].append(costs[-1][1])
     sizeLine['deltaTime'].append(deltaTime)

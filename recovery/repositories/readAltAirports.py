@@ -11,7 +11,7 @@ class readAltAirport:
     def __init__(self, path, file, minDate):
         self.path = path
         self.file = file
-        self.f = open(path + "\\" +  file, encoding="utf8")
+        self.f = open(path + "/" +  file, encoding="utf8")
         self.fmtDate = '%d/%m/%y'
         self.fmtTime = '%H:%M'
         self.altAirportsSA = []
@@ -23,7 +23,7 @@ class readAltAirport:
  
     def read2SA(self):
         #if os.stat(self.path + "\\" +  self.file).st_size > 3: #prevent the warning from showing
-        tmpAltAirports = genfromtxt(self.path + "\\" +  self.file, delimiter=' ', dtype = self.dtypeA)
+        tmpAltAirports = genfromtxt(self.path + "/" +  self.file, delimiter=' ', dtype = self.dtypeA)
         size = tmpAltAirports.size
         if(size > 0):
             self.altAirportsSA = np.zeros(size, self.dtypeAA) #initialize the struct. array

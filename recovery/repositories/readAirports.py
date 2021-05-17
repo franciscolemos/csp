@@ -11,7 +11,7 @@ class readAirports:
     def __init__(self, path, file, noDays, altAirportsSA, flightScheduleSA):
         self.path = path
         self.file = file
-        self.f = open(path + "\\" +  file, encoding="utf8")
+        self.f = open(path + "/" +  file, encoding="utf8")
         self.fmtDate = dt.fmtDate
         self.fmtTime = dt.fmtTime
         self.dtype = np.dtype([('date', 'datetime64[D]'), 

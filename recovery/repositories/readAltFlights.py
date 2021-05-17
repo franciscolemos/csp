@@ -5,7 +5,7 @@ class readAltFlights:
     def __init__(self, path, file):
         self.path = path
         self.file = file
-        self.f = open(path + "\\" +  file, encoding="utf8")
+        self.f = open(path + "/" +  file, encoding="utf8")
         self.fmtDate = '%d/%m/%y'
     def read2List(self):
         altFlightsList = []
