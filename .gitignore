@@ -1,14 +1,3 @@
 *.pyc
 __pycache__
 
-dataSets/B2/B_08/results - Copy/checkAircraftBreakdownPeriod.txt
-dataSets/B2/B_08/results - Copy/checkAircraftCapacity.txt
-dataSets/B2/B_08/results - Copy/checkAircraftCreation.txt
-dataSets/B2/B_08/results - Copy/checkAircraftSwap.txt
-dataSets/B2/B_08/results - Copy/checkAirportCapacity.txt
-dataSets/B2/B_08/results - Copy/checkCancellationofCreatedRotation.txt
-dataSets/B2/B_08/results - Copy/checkFixedFlights.txt
-dataSets/B2/B_08/results - Copy/checkFlight.txt
-dataSets/B2/B_08/results - Copy/checkItinerary.txt
-dataSets/B2/B_08/results - Copy/checkPassengerReac.txt
-dataSets/B2/B_08/results - Copy/checkRotation.txt
